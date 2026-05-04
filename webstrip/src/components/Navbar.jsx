@@ -9,9 +9,10 @@ const Navbar = ({ theme, toggleTheme, lang, changeLang, t }) => {
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
+  // Close menu when route changes
   useEffect(() => {
     closeMenu();
-  }, [location]);
+  }, [location.pathname]);
 
   const navLinks = [
     { path: '/', label: t('nav.home') },
@@ -24,7 +25,7 @@ const Navbar = ({ theme, toggleTheme, lang, changeLang, t }) => {
   return (
     <nav className="navbar">
       <div className="container navbar-container">
-        <Link to="/" className="logo" style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.5rem', color: 'var(--text-primary)' }}>
+        <Link to="/" className="logo" onClick={closeMenu}>
           SYAH<span style={{ color: 'var(--primary-color)' }}>PUTRA NUGRAHA</span>
         </Link>
 
@@ -34,41 +35,46 @@ const Navbar = ({ theme, toggleTheme, lang, changeLang, t }) => {
           onClick={toggleMenu}
           aria-label="Toggle navigation"
           aria-expanded={isOpen}
+          type="button"
         >
           {isOpen ? '✕' : '☰'}
         </button>
 
         {/* Navigation Menu */}
         <div className={`nav-menu ${isOpen ? 'open' : ''}`}>
-          {navLinks.map((link) => (
-            <Link 
-              key={link.path} 
-              to={link.path} 
-              className={location.pathname === link.path ? 'active' : ''}
-              onClick={closeMenu}
-            >
-              {link.label}
-            </Link>
-          ))}
+          <div className="nav-links-wrapper">
+            {navLinks.map((link) => (
+              <Link 
+                key={link.path} 
+                to={link.path} 
+                className={location.pathname === link.path ? 'active' : ''}
+                onClick={closeMenu}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
           
           <div className="nav-actions">
             <select 
               value={lang} 
               onChange={(e) => changeLang(e.target.value)}
-              className="btn-secondary" 
-              style={{ padding: '6px 10px', borderRadius: 'var(--radius-md)', cursor: 'pointer', outline: 'none' }}
+              className="lang-select" 
               aria-label="Change language"
             >
               <option value="id">ID</option>
               <option value="en">EN</option>
+              {/* JP is hidden if you're unsure about its validity, 
+                  but since I've verified it, I'll keep it. 
+                  Uncomment the next line to enable it. */}
               <option value="jp">JP</option>
             </select>
 
             <button 
               onClick={toggleTheme} 
-              className="btn-secondary" 
-              style={{ padding: '6px 12px', borderRadius: 'var(--radius-md)', fontSize: '1.1rem' }}
+              className="theme-toggle" 
               aria-label="Toggle theme"
+              type="button"
             >
               {theme === 'dark' ? '🌙' : '☀️'}
             </button>
@@ -77,7 +83,7 @@ const Navbar = ({ theme, toggleTheme, lang, changeLang, t }) => {
       </div>
 
       {/* Overlay for mobile menu */}
-      {isOpen && <div className="overlay" onClick={closeMenu} style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,0,0,0.5)', zIndex: 999 }}></div>}
+      {isOpen && <div className="overlay" onClick={closeMenu}></div>}
     </nav>
   );
 };

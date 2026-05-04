@@ -3,7 +3,7 @@ import { useI18n } from '../layouts/MainLayout';
 import '../styles/projects.css';
 
 const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -15,13 +15,19 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
     }
   };
 
+  // Helper to get translated content from the project object
+  const getContent = (field) => {
+    if (!project[field]) return '';
+    return project[field][lang] || project[field]['en'] || project[field]['id'] || '';
+  };
+
   return (
     <div className="card project-card">
       {/* Project Image */}
       <div className="project-image-container">
         <img 
           src={project.imageUrl || 'https://via.placeholder.com/600x400?text=Project+Thumbnail'} 
-          alt={t(`projects.${project.id}.title`)}
+          alt={getContent('title')}
           className="project-image"
         />
         <div 
@@ -36,8 +42,8 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
       <div className="project-content">
         <div style={{ marginBottom: 'var(--space-3)' }}>
           <p className="project-role">{project.role}</p>
-          <h3 style={{ marginBottom: 'var(--space-2)' }}>{t(`projects.${project.id}.title`)}</h3>
-          <p style={{ fontSize: '0.9rem', opacity: 0.8, marginBottom: 'var(--space-4)' }}>{t(`projects.${project.id}.desc`)}</p>
+          <h3 style={{ marginBottom: 'var(--space-2)' }}>{getContent('title')}</h3>
+          <p style={{ fontSize: '0.9rem', opacity: 0.8, marginBottom: 'var(--space-4)' }}>{getContent('shortDescription')}</p>
         </div>
 
         {/* Tech Stack Badges */}
@@ -56,7 +62,7 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
             className="btn btn-secondary" 
             style={{ padding: '8px 16px', fontSize: '0.85rem', flex: 1 }}
           >
-            {isExpanded ? 'Hide Details' : 'Case Study'}
+            {isExpanded ? (lang === 'id' ? 'Tutup Detail' : 'Hide Details') : (lang === 'id' ? 'Lihat Detail' : 'Case Study')}
           </button>
           
           {project.demoUrl && (
@@ -91,19 +97,23 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
           <div className="detail-item">
             <div>
               <p className="detail-label">{t('projects.challenge_label')}</p>
-              <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>{t(`projects.${project.id}.challenge`)}</p>
+              <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>{getContent('challenge')}</p>
             </div>
             <div>
               <p className="detail-label">{t('projects.solution_label')}</p>
-              <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>{t(`projects.${project.id}.solution`)}</p>
+              <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>{getContent('solution')}</p>
             </div>
             <div>
               <p className="detail-label">{t('projects.impact_label')}</p>
-              <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>{t(`projects.${project.id}.impact`)}</p>
+              <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>{getContent('impact')}</p>
             </div>
             <div>
               <p className="detail-label">{t('projects.features_label')}</p>
-              <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>{t(`projects.${project.id}.features`)}</p>
+              <ul style={{ fontSize: '0.9rem', opacity: 0.9, paddingLeft: '1.2rem', margin: '4px 0 0' }}>
+                {(getContent('features') || []).map((feature, i) => (
+                  <li key={i}>{feature}</li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

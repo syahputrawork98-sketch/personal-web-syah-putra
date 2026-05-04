@@ -1,30 +1,58 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  z-index: 1000;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+}
+
 .navbar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+  width: 100%;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  fontSize: 1.5rem;
+  color: var(--text-primary);
+  text-decoration: none;
 }
 
 .nav-menu {
   display: flex;
-  gap: var(--space-4);
   align-items: center;
+  gap: var(--space-8);
 }
 
-.nav-menu a {
+.nav-links-wrapper {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.nav-links-wrapper a {
   font-weight: 500;
   color: var(--text-secondary);
+  text-decoration: none;
   font-size: 0.95rem;
   transition: color var(--transition-fast);
   position: relative;
 }
 
-.nav-menu a:hover,
-.nav-menu a.active {
+.nav-links-wrapper a:hover,
+.nav-links-wrapper a.active {
   color: var(--primary-color);
 }
 
-.nav-menu a.active::after {
+.nav-links-wrapper a.active::after {
   content: '';
   position: absolute;
   bottom: -4px;
@@ -33,6 +61,38 @@
   height: 2px;
   background-color: var(--primary-color);
   border-radius: var(--radius-full);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.lang-select {
+  padding: 6px 10px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  outline: none;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+}
+
+.theme-toggle {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+}
+
+.theme-toggle:hover {
+  border-color: var(--primary-color);
 }
 
 .hamburger {
@@ -46,6 +106,17 @@
   padding: 8px;
 }
 
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+}
+
 @media (max-width: 1024px) {
   .hamburger {
     display: block;
@@ -55,32 +126,37 @@
     position: fixed;
     top: 0;
     right: -100%;
-    width: 280px;
+    width: 300px;
     height: 100vh;
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-blur);
+    background: var(--background-color);
     flex-direction: column;
-    padding: var(--space-12) var(--space-6);
+    padding: var(--space-20) var(--space-8);
     transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     align-items: flex-start;
+    gap: var(--space-8);
   }
 
   .nav-menu.open {
     right: 0;
   }
 
-  .nav-menu a {
+  .nav-links-wrapper {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-links-wrapper a {
     font-size: 1.2rem;
     width: 100%;
-    padding: var(--space-2) 0;
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--border-color);
   }
 
   .nav-actions {
-    display: flex;
-    gap: var(--space-3);
     margin-top: var(--space-4);
     width: 100%;
+    justify-content: flex-start;
   }
 }
