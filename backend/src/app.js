@@ -25,6 +25,8 @@ const experienceRoutes = require('./routes/experience.routes');
 const adminExperienceRoutes = require('./routes/admin/experience.routes');
 const certificationRoutes = require('./routes/certification.routes');
 const adminCertificationRoutes = require('./routes/admin/certification.routes');
+const educationRoutes = require('./routes/education.routes');
+const adminEducationRoutes = require('./routes/admin/education.routes');
 
 // Health Check
 app.get('/api/health', (req, res) => {
@@ -44,6 +46,9 @@ app.use('/api/experiences', experienceRoutes);
 app.use('/api/admin/experiences', adminExperienceRoutes);
 app.use('/api/certifications', certificationRoutes);
 app.use('/api/admin/certifications', adminCertificationRoutes);
+app.use('/api/education', educationRoutes);
+app.use('/api/admin/education', adminEducationRoutes);
+
 
 // Global Error Handler
 app.use(errorHandler);
