@@ -14,6 +14,8 @@ import AdminProjectCreate from './pages/admin/AdminProjectCreate';
 import AdminProjectEdit from './pages/admin/AdminProjectEdit';
 import AdminAccount from './pages/admin/AdminAccount';
 import AdminContact from './pages/admin/AdminContact';
+import AdminHeroSettings from './pages/admin/AdminHeroSettings';
+import AdminProfileSettings from './pages/admin/AdminProfileSettings';
 import AdminSkills from './pages/admin/AdminSkills';
 import AdminSkillCreate from './pages/admin/AdminSkillCreate';
 import AdminSkillEdit from './pages/admin/AdminSkillEdit';
@@ -23,7 +25,9 @@ import AdminExperienceEdit from './pages/admin/AdminExperienceEdit';
 import AdminCertifications from './pages/admin/AdminCertifications';
 import AdminCertificationCreate from './pages/admin/AdminCertificationCreate';
 import AdminCertificationEdit from './pages/admin/AdminCertificationEdit';
+import AdminEducation from './pages/admin/AdminEducation';
 import ProtectedRoute from './components/admin/ProtectedRoute';
+
 import AdminLayout from './components/admin/AdminLayout';
 
 function App() {
@@ -55,6 +59,8 @@ function App() {
           <Route path="projects/:id/edit" element={<AdminProjectEdit />} />
           <Route path="account" element={<AdminAccount />} />
           <Route path="contact" element={<AdminContact />} />
+          <Route path="settings/hero" element={<AdminHeroSettings />} />
+          <Route path="settings/profile" element={<AdminProfileSettings />} />
           <Route path="skills" element={<AdminSkills />} />
           <Route path="skills/new" element={<AdminSkillCreate />} />
           <Route path="skills/:id/edit" element={<AdminSkillEdit />} />
@@ -64,7 +70,10 @@ function App() {
           <Route path="certifications" element={<AdminCertifications />} />
           <Route path="certifications/new" element={<AdminCertificationCreate />} />
           <Route path="certifications/:id/edit" element={<AdminCertificationEdit />} />
+          <Route path="education" element={<AdminEducation />} />
         </Route>
+
+
       </Routes>
     </Router>
   );
