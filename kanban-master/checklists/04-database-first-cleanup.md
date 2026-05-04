@@ -1,0 +1,24 @@
+# Database-First Cleanup Checklist
+
+- [x] Created `webstrip/src/fallback` directory
+- [x] Created `heroFallback.js`
+- [x] Created `profileFallback.js`
+- [x] Created `educationFallback.js`
+- [x] Created `projectsFallback.js`
+- [x] Created `experienceFallback.js`
+- [x] Created `certificationsFallback.js`
+- [x] Created `skillsFallback.js`
+- [x] Created `contactFallback.js`
+- [x] Removed old `webstrip/src/data/projects.js`
+- [x] Removed old `webstrip/src/data/fallbacks.js`
+- [x] Home no longer uses i18n business content
+- [x] About no longer uses i18n business content
+- [x] Projects no longer uses i18n business content
+- [x] Experience no longer uses i18n business content
+- [x] Contact no longer uses i18n business content
+- [x] `id.json` cleaned from business content
+- [x] `en.json` cleaned from business content
+- [x] `jp.json` cleaned from business content
+- [x] `npm run build` success after cleanup
+- [ ] Runtime test API failure fallback behavior
+- [ ] Runtime test empty database state
