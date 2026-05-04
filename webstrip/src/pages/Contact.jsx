@@ -56,7 +56,9 @@ const Contact = () => {
       icon: <FiPhone />,
       label: 'Phone / WhatsApp',
       value: currentContact.whatsapp || currentContact.phone || (loading ? '...' : null),
-      url: currentContact.whatsapp ? `https://wa.me/${currentContact.whatsapp.replace(/\D/g, '')}` : null
+      url: currentContact.whatsapp && typeof currentContact.whatsapp === 'string' 
+        ? `https://wa.me/${currentContact.whatsapp.replace(/\D/g, '')}` 
+        : null
     },
     {
       id: 'location',

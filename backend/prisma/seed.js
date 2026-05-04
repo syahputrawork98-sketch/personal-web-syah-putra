@@ -71,54 +71,77 @@ async function main() {
 
   console.log('✅ Sample projects seeded.');
   
-  // 3. Setup Default Contact Settings
-  const defaultContact = {
-    email: adminEmail,
-    phone: '',
-    whatsapp: '',
-    github: '',
-    linkedin: '',
-    instagram: '',
-    location: 'Indonesia'
-  };
-
-  await prisma.siteSetting.upsert({
-    where: { key: 'contact' },
-    update: {},
-    create: {
-      key: 'contact',
-      value: defaultContact,
+  // 3. Setup Default Site Settings (Hero, Profile, Contact)
+  console.log('⚙️ Setting up Site Settings...');
+  
+  const settings = [
+    {
+      key: 'hero',
+      value: {
+        name: 'Syah Putra Nugraha',
+        roles: ['Fullstack Web Developer', 'Frontend Specialist', 'Backend Enthusiast'],
+        title: 'Building Digital Experiences with Precision.',
+        subtitle: 'Specializing in high-performance web applications and digital transformation with over 8 years of IT experience.',
+        primaryCtaLabel: 'View Projects',
+        secondaryCtaLabel: 'Download CV',
+        resumeUrl: '#'
+      }
     },
-  });
+    {
+      key: 'profile',
+      value: {
+        aboutTitle: 'About Me',
+        summaryTitle: 'Professional Overview',
+        summary: 'Experienced Fullstack Web Developer with a strong background in React.js, Node.js, and modern web technologies. I have spent years bridging the gap between complex business requirements and elegant technical solutions.',
+        avatarUrl: 'https://placehold.co/400x400/000000/FFFFFF/png?text=SP',
+        resumeUrl: '#'
+      }
+    },
+    {
+      key: 'contact',
+      value: {
+        email: adminEmail,
+        phone: '+628123456789',
+        whatsapp: '+628123456789',
+        github: 'https://github.com/syahputranugraha',
+        linkedin: 'https://linkedin.com/in/syahputranugraha',
+        instagram: 'https://instagram.com/syah_putra_n',
+        location: 'Cimahi, West Java, Indonesia'
+      }
+    }
+  ];
 
-  console.log('✅ Default contact settings seeded.');
+  for (const s of settings) {
+    await prisma.siteSetting.upsert({
+      where: { key: s.key },
+      update: { value: s.value },
+      create: { key: s.key, value: s.value },
+    });
+  }
+  console.log('✅ Site settings (Hero, Profile, Contact) seeded.');
 
   // 4. Setup Default Skills
   const defaultSkills = [
     // Technical Skills
-    { name: 'React', type: 'TECHNICAL', category: 'Frontend', level: 'Advanced', order: 1 },
-    { name: 'JavaScript', type: 'TECHNICAL', category: 'Language', level: 'Advanced', order: 2 },
-    { name: 'TypeScript', type: 'TECHNICAL', category: 'Language', level: 'Intermediate', order: 3 },
-    { name: 'Node.js', type: 'TECHNICAL', category: 'Backend', level: 'Intermediate', order: 4 },
-    { name: 'Express.js', type: 'TECHNICAL', category: 'Backend', level: 'Intermediate', order: 5 },
-    { name: 'PostgreSQL', type: 'TECHNICAL', category: 'Database', level: 'Intermediate', order: 6 },
-    { name: 'Prisma', type: 'TECHNICAL', category: 'ORM', level: 'Intermediate', order: 7 },
+    { name: 'React', type: 'TECHNICAL', category: 'Frontend', level: 'Advanced', order: 1, visible: true },
+    { name: 'JavaScript', type: 'TECHNICAL', category: 'Language', level: 'Advanced', order: 2, visible: true },
+    { name: 'TypeScript', type: 'TECHNICAL', category: 'Language', level: 'Intermediate', order: 3, visible: true },
+    { name: 'Node.js', type: 'TECHNICAL', category: 'Backend', level: 'Intermediate', order: 4, visible: true },
+    { name: 'Express.js', type: 'TECHNICAL', category: 'Backend', level: 'Intermediate', order: 5, visible: true },
+    { name: 'PostgreSQL', type: 'TECHNICAL', category: 'Database', level: 'Intermediate', order: 6, visible: true },
+    { name: 'Prisma', type: 'TECHNICAL', category: 'ORM', level: 'Intermediate', order: 7, visible: true },
     
     // Soft Skills
-    { name: 'Communication', type: 'SOFT', category: 'General', order: 10 },
-    { name: 'Problem Solving', type: 'SOFT', category: 'General', order: 11 },
-    { name: 'Teamwork', type: 'SOFT', category: 'General', order: 12 },
-    { name: 'Adaptability', type: 'SOFT', category: 'General', order: 13 },
-    { name: 'Time Management', type: 'SOFT', category: 'General', order: 14 },
+    { name: 'Communication', type: 'SOFT', category: 'General', order: 10, visible: true },
+    { name: 'Problem Solving', type: 'SOFT', category: 'General', order: 11, visible: true },
+    { name: 'Teamwork', type: 'SOFT', category: 'General', order: 12, visible: true },
+    { name: 'Adaptability', type: 'SOFT', category: 'General', order: 13, visible: true },
+    { name: 'Time Management', type: 'SOFT', category: 'General', order: 14, visible: true },
     
     // Tools
-    { name: 'Git', type: 'TOOL', category: 'Tools', order: 20 },
-    { name: 'GitHub', type: 'TOOL', category: 'Tools', order: 21 },
-    { name: 'VS Code', type: 'TOOL', category: 'Tools', order: 22 },
-    
-    // Languages
-    { name: 'English', type: 'LANGUAGE', category: 'Languages', level: 'Professional', order: 30 },
-    { name: 'Indonesian', type: 'LANGUAGE', category: 'Languages', level: 'Native', order: 31 },
+    { name: 'Git', type: 'TOOL', category: 'Tools', order: 20, visible: true },
+    { name: 'GitHub', type: 'TOOL', category: 'Tools', order: 21, visible: true },
+    { name: 'VS Code', type: 'TOOL', category: 'Tools', order: 22, visible: true },
   ];
 
   for (const skill of defaultSkills) {
@@ -133,9 +156,54 @@ async function main() {
       create: skill,
     });
   }
-  console.log('✅ Default skills (Technical, Soft, Tools, Language) seeded.');
+  console.log('✅ Default skills seeded.');
 
-  // 5. Setup Sample Certifications
+  // 5. Setup Education
+  const defaultEdu = [
+    {
+      school: 'SMK Negeri 1 Cimahi',
+      degree: 'Software Engineering',
+      period: '2013 - 2017',
+      description: 'Focused on web development and software architecture.',
+      sortOrder: 1,
+      isActive: true
+    }
+  ];
+
+  const eduCount = await prisma.education.count();
+  if (eduCount === 0) {
+    for (const edu of defaultEdu) {
+      await prisma.education.create({ data: edu });
+    }
+    console.log('✅ Education seeded.');
+  }
+
+  // 6. Setup Experience
+  const defaultExp = [
+    {
+      role: 'Fullstack Web Developer',
+      company: 'Self-employed',
+      location: 'Remote',
+      type: 'Freelance',
+      startDate: new Date('2023-05-01'),
+      isCurrent: true,
+      description: 'Building modern web applications using React and Node.js.',
+      highlights: ['Developed custom CMS', 'Optimized database performance'],
+      techStack: ['React', 'Node.js', 'PostgreSQL'],
+      status: 'PUBLISHED',
+      order: 1
+    }
+  ];
+
+  const expCount = await prisma.experience.count();
+  if (expCount === 0) {
+    for (const exp of defaultExp) {
+      await prisma.experience.create({ data: exp });
+    }
+    console.log('✅ Experience seeded.');
+  }
+
+  // 7. Setup Sample Certifications
   const sampleCerts = [
     {
       title: 'Full Stack Web Development',
