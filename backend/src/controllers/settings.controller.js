@@ -64,8 +64,70 @@ const updateContact = async (req, res, next) => {
   }
 };
 
+const getHero = async (req, res, next) => {
+  try {
+    const setting = await prisma.siteSetting.findUnique({ where: { key: 'hero' } });
+    res.json({ hero: setting ? setting.value : null });
+  } catch (error) { next(error); }
+};
+
+const getAdminHero = async (req, res, next) => {
+  try {
+    const setting = await prisma.siteSetting.findUnique({ where: { key: 'hero' } });
+    res.json({ hero: setting ? setting.value : null });
+  } catch (error) { next(error); }
+};
+
+const updateHero = async (req, res, next) => {
+  try {
+    if (typeof req.body !== 'object' || req.body === null) {
+      return res.status(400).json({ status: 'error', message: 'Body must be a JSON object' });
+    }
+    const setting = await prisma.siteSetting.upsert({
+      where: { key: 'hero' },
+      update: { value: req.body },
+      create: { key: 'hero', value: req.body },
+    });
+    res.json({ message: 'Hero settings updated successfully', hero: setting.value });
+  } catch (error) { next(error); }
+};
+
+const getProfile = async (req, res, next) => {
+  try {
+    const setting = await prisma.siteSetting.findUnique({ where: { key: 'profile' } });
+    res.json({ profile: setting ? setting.value : null });
+  } catch (error) { next(error); }
+};
+
+const getAdminProfile = async (req, res, next) => {
+  try {
+    const setting = await prisma.siteSetting.findUnique({ where: { key: 'profile' } });
+    res.json({ profile: setting ? setting.value : null });
+  } catch (error) { next(error); }
+};
+
+const updateProfile = async (req, res, next) => {
+  try {
+    if (typeof req.body !== 'object' || req.body === null) {
+      return res.status(400).json({ status: 'error', message: 'Body must be a JSON object' });
+    }
+    const setting = await prisma.siteSetting.upsert({
+      where: { key: 'profile' },
+      update: { value: req.body },
+      create: { key: 'profile', value: req.body },
+    });
+    res.json({ message: 'Profile settings updated successfully', profile: setting.value });
+  } catch (error) { next(error); }
+};
+
 module.exports = {
   getContact,
   getAdminContact,
   updateContact,
+  getHero,
+  getAdminHero,
+  updateHero,
+  getProfile,
+  getAdminProfile,
+  updateProfile,
 };
