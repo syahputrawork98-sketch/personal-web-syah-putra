@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useI18n } from '../layouts/MainLayout';
 import ProjectCard from '../components/ProjectCard';
 import { motion } from 'framer-motion';
 import { getPublicProjects } from '../lib/api';
@@ -7,7 +6,6 @@ import EmptyState from '../components/EmptyState';
 
 
 const Projects = () => {
-  const { t } = useI18n();
   const [projects, setProjects] = useState([]);
   const [expandedId, setExpandedId] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -59,12 +57,12 @@ const Projects = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-center">{t('projects.title')}</h2>
-          {loading && <p style={{ opacity: 0.6, marginTop: 'var(--space-4)' }}>{t('common.loading')}</p>}
+          <h2 className="text-center">Proyek Unggulan</h2>
+          {loading && <p style={{ opacity: 0.6, marginTop: 'var(--space-4)' }}>Memuat data...</p>}
         </motion.div>
 
         {!loading && projects.length === 0 ? (
-          <EmptyState message={t('common.data_not_available')} />
+          <EmptyState message="Data belum tersedia." />
         ) : (
           <>
             {/* Featured Projects Grid */}
@@ -101,7 +99,7 @@ const Projects = () => {
                 viewport={{ once: true }}
               >
                 <h3 style={{ opacity: 0.6, fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '2px', borderBottom: '1px solid var(--border-color)', paddingBottom: 'var(--space-4)' }}>
-                  {t('projects.title_other') || 'Other Projects'}
+                  Proyek Lainnya
                 </h3>
               </motion.div>
             )}

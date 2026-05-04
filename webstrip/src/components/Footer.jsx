@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Footer = ({ t }) => {
+const Footer = () => {
   return (
     <footer style={{ padding: 'var(--space-6) 0', borderTop: '1px solid var(--border-color)', textAlign: 'center' }}>
       <div className="container">
-        <p dangerouslySetInnerHTML={{ __html: t('footer.copy') }}></p>
+        <p>&copy; 2026 Syah Putra Nugraha. Dibangun dengan Presisi.</p>
       </div>
     </footer>
   );

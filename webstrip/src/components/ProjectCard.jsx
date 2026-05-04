@@ -1,10 +1,8 @@
 import React from 'react';
-import { useI18n } from '../layouts/MainLayout';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/projects.css';
 
 const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
-  const { t, lang } = useI18n();
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -21,14 +19,13 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
     if (!data) return '';
     // Handle string directly (common from API)
     if (typeof data === 'string') return data;
-    // Handle object (common from localProjects/multilang)
-    return data[lang] || data['en'] || data['id'] || '';
+    // Handle object (fallback to id if still present)
+    return data['id'] || data['en'] || '';
   };
 
   // Safe mapping for varied data sources (API vs Local)
   const title = getContent('title');
   const subtitle = getContent('subtitle') || getContent('shortDescription') || "";
-  const description = getContent('description') || getContent('desc') || getContent('shortDescription') || "";
   const techStack = project.techStack || project.technologies || [];
   const githubUrl = project.githubUrl || project.github || "";
   const demoUrl = project.demoUrl || project.demo || project.liveUrl || "";
@@ -84,7 +81,7 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
             className="btn btn-secondary" 
             style={{ padding: '8px 16px', fontSize: '0.85rem', flex: 1 }}
           >
-            {isExpanded ? (lang === 'id' ? 'Tutup Detail' : 'Hide Details') : (lang === 'id' ? 'Lihat Detail' : 'Case Study')}
+            {isExpanded ? 'Tutup Detail' : 'Lihat Detail'}
           </button>
           
           {demoUrl && (
@@ -126,19 +123,19 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
           >
             <div className="detail-item">
               <div>
-                <p className="detail-label">{t('projects.challenge_label')}</p>
+                <p className="detail-label">Tantangan:</p>
                 <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>{getContent('challenge')}</p>
               </div>
               <div>
-                <p className="detail-label">{t('projects.solution_label')}</p>
+                <p className="detail-label">Solusi:</p>
                 <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>{getContent('solution')}</p>
               </div>
               <div>
-                <p className="detail-label">{t('projects.impact_label')}</p>
+                <p className="detail-label">Dampak:</p>
                 <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>{getContent('impact')}</p>
               </div>
               <div>
-                <p className="detail-label">{t('projects.features_label')}</p>
+                <p className="detail-label">Fitur Utama:</p>
                 <ul style={{ fontSize: '0.9rem', opacity: 0.9, paddingLeft: '1.2rem', margin: '4px 0 0' }}>
                   {(getContent('features') || []).map((feature, i) => (
                     <li key={i}>{feature}</li>
