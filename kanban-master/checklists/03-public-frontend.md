@@ -1,0 +1,22 @@
+# Public Frontend Checklist
+
+- [x] Home page exists
+- [x] About page exists
+- [x] Projects page exists
+- [x] Experience page exists
+- [x] Contact page exists
+- [x] MainLayout integration
+- [x] Navbar integration
+- [x] Home consumes Hero API
+- [x] Home consumes Skills API (Highlights)
+- [x] About consumes Profile API
+- [x] About consumes Education API
+- [x] About consumes Soft Skills API (filtered by `SOFT` type)
+- [x] Projects consumes Projects API
+- [x] Experience consumes Experiences API
+- [x] Experience consumes Certifications API
+- [x] Contact consumes Contact/Settings API
+- [x] Fallback JS used when API fails
+- [x] i18n used only for UI labels
+- [ ] Manual test all public pages with backend ON
+- [ ] Manual test all public pages with backend OFF
