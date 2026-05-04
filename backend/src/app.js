@@ -23,6 +23,8 @@ const skillsRoutes = require('./routes/skills.routes');
 const adminSkillsRoutes = require('./routes/admin/skills.routes');
 const experienceRoutes = require('./routes/experience.routes');
 const adminExperienceRoutes = require('./routes/admin/experience.routes');
+const certificationRoutes = require('./routes/certification.routes');
+const adminCertificationRoutes = require('./routes/admin/certification.routes');
 
 // Health Check
 app.get('/api/health', (req, res) => {
@@ -40,6 +42,8 @@ app.use('/api/skills', skillsRoutes);
 app.use('/api/admin/skills', adminSkillsRoutes);
 app.use('/api/experiences', experienceRoutes);
 app.use('/api/admin/experiences', adminExperienceRoutes);
+app.use('/api/certifications', certificationRoutes);
+app.use('/api/admin/certifications', adminCertificationRoutes);
 
 // Global Error Handler
 app.use(errorHandler);

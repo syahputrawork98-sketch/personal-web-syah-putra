@@ -95,28 +95,67 @@ async function main() {
 
   // 4. Setup Default Skills
   const defaultSkills = [
-    { name: 'React', category: 'Frontend', level: 'Advanced', order: 1 },
-    { name: 'Node.js', category: 'Backend', level: 'Intermediate', order: 2 },
-    { name: 'Express.js', category: 'Backend', level: 'Intermediate', order: 3 },
-    { name: 'JavaScript', category: 'Language', level: 'Advanced', order: 4 },
-    { name: 'TypeScript', category: 'Language', level: 'Intermediate', order: 5 },
-    { name: 'PostgreSQL', category: 'Database', level: 'Intermediate', order: 6 },
-    { name: 'Prisma', category: 'ORM', level: 'Intermediate', order: 7 },
-    { name: 'Tailwind CSS', category: 'Styling', level: 'Advanced', order: 8 },
-    { name: 'Git', category: 'Tools', level: 'Intermediate', order: 9 },
-    { name: 'Python', category: 'Language', level: 'Basic', order: 10 },
-    { name: 'Java', category: 'Language', level: 'Basic', order: 11 },
-    { name: 'Rust', category: 'Language', level: 'Basic', order: 12 },
+    // Technical Skills
+    { name: 'React', type: 'TECHNICAL', category: 'Frontend', level: 'Advanced', order: 1 },
+    { name: 'JavaScript', type: 'TECHNICAL', category: 'Language', level: 'Advanced', order: 2 },
+    { name: 'TypeScript', type: 'TECHNICAL', category: 'Language', level: 'Intermediate', order: 3 },
+    { name: 'Node.js', type: 'TECHNICAL', category: 'Backend', level: 'Intermediate', order: 4 },
+    { name: 'Express.js', type: 'TECHNICAL', category: 'Backend', level: 'Intermediate', order: 5 },
+    { name: 'PostgreSQL', type: 'TECHNICAL', category: 'Database', level: 'Intermediate', order: 6 },
+    { name: 'Prisma', type: 'TECHNICAL', category: 'ORM', level: 'Intermediate', order: 7 },
+    
+    // Soft Skills
+    { name: 'Communication', type: 'SOFT', category: 'General', order: 10 },
+    { name: 'Problem Solving', type: 'SOFT', category: 'General', order: 11 },
+    { name: 'Teamwork', type: 'SOFT', category: 'General', order: 12 },
+    { name: 'Adaptability', type: 'SOFT', category: 'General', order: 13 },
+    { name: 'Time Management', type: 'SOFT', category: 'General', order: 14 },
+    
+    // Tools
+    { name: 'Git', type: 'TOOL', category: 'Tools', order: 20 },
+    { name: 'GitHub', type: 'TOOL', category: 'Tools', order: 21 },
+    { name: 'VS Code', type: 'TOOL', category: 'Tools', order: 22 },
+    
+    // Languages
+    { name: 'English', type: 'LANGUAGE', category: 'Languages', level: 'Professional', order: 30 },
+    { name: 'Indonesian', type: 'LANGUAGE', category: 'Languages', level: 'Native', order: 31 },
   ];
 
-  const skillCount = await prisma.skill.count();
-  if (skillCount === 0) {
-    for (const skill of defaultSkills) {
-      await prisma.skill.create({ data: skill });
+  for (const skill of defaultSkills) {
+    await prisma.skill.upsert({
+      where: {
+        name_type: {
+          name: skill.name,
+          type: skill.type
+        }
+      },
+      update: skill,
+      create: skill,
+    });
+  }
+  console.log('✅ Default skills (Technical, Soft, Tools, Language) seeded.');
+
+  // 5. Setup Sample Certifications
+  const sampleCerts = [
+    {
+      title: 'Full Stack Web Development',
+      issuer: 'Udemy',
+      credentialId: 'UC-123456',
+      credentialUrl: 'https://udemy.com/certificate/UC-123456',
+      issuedAt: new Date('2023-01-01'),
+      doesNotExpire: true,
+      skills: ['React', 'Node.js', 'PostgreSQL'],
+      status: 'PUBLISHED',
+      order: 1
     }
-    console.log('✅ Default skills seeded.');
-  } else {
-    console.log('ℹ️ Skills already exist, skipping default skills seed.');
+  ];
+
+  const certCount = await prisma.certification.count();
+  if (certCount === 0) {
+    for (const cert of sampleCerts) {
+      await prisma.certification.create({ data: cert });
+    }
+    console.log('✅ Sample certifications seeded.');
   }
 
   console.log('🏁 Seeding finished successfully.');
