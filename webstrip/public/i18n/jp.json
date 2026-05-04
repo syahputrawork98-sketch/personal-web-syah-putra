@@ -1,0 +1,122 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "projects": "プロジェクト",
+    "about": "私について",
+    "skills": "スキル",
+    "experience": "経歴",
+    "contact": "お問い合わせ"
+  },
+  "hero": {
+    "name": "Syah Putra Nugraha",
+    "role": "フルスタック Web 開発者 | フロントエンド 開発者 | バックエンド 開発者",
+    "title": "精密さでデジタル体験を構築する。",
+    "subtitle": "Webアプリケーション開発、業務システムのデジタル化を専門とし、IT分野で8年以上の経験があります。",
+    "cta_primary": "プロジェクトを見る",
+    "cta_secondary": "履歴書をダウンロード",
+    "cta_contact": "お問い合わせ"
+  },
+  "about": {
+    "title": "私について",
+    "summary_title": "プロフェッショナルな概要",
+    "summary": "React.js、Node.js、Express.js、PHP、MySQL、MongoDB、PostgreSQLを用いたWebアプリケーション構築の経験を持つフルスタックWeb開発者です。IT、ビジネスプロセスのデジタル化、プロジェクト管理、製造、建設の分野で8年以上の経験があります。<br><br>REST API、認証システム、管理ダッシュボード、監視アプリケーション、企業紹介サイト、社内システムの構築経験があります。要件分析から開発、デプロイ、保守までの全ライフサイクルに精通しています。現在は、フロントエンド、バックエンド、またはフルスタック開発者としてのキャリア復帰に注力しています。",
+    "soft_skills_title": "ソフトスキル",
+    "soft_skills": "問題解決, 適応力, チームワーク, 分析的思考, コミュニケーション, クライアント対応, プロジェクト調整, ドキュメンテーション, 時間管理",
+    "location": "インドネシア、西ジャワ州、チマヒ",
+    "email": "syah.putrawork98@gmail.com",
+    "phone": "0851-6265-4466",
+    "github": "https://bit.ly/4j2PJQW",
+    "portfolio": "https://bit.ly/4odquN9"
+  },
+  "skills": {
+    "title": "技術スキル",
+    "frontend": "フロントエンド",
+    "backend": "バックエンド",
+    "database": "データベース",
+    "tools": "ツールとデプロイ",
+    "automation": "自動化と生産性",
+    "others": "デザインとその他"
+  },
+  "experience": {
+    "title": "職務経歴",
+    "exp1": {
+      "role": "フリーランス・フルスタック Web 開発者",
+      "company": "個人事業主",
+      "date": "2025年 – 現在",
+      "desc": "React.jsとNode.jsを使用して、中小企業や地元企業向けのウェブサイトやWebアプリケーションを開発。REST API、JWTベースのログインシステム、管理ダッシュボードを作成。レスポンシブデザインと基本的なSEO最適化を実装。"
+    },
+    "exp2": {
+      "role": "フィールド・ゼネラル・スタッフ — プロジェクト・デジタル化",
+      "company": "PT. Sedayu Jaya Konstruksi",
+      "date": "2022年8月 – 2024年12月",
+      "desc": "日報、週報、月報のデジタル化。RAB、RAP、請求書、資材レポート、プロジェクト文書の作成。現場チーム、職長、主要請負業者との調整。"
+    },
+    "exp3": {
+      "role": "パーソナルアシスタント & ゼネラルスタッフ — デジタルドキュメンテーション",
+      "company": "PT. Erusatria Grup",
+      "date": "2020年3月 – 2022年7月",
+      "desc": "デジタルベースのアーカイブおよび物流レポートシステムの開発。シンプルなデジタルレポートシステムを通じて、文書化効率を約25%向上させるのに貢献。"
+    },
+    "exp4": {
+      "role": "総務 & システムサポート",
+      "company": "Wisata Ngaprak Bandung",
+      "date": "2018年10月 – 2019年12月",
+      "desc": "デジタルプロモーション用の会社案内ウェブサイトを作成。コンピュータハードウェアおよび社内ITニーズの軽微なサポートを提供。"
+    },
+    "exp5": {
+      "role": "ITサポート & システム管理者",
+      "company": "PT. OTICS Indonesia",
+      "date": "2016年11月 – 2017年12月",
+      "desc": "工場のサーバー、ネットワーク、CCTV、ITデバイスの管理。ウェブベースの内部採用アプリケーションを開発。従業員データベースと管理ダッシュボードを設計。"
+    }
+  },
+  "projects": {
+    "title": "主なプロジェクト",
+    "impact_label": "影響:",
+    "proj1": {
+      "title": "建設プロジェクト監視アプリケーション",
+      "subtitle": "Rumahku Kontraktor",
+      "tech": "React.js, Node.js, Express.js, MongoDB",
+      "desc": "住宅建設の進捗を監視するためのWebアプリケーション。主な機能には、進捗ダッシュボード、日報、プロジェクト文書、作業監視が含まれます。",
+      "impact": "プロジェクト報告の効率を約35%向上させるのに貢献。"
+    },
+    "proj2": {
+      "title": "イベントオーガナイザー・ショーケースサイト",
+      "subtitle": "Siqah",
+      "tech": "React.js, Node.js, Express.js, MySQL",
+      "desc": "サービスカタログ、イベントポートフォリオ、問い合わせ/予約機能を備えたイベントオーガナイザーおよびケータリングサービスのプロモーションサイト。",
+      "impact": "クライアントの信頼を高め、ビジネスのデジタルリーチを拡大。"
+    },
+    "proj3": {
+      "title": "内部採用アプリケーション",
+      "subtitle": "PT. OTICS Indonesia",
+      "tech": "PHP, MySQL, HTML, CSS",
+      "desc": "応募者データ管理と人事ダッシュボードのための内部システム。",
+      "impact": "採用プロセスを加速し、管理データの誤りを削減。"
+    },
+    "proj4": {
+      "title": "会社案内ウェブサイト",
+      "subtitle": "Wisata Ngaprak Bandung",
+      "tech": "HTML, CSS, JavaScript, Bootstrap",
+      "desc": "ビジネスプロファイル、サービス、目的地ギャラリーを紹介するための会社案内サイト。",
+      "impact": "会社のデジタルプレゼンスの強化に貢献。"
+    }
+  },
+  "edu_cert": {
+    "edu_title": "学歴",
+    "cert_title": "資格・認証",
+    "edu1": {
+      "school": "チマヒ第1職業高校 (SMK Negeri 1 Cimahi)",
+      "major": "ソフトウェアエンジニアリング (D1/4年制)",
+      "date": "2013年 – 2017年"
+    },
+    "cert1": "Web開発認定（Node.js & React）– BNSP 2025",
+    "cert2": "建設サービス能力認定 – BNSP 2024",
+    "cert3": "CAD機械製造認定 – BNSP 2025",
+    "cert4": "Global Azure Bootcamp 2017",
+    "cert5": "Web開発とデータベース管理トレーニング 2020"
+  },
+  "footer": {
+    "copy": "&copy; 2026 Syah Putra Nugraha. 精密さを持って構築されました。"
+  }
+}

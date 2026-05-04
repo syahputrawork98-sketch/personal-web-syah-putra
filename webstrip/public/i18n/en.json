@@ -1,0 +1,122 @@
+{
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "hero": {
+    "name": "Syah Putra Nugraha",
+    "role": "Full Stack Web Developer | Frontend Developer | Backend Developer",
+    "title": "Building Digital Experiences with Precision.",
+    "subtitle": "Specialist in web application development, work system digitalization, with 8+ years background in IT.",
+    "cta_primary": "View Projects",
+    "cta_secondary": "Download CV",
+    "cta_contact": "Contact Me"
+  },
+  "about": {
+    "title": "About Me",
+    "summary_title": "Professional Summary",
+    "summary": "Full Stack Web Developer with experience building web applications based on React.js, Node.js, Express.js, PHP, MySQL, MongoDB, and PostgreSQL. Has an 8+ year background in IT, business process digitalization, project administration, manufacturing, and construction.<br><br>Experienced in creating REST APIs, authentication systems, admin dashboards, monitoring applications, company profile websites, and internal systems. Familiar with the entire lifecycle from requirement analysis to deployment and maintenance. Currently focusing on returning to a career as a Frontend, Backend, or Full Stack Developer.",
+    "soft_skills_title": "Soft Skills",
+    "soft_skills": "Problem Solving, Adaptability, Teamwork, Analytical Thinking, Communication, Client Handling, Project Coordination, Documentation, Time Management",
+    "location": "Cimahi, West Java, Indonesia",
+    "email": "syah.putrawork98@gmail.com",
+    "phone": "0851-6265-4466",
+    "github": "https://bit.ly/4j2PJQW",
+    "portfolio": "https://bit.ly/4odquN9"
+  },
+  "skills": {
+    "title": "Technical Skills",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "database": "Database",
+    "tools": "Tools & Deployment",
+    "automation": "Automation & Productivity",
+    "others": "Design & Others"
+  },
+  "experience": {
+    "title": "Work Experience",
+    "exp1": {
+      "role": "Freelance Full Stack Web Developer",
+      "company": "Self-employed",
+      "date": "2025 – Present",
+      "desc": "Developing websites and web applications for SMEs and local businesses using React.js and Node.js. Creating REST APIs, JWT-based login systems, and admin dashboards. Implementing responsive design and basic SEO optimization."
+    },
+    "exp2": {
+      "role": "Field General Staff — Project Digitalization",
+      "company": "PT. Sedayu Jaya Konstruksi",
+      "date": "Aug 2022 – Dec 2024",
+      "desc": "Digitalizing daily, weekly, and monthly project reports. Preparing RAB, RAP, invoices, material reports, and project documentation. Coordinating with field teams, foremen, and main contractors."
+    },
+    "exp3": {
+      "role": "Personal Assistant & General Staff — Digital Documentation",
+      "company": "PT. Erusatria Grup",
+      "date": "Mar 2020 – Jul 2022",
+      "desc": "Developing digital-based archiving and logistics reporting systems. Helped improve documentation efficiency by approximately 25% through simple digital report systems."
+    },
+    "exp4": {
+      "role": "General Affair & System Support",
+      "company": "Wisata Ngaprak Bandung",
+      "date": "Oct 2018 – Dec 2019",
+      "desc": "Created company profile website for digital promotion. Provided light support for computer hardware and internal IT needs."
+    },
+    "exp5": {
+      "role": "IT Support & System Administrator",
+      "company": "PT. OTICS Indonesia",
+      "date": "Nov 2016 – Dec 2017",
+      "desc": "Managed factory servers, networks, CCTV, and IT devices. Developed web-based internal recruitment applications. Designed employee databases and admin dashboards."
+    }
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "impact_label": "Impact:",
+    "proj1": {
+      "title": "Construction Project Monitoring Application",
+      "subtitle": "Rumahku Kontraktor",
+      "tech": "React.js, Node.js, Express.js, MongoDB",
+      "desc": "Web application for monitoring house construction progress. Key features include progress dashboards, daily reports, project documentation, and job monitoring.",
+      "impact": "Helped improve project reporting efficiency by about 35%."
+    },
+    "proj2": {
+      "title": "Event Organizer Showcase Website",
+      "subtitle": "Siqah",
+      "tech": "React.js, Node.js, Express.js, MySQL",
+      "desc": "Promotion website for event organizer and catering services with service catalogs, event portfolios, and inquiry/booking features.",
+      "impact": "Increased client trust and expanded the business's digital reach."
+    },
+    "proj3": {
+      "title": "Internal Recruitment Application",
+      "subtitle": "PT. OTICS Indonesia",
+      "tech": "PHP, MySQL, HTML, CSS",
+      "desc": "Internal system for managing applicant data and HR dashboard.",
+      "impact": "Sped up the recruitment process and reduced administrative data errors."
+    },
+    "proj4": {
+      "title": "Company Profile Website",
+      "subtitle": "Wisata Ngaprak Bandung",
+      "tech": "HTML, CSS, JavaScript, Bootstrap",
+      "desc": "Company profile website to showcase business profile, services, and destination gallery.",
+      "impact": "Helped strengthen the company's digital presence."
+    }
+  },
+  "edu_cert": {
+    "edu_title": "Education",
+    "cert_title": "Certifications",
+    "edu1": {
+      "school": "SMK Negeri 1 Cimahi",
+      "major": "Software Engineering (D1/4 Years)",
+      "date": "2013 – 2017"
+    },
+    "cert1": "Web Development Certification (Node.js & React) – BNSP 2025",
+    "cert2": "Construction Service Competency – BNSP 2024",
+    "cert3": "CAD Mechanical Manufacturing – BNSP 2025",
+    "cert4": "Global Azure Bootcamp 2017",
+    "cert5": "Web Development & Database Management Training 2020"
+  },
+  "footer": {
+    "copy": "&copy; 2026 Syah Putra Nugraha. Built with Precision."
+  }
+}
