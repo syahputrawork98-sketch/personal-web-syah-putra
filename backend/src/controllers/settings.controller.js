@@ -1,0 +1,71 @@
+const prisma = require('../lib/prisma');
+
+// Public
+const getContact = async (req, res, next) => {
+  try {
+    const setting = await prisma.siteSetting.findUnique({
+      where: { key: 'contact' },
+    });
+
+    res.json({
+      contact: setting ? setting.value : null,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Admin
+const getAdminContact = async (req, res, next) => {
+  try {
+    const setting = await prisma.siteSetting.findUnique({
+      where: { key: 'contact' },
+    });
+
+    res.json({
+      contact: setting ? setting.value : null,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const updateContact = async (req, res, next) => {
+  const { email, phone, whatsapp, github, linkedin, instagram, location } = req.body;
+
+  try {
+    const contactData = {
+      email: email || '',
+      phone: phone || '',
+      whatsapp: whatsapp || '',
+      github: github || '',
+      linkedin: linkedin || '',
+      instagram: instagram || '',
+      location: location || '',
+    };
+
+    const setting = await prisma.siteSetting.upsert({
+      where: { key: 'contact' },
+      update: {
+        value: contactData,
+      },
+      create: {
+        key: 'contact',
+        value: contactData,
+      },
+    });
+
+    res.json({
+      message: 'Contact settings updated successfully',
+      contact: setting.value,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {
+  getContact,
+  getAdminContact,
+  updateContact,
+};
