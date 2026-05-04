@@ -6,6 +6,7 @@ import About from './pages/About';
 import Projects from './pages/Projects';
 import Experience from './pages/Experience';
 import Contact from './pages/Contact';
+import Credentials from './pages/Credentials';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -40,6 +41,7 @@ function App() {
         <Route path="/projects" element={<MainLayout><Projects /></MainLayout>} />
         <Route path="/experience" element={<MainLayout><Experience /></MainLayout>} />
         <Route path="/contact" element={<MainLayout><Contact /></MainLayout>} />
+        <Route path="/credentials" element={<MainLayout><Credentials /></MainLayout>} />
 
         {/* Admin Login - No Layout */}
         <Route path="/admin/login" element={<AdminLogin />} />

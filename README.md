@@ -15,8 +15,9 @@ Repository ini menggunakan struktur modular untuk memisahkan antara manajemen pr
 
 Saat ini website fokus pada implementasi **Database-First Content Management**. 
 
-> [!IMPORTANT]
-> **Fitur Multi-bahasa (i18n)** saat ini dinonaktifkan sementara. Website sepenuhnya menggunakan Bahasa Indonesia agar sinkron dengan manajemen data dari Database. Fokus saat ini adalah memastikan seluruh konten dinamis dapat dikelola melalui Admin CMS dengan stabil.
+- **Fitur Kredensial**: Telah ditambahkan halaman `/credentials` yang menampilkan sertifikasi, kredensial unggulan, dan dokumen pendukung.
+- **Data Kredensial**: Saat ini data dikelola melalui file draft `credentialDraft.js` sebelum migrasi penuh ke database. Data dibedakan menjadi status `verified` dan `needs_manual_verification`.
+- **i18n Status**: Fitur multi-bahasa tetap dinonaktifkan sementara untuk stabilitas konten.
 
 ## 🛠️ Tech Stack
 

@@ -12,6 +12,7 @@
 3. **Real Content Finalization**:
    - Replace dummy project data with real case studies.
    - Upload high-quality profile photo.
+   - **Credentials Migration**: Migrate data from `credentialDraft.js` to PostgreSQL database and complete the `needs_manual_verification` items.
 
 ## Medium Priority
 1. **Deployment Preparation**:
