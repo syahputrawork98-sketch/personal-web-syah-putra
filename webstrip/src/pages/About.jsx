@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useI18n } from '../layouts/MainLayout';
 import { motion } from 'framer-motion';
 import { getPublicSkills, getPublicContact, getPublicProfile, getPublicEducation } from '../lib/api';
-import { PROFILE_FALLBACK, EDUCATION_FALLBACK, CONTACT_FALLBACK } from '../data/fallbacks';
+import { profileFallback } from '../fallback/profileFallback';
+import { educationFallback } from '../fallback/educationFallback';
+import { contactFallback } from '../fallback/contactFallback';
+import { skillsFallback } from '../fallback/skillsFallback';
 import '../styles/about.css';
 
 const About = () => {
@@ -11,20 +14,32 @@ const About = () => {
   const [contactData, setContactData] = useState(null);
   const [profileData, setProfileData] = useState(null);
   const [educationData, setEducationData] = useState([]);
-  const softSkills = t('about.soft_skills').split(', ');
+  const [softSkills, setSoftSkills] = useState(skillsFallback.soft.map(s => s.name));
+
 
   useEffect(() => {
     const fetchSkills = async () => {
       try {
         const data = await getPublicSkills();
         if (data.skills) {
-          const grouped = data.skills.reduce((acc, skill) => {
-            const cat = skill.category || 'Other';
-            if (!acc[cat]) acc[cat] = [];
-            acc[cat].push(skill);
-            return acc;
-          }, {});
+          // Technical Skills (grouped by category)
+          const grouped = data.skills
+            .filter(s => s.type === 'TECHNICAL' || !s.type)
+            .reduce((acc, skill) => {
+              const cat = skill.category || 'Other';
+              if (!acc[cat]) acc[cat] = [];
+              acc[cat].push(skill);
+              return acc;
+            }, {});
           setTechSkills(grouped);
+
+          // Soft Skills
+          const soft = data.skills
+            .filter(s => s.type === 'SOFT')
+            .map(s => s.name);
+          if (soft.length > 0) {
+            setSoftSkills(soft);
+          }
         }
       } catch (err) {
         console.warn('About: Failed to fetch skills:', err.message);
@@ -86,9 +101,9 @@ const About = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
 
-  const currentProfile = profileData || PROFILE_FALLBACK;
-  const currentEducation = educationData.length > 0 ? educationData : EDUCATION_FALLBACK;
-  const currentContact = contactData || CONTACT_FALLBACK;
+  const currentProfile = profileData || profileFallback;
+  const currentEducation = educationData.length > 0 ? educationData : educationFallback;
+  const currentContact = contactData || contactFallback;
 
   return (
     <section id="about" className="section-padding">

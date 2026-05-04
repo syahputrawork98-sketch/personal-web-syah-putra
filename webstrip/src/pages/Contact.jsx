@@ -4,8 +4,9 @@ import { motion } from 'framer-motion';
 import { FiMail, FiMapPin, FiPhone } from 'react-icons/fi';
 import { FaLinkedin, FaGithub, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { getPublicContact } from '../lib/api';
-import { CONTACT_FALLBACK } from '../data/fallbacks';
+import { contactFallback } from '../fallback/contactFallback';
 import '../styles/contact.css';
+
 
 const Contact = () => {
   const { t } = useI18n();
@@ -25,7 +26,7 @@ const Contact = () => {
     fetchContact();
   }, []);
 
-  const currentContact = contactData || CONTACT_FALLBACK;
+  const currentContact = contactData || contactFallback;
 
   const contactItems = [
     {

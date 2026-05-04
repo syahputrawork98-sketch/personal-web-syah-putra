@@ -14,8 +14,7 @@
   "about": {
     "title": "About Me",
     "summary_title": "Professional Summary",
-    "soft_skills_title": "Soft Skills",
-    "soft_skills": "Problem Solving, Adaptability, Teamwork, Analytical Thinking, Communication, Client Handling, Project Coordination, Documentation, Time Management"
+    "soft_skills_title": "Soft Skills"
   },
   "skills": {
     "title": "Technical Skills",

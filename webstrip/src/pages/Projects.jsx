@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useI18n } from '../layouts/MainLayout';
-import { projects as localProjects } from '../data/projects';
 import ProjectCard from '../components/ProjectCard';
 import { motion } from 'framer-motion';
 import { getPublicProjects } from '../lib/api';
+import { projectsFallback } from '../fallback/projectsFallback';
+
 
 const Projects = () => {
   const { t } = useI18n();
@@ -23,13 +24,13 @@ const Projects = () => {
           setDataSource('api');
         } else {
           // If response is successful but no projects array
-          setProjects(localProjects);
+          setProjects(projectsFallback);
           setDataSource('fallback');
           console.warn('API success but no projects array, using fallback.');
         }
       } catch (err) {
         console.warn('API Fetch failed, using local fallback:', err.message);
-        setProjects(localProjects);
+        setProjects(projectsFallback);
         setDataSource('fallback');
       } finally {
         setLoading(false);

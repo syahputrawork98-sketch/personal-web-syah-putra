@@ -14,8 +14,7 @@
   "about": {
     "title": "Tentang Saya",
     "summary_title": "Ringkasan Profesional",
-    "soft_skills_title": "Soft Skills",
-    "soft_skills": "Problem Solving, Adaptability, Teamwork, Analytical Thinking, Communication, Client Handling, Project Coordination, Documentation, Time Management"
+    "soft_skills_title": "Soft Skills"
   },
   "skills": {
     "title": "Keahlian Teknis",
