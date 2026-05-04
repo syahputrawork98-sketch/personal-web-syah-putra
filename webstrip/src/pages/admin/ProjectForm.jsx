@@ -10,6 +10,8 @@ const ProjectForm = () => {
 
   const [formData, setFormData] = useState({
     slug: '',
+    // TODO: Simplify these multilingual objects to plain strings once DB schema is cleaned up.
+    // Currently kept for DB compatibility.
     title: { id: '', en: '', jp: '' },
     shortDescription: { id: '', en: '', jp: '' },
     description: { id: '', en: '', jp: '' },

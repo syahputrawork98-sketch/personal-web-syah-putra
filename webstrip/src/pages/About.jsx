@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useI18n } from '../layouts/MainLayout';
 import { motion } from 'framer-motion';
 import { getPublicSkills, getPublicContact, getPublicProfile, getPublicEducation } from '../lib/api';
 import EmptyState from '../components/EmptyState';
 import '../styles/about.css';
 
 const About = () => {
-  const { t } = useI18n();
   const [techSkills, setTechSkills] = useState({});
   const [contactData, setContactData] = useState(null);
   const [profileData, setProfileData] = useState(null);
@@ -14,6 +12,15 @@ const About = () => {
   const [softSkills, setSoftSkills] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Mapping for skill categories
+  const categoryMap = {
+    'frontend': 'Frontend',
+    'backend': 'Backend',
+    'database': 'Database',
+    'tools': 'Tools & Deployment',
+    'automation': 'Otomasi & Produktivitas',
+    'others': 'Desain & Lainnya'
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,7 +86,7 @@ const About = () => {
     return (
       <section id="about" className="section-padding">
         <div className="container">
-          <EmptyState message={t('common.data_not_available')} />
+          <EmptyState message="Data belum tersedia." />
         </div>
       </section>
     );
@@ -104,7 +111,7 @@ const About = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
         >
-          {currentProfile.aboutTitle || t('nav.about')}
+          {currentProfile.aboutTitle || "Tentang Saya"}
         </motion.h2>
         
         <div className="about-grid">
@@ -114,12 +121,12 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>{currentProfile.summaryTitle || t('about.summary_title')}</h3>
-            <p dangerouslySetInnerHTML={{ __html: currentProfile.summary || t('common.data_not_available') }} className="about-summary"></p>
+            <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>{currentProfile.summaryTitle || "Ringkasan Profesional"}</h3>
+            <p dangerouslySetInnerHTML={{ __html: currentProfile.summary || "Data belum tersedia." }} className="about-summary"></p>
             
             {softSkills.length > 0 && (
               <>
-                <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>{t('about.soft_skills_title')}</h3>
+                <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>Soft Skills</h3>
                 <motion.div 
                   className="soft-skills-container"
                   variants={containerVariants}
@@ -146,12 +153,12 @@ const About = () => {
             {/* Technical Skills Section */}
             {Object.keys(techSkills).length > 0 && (
               <>
-                <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-4)' }}>{t('skills.title') || 'Technical Skills'}</h3>
+                <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-4)' }}>Keahlian Teknis</h3>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--space-6)' }}>
                   {Object.entries(techSkills).map(([category, skills]) => (
                     <div key={category} className="skill-category-group">
                       <h4 style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px', opacity: 0.7, marginBottom: 'var(--space-3)', borderBottom: '1px solid var(--border-color)', paddingBottom: '4px' }}>
-                        {t(`skills.${category.toLowerCase()}`) || category}
+                        {categoryMap[category.toLowerCase()] || category}
                       </h4>
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2)' }}>
                         {skills.map(skill => (
@@ -185,24 +192,24 @@ const About = () => {
             )}
 
             <motion.div className="card" whileHover={{ y: -5 }}>
-              <h3 style={{ marginBottom: 'var(--space-4)' }}>{t('contact.info_title') || 'Contact Info'}</h3>
+              <h3 style={{ marginBottom: 'var(--space-4)' }}>Informasi Kontak</h3>
               {Object.keys(currentContact).length > 0 ? (
                 <div className="about-contact-card">
-                  {currentContact.location && <p><strong>Location:</strong> {currentContact.location}</p>}
+                  {currentContact.location && <p><strong>Lokasi:</strong> {currentContact.location}</p>}
                   {currentContact.email && <p><strong>Email:</strong> <a href={`mailto:${currentContact.email}`}>{currentContact.email}</a></p>}
                   <div className="about-cta-group">
                     {currentContact.github && <a href={currentContact.github} target="_blank" rel="noopener noreferrer" className="btn btn-secondary about-cta-btn">GitHub</a>}
                     {currentContact.instagram && <a href={currentContact.instagram} target="_blank" rel="noopener noreferrer" className="btn btn-secondary about-cta-btn">Instagram</a>}
-                    {currentProfile.resumeUrl && <a href={currentProfile.resumeUrl} download className="btn btn-primary about-cta-btn" style={{ flex: '1 0 auto' }}>Download CV</a>}
+                    {currentProfile.resumeUrl && <a href={currentProfile.resumeUrl} download className="btn btn-primary about-cta-btn" style={{ flex: '1 0 auto' }}>Unduh CV</a>}
                   </div>
                 </div>
               ) : (
-                <p style={{ opacity: 0.6, fontSize: '0.9rem' }}>{t('common.data_not_available')}</p>
+                <p style={{ opacity: 0.6, fontSize: '0.9rem' }}>Data belum tersedia.</p>
               )}
             </motion.div>
 
             <motion.div className="card" whileHover={{ y: -5 }}>
-              <h3 style={{ marginBottom: 'var(--space-3)' }}>{t('edu_cert.edu_title')}</h3>
+              <h3 style={{ marginBottom: 'var(--space-3)' }}>Pendidikan</h3>
               {currentEducation.length > 0 ? (
                 currentEducation.map((edu) => (
                   <div key={edu.id} style={{ marginBottom: 'var(--space-4)' }}>
@@ -213,7 +220,7 @@ const About = () => {
                   </div>
                 ))
               ) : (
-                <p style={{ opacity: 0.6, fontSize: '0.9rem' }}>{t('common.data_not_available')}</p>
+                <p style={{ opacity: 0.6, fontSize: '0.9rem' }}>Data belum tersedia.</p>
               )}
             </motion.div>
 

@@ -12,4 +12,4 @@
 - [x] **Certifications CRUD**: Complete management for formal certifications.
 - [x] **Skills Management**: Categorized technical and soft skills (Technical/Soft/Tool).
 - [x] **Mobile Navigation**: Hamburger menu with animations and scroll lock.
-- [x] **i18n UI Transition**: Translation files strictly for UI labels across 3 languages.
+- [x] **i18n Removal**: Completely decommissioned the multilingual layer (I18nContext, language switcher, static JSONs) to prioritize Database-First Indonesian content.

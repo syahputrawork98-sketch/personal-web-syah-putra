@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useI18n } from '../layouts/MainLayout';
 import { motion } from 'framer-motion';
 import { getPublicExperiences, getPublicCertifications } from '../lib/api';
 import EmptyState from '../components/EmptyState';
@@ -7,7 +6,6 @@ import '../styles/experience.css';
 
 
 const Experience = () => {
-  const { t, lang } = useI18n();
   const [experiences, setExperiences] = useState([]);
   const [certifications, setCertifications] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,7 +30,7 @@ const Experience = () => {
     };
 
     fetchData();
-  }, [t]);
+  }, []);
 
 
   const formatDate = (dateString) => {
@@ -40,7 +38,7 @@ const Experience = () => {
     try {
       const date = new Date(dateString);
       if (isNaN(date.getTime())) return '';
-      return date.toLocaleDateString(lang === 'id' ? 'id-ID' : 'en-US', {
+      return date.toLocaleDateString('id-ID', {
         month: 'short',
         year: 'numeric'
       });
@@ -52,7 +50,7 @@ const Experience = () => {
   const getDisplayDate = (exp) => {
     if (exp.isLocal) return exp.displayDate;
     const start = formatDate(exp.startDate);
-    const end = exp.isCurrent ? (lang === 'id' ? 'Sekarang' : 'Present') : formatDate(exp.endDate);
+    const end = exp.isCurrent ? 'Sekarang' : formatDate(exp.endDate);
     return `${start} ${start && end ? '–' : ''} ${end}`;
   };
 
@@ -83,13 +81,13 @@ const Experience = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            {t('experience.title')}
+            Pengalaman Kerja
           </motion.h2>
-          {loading && <span style={{ opacity: 0.6, fontSize: '0.9rem' }}>{t('common.loading')}</span>}
+          {loading && <span style={{ opacity: 0.6, fontSize: '0.9rem' }}>Memuat data...</span>}
         </motion.div>
         
         {!loading && experiences.length === 0 ? (
-          <EmptyState message={t('common.data_not_available')} />
+          <EmptyState message="Data belum tersedia." />
         ) : (
           <motion.div 
             className="experience-list"
@@ -142,11 +140,11 @@ const Experience = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          {t('edu_cert.cert_title')}
+          Sertifikasi
         </motion.h2>
         
         {!loading && certifications.length === 0 ? (
-          <EmptyState message={t('common.data_not_available')} />
+          <EmptyState message="Data belum tersedia." />
         ) : (
           <motion.div 
             className="certs-grid"
@@ -178,7 +176,7 @@ const Experience = () => {
                     onMouseOver={e => e.target.style.borderBottom = '1px solid var(--primary-color)'}
                     onMouseOut={e => e.target.style.borderBottom = '1px solid transparent'}
                   >
-                    View Credential &rarr;
+                    Lihat Kredensial &rarr;
                   </a>
                 )}
               </motion.div>

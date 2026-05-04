@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/navbar.css';
 
-const Navbar = ({ theme, toggleTheme, lang, changeLang, t }) => {
+const Navbar = ({ theme, toggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
@@ -26,11 +26,11 @@ const Navbar = ({ theme, toggleTheme, lang, changeLang, t }) => {
   }, [location.pathname]);
 
   const navLinks = [
-    { path: '/', label: t('nav.home') },
-    { path: '/about', label: t('nav.about') },
-    { path: '/experience', label: t('nav.experience') },
-    { path: '/projects', label: t('nav.projects') },
-    { path: '/contact', label: t('nav.contact') },
+    { path: '/', label: 'Beranda' },
+    { path: '/about', label: 'Tentang' },
+    { path: '/experience', label: 'Pengalaman' },
+    { path: '/projects', label: 'Proyek' },
+    { path: '/contact', label: 'Kontak' },
   ];
 
   const menuVariants = {
@@ -77,11 +77,6 @@ const Navbar = ({ theme, toggleTheme, lang, changeLang, t }) => {
             ))}
           </div>
           <div className="nav-actions">
-            <select value={lang} onChange={(e) => changeLang(e.target.value)} className="lang-select" aria-label="Change language">
-              <option value="id">ID</option>
-              <option value="en">EN</option>
-              <option value="jp">JP</option>
-            </select>
             <button onClick={toggleTheme} className="theme-toggle" type="button" aria-label="Toggle theme">
               {theme === 'dark' ? '🌙' : '☀️'}
             </button>
@@ -120,11 +115,6 @@ const Navbar = ({ theme, toggleTheme, lang, changeLang, t }) => {
                   ))}
                 </div>
                 <motion.div className="nav-actions" variants={linkVariants}>
-                  <select value={lang} onChange={(e) => changeLang(e.target.value)} className="lang-select">
-                    <option value="id">ID</option>
-                    <option value="en">EN</option>
-                    <option value="jp">JP</option>
-                  </select>
                   <button onClick={toggleTheme} className="theme-toggle" type="button">
                     {theme === 'dark' ? '🌙' : '☀️'}
                   </button>

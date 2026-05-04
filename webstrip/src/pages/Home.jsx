@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useI18n } from '../layouts/MainLayout';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { getPublicSkills, getPublicHero } from '../lib/api';
@@ -8,7 +7,6 @@ import EmptyState from '../components/EmptyState';
 import '../styles/home.css';
 
 const Home = () => {
-  const { t, lang } = useI18n();
   const [highlightSkills, setHighlightSkills] = useState([]);
   const [heroData, setHeroData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -61,7 +59,7 @@ const Home = () => {
     return (
       <section id="home" className="section-padding flex-center hero-section">
         <div className="container">
-          <EmptyState message={t('common.data_not_available')} />
+          <EmptyState message="Data belum tersedia." />
         </div>
       </section>
     );
@@ -85,7 +83,7 @@ const Home = () => {
         <motion.p className="hero-role" variants={itemVariants}>
           {typeSequence.length > 0 && (
             <TypeAnimation
-              key={heroData ? 'api' : lang}
+              key={heroData ? 'api' : 'fallback'}
               sequence={typeSequence}
               wrapper="span"
               speed={50}

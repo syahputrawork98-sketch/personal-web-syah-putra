@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useI18n } from '../layouts/MainLayout';
 import { motion } from 'framer-motion';
 import { FiMail, FiMapPin, FiPhone } from 'react-icons/fi';
 import { FaLinkedin, FaGithub, FaInstagram, FaWhatsapp } from 'react-icons/fa';
@@ -9,7 +8,6 @@ import '../styles/contact.css';
 
 
 const Contact = () => {
-  const { t } = useI18n();
   const [contactData, setContactData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -34,8 +32,8 @@ const Contact = () => {
     return (
       <section id="contact" className="section-padding flex-center" style={{ minHeight: '70vh' }}>
         <div className="container" style={{ maxWidth: '600px' }}>
-          <h2 className="text-center">{t('contact.title')}</h2>
-          <EmptyState message={t('common.data_not_available')} />
+          <h2 className="text-center">Hubungi Saya</h2>
+          <EmptyState message="Data belum tersedia." />
         </div>
       </section>
     );
@@ -54,7 +52,7 @@ const Contact = () => {
     {
       id: 'phone',
       icon: <FiPhone />,
-      label: 'Phone / WhatsApp',
+      label: 'Telepon / WhatsApp',
       value: currentContact.whatsapp || currentContact.phone || (loading ? '...' : null),
       url: currentContact.whatsapp && typeof currentContact.whatsapp === 'string' 
         ? `https://wa.me/${currentContact.whatsapp.replace(/\D/g, '')}` 
@@ -63,7 +61,7 @@ const Contact = () => {
     {
       id: 'location',
       icon: <FiMapPin />,
-      label: 'Location',
+      label: 'Lokasi',
       value: currentContact.location,
       url: null
     },
@@ -71,21 +69,21 @@ const Contact = () => {
       id: 'linkedin',
       icon: <FaLinkedin />,
       label: 'LinkedIn',
-      value: currentContact.linkedin ? 'LinkedIn Profile' : null,
+      value: currentContact.linkedin ? 'Profil LinkedIn' : null,
       url: currentContact.linkedin
     },
     {
       id: 'github',
       icon: <FaGithub />,
       label: 'GitHub',
-      value: currentContact.github ? 'GitHub Profile' : null,
+      value: currentContact.github ? 'Profil GitHub' : null,
       url: currentContact.github
     },
     {
       id: 'instagram',
       icon: <FaInstagram />,
       label: 'Instagram',
-      value: currentContact.instagram ? 'Instagram Profile' : null,
+      value: currentContact.instagram ? 'Profil Instagram' : null,
       url: currentContact.instagram
     }
   ].filter(item => item.value);
@@ -116,9 +114,9 @@ const Contact = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-center">{t('contact.title')}</h2>
-          <p style={{ fontSize: '1.1rem', opacity: 0.8 }}>{t('contact.subtitle')}</p>
-          {loading && <p style={{ opacity: 0.6, marginTop: 'var(--space-2)' }}>{t('common.loading')}</p>}
+          <h2 className="text-center">Hubungi Saya</h2>
+          <p style={{ fontSize: '1.1rem', opacity: 0.8 }}>Punya ide atau peluang kerja? Saya siap mendiskusikannya dengan Anda.</p>
+          {loading && <p style={{ opacity: 0.6, marginTop: 'var(--space-2)' }}>Memuat data...</p>}
         </motion.div>
 
         {contactItems.length > 0 && (
@@ -173,7 +171,7 @@ const Contact = () => {
           viewport={{ once: true }}
         >
           <p style={{ fontSize: '0.9rem', opacity: 0.6 }}>
-            {t('footer.copy')}
+            &copy; 2026 Syah Putra Nugraha. Dibangun dengan Presisi.
           </p>
         </motion.div>
       </div>
