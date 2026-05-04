@@ -7,10 +7,10 @@ import { getPublicProjects } from '../lib/api';
 
 const Projects = () => {
   const { t } = useI18n();
-  const [projects, setProjects] = useState(localProjects);
+  const [projects, setProjects] = useState([]);
+  const [dataSource, setDataSource] = useState('loading'); // 'loading', 'api', 'fallback'
   const [expandedId, setExpandedId] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -18,29 +18,19 @@ const Projects = () => {
         setLoading(true);
         const data = await getPublicProjects();
         
-        if (data.projects && data.projects.length > 0) {
-          // Normalize API data to match ProjectCard's expected multi-language structure
-          const normalizedProjects = data.projects.map(p => ({
-            ...p,
-            // Map plain strings to i18n objects for compatibility
-            title: typeof p.title === 'string' ? { id: p.title, en: p.title, jp: p.title } : p.title,
-            shortDescription: typeof p.shortDescription === 'string' ? { id: p.shortDescription, en: p.shortDescription, jp: p.shortDescription } : p.shortDescription,
-            // Map liveUrl to demoUrl as expected by ProjectCard
-            demoUrl: p.liveUrl || p.demoUrl,
-            // Provide placeholders for detail fields not yet in simple API schema
-            challenge: p.challenge || { id: '', en: '', jp: '' },
-            solution: p.solution || { id: '', en: '', jp: '' },
-            impact: p.impact || { id: '', en: '', jp: '' },
-            features: p.features || { id: [], en: [], jp: [] },
-            role: p.role || 'Developer'
-          }));
-          setProjects(normalizedProjects);
+        if (data.projects) {
+          setProjects(data.projects);
+          setDataSource('api');
+        } else {
+          // If response is successful but no projects array
+          setProjects(localProjects);
+          setDataSource('fallback');
+          console.warn('API success but no projects array, using fallback.');
         }
-        setError(null);
       } catch (err) {
         console.warn('API Fetch failed, using local fallback:', err.message);
-        setError('Failed to fetch from API');
-        // Keep localProjects (already set in useState)
+        setProjects(localProjects);
+        setDataSource('fallback');
       } finally {
         setLoading(false);
       }
@@ -78,68 +68,76 @@ const Projects = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-center">{t('projects.title')}</h2>
-          {loading && <p style={{ opacity: 0.6, marginTop: 'var(--space-4)' }}>Loading projects from server...</p>}
-          {error && !loading && <p style={{ opacity: 0.4, fontSize: '0.8rem' }}>Note: Showing local fallback data</p>}
+          {loading && <p style={{ opacity: 0.6, marginTop: 'var(--space-4)' }}>Loading projects...</p>}
+          {dataSource === 'fallback' && !loading && <p style={{ opacity: 0.4, fontSize: '0.8rem' }}>Note: Showing local fallback data</p>}
         </motion.div>
 
-        {/* Featured Projects Grid */}
-        <motion.div 
-          style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
-            gap: 'var(--space-8)',
-            marginBottom: featuredProjects.length > 0 ? 'var(--space-12)' : 0
-          }}
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          {featuredProjects.map((project) => (
-            <ProjectCard 
-              key={project.id} 
-              project={project} 
-              isExpanded={expandedId === project.id}
-              onToggleExpand={toggleExpand}
-            />
-          ))}
-        </motion.div>
+        {!loading && projects.length === 0 && dataSource === 'api' ? (
+          <div style={{ textAlign: 'center', padding: 'var(--space-12)', opacity: 0.6 }}>
+            <p>No projects published yet.</p>
+          </div>
+        ) : (
+          <>
+            {/* Featured Projects Grid */}
+            <motion.div 
+              style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
+                gap: 'var(--space-8)',
+                marginBottom: featuredProjects.length > 0 ? 'var(--space-12)' : 0
+              }}
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+            >
+              {featuredProjects.map((project) => (
+                <ProjectCard 
+                  key={project.id} 
+                  project={project} 
+                  isExpanded={expandedId === project.id}
+                  onToggleExpand={toggleExpand}
+                />
+              ))}
+            </motion.div>
 
-        {/* Section Divider */}
-        {otherProjects.length > 0 && (
-          <motion.div 
-            style={{ marginBottom: 'var(--space-8)' }}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            <h3 style={{ opacity: 0.6, fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '2px', borderBottom: '1px solid var(--border-color)', paddingBottom: 'var(--space-4)' }}>
-              {t('projects.title_other') || 'Other Projects'}
-            </h3>
-          </motion.div>
+            {/* Section Divider */}
+            {otherProjects.length > 0 && (
+              <motion.div 
+                style={{ marginBottom: 'var(--space-8)' }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+              >
+                <h3 style={{ opacity: 0.6, fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '2px', borderBottom: '1px solid var(--border-color)', paddingBottom: 'var(--space-4)' }}>
+                  {t('projects.title_other') || 'Other Projects'}
+                </h3>
+              </motion.div>
+            )}
+
+            {/* Other Projects Grid */}
+            <motion.div 
+              style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+                gap: 'var(--space-6)' 
+              }}
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+            >
+              {otherProjects.map((project) => (
+                <ProjectCard 
+                  key={project.id} 
+                  project={project} 
+                  isExpanded={expandedId === project.id}
+                  onToggleExpand={toggleExpand}
+                />
+              ))}
+            </motion.div>
+          </>
         )}
-
-        {/* Other Projects Grid */}
-        <motion.div 
-          style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-            gap: 'var(--space-6)' 
-          }}
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          {otherProjects.map((project) => (
-            <ProjectCard 
-              key={project.id} 
-              project={project} 
-              isExpanded={expandedId === project.id}
-              onToggleExpand={toggleExpand}
-            />
-          ))}
-        </motion.div>
       </div>
     </section>
   );

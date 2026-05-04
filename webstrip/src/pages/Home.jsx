@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useI18n } from '../layouts/MainLayout';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
+import { getPublicSkills } from '../lib/api';
 import '../styles/home.css';
 
 const Home = () => {
   const { t, lang } = useI18n();
-  const highlightSkills = ['React.js', 'Node.js', 'Express.js', 'PHP', 'MySQL', 'MongoDB', 'PostgreSQL'];
+  const [highlightSkills, setHighlightSkills] = useState(['React.js', 'Node.js', 'Express.js', 'PHP', 'MySQL', 'MongoDB', 'PostgreSQL']);
+
+  useEffect(() => {
+    const fetchSkills = async () => {
+      try {
+        const data = await getPublicSkills();
+        if (data.skills && data.skills.length > 0) {
+          // Take the top 8 skills as highlights
+          const topSkills = data.skills.slice(0, 8).map(s => s.name);
+          setHighlightSkills(topSkills);
+        }
+      } catch (err) {
+        console.warn('Home: Failed to fetch skills, using fallback:', err.message);
+      }
+    };
+    fetchSkills();
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },

@@ -1,26 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useI18n } from '../layouts/MainLayout';
 import { motion } from 'framer-motion';
-import { FiMail, FiMapPin } from 'react-icons/fi';
-import { FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa';
+import { FiMail, FiMapPin, FiPhone } from 'react-icons/fi';
+import { FaLinkedin, FaGithub, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import { getPublicContact } from '../lib/api';
 import '../styles/contact.css';
 
 const Contact = () => {
   const { t } = useI18n();
+  const [contactData, setContactData] = useState(null);
+
+  useEffect(() => {
+    const fetchContact = async () => {
+      try {
+        const data = await getPublicContact();
+        if (data.contact) {
+          setContactData(data.contact);
+        }
+      } catch (err) {
+        console.warn('Contact: Failed to fetch contact info:', err.message);
+      }
+    };
+    fetchContact();
+  }, []);
 
   const contactItems = [
     {
       id: 'email',
       icon: <FiMail />,
       label: 'Email',
-      value: t('about.email'),
-      url: `mailto:${t('about.email')}`
+      value: contactData?.email || t('about.email'),
+      url: `mailto:${contactData?.email || t('about.email')}`
+    },
+    {
+      id: 'phone',
+      icon: <FiPhone />,
+      label: 'Phone / WhatsApp',
+      value: contactData?.whatsapp || contactData?.phone || '+62...',
+      url: contactData?.whatsapp ? `https://wa.me/${contactData.whatsapp.replace(/\D/g, '')}` : null
     },
     {
       id: 'location',
       icon: <FiMapPin />,
       label: 'Location',
-      value: t('about.location'),
+      value: contactData?.location || t('about.location'),
       url: null
     },
     {
@@ -28,21 +51,21 @@ const Contact = () => {
       icon: <FaLinkedin />,
       label: 'LinkedIn',
       value: 'Syah Putra Nugraha',
-      url: 'https://linkedin.com/in/syahputranugraha'
+      url: contactData?.linkedin || 'https://linkedin.com/in/syahputranugraha'
     },
     {
       id: 'github',
       icon: <FaGithub />,
       label: 'GitHub',
       value: 'syahputranugraha',
-      url: t('about.github')
+      url: contactData?.github || t('about.github')
     },
     {
       id: 'instagram',
       icon: <FaInstagram />,
       label: 'Instagram',
       value: '@syah_putra_n',
-      url: t('about.instagram')
+      url: contactData?.instagram || t('about.instagram')
     }
   ];
 
