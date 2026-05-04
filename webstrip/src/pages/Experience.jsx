@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useI18n } from '../layouts/MainLayout';
 import { motion } from 'framer-motion';
 import { getPublicExperiences, getPublicCertifications } from '../lib/api';
-import { EXPERIENCE_FALLBACK } from '../data/fallbacks';
+import { experienceFallback } from '../fallback/experienceFallback';
+import { certificationsFallback } from '../fallback/certificationsFallback';
 import '../styles/experience.css';
+
 
 const Experience = () => {
   const { t, lang } = useI18n();
@@ -47,17 +49,14 @@ const Experience = () => {
     };
 
     const useFallback = () => {
-      // Map local fallback to match API structure
-      const fallbackExps = EXPERIENCE_FALLBACK.map(exp => ({
+      const fallbackExps = experienceFallback.map(exp => ({
         ...exp,
         displayDate: exp.period,
         isLocal: true
       }));
 
-      // Simplified certs fallback
-      const fallbackCerts = [1, 2, 3, 4, 5].map(id => ({
-        id: `local-cert-${id}`,
-        title: `Certification ${id} (Setup in Admin CMS)`,
+      const fallbackCerts = certificationsFallback.map(cert => ({
+        ...cert,
         isLocal: true
       }));
 

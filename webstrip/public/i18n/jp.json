@@ -14,8 +14,7 @@
   "about": {
     "title": "私について",
     "summary_title": "プロフェッショナルな概要",
-    "soft_skills_title": "ソフトスキル",
-    "soft_skills": "問題解決, 適応力, チームワーク, 分析的思考, コミュニケーション, クライアント対応, プロジェクト調整, ドキュメンテーション, 時間管理"
+    "soft_skills_title": "ソフトスキル"
   },
   "skills": {
     "title": "技術スキル",

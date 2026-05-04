@@ -4,13 +4,15 @@ import { useI18n } from '../layouts/MainLayout';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { getPublicSkills, getPublicHero } from '../lib/api';
-import { HERO_FALLBACK } from '../data/fallbacks';
+import { heroFallback } from '../fallback/heroFallback';
+import { skillsFallback } from '../fallback/skillsFallback';
 import '../styles/home.css';
 
 const Home = () => {
   const { t, lang } = useI18n();
-  const [highlightSkills, setHighlightSkills] = useState(['React.js', 'Node.js', 'Express.js', 'PHP', 'MySQL', 'MongoDB', 'PostgreSQL']);
+  const [highlightSkills, setHighlightSkills] = useState(skillsFallback.technical.slice(0, 7).map(s => s.name));
   const [heroData, setHeroData] = useState(null);
+
 
   useEffect(() => {
     const fetchSkills = async () => {
@@ -56,7 +58,7 @@ const Home = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
 
-  const currentHero = heroData || HERO_FALLBACK;
+  const currentHero = heroData || heroFallback;
 
   const typeSequence = currentHero.roles && currentHero.roles.length > 0 
     ? currentHero.roles.flatMap(role => [role, 2000]) 
