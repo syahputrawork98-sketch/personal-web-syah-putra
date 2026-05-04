@@ -20,6 +20,9 @@ import AdminSkillEdit from './pages/admin/AdminSkillEdit';
 import AdminExperiences from './pages/admin/AdminExperiences';
 import AdminExperienceCreate from './pages/admin/AdminExperienceCreate';
 import AdminExperienceEdit from './pages/admin/AdminExperienceEdit';
+import AdminCertifications from './pages/admin/AdminCertifications';
+import AdminCertificationCreate from './pages/admin/AdminCertificationCreate';
+import AdminCertificationEdit from './pages/admin/AdminCertificationEdit';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 import AdminLayout from './components/admin/AdminLayout';
 
@@ -58,6 +61,9 @@ function App() {
           <Route path="experience" element={<AdminExperiences />} />
           <Route path="experience/new" element={<AdminExperienceCreate />} />
           <Route path="experience/:id/edit" element={<AdminExperienceEdit />} />
+          <Route path="certifications" element={<AdminCertifications />} />
+          <Route path="certifications/new" element={<AdminCertificationCreate />} />
+          <Route path="certifications/:id/edit" element={<AdminCertificationEdit />} />
         </Route>
       </Routes>
     </Router>

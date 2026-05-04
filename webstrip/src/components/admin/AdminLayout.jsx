@@ -20,6 +20,7 @@ const AdminLayout = () => {
               <Link to="/admin/projects" style={{ textDecoration: 'none', color: 'var(--text-color)', opacity: 0.8 }}>Projects</Link>
               <Link to="/admin/skills" style={{ textDecoration: 'none', color: 'var(--text-color)', opacity: 0.8 }}>Skills</Link>
               <Link to="/admin/experience" style={{ textDecoration: 'none', color: 'var(--text-color)', opacity: 0.8 }}>Experience</Link>
+              <Link to="/admin/certifications" style={{ textDecoration: 'none', color: 'var(--text-color)', opacity: 0.8 }}>Certifications</Link>
               <Link to="/admin/account" style={{ textDecoration: 'none', color: 'var(--text-color)', opacity: 0.8 }}>Account</Link>
               <Link to="/admin/contact" style={{ textDecoration: 'none', color: 'var(--text-color)', opacity: 0.8 }}>Contact</Link>
             </nav>
