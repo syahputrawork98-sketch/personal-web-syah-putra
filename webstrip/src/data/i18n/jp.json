@@ -149,5 +149,10 @@
   },
   "footer": {
     "copy": "&copy; 2026 Syah Putra Nugraha. 精密さを持って構築されました。"
+  },
+  "common": {
+    "data_not_available": "データはまだ利用不可能です。",
+    "error_fetching": "データの取得に失敗しました。",
+    "loading": "読み込み中..."
   }
 }

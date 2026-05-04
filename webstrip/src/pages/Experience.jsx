@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useI18n } from '../layouts/MainLayout';
 import { motion } from 'framer-motion';
 import { getPublicExperiences, getPublicCertifications } from '../lib/api';
-import { experienceFallback } from '../fallback/experienceFallback';
-import { certificationsFallback } from '../fallback/certificationsFallback';
+import EmptyState from '../components/EmptyState';
 import '../styles/experience.css';
 
 
@@ -11,7 +10,6 @@ const Experience = () => {
   const { t, lang } = useI18n();
   const [experiences, setExperiences] = useState([]);
   const [certifications, setCertifications] = useState([]);
-  const [dataSource, setDataSource] = useState('loading'); // 'loading', 'api', 'fallback'
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -23,46 +21,14 @@ const Experience = () => {
           getPublicCertifications()
         ]);
         
-        let hasApiData = false;
+        if (expData.experiences) setExperiences(expData.experiences);
+        if (certData.certifications) setCertifications(certData.certifications);
 
-        if (expData.experiences && expData.experiences.length > 0) {
-          setExperiences(expData.experiences);
-          hasApiData = true;
-        }
-
-        if (certData.certifications && certData.certifications.length > 0) {
-          setCertifications(certData.certifications);
-          hasApiData = true;
-        }
-
-        if (hasApiData) {
-          setDataSource('api');
-        } else {
-          useFallback();
-        }
       } catch (err) {
-        console.warn('API Fetch failed, using local fallback:', err.message);
-        useFallback();
+        console.warn('Experience: API Fetch failed:', err.message);
       } finally {
         setLoading(false);
       }
-    };
-
-    const useFallback = () => {
-      const fallbackExps = experienceFallback.map(exp => ({
-        ...exp,
-        displayDate: exp.period,
-        isLocal: true
-      }));
-
-      const fallbackCerts = certificationsFallback.map(cert => ({
-        ...cert,
-        isLocal: true
-      }));
-
-      setExperiences(fallbackExps);
-      setCertifications(fallbackCerts);
-      setDataSource('fallback');
     };
 
     fetchData();
@@ -119,14 +85,11 @@ const Experience = () => {
           >
             {t('experience.title')}
           </motion.h2>
-          {loading && <span style={{ opacity: 0.6, fontSize: '0.9rem' }}>Loading experiences...</span>}
-          {dataSource === 'fallback' && !loading && <span style={{ opacity: 0.4, fontSize: '0.7rem' }}>Note: Showing local data</span>}
+          {loading && <span style={{ opacity: 0.6, fontSize: '0.9rem' }}>{t('common.loading')}</span>}
         </motion.div>
         
-        {!loading && experiences.length === 0 && dataSource === 'api' ? (
-          <div style={{ textAlign: 'center', padding: 'var(--space-12)', opacity: 0.6 }}>
-            <p>No experience published yet.</p>
-          </div>
+        {!loading && experiences.length === 0 ? (
+          <EmptyState message={t('common.data_not_available')} />
         ) : (
           <motion.div 
             className="experience-list"
@@ -182,42 +145,46 @@ const Experience = () => {
           {t('edu_cert.cert_title')}
         </motion.h2>
         
-        <motion.div 
-          className="certs-grid"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          {certifications.map(cert => (
-            <motion.div 
-              key={cert.id} 
-              className="cert-item"
-              variants={itemVariants}
-              whileHover={{ scale: 1.02, color: 'var(--primary-color)', borderColor: 'var(--primary-color)' }}
-              style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', height: 'auto', textAlign: 'left' }}
-            >
-              <div style={{ fontWeight: 600, fontSize: '0.95rem', marginBottom: '2px' }}>{cert.title}</div>
-              {cert.issuer && (
-                <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>
-                  {cert.issuer} {cert.issuedAt && `• ${new Date(cert.issuedAt).getFullYear()}`}
-                </div>
-              )}
-              {cert.credentialUrl && (
-                <a 
-                  href={cert.credentialUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  style={{ fontSize: '0.7rem', color: 'var(--primary-color)', marginTop: '8px', textDecoration: 'none', borderBottom: '1px solid transparent' }}
-                  onMouseOver={e => e.target.style.borderBottom = '1px solid var(--primary-color)'}
-                  onMouseOut={e => e.target.style.borderBottom = '1px solid transparent'}
-                >
-                  View Credential &rarr;
-                </a>
-              )}
-            </motion.div>
-          ))}
-        </motion.div>
+        {!loading && certifications.length === 0 ? (
+          <EmptyState message={t('common.data_not_available')} />
+        ) : (
+          <motion.div 
+            className="certs-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            {certifications.map(cert => (
+              <motion.div 
+                key={cert.id} 
+                className="cert-item"
+                variants={itemVariants}
+                whileHover={{ scale: 1.02, color: 'var(--primary-color)', borderColor: 'var(--primary-color)' }}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', height: 'auto', textAlign: 'left' }}
+              >
+                <div style={{ fontWeight: 600, fontSize: '0.95rem', marginBottom: '2px' }}>{cert.title}</div>
+                {cert.issuer && (
+                  <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>
+                    {cert.issuer} {cert.issuedAt && `• ${new Date(cert.issuedAt).getFullYear()}`}
+                  </div>
+                )}
+                {cert.credentialUrl && (
+                  <a 
+                    href={cert.credentialUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    style={{ fontSize: '0.7rem', color: 'var(--primary-color)', marginTop: '8px', textDecoration: 'none', borderBottom: '1px solid transparent' }}
+                    onMouseOver={e => e.target.style.borderBottom = '1px solid var(--primary-color)'}
+                    onMouseOut={e => e.target.style.borderBottom = '1px solid transparent'}
+                  >
+                    View Credential &rarr;
+                  </a>
+                )}
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
       </div>
     </section>
   );

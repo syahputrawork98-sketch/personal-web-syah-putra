@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useI18n } from '../layouts/MainLayout';
 import { motion } from 'framer-motion';
 import { getPublicSkills, getPublicContact, getPublicProfile, getPublicEducation } from '../lib/api';
-import { profileFallback } from '../fallback/profileFallback';
-import { educationFallback } from '../fallback/educationFallback';
-import { contactFallback } from '../fallback/contactFallback';
-import { skillsFallback } from '../fallback/skillsFallback';
+import EmptyState from '../components/EmptyState';
 import '../styles/about.css';
 
 const About = () => {
@@ -14,16 +11,24 @@ const About = () => {
   const [contactData, setContactData] = useState(null);
   const [profileData, setProfileData] = useState(null);
   const [educationData, setEducationData] = useState([]);
-  const [softSkills, setSoftSkills] = useState(skillsFallback.soft.map(s => s.name));
+  const [softSkills, setSoftSkills] = useState([]);
+  const [loading, setLoading] = useState(true);
 
 
   useEffect(() => {
-    const fetchSkills = async () => {
+    const fetchData = async () => {
+      setLoading(true);
       try {
-        const data = await getPublicSkills();
-        if (data.skills) {
+        const [skillsData, contactResp, profileResp, educationResp] = await Promise.all([
+          getPublicSkills(),
+          getPublicContact(),
+          getPublicProfile(),
+          getPublicEducation()
+        ]);
+
+        if (skillsData.skills) {
           // Technical Skills (grouped by category)
-          const grouped = data.skills
+          const grouped = skillsData.skills
             .filter(s => s.type === 'TECHNICAL' || !s.type)
             .reduce((acc, skill) => {
               const cat = skill.category || 'Other';
@@ -34,55 +39,24 @@ const About = () => {
           setTechSkills(grouped);
 
           // Soft Skills
-          const soft = data.skills
+          const soft = skillsData.skills
             .filter(s => s.type === 'SOFT')
             .map(s => s.name);
-          if (soft.length > 0) {
-            setSoftSkills(soft);
-          }
+          setSoftSkills(soft);
         }
+
+        if (contactResp.contact) setContactData(contactResp.contact);
+        if (profileResp.profile) setProfileData(profileResp.profile);
+        if (educationResp.education) setEducationData(educationResp.education);
+
       } catch (err) {
-        console.warn('About: Failed to fetch skills:', err.message);
+        console.warn('About: Failed to fetch data:', err.message);
+      } finally {
+        setLoading(false);
       }
     };
 
-    const fetchContact = async () => {
-      try {
-        const data = await getPublicContact();
-        if (data.contact) {
-          setContactData(data.contact);
-        }
-      } catch (err) {
-        console.warn('About: Failed to fetch contact:', err.message);
-      }
-    };
-
-    const fetchProfile = async () => {
-      try {
-        const data = await getPublicProfile();
-        if (data.profile) {
-          setProfileData(data.profile);
-        }
-      } catch (err) {
-        console.warn('About: Failed to fetch profile settings:', err.message);
-      }
-    };
-
-    const fetchEducation = async () => {
-      try {
-        const data = await getPublicEducation();
-        if (data.education && data.education.length > 0) {
-          setEducationData(data.education);
-        }
-      } catch (err) {
-        console.warn('About: Failed to fetch education:', err.message);
-      }
-    };
-
-    fetchSkills();
-    fetchContact();
-    fetchProfile();
-    fetchEducation();
+    fetchData();
   }, []);
 
   const containerVariants = {
@@ -101,9 +75,19 @@ const About = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
 
-  const currentProfile = profileData || profileFallback;
-  const currentEducation = educationData.length > 0 ? educationData : educationFallback;
-  const currentContact = contactData || contactFallback;
+  if (!loading && !profileData) {
+    return (
+      <section id="about" className="section-padding">
+        <div className="container">
+          <EmptyState message={t('common.data_not_available')} />
+        </div>
+      </section>
+    );
+  }
+
+  const currentProfile = profileData || {};
+  const currentEducation = educationData;
+  const currentContact = contactData || {};
 
   return (
     <section id="about" className="section-padding">
@@ -120,7 +104,7 @@ const About = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
         >
-          {currentProfile.aboutTitle}
+          {currentProfile.aboutTitle || t('nav.about')}
         </motion.h2>
         
         <div className="about-grid">
@@ -130,30 +114,34 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>{currentProfile.summaryTitle}</h3>
-            <p dangerouslySetInnerHTML={{ __html: currentProfile.summary }} className="about-summary"></p>
+            <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>{currentProfile.summaryTitle || t('about.summary_title')}</h3>
+            <p dangerouslySetInnerHTML={{ __html: currentProfile.summary || t('common.data_not_available') }} className="about-summary"></p>
             
-            <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>{t('about.soft_skills_title')}</h3>
-            <motion.div 
-              className="soft-skills-container"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              style={{ marginBottom: 'var(--space-8)' }}
-            >
-              {softSkills.map((skill, index) => (
-                <motion.span 
-                  key={index} 
-                  className="cert-item soft-skill-tag" 
-                  style={{ borderLeft: 'none' }}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.05, color: 'var(--primary-color)' }}
+            {softSkills.length > 0 && (
+              <>
+                <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>{t('about.soft_skills_title')}</h3>
+                <motion.div 
+                  className="soft-skills-container"
+                  variants={containerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  style={{ marginBottom: 'var(--space-8)' }}
                 >
-                  {skill}
-                </motion.span>
-              ))}
-            </motion.div>
+                  {softSkills.map((skill, index) => (
+                    <motion.span 
+                      key={index} 
+                      className="cert-item soft-skill-tag" 
+                      style={{ borderLeft: 'none' }}
+                      variants={itemVariants}
+                      whileHover={{ scale: 1.05, color: 'var(--primary-color)' }}
+                    >
+                      {skill}
+                    </motion.span>
+                  ))}
+                </motion.div>
+              </>
+            )}
 
             {/* Technical Skills Section */}
             {Object.keys(techSkills).length > 0 && (
@@ -197,28 +185,36 @@ const About = () => {
             )}
 
             <motion.div className="card" whileHover={{ y: -5 }}>
-              <h3 style={{ marginBottom: 'var(--space-4)' }}>Contact Info</h3>
-              <div className="about-contact-card">
-                <p><strong>Location:</strong> {currentContact.location}</p>
-                <p><strong>Email:</strong> <a href={`mailto:${currentContact.email}`}>{currentContact.email}</a></p>
-                <div className="about-cta-group">
-                  <a href={currentContact.github} target="_blank" rel="noopener noreferrer" className="btn btn-secondary about-cta-btn">GitHub</a>
-                  <a href={currentContact.instagram} target="_blank" rel="noopener noreferrer" className="btn btn-secondary about-cta-btn">Instagram</a>
-                  <a href={currentProfile.resumeUrl} download className="btn btn-primary about-cta-btn" style={{ flex: '1 0 auto' }}>Download CV</a>
+              <h3 style={{ marginBottom: 'var(--space-4)' }}>{t('contact.info_title') || 'Contact Info'}</h3>
+              {Object.keys(currentContact).length > 0 ? (
+                <div className="about-contact-card">
+                  {currentContact.location && <p><strong>Location:</strong> {currentContact.location}</p>}
+                  {currentContact.email && <p><strong>Email:</strong> <a href={`mailto:${currentContact.email}`}>{currentContact.email}</a></p>}
+                  <div className="about-cta-group">
+                    {currentContact.github && <a href={currentContact.github} target="_blank" rel="noopener noreferrer" className="btn btn-secondary about-cta-btn">GitHub</a>}
+                    {currentContact.instagram && <a href={currentContact.instagram} target="_blank" rel="noopener noreferrer" className="btn btn-secondary about-cta-btn">Instagram</a>}
+                    {currentProfile.resumeUrl && <a href={currentProfile.resumeUrl} download className="btn btn-primary about-cta-btn" style={{ flex: '1 0 auto' }}>Download CV</a>}
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <p style={{ opacity: 0.6, fontSize: '0.9rem' }}>{t('common.data_not_available')}</p>
+              )}
             </motion.div>
 
             <motion.div className="card" whileHover={{ y: -5 }}>
               <h3 style={{ marginBottom: 'var(--space-3)' }}>{t('edu_cert.edu_title')}</h3>
-              {currentEducation.map((edu) => (
-                <div key={edu.id} style={{ marginBottom: 'var(--space-4)' }}>
-                  <p><strong>{edu.school}</strong></p>
-                  <p style={{ color: 'var(--primary-color)', fontSize: '0.9rem', fontWeight: 600 }}>{edu.degree}</p>
-                  <p style={{ opacity: 0.8, fontSize: '0.85rem' }}>{edu.period}</p>
-                  {edu.description && <p style={{ fontSize: '0.8rem', opacity: 0.7, marginTop: '4px' }}>{edu.description}</p>}
-                </div>
-              ))}
+              {currentEducation.length > 0 ? (
+                currentEducation.map((edu) => (
+                  <div key={edu.id} style={{ marginBottom: 'var(--space-4)' }}>
+                    <p><strong>{edu.school}</strong></p>
+                    <p style={{ color: 'var(--primary-color)', fontSize: '0.9rem', fontWeight: 600 }}>{edu.degree}</p>
+                    <p style={{ opacity: 0.8, fontSize: '0.85rem' }}>{edu.period}</p>
+                    {edu.description && <p style={{ fontSize: '0.8rem', opacity: 0.7, marginTop: '4px' }}>{edu.description}</p>}
+                  </div>
+                ))
+              ) : (
+                <p style={{ opacity: 0.6, fontSize: '0.9rem' }}>{t('common.data_not_available')}</p>
+              )}
             </motion.div>
 
           </motion.div>

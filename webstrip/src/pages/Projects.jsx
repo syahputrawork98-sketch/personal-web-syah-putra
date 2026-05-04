@@ -3,13 +3,12 @@ import { useI18n } from '../layouts/MainLayout';
 import ProjectCard from '../components/ProjectCard';
 import { motion } from 'framer-motion';
 import { getPublicProjects } from '../lib/api';
-import { projectsFallback } from '../fallback/projectsFallback';
+import EmptyState from '../components/EmptyState';
 
 
 const Projects = () => {
   const { t } = useI18n();
   const [projects, setProjects] = useState([]);
-  const [dataSource, setDataSource] = useState('loading'); // 'loading', 'api', 'fallback'
   const [expandedId, setExpandedId] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -21,17 +20,9 @@ const Projects = () => {
         
         if (data.projects) {
           setProjects(data.projects);
-          setDataSource('api');
-        } else {
-          // If response is successful but no projects array
-          setProjects(projectsFallback);
-          setDataSource('fallback');
-          console.warn('API success but no projects array, using fallback.');
         }
       } catch (err) {
-        console.warn('API Fetch failed, using local fallback:', err.message);
-        setProjects(projectsFallback);
-        setDataSource('fallback');
+        console.warn('Projects: API Fetch failed:', err.message);
       } finally {
         setLoading(false);
       }
@@ -69,38 +60,37 @@ const Projects = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-center">{t('projects.title')}</h2>
-          {loading && <p style={{ opacity: 0.6, marginTop: 'var(--space-4)' }}>Loading projects...</p>}
-          {dataSource === 'fallback' && !loading && <p style={{ opacity: 0.4, fontSize: '0.8rem' }}>Note: Showing local fallback data</p>}
+          {loading && <p style={{ opacity: 0.6, marginTop: 'var(--space-4)' }}>{t('common.loading')}</p>}
         </motion.div>
 
-        {!loading && projects.length === 0 && dataSource === 'api' ? (
-          <div style={{ textAlign: 'center', padding: 'var(--space-12)', opacity: 0.6 }}>
-            <p>No projects published yet.</p>
-          </div>
+        {!loading && projects.length === 0 ? (
+          <EmptyState message={t('common.data_not_available')} />
         ) : (
           <>
             {/* Featured Projects Grid */}
-            <motion.div 
-              style={{ 
-                display: 'grid', 
-                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
-                gap: 'var(--space-8)',
-                marginBottom: featuredProjects.length > 0 ? 'var(--space-12)' : 0
-              }}
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-            >
-              {featuredProjects.map((project) => (
-                <ProjectCard 
-                  key={project.id} 
-                  project={project} 
-                  isExpanded={expandedId === project.id}
-                  onToggleExpand={toggleExpand}
-                />
-              ))}
-            </motion.div>
+            {featuredProjects.length > 0 && (
+              <motion.div 
+                style={{ 
+                  display: 'grid', 
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
+                  gap: 'var(--space-8)',
+                  marginBottom: otherProjects.length > 0 ? 'var(--space-12)' : 0
+                }}
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+              >
+                {featuredProjects.map((project) => (
+                  <ProjectCard 
+                    key={project.id} 
+                    project={project} 
+                    isExpanded={expandedId === project.id}
+                    onToggleExpand={toggleExpand}
+                  />
+                ))}
+              </motion.div>
+            )}
 
             {/* Section Divider */}
             {otherProjects.length > 0 && (
@@ -117,26 +107,28 @@ const Projects = () => {
             )}
 
             {/* Other Projects Grid */}
-            <motion.div 
-              style={{ 
-                display: 'grid', 
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-                gap: 'var(--space-6)' 
-              }}
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-            >
-              {otherProjects.map((project) => (
-                <ProjectCard 
-                  key={project.id} 
-                  project={project} 
-                  isExpanded={expandedId === project.id}
-                  onToggleExpand={toggleExpand}
-                />
-              ))}
-            </motion.div>
+            {otherProjects.length > 0 && (
+              <motion.div 
+                style={{ 
+                  display: 'grid', 
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+                  gap: 'var(--space-6)' 
+                }}
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+              >
+                {otherProjects.map((project) => (
+                  <ProjectCard 
+                    key={project.id} 
+                    project={project} 
+                    isExpanded={expandedId === project.id}
+                    onToggleExpand={toggleExpand}
+                  />
+                ))}
+              </motion.div>
+            )}
           </>
         )}
       </div>

@@ -149,5 +149,10 @@
   },
   "footer": {
     "copy": "&copy; 2026 Syah Putra Nugraha. Built with Precision."
+  },
+  "common": {
+    "data_not_available": "Data is not yet available.",
+    "error_fetching": "Failed to fetch data.",
+    "loading": "Loading data..."
   }
 }

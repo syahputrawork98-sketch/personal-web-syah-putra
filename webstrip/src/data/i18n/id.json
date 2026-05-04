@@ -149,5 +149,10 @@
   },
   "footer": {
     "copy": "&copy; 2026 Syah Putra Nugraha. Dibangun dengan Presisi."
+  },
+  "common": {
+    "data_not_available": "Data belum tersedia.",
+    "error_fetching": "Gagal mengambil data.",
+    "loading": "Memuat data..."
   }
 }
