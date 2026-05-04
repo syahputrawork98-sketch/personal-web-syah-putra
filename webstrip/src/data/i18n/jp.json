@@ -1,0 +1,153 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "projects": "プロジェクト",
+    "about": "私について",
+    "experience": "経歴",
+    "contact": "お問い合わせ"
+  },
+  "hero": {
+    "name": "Syah Putra Nugraha",
+    "role": "フルスタック Web 開発者 | フロントエンド 開発者 | バックエンド 開発者",
+    "title": "精密さでデジタル体験を構築する。",
+    "subtitle": "Webアプリケーション開発、業務システムのデジタル化を専門とし、IT分野で8年以上の経験があります。",
+    "cta_primary": "プロジェクトを見る",
+    "cta_secondary": "履歴書をダウンロード",
+    "cta_contact": "お問い合わせ"
+  },
+  "about": {
+    "title": "私について",
+    "summary_title": "プロフェッショナルな概要",
+    "summary": "React.js、Node.js、Express.js、PHP、MySQL、MongoDB、PostgreSQLを用いたWebアプリケーション構築の経験を持つフルスタックWeb開発者です。IT、ビジネスプロセスのデジタル化、プロジェクト管理、製造、建設の分野で8年以上の経験があります。<br><br><strong>2025年中盤より</strong>、ソフトウェア開発の世界に完全に復帰することを決意し、REST API、認証システム、管理ダッシュボード、監視アプリケーションの構築に注力しています。要件分析からデプロイまでの全工程に精通しています。現在は、フロントエンド、バックエンド、またはフルスタック開発者としてのキャリアに注力しています。",
+    "soft_skills_title": "ソフトスキル",
+    "soft_skills": "問題解決, 適応力, チームワーク, 分析的思考, コミュニケーション, クライアント対応, プロジェクト調整, ドキュメンテーション, 時間管理",
+    "location": "インドネシア、西ジャワ州、チマヒ",
+    "email": "syah.putrawork98@gmail.com",
+    "github": "https://bit.ly/4j2PJQW",
+    "portfolio": "https://bit.ly/4odquN9",
+    "instagram": "https://instagram.com/syah_putra_n"
+  },
+  "skills": {
+    "title": "技術スキル",
+    "frontend": "フロントエンド",
+    "backend": "バックエンド",
+    "database": "データベース",
+    "tools": "ツールとデプロイ",
+    "automation": "自動化と生産性",
+    "others": "デザインとその他"
+  },
+  "experience": {
+    "title": "職務経歴",
+    "exp1": {
+      "role": "フリーランス・フルスタック Web 開発者",
+      "company": "個人事業主",
+      "date": "2025年5月 – 現在",
+      "desc": "React.jsとNode.jsを使用して、中小企業や地元企業向けのウェブサイトやWebアプリケーションを開発。REST API、JWTベースのログインシステム、管理ダッシュボードを作成。レスポンシブデザインと基本的なSEO最適化を実装。"
+    },
+    "exp2": {
+      "role": "フィールド・ゼネラル・スタッフ — プロジェクト・デジタル化",
+      "company": "PT. Sedayu Jaya Konstruksi",
+      "date": "2022年8月 – 2025年4月",
+      "desc": "日報、週報、月報のデジタル化。RAB、RAP、請求書、資材レポート、プロジェクト文書の作成。現場チーム、職長、主要請負業者との調整。"
+    },
+    "exp3": {
+      "role": "パーソナルアシスタント & ゼネラルスタッフ — デジタルドキュメンテーション",
+      "company": "PT. Erusatria Grup",
+      "date": "2020年3月 – 2022年7月",
+      "desc": "デジタルベースのアーカイブおよび物流レポートシステムの開発。シンプルなデジタルレポートシステムを通じて、文書化効率を約25%向上させるのに貢献。"
+    },
+    "exp4": {
+      "role": "総務 & システムサポート",
+      "company": "Wisata Ngaprak Bandung",
+      "date": "2018年10月 – 2019年12月",
+      "desc": "デジタルプロモーション用の会社案内ウェブサイトを作成。コンピュータハードウェアおよび社内ITニーズの軽微なサポートを提供。"
+    },
+    "exp5": {
+      "role": "ITサポート & システム管理者",
+      "company": "PT. OTICS Indonesia",
+      "date": "2016年11月 – 2017年12月",
+      "desc": "工場のサーバー、ネットワーク、CCTV、ITデバイスの管理。ウェブベースの内部採用アプリケーションを開発。従業員データベースと管理ダッシュボードを設計。"
+    }
+  },
+  "projects": {
+    "title": "主なプロジェクト",
+    "impact_label": "影響:",
+    "challenge_label": "課題:",
+    "solution_label": "解決策:",
+    "features_label": "主な機能:",
+    "proj1": {
+      "title": "建設プロジェクト監視アプリケーション",
+      "subtitle": "Rumahku Kontraktor",
+      "tech": "React.js, Node.js, Express.js, MongoDB",
+      "desc": "住宅建設の進捗を監視するためのWebアプリケーション。主な機能には、進捗ダッシュボード、日報、プロジェクト文書、作業監視が含まれます。",
+      "impact": "プロジェクト報告の効率を約35%向上させるのに貢献。",
+      "challenge": "複数の建設現場にわたる日々の進捗をリアルタイムで監視することが困難であった。",
+      "solution": "現場監督が現場から直接レポートをアップロードできるクラウドベースのレポートシステムを構築。",
+      "features": "進捗ダッシュボード, 写真アップロード, デジタル日報, 物流管理。"
+    },
+    "proj2": {
+      "title": "イベントオーガナイザー・ショーケースサイト",
+      "subtitle": "Siqah",
+      "tech": "React.js, Node.js, Express.js, MySQL",
+      "desc": "サービスカタログ、イベントポートフォリオ、問い合わせ/予約機能を備えたイベントオーガナイザーおよびケータリングサービスのプロモーションサイト。",
+      "impact": "クライアントの信頼を高め、ビジネスのデジタルリーチを拡大。",
+      "challenge": "イベント業界において高所得者層を引き付けるためのデジタルプレゼンスが不足していた。",
+      "solution": "インタラクティブなポートフォリオギャラリーと動的なサービスカタログを備えたプレミアムなウェブサイトデザイン。",
+      "features": "ポートフォリオギャラリー, 問い合わせサービス, ケータリングパッケージカタログ, モバイルレスポンシブ。"
+    },
+    "proj3": {
+      "title": "内部採用アプリケーション",
+      "subtitle": "PT. OTICS Indonesia",
+      "tech": "PHP, MySQL, HTML, CSS",
+      "desc": "応募者データ管理と人事ダッシュボードのための内部システム。",
+      "impact": "採用プロセスを加速し、管理データの誤りを削減。",
+      "challenge": "数千人の応募者データの管理を手動で行っており、ミスが発生しやすく時間がかかっていた。",
+      "solution": "応募者データのアーカイブを自動化し、採用ステータス監視ダッシュボードを作成。",
+      "features": "応募者データベース, ステータスフィルタ, 人事ダッシュボード, データエクスポート。"
+    },
+    "proj4": {
+      "title": "会社案内ウェブサイト",
+      "subtitle": "Wisata Ngaprak Bandung",
+      "tech": "HTML, CSS, JavaScript, Bootstrap",
+      "desc": "ビジネスプロファイル、サービス、目的地ギャラリーを紹介するための会社案内サイト。",
+      "impact": "会社のデジタルプレゼンスの強化に貢献。",
+      "challenge": "観光サービス情報が分散しており、顧客がアクセスしにくかった。",
+      "solution": "魅力的な目的地のビジュアルを備えた有益なデジタル情報ハブを構築。",
+      "features": "目的地情報, フォトギャラリー, Googleマップ統合, クイックコンタクト。"
+    }
+  },
+  "contact": {
+    "title": "一緒に働きましょう",
+    "subtitle": "アイデアや仕事の機会がありますか？ あなたと話し合う準備ができています。",
+    "info_title": "連絡先情報",
+    "form_title": "メッセージを送る",
+    "name_label": "フルネーム",
+    "email_label": "メールアドレス",
+    "subject_label": "件名",
+    "message_label": "あなたのメッセージ",
+    "send_btn": "今すぐメッセージを送る",
+    "success_msg": "メッセージは正常に送信されました！",
+    "instagram_btn": "Instagramを訪問",
+    "linkedin_btn": "LinkedInを訪問",
+    "github_btn": "GitHubを訪問"
+  },
+  "edu_cert": {
+    "edu_title": "学歴",
+    "cert_title": "資格・認証",
+    "edu1": {
+      "school": "チマヒ第1職業高校 (SMK Negeri 1 Cimahi)",
+      "major": "ソフトウェアエンジニアリング (D1/4年制)",
+      "date": "2013年 – 2017年"
+    },
+    "cert1": "Web開発認定（Node.js & React）– BNSP 2025",
+    "cert2": "建設サービス能力認定 – BNSP 2024",
+    "cert3": "CAD機械製造認定 – BNSP 2025",
+    "cert4": "AI（人工知能）トレーニング認定 2025",
+    "cert5": "CBIC & Maritim Muda Indonesia 認定 2025",
+    "cert6": "Global Azure Bootcamp 2017",
+    "cert7": "Web開発とデータベース管理トレーニング 2020"
+  },
+  "footer": {
+    "copy": "&copy; 2026 Syah Putra Nugraha. 精密さを持って構築されました。"
+  }
+}

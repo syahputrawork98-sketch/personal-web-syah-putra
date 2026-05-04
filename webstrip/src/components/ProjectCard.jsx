@@ -1,5 +1,6 @@
 import React from 'react';
 import { useI18n } from '../layouts/MainLayout';
+import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/projects.css';
 
 const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
@@ -15,14 +16,22 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
     }
   };
 
-  // Helper to get translated content from the project object
   const getContent = (field) => {
     if (!project[field]) return '';
     return project[field][lang] || project[field]['en'] || project[field]['id'] || '';
   };
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+  };
+
   return (
-    <div className="card project-card">
+    <motion.div 
+      className="card project-card"
+      variants={cardVariants}
+      whileHover={{ y: -8, transition: { duration: 0.3 } }}
+    >
       {/* Project Image */}
       <div className="project-image-container">
         <img 
@@ -92,33 +101,42 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
       </div>
 
       {/* Expandable Details Section */}
-      {isExpanded && (
-        <div className="project-details">
-          <div className="detail-item">
-            <div>
-              <p className="detail-label">{t('projects.challenge_label')}</p>
-              <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>{getContent('challenge')}</p>
+      <AnimatePresence>
+        {isExpanded && (
+          <motion.div 
+            className="project-details"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            style={{ overflow: 'hidden' }}
+          >
+            <div className="detail-item">
+              <div>
+                <p className="detail-label">{t('projects.challenge_label')}</p>
+                <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>{getContent('challenge')}</p>
+              </div>
+              <div>
+                <p className="detail-label">{t('projects.solution_label')}</p>
+                <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>{getContent('solution')}</p>
+              </div>
+              <div>
+                <p className="detail-label">{t('projects.impact_label')}</p>
+                <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>{getContent('impact')}</p>
+              </div>
+              <div>
+                <p className="detail-label">{t('projects.features_label')}</p>
+                <ul style={{ fontSize: '0.9rem', opacity: 0.9, paddingLeft: '1.2rem', margin: '4px 0 0' }}>
+                  {(getContent('features') || []).map((feature, i) => (
+                    <li key={i}>{feature}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <div>
-              <p className="detail-label">{t('projects.solution_label')}</p>
-              <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>{getContent('solution')}</p>
-            </div>
-            <div>
-              <p className="detail-label">{t('projects.impact_label')}</p>
-              <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>{getContent('impact')}</p>
-            </div>
-            <div>
-              <p className="detail-label">{t('projects.features_label')}</p>
-              <ul style={{ fontSize: '0.9rem', opacity: 0.9, paddingLeft: '1.2rem', margin: '4px 0 0' }}>
-                {(getContent('features') || []).map((feature, i) => (
-                  <li key={i}>{feature}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 };
 

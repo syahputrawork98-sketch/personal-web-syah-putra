@@ -1,62 +1,78 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext, useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import i18n from '../data/i18n';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const I18nContext = createContext();
-
 export const useI18n = () => useContext(I18nContext);
 
 const MainLayout = ({ children }) => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
   const [lang, setLang] = useState(localStorage.getItem('lang') || 'id');
-  const [translations, setTranslations] = useState({});
+  const location = useLocation();
 
   useEffect(() => {
-    document.body.setAttribute('data-theme', theme);
+    document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
   }, [theme]);
 
   useEffect(() => {
-    const loadTranslations = async () => {
-      try {
-        const response = await fetch(`/i18n/${lang}.json`);
-        const data = await response.json();
-        setTranslations(data);
-        document.documentElement.lang = lang;
-        localStorage.setItem('lang', lang);
-      } catch (error) {
-        console.error('Error loading translations:', error);
-      }
-    };
-    loadTranslations();
+    localStorage.setItem('lang', lang);
   }, [lang]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
+
+  const changeLang = (newLang) => {
+    setLang(newLang);
+  };
 
   const t = (key) => {
     const keys = key.split('.');
-    let result = translations;
+    let result = i18n[lang];
     for (const k of keys) {
-      result = result ? result[k] : null;
+      if (result && result[k]) {
+        result = result[k];
+      } else {
+        // Fallback to English
+        result = i18n['en'];
+        for (const fallbackK of keys) {
+          if (result && result[fallbackK]) {
+            result = result[fallbackK];
+          } else {
+            return key; // Return key as last resort
+          }
+        }
+      }
     }
-    return result || key;
+    return result;
   };
 
-  const toggleTheme = () => setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  const pageVariants = {
+    initial: { opacity: 0, y: 10 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -10 }
+  };
 
   return (
-    <I18nContext.Provider value={{ t, lang, changeLang: setLang }}>
-      <div id="app">
-        <Navbar 
-          theme={theme} 
-          toggleTheme={toggleTheme} 
-          lang={lang} 
-          changeLang={setLang} 
-          t={t} 
-        />
-        <main style={{ paddingTop: '80px', minHeight: 'calc(100vh - 160px)' }}>
-          {children}
-        </main>
-        <Footer t={t} />
-      </div>
+    <I18nContext.Provider value={{ t, lang, changeLang }}>
+      <Navbar theme={theme} toggleTheme={toggleTheme} lang={lang} changeLang={changeLang} t={t} />
+      <main style={{ paddingTop: '80px' }}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={location.pathname}
+            variants={pageVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.3 }}
+          >
+            {children}
+          </motion.div>
+        </AnimatePresence>
+      </main>
     </I18nContext.Provider>
   );
 };
