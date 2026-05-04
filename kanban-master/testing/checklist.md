@@ -14,6 +14,7 @@
 - [ ] public Projects render
 - [ ] public Experience render
 - [ ] public Contact render
+- [ ] mobile navigation test
 - [ ] frontend build
 - [ ] backend production start if applicable
 - [ ] fallback test when backend/API fails

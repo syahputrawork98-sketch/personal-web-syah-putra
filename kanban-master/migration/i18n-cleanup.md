@@ -5,13 +5,13 @@
 - Profile/About content moved to SiteSetting/API
 - Education moved to Education API
 
-## Phase 2 (Done)
+## Phase 2
 - Projects content removed from i18n after API fallback stable
 - Experience content removed from i18n after API fallback stable
 - Certifications content removed from i18n after API fallback stable
 
-## Phase 3 (Final / Ongoing)
-Keep only UI labels:
+## Phase 3
+**Keep only UI labels:**
 - navbar
 - buttons
 - form labels

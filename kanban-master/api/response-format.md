@@ -1,15 +1,13 @@
-# Response Format Recommendations
+# Recommended API Response Format
 
-Saat ini, format response backend mungkin belum sepenuhnya konsisten. Dokumen ini mendefinisikan standar rekomendasi format respons untuk masa depan.
-
-*Catatan: Jangan mengubah format kode backend saat ini secara massal tanpa audit mendalam. Ini hanya panduan.*
+Dokumen ini mendefinisikan standar format respons yang direkomendasikan untuk API backend agar konsisten di seluruh aplikasi.
 
 ## Recommended Success Response
 ```json
 {
   "success": true,
   "data": {
-    // payload
+    // Payload data goes here
   }
 }
 ```
@@ -18,23 +16,12 @@ Saat ini, format response backend mungkin belum sepenuhnya konsisten. Dokumen in
 ```json
 {
   "success": false,
-  "message": "Error message describing what went wrong",
-  "errors": [] // Optional field for validation errors
+  "message": "Pesan error yang menjelaskan apa yang salah"
 }
 ```
 
-## Recommended Pagination Response
-```json
-{
-  "success": true,
-  "data": [
-    // array of items
-  ],
-  "meta": {
-    "total": 100,
-    "page": 1,
-    "limit": 10,
-    "totalPages": 10
-  }
-}
-```
+---
+
+**Catatan Penting:**
+- Response backend saat ini perlu diaudit secara menyeluruh agar mengikuti standar konsistensi di atas.
+- **DILARANG** mengubah kode aplikasi pada task dokumentasi ini. Standar ini hanya sebagai panduan audit dan perbaikan di masa mendatang.

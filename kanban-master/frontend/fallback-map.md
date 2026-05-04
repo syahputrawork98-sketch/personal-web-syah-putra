@@ -1,18 +1,16 @@
 # Fallback Map
 
-Dokumentasi ini mencatat sistem *fallback* yang masih aktif digunakan oleh frontend apabila API dari backend gagal memberikan data.
+Dokumen ini mencatat sistem *fallback* yang digunakan frontend untuk menjaga agar situs tetap berjalan saat API backend tidak tersedia.
 
-## Fallback File
-`webstrip/src/data/fallbacks.js`
-- **Isi**: HERO, PROFILE, EDUCATION, EXPERIENCE, CONTACT.
-- **Rekomendasi**: Pertahankan sebagai lapisan keamanan (*resiliency*).
+## i18n Fallback
+- **Lokasi**: `public/i18n/*.json`
+- **Kegunaan**: Menyediakan label UI dasar.
+- **Status**: Konten portofolio besar sudah dibersihkan dari sini.
 
-`webstrip/src/data/projects.js`
-- **Isi**: Data proyek statis.
-- **Rekomendasi**: Pertahankan, namun pastikan datanya ringkas.
+## Static Fallback File
+- **Lokasi**: `webstrip/src/data/fallbacks.js` dan `webstrip/src/data/projects.js`.
+- **Kegunaan**: Sumber data utama saat API gagal. Aman dipertahankan sementara sebagai lapisan *resiliency*.
 
-## i18n Fallback (Legacy)
-`webstrip/public/i18n/*.json`
-- **Isi Sebelumnya**: Seluruh *business content* panjang.
-- **Status Saat Ini**: Data panjang sudah dibersihkan (Tahap 3 Selesai).
-- **Rekomendasi**: Pertahankan HANYA untuk UI labels (nav, tombol, peringatan). Jangan menyimpan data portofolio di sini lagi.
+## Hardcoded Fallback
+- Beberapa nilai default masih ada di dalam komponen UI (contoh: email/phone jika API kosong).
+- **Rencana**: Nanti harus dibersihkan setelah CMS Contact/Profile stabil.
