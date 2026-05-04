@@ -1,36 +1,78 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useI18n } from '../layouts/MainLayout';
-import { projects } from '../data/projects';
+import { projects as localProjects } from '../data/projects';
 import ProjectCard from '../components/ProjectCard';
+import { motion } from 'framer-motion';
 
 const Projects = () => {
   const { t } = useI18n();
+  const [projects, setProjects] = useState(localProjects); // Initial state with local fallback
   const [expandedId, setExpandedId] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  const fetchProjects = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/api/projects');
+      if (res.data && res.data.length > 0) {
+        setProjects(res.data);
+      }
+    } catch (err) {
+      console.warn('Failed to fetch projects from API, falling back to local data.', err);
+      // Keep localProjects as state (already set in useState)
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const toggleExpand = (id) => {
     setExpandedId(expandedId === id ? null : id);
   };
 
-  // Sort projects by orderIndex
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
+
   const sortedProjects = [...projects].sort((a, b) => a.orderIndex - b.orderIndex);
-  
   const featuredProjects = sortedProjects.filter(p => p.featured);
   const otherProjects = sortedProjects.filter(p => !p.featured);
 
   return (
     <section id="projects" className="section-padding">
       <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: 'var(--space-12)' }}>
+        <motion.div 
+          style={{ textAlign: 'center', marginBottom: 'var(--space-12)' }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="text-center">{t('projects.title')}</h2>
-        </div>
+        </motion.div>
 
         {/* Featured Projects Grid */}
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
-          gap: 'var(--space-8)',
-          marginBottom: featuredProjects.length > 0 ? 'var(--space-12)' : 0
-        }}>
+        <motion.div 
+          style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
+            gap: 'var(--space-8)',
+            marginBottom: featuredProjects.length > 0 ? 'var(--space-12)' : 0
+          }}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
           {featuredProjects.map((project) => (
             <ProjectCard 
               key={project.id} 
@@ -39,23 +81,34 @@ const Projects = () => {
               onToggleExpand={toggleExpand}
             />
           ))}
-        </div>
+        </motion.div>
 
         {/* Section Divider if there are other projects */}
         {otherProjects.length > 0 && (
-          <div style={{ marginBottom: 'var(--space-8)' }}>
+          <motion.div 
+            style={{ marginBottom: 'var(--space-8)' }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
             <h3 style={{ opacity: 0.6, fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '2px', borderBottom: '1px solid var(--border-color)', paddingBottom: 'var(--space-4)' }}>
               {t('projects.title_other') || 'Other Projects'}
             </h3>
-          </div>
+          </motion.div>
         )}
 
         {/* Other Projects Grid */}
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-          gap: 'var(--space-6)' 
-        }}>
+        <motion.div 
+          style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+            gap: 'var(--space-6)' 
+          }}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
           {otherProjects.map((project) => (
             <ProjectCard 
               key={project.id} 
@@ -64,7 +117,7 @@ const Projects = () => {
               onToggleExpand={toggleExpand}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

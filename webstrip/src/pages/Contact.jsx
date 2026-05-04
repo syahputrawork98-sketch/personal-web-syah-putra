@@ -1,5 +1,8 @@
 import React from 'react';
 import { useI18n } from '../layouts/MainLayout';
+import { motion } from 'framer-motion';
+import { FiMail, FiMapPin } from 'react-icons/fi';
+import { FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa';
 import '../styles/contact.css';
 
 const Contact = () => {
@@ -8,63 +11,88 @@ const Contact = () => {
   const contactItems = [
     {
       id: 'email',
-      icon: '📧',
+      icon: <FiMail />,
       label: 'Email',
       value: t('about.email'),
       url: `mailto:${t('about.email')}`
     },
     {
       id: 'location',
-      icon: '📍',
+      icon: <FiMapPin />,
       label: 'Location',
       value: t('about.location'),
       url: null
     },
     {
       id: 'linkedin',
-      icon: '🔗',
+      icon: <FaLinkedin />,
       label: 'LinkedIn',
       value: 'Syah Putra Nugraha',
       url: 'https://linkedin.com/in/syahputranugraha'
     },
     {
       id: 'github',
-      icon: '🐙',
+      icon: <FaGithub />,
       label: 'GitHub',
       value: 'syahputranugraha',
       url: t('about.github')
     },
     {
       id: 'instagram',
-      icon: '📸',
+      icon: <FaInstagram />,
       label: 'Instagram',
       value: '@syah_putra_n',
       url: t('about.instagram')
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
+  };
+
   return (
     <section id="contact" className="section-padding flex-center" style={{ minHeight: '70vh' }}>
       <div className="container" style={{ maxWidth: '600px' }}>
-        <div style={{ textAlign: 'center', marginBottom: 'var(--space-8)' }}>
+        <motion.div 
+          style={{ textAlign: 'center', marginBottom: 'var(--space-8)' }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="text-center">{t('contact.title')}</h2>
           <p style={{ fontSize: '1.1rem', opacity: 0.8 }}>{t('contact.subtitle')}</p>
-        </div>
+        </motion.div>
 
-        <div className="card" style={{ padding: 'var(--space-6)' }}>
+        <motion.div 
+          className="card" 
+          style={{ padding: 'var(--space-6)' }}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
             {contactItems.map((item) => (
-              <div key={item.id} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)' }}>
-                <div style={{ 
-                  width: '40px', 
-                  height: '40px', 
-                  borderRadius: 'var(--radius-md)', 
-                  background: 'rgba(56, 189, 248, 0.1)', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                  fontSize: '1.2rem' 
-                }}>
+              <motion.div 
+                key={item.id} 
+                className="contact-info-item"
+                style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)' }}
+                variants={itemVariants}
+                whileHover={{ x: 5, transition: { duration: 0.2 } }}
+              >
+                <div className="contact-icon-wrapper">
                   {item.icon}
                 </div>
                 <div>
@@ -76,9 +104,7 @@ const Contact = () => {
                       href={item.url} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      style={{ fontWeight: 600, color: 'var(--text-primary)', textDecoration: 'none' }}
-                      onMouseOver={(e) => e.target.style.color = 'var(--primary-color)'}
-                      onMouseOut={(e) => e.target.style.color = 'var(--text-primary)'}
+                      className="contact-link"
                     >
                       {item.value}
                     </a>
@@ -86,16 +112,22 @@ const Contact = () => {
                     <p style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{item.value}</p>
                   )}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
         
-        <div style={{ textAlign: 'center', marginTop: 'var(--space-8)' }}>
+        <motion.div 
+          style={{ textAlign: 'center', marginTop: 'var(--space-8)' }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          viewport={{ once: true }}
+        >
           <p style={{ fontSize: '0.9rem', opacity: 0.6 }}>
             {t('footer.copy')}
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

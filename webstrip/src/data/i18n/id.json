@@ -1,0 +1,153 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "projects": "Proyek",
+    "about": "Tentang",
+    "experience": "Pengalaman",
+    "contact": "Kontak"
+  },
+  "hero": {
+    "name": "Syah Putra Nugraha",
+    "role": "Full Stack Web Developer | Frontend Developer | Backend Developer",
+    "title": "Membangun Pengalaman Digital dengan Presisi.",
+    "subtitle": "Spesialis dalam pembangunan aplikasi web, digitalisasi sistem kerja, dan memiliki latar belakang 8+ tahun di bidang IT.",
+    "cta_primary": "Lihat Proyek",
+    "cta_secondary": "Download CV",
+    "cta_contact": "Hubungi Saya"
+  },
+  "about": {
+    "title": "Tentang Saya",
+    "summary_title": "Ringkasan Profesional",
+    "summary": "Full Stack Web Developer dengan pengalaman membangun aplikasi web berbasis React.js, Node.js, Express.js, PHP, MySQL, MongoDB, dan PostgreSQL. Memiliki latar belakang 8+ tahun di bidang IT, digitalisasi proses bisnis, administrasi proyek, manufaktur, dan konstruksi.<br><br><strong>Sejak pertengahan tahun 2025</strong>, saya memutuskan untuk kembali sepenuhnya ke dunia pengembangan perangkat lunak (Developer), fokus pada pembuatan REST API, sistem autentikasi, dashboard admin, dan aplikasi monitoring. Terbiasa bekerja dari analisis kebutuhan hingga deployment. Saat ini berfokus untuk berkarier kembali sebagai Frontend Developer, Backend Developer, atau Full Stack Developer.",
+    "soft_skills_title": "Soft Skills",
+    "soft_skills": "Problem Solving, Adaptability, Teamwork, Analytical Thinking, Communication, Client Handling, Project Coordination, Documentation, Time Management",
+    "location": "Cimahi, Jawa Barat",
+    "email": "syah.putrawork98@gmail.com",
+    "github": "https://bit.ly/4j2PJQW",
+    "portfolio": "https://bit.ly/4odquN9",
+    "instagram": "https://instagram.com/syah_putra_n"
+  },
+  "skills": {
+    "title": "Keahlian Teknis",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "database": "Database",
+    "tools": "Tools & Deployment",
+    "automation": "Automation & Productivity",
+    "others": "Design & Others"
+  },
+  "experience": {
+    "title": "Pengalaman Kerja",
+    "exp1": {
+      "role": "Freelance Full Stack Web Developer",
+      "company": "Mandiri",
+      "date": "Mei 2025 – Sekarang",
+      "desc": "Mengembangkan website dan aplikasi web untuk UMKM dan bisnis lokal menggunakan React.js dan Node.js. Membuat REST API, sistem login berbasis JWT, dan dashboard admin. Mengimplementasikan responsive design dan optimasi SEO dasar."
+    },
+    "exp2": {
+      "role": "Field General Staff — Project Digitalization",
+      "company": "PT. Sedayu Jaya Konstruksi",
+      "date": "Agu 2022 – Apr 2025",
+      "desc": "Mendigitalisasi laporan proyek harian, mingguan, dan bulanan. Menyusun RAB, RAP, invoice, laporan material, dan dokumentasi proyek. Berkoordinasi dengan tim lapangan, mandor, dan kontraktor utama."
+    },
+    "exp3": {
+      "role": "Personal Assistant & General Staff — Digital Documentation",
+      "company": "PT. Erusatria Grup",
+      "date": "Mar 2020 – Jul 2022",
+      "desc": "Mengembangkan sistem pengarsipan dan pelaporan logistik berbasis digital. Membantu meningkatkan efisiensi dokumentasi hingga sekitar 25% melalui sistem laporan digital sederhana."
+    },
+    "exp4": {
+      "role": "General Affair & System Support",
+      "company": "Wisata Ngaprak Bandung",
+      "date": "Okt 2018 – Des 2019",
+      "desc": "Membuat website company profile untuk promosi digital. Melakukan support ringan untuk perangkat komputer dan kebutuhan IT internal."
+    },
+    "exp5": {
+      "role": "IT Support & System Administrator",
+      "company": "PT. OTICS Indonesia",
+      "date": "Nov 2016 – Des 2017",
+      "desc": "Mengelola server, jaringan, CCTV, dan perangkat IT pabrik. Mengembangkan aplikasi rekrutmen internal berbasis web. Merancang database karyawan dan dashboard admin."
+    }
+  },
+  "projects": {
+    "title": "Proyek Terpilih",
+    "impact_label": "Impact:",
+    "challenge_label": "Tantangan:",
+    "solution_label": "Solusi:",
+    "features_label": "Fitur Utama:",
+    "proj1": {
+      "title": "Construction Project Monitoring Application",
+      "subtitle": "Rumahku Kontraktor",
+      "tech": "React.js, Node.js, Express.js, MongoDB",
+      "desc": "Aplikasi web untuk monitoring progres pembangunan rumah. Fitur utama mencakup dashboard progres, laporan harian, dokumentasi proyek, dan monitoring pekerjaan.",
+      "impact": "Membantu efisiensi pelaporan proyek hingga sekitar 35%.",
+      "challenge": "Sulitnya memantau progres harian secara real-time dari banyak lokasi proyek konstruksi.",
+      "solution": "Membangun sistem pelaporan berbasis cloud yang memungkinkan mandor mengupload laporan langsung dari lapangan.",
+      "features": "Dashboard Progres, Upload Dokumentasi Foto, Laporan Harian Digital, Manajemen Logistik."
+    },
+    "proj2": {
+      "title": "Event Organizer Showcase Website",
+      "subtitle": "Siqah",
+      "tech": "React.js, Node.js, Express.js, MySQL",
+      "desc": "Website promosi jasa event organizer dan catering dengan katalog layanan, portfolio acara, serta fitur inquiry/pemesanan.",
+      "impact": "Meningkatkan kepercayaan klien dan memperluas jangkauan digital bisnis.",
+      "challenge": "Kurangnya kehadiran digital untuk menarik klien menengah-keatas dalam industri EO.",
+      "solution": "Desain website premium dengan galeri portofolio interaktif dan sistem katalog layanan yang dinamis.",
+      "features": "Portfolio Gallery, Layanan Inquiry, Katalog Paket Catering, Responsif Mobile."
+    },
+    "proj3": {
+      "title": "Internal Recruitment Application",
+      "subtitle": "PT. OTICS Indonesia",
+      "tech": "PHP, MySQL, HTML, CSS",
+      "desc": "Sistem internal untuk pengelolaan data pelamar dan dashboard HR.",
+      "impact": "Mempercepat proses rekrutmen dan mengurangi kesalahan administrasi data.",
+      "challenge": "Pengelolaan ribuan data pelamar secara manual yang rawan kesalahan dan lambat.",
+      "solution": "Automasi pengarsipan data pelamar dan pembuatan dashboard monitoring status rekrutmen.",
+      "features": "Database Pelamar, Filter Status, Dashboard HR, Export Data."
+    },
+    "proj4": {
+      "title": "Company Profile Website",
+      "subtitle": "Wisata Ngaprak Bandung",
+      "tech": "HTML, CSS, JavaScript, Bootstrap",
+      "desc": "Website company profile untuk menampilkan profil usaha, layanan, dan galeri destinasi.",
+      "impact": "Membantu memperkuat kehadiran digital perusahaan.",
+      "challenge": "Informasi layanan wisata yang tidak terpusat dan sulit diakses calon pelanggan.",
+      "solution": "Membangun pusat informasi digital yang informatif dengan visual destinasi yang menarik.",
+      "features": "Info Destinasi, Galeri Foto, Integrasi Google Maps, Kontak Cepat."
+    }
+  },
+  "contact": {
+    "title": "Mari Bekerja Sama",
+    "subtitle": "Ada ide atau peluang kerja? Saya siap mendiskusikannya dengan Anda.",
+    "info_title": "Informasi Kontak",
+    "form_title": "Kirim Pesan",
+    "name_label": "Nama Lengkap",
+    "email_label": "Alamat Email",
+    "subject_label": "Subjek",
+    "message_label": "Pesan Anda",
+    "send_btn": "Kirim Pesan Sekarang",
+    "success_msg": "Pesan Anda berhasil dikirim!",
+    "instagram_btn": "Kunjungi Instagram",
+    "linkedin_btn": "Kunjungi LinkedIn",
+    "github_btn": "Kunjungi GitHub"
+  },
+  "edu_cert": {
+    "edu_title": "Pendidikan",
+    "cert_title": "Sertifikasi",
+    "edu1": {
+      "school": "SMK Negeri 1 Cimahi",
+      "major": "Rekayasa Perangkat Lunak (D1/4 Tahun)",
+      "date": "2013 – 2017"
+    },
+    "cert1": "Sertifikasi Web Development (Node.js & React) – BNSP 2025",
+    "cert2": "Sertifikasi Kompetensi Jasa Konstruksi – BNSP 2024",
+    "cert3": "Sertifikasi CAD Mechanical Manufacturing – BNSP 2025",
+    "cert4": "Sertifikasi Pelatihan AI (Artificial Intelligence) 2025",
+    "cert5": "Sertifikasi CBIC & Maritim Muda Indonesia 2025",
+    "cert6": "Global Azure Bootcamp 2017",
+    "cert7": "Web Development & Database Management Training 2020"
+  },
+  "footer": {
+    "copy": "&copy; 2026 Syah Putra Nugraha. Dibangun dengan Presisi."
+  }
+}
