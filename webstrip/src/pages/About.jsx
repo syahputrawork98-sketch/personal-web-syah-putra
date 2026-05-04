@@ -31,10 +31,9 @@ const About = () => {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', fontSize: '0.95rem' }}>
                 <p><strong>Location:</strong> {t('about.location')}</p>
                 <p><strong>Email:</strong> <a href={`mailto:${t('about.email')}`}>{t('about.email')}</a></p>
-                <p><strong>Phone:</strong> {t('about.phone')}</p>
                 <div style={{ marginTop: 'var(--space-3)', display: 'flex', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
                   <a href={t('about.github')} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ padding: '6px 12px', fontSize: '0.8rem' }}>GitHub</a>
-                  <a href={t('about.portfolio')} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ padding: '6px 12px', fontSize: '0.8rem' }}>Portfolio</a>
+                  <a href={t('about.instagram')} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ padding: '6px 12px', fontSize: '0.8rem' }}>Instagram</a>
                   <a href="/CV_Syah_Putra_Nugraha.pdf" download className="btn btn-primary" style={{ padding: '6px 12px', fontSize: '0.8rem', flex: '1 0 auto' }}>Download CV</a>
                 </div>
               </div>

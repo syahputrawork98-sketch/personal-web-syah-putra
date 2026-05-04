@@ -3,7 +3,6 @@
     "home": "Beranda",
     "projects": "Proyek",
     "about": "Tentang",
-    "skills": "Keahlian",
     "experience": "Pengalaman",
     "contact": "Kontak"
   },
@@ -24,9 +23,9 @@
     "soft_skills": "Problem Solving, Adaptability, Teamwork, Analytical Thinking, Communication, Client Handling, Project Coordination, Documentation, Time Management",
     "location": "Cimahi, Jawa Barat",
     "email": "syah.putrawork98@gmail.com",
-    "phone": "0851-6265-4466",
     "github": "https://bit.ly/4j2PJQW",
-    "portfolio": "https://bit.ly/4odquN9"
+    "portfolio": "https://bit.ly/4odquN9",
+    "instagram": "https://instagram.com/syah_putra_n"
   },
   "skills": {
     "title": "Keahlian Teknis",
@@ -116,6 +115,21 @@
       "solution": "Membangun pusat informasi digital yang informatif dengan visual destinasi yang menarik.",
       "features": "Info Destinasi, Galeri Foto, Integrasi Google Maps, Kontak Cepat."
     }
+  },
+  "contact": {
+    "title": "Mari Bekerja Sama",
+    "subtitle": "Ada ide atau peluang kerja? Saya siap mendiskusikannya dengan Anda.",
+    "info_title": "Informasi Kontak",
+    "form_title": "Kirim Pesan",
+    "name_label": "Nama Lengkap",
+    "email_label": "Alamat Email",
+    "subject_label": "Subjek",
+    "message_label": "Pesan Anda",
+    "send_btn": "Kirim Pesan Sekarang",
+    "success_msg": "Pesan Anda berhasil dikirim!",
+    "instagram_btn": "Kunjungi Instagram",
+    "linkedin_btn": "Kunjungi LinkedIn",
+    "github_btn": "Kunjungi GitHub"
   },
   "edu_cert": {
     "edu_title": "Pendidikan",

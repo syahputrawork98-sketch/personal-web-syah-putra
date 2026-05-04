@@ -3,7 +3,6 @@
     "home": "ホーム",
     "projects": "プロジェクト",
     "about": "私について",
-    "skills": "スキル",
     "experience": "経歴",
     "contact": "お問い合わせ"
   },
@@ -24,9 +23,9 @@
     "soft_skills": "問題解決, 適応力, チームワーク, 分析的思考, コミュニケーション, クライアント対応, プロジェクト調整, ドキュメンテーション, 時間管理",
     "location": "インドネシア、西ジャワ州、チマヒ",
     "email": "syah.putrawork98@gmail.com",
-    "phone": "0851-6265-4466",
     "github": "https://bit.ly/4j2PJQW",
-    "portfolio": "https://bit.ly/4odquN9"
+    "portfolio": "https://bit.ly/4odquN9",
+    "instagram": "https://instagram.com/syah_putra_n"
   },
   "skills": {
     "title": "技術スキル",
@@ -49,7 +48,7 @@
       "role": "フィールド・ゼネラル・スタッフ — プロジェクト・デジタル化",
       "company": "PT. Sedayu Jaya Konstruksi",
       "date": "2022年8月 – 2024年12月",
-      "desc": "日報、週報、月報のデジタル化。RAB、RAP、請求書、資材レポート、プロジェクト文書の作成。現場チーム、職長、主要請負業者との調整。"
+      "desc": "日報、週報、月報のデジタル化。RAB、RAP、請求書、資材レポート、プロジェクト文書の作成。現場チーム、職長、主要請請負業者との調整。"
     },
     "exp3": {
       "role": "パーソナルアシスタント & ゼネラルスタッフ — デジタルドキュメンテーション",
@@ -116,6 +115,21 @@
       "solution": "魅力的な目的地のビジュアルを備えた有益なデジタル情報ハブを構築。",
       "features": "目的地情報, フォトギャラリー, Googleマップ統合, クイックコンタクト。"
     }
+  },
+  "contact": {
+    "title": "一緒に働きましょう",
+    "subtitle": "アイデアや仕事の機会がありますか？ あなたと話し合う準備ができています。",
+    "info_title": "連絡先情報",
+    "form_title": "メッセージを送る",
+    "name_label": "フルネーム",
+    "email_label": "メールアドレス",
+    "subject_label": "件名",
+    "message_label": "あなたのメッセージ",
+    "send_btn": "今すぐメッセージを送る",
+    "success_msg": "メッセージは正常に送信されました！",
+    "instagram_btn": "Instagramを訪問",
+    "linkedin_btn": "LinkedInを訪問",
+    "github_btn": "GitHubを訪問"
   },
   "edu_cert": {
     "edu_title": "学歴",
