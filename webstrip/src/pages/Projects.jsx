@@ -1,33 +1,53 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useI18n } from '../layouts/MainLayout';
 import { projects as localProjects } from '../data/projects';
 import ProjectCard from '../components/ProjectCard';
 import { motion } from 'framer-motion';
+import { getPublicProjects } from '../lib/api';
 
 const Projects = () => {
   const { t } = useI18n();
-  const [projects, setProjects] = useState(localProjects); // Initial state with local fallback
+  const [projects, setProjects] = useState(localProjects);
   const [expandedId, setExpandedId] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setLoading(true);
+        const data = await getPublicProjects();
+        
+        if (data.projects && data.projects.length > 0) {
+          // Normalize API data to match ProjectCard's expected multi-language structure
+          const normalizedProjects = data.projects.map(p => ({
+            ...p,
+            // Map plain strings to i18n objects for compatibility
+            title: typeof p.title === 'string' ? { id: p.title, en: p.title, jp: p.title } : p.title,
+            shortDescription: typeof p.shortDescription === 'string' ? { id: p.shortDescription, en: p.shortDescription, jp: p.shortDescription } : p.shortDescription,
+            // Map liveUrl to demoUrl as expected by ProjectCard
+            demoUrl: p.liveUrl || p.demoUrl,
+            // Provide placeholders for detail fields not yet in simple API schema
+            challenge: p.challenge || { id: '', en: '', jp: '' },
+            solution: p.solution || { id: '', en: '', jp: '' },
+            impact: p.impact || { id: '', en: '', jp: '' },
+            features: p.features || { id: [], en: [], jp: [] },
+            role: p.role || 'Developer'
+          }));
+          setProjects(normalizedProjects);
+        }
+        setError(null);
+      } catch (err) {
+        console.warn('API Fetch failed, using local fallback:', err.message);
+        setError('Failed to fetch from API');
+        // Keep localProjects (already set in useState)
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchProjects();
   }, []);
-
-  const fetchProjects = async () => {
-    try {
-      const res = await axios.get('http://localhost:5000/api/projects');
-      if (res.data && res.data.length > 0) {
-        setProjects(res.data);
-      }
-    } catch (err) {
-      console.warn('Failed to fetch projects from API, falling back to local data.', err);
-      // Keep localProjects as state (already set in useState)
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const toggleExpand = (id) => {
     setExpandedId(expandedId === id ? null : id);
@@ -44,7 +64,7 @@ const Projects = () => {
     }
   };
 
-  const sortedProjects = [...projects].sort((a, b) => a.orderIndex - b.orderIndex);
+  const sortedProjects = [...projects].sort((a, b) => (a.order || a.orderIndex) - (b.order || b.orderIndex));
   const featuredProjects = sortedProjects.filter(p => p.featured);
   const otherProjects = sortedProjects.filter(p => !p.featured);
 
@@ -58,6 +78,8 @@ const Projects = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-center">{t('projects.title')}</h2>
+          {loading && <p style={{ opacity: 0.6, marginTop: 'var(--space-4)' }}>Loading projects from server...</p>}
+          {error && !loading && <p style={{ opacity: 0.4, fontSize: '0.8rem' }}>Note: Showing local fallback data</p>}
         </motion.div>
 
         {/* Featured Projects Grid */}
@@ -83,7 +105,7 @@ const Projects = () => {
           ))}
         </motion.div>
 
-        {/* Section Divider if there are other projects */}
+        {/* Section Divider */}
         {otherProjects.length > 0 && (
           <motion.div 
             style={{ marginBottom: 'var(--space-8)' }}
