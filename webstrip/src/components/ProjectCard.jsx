@@ -17,9 +17,21 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
   };
 
   const getContent = (field) => {
-    if (!project[field]) return '';
-    return project[field][lang] || project[field]['en'] || project[field]['id'] || '';
+    const data = project[field];
+    if (!data) return '';
+    // Handle string directly (common from API)
+    if (typeof data === 'string') return data;
+    // Handle object (common from localProjects/multilang)
+    return data[lang] || data['en'] || data['id'] || '';
   };
+
+  // Safe mapping for varied data sources (API vs Local)
+  const title = getContent('title');
+  const subtitle = getContent('subtitle') || project.shortDescription || "";
+  const description = getContent('description') || getContent('desc') || project.description || project.shortDescription || "";
+  const techStack = project.techStack || project.technologies || [];
+  const githubUrl = project.githubUrl || project.github || "";
+  const demoUrl = project.demoUrl || project.demo || project.liveUrl || "";
 
   const cardVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -36,7 +48,7 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
       <div className="project-image-container">
         <img 
           src={project.imageUrl || 'https://via.placeholder.com/600x400?text=Project+Thumbnail'} 
-          alt={getContent('title')}
+          alt={title}
           className="project-image"
         />
         <div 
@@ -51,13 +63,13 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
       <div className="project-content">
         <div style={{ marginBottom: 'var(--space-3)' }}>
           <p className="project-role">{project.role}</p>
-          <h3 style={{ marginBottom: 'var(--space-2)' }}>{getContent('title')}</h3>
-          <p style={{ fontSize: '0.9rem', opacity: 0.8, marginBottom: 'var(--space-4)' }}>{getContent('shortDescription')}</p>
+          <h3 style={{ marginBottom: 'var(--space-2)' }}>{title}</h3>
+          <p style={{ fontSize: '0.9rem', opacity: 0.8, marginBottom: 'var(--space-4)' }}>{subtitle}</p>
         </div>
 
         {/* Tech Stack Badges */}
         <div className="tech-badges">
-          {project.techStack.map((tech, idx) => (
+          {techStack.map((tech, idx) => (
             <span key={idx} className="tech-badge">
               {tech}
             </span>
@@ -74,9 +86,9 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
             {isExpanded ? (lang === 'id' ? 'Tutup Detail' : 'Hide Details') : (lang === 'id' ? 'Lihat Detail' : 'Case Study')}
           </button>
           
-          {project.demoUrl && (
+          {demoUrl && (
             <a 
-              href={project.demoUrl} 
+              href={demoUrl} 
               target="_blank" 
               rel="noopener noreferrer" 
               className="btn btn-primary" 
@@ -86,9 +98,9 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
             </a>
           )}
           
-          {project.githubUrl && (
+          {githubUrl && (
             <a 
-              href={project.githubUrl} 
+              href={githubUrl} 
               target="_blank" 
               rel="noopener noreferrer" 
               className="btn btn-secondary" 
