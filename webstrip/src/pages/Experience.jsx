@@ -1,27 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { useI18n } from '../layouts/MainLayout';
 import { motion } from 'framer-motion';
-import { getPublicExperiences } from '../lib/api';
+import { getPublicExperiences, getPublicCertifications } from '../lib/api';
 import '../styles/experience.css';
 
 const Experience = () => {
   const { t, lang } = useI18n();
   const [experiences, setExperiences] = useState([]);
+  const [certifications, setCertifications] = useState([]);
   const [dataSource, setDataSource] = useState('loading'); // 'loading', 'api', 'fallback'
   const [loading, setLoading] = useState(true);
-  const certs = [1, 2, 3, 4, 5, 6, 7];
 
   useEffect(() => {
-    const fetchExperiences = async () => {
+    const fetchData = async () => {
       try {
         setLoading(true);
-        const data = await getPublicExperiences();
+        const [expData, certData] = await Promise.all([
+          getPublicExperiences(),
+          getPublicCertifications()
+        ]);
         
-        if (data.experiences) {
-          setExperiences(data.experiences);
+        let hasApiData = false;
+
+        if (expData.experiences) {
+          setExperiences(expData.experiences);
+          hasApiData = true;
+        }
+
+        if (certData.certifications) {
+          setCertifications(certData.certifications);
+          hasApiData = true;
+        }
+
+        if (hasApiData) {
           setDataSource('api');
         } else {
-          console.warn('API success but no experiences array, using fallback.');
           useFallback();
         }
       } catch (err) {
@@ -33,7 +46,7 @@ const Experience = () => {
     };
 
     const useFallback = () => {
-      const fallbackData = [1, 2, 3, 4, 5].map(id => ({
+      const fallbackExps = [1, 2, 3, 4, 5].map(id => ({
         id: `local-exp-${id}`,
         role: t(`experience.exp${id}.role`),
         company: t(`experience.exp${id}.company`),
@@ -41,11 +54,19 @@ const Experience = () => {
         displayDate: t(`experience.exp${id}.date`),
         isLocal: true
       }));
-      setExperiences(fallbackData);
+
+      const fallbackCerts = [1, 2, 3, 4, 5, 6, 7].map(id => ({
+        id: `local-cert-${id}`,
+        title: t(`edu_cert.cert${id}`),
+        isLocal: true
+      }));
+
+      setExperiences(fallbackExps);
+      setCertifications(fallbackCerts);
       setDataSource('fallback');
     };
 
-    fetchExperiences();
+    fetchData();
   }, [t]);
 
   const formatDate = (dateString) => {
@@ -168,14 +189,32 @@ const Experience = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          {certs.map(id => (
+          {certifications.map(cert => (
             <motion.div 
-              key={id} 
+              key={cert.id} 
               className="cert-item"
               variants={itemVariants}
               whileHover={{ scale: 1.02, color: 'var(--primary-color)', borderColor: 'var(--primary-color)' }}
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', height: 'auto', textAlign: 'left' }}
             >
-              {t(`edu_cert.cert${id}`)}
+              <div style={{ fontWeight: 600, fontSize: '0.95rem', marginBottom: '2px' }}>{cert.title}</div>
+              {cert.issuer && (
+                <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>
+                  {cert.issuer} {cert.issuedAt && `• ${new Date(cert.issuedAt).getFullYear()}`}
+                </div>
+              )}
+              {cert.credentialUrl && (
+                <a 
+                  href={cert.credentialUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  style={{ fontSize: '0.7rem', color: 'var(--primary-color)', marginTop: '8px', textDecoration: 'none', borderBottom: '1px solid transparent' }}
+                  onMouseOver={e => e.target.style.borderBottom = '1px solid var(--primary-color)'}
+                  onMouseOut={e => e.target.style.borderBottom = '1px solid transparent'}
+                >
+                  View Credential &rarr;
+                </a>
+              )}
             </motion.div>
           ))}
         </motion.div>

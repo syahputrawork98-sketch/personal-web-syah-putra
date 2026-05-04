@@ -33,7 +33,10 @@ const fetcher = async (endpoint, options = {}) => {
 export const getPublicProjects = () => fetcher('/api/projects');
 export const getPublicProjectBySlug = (slug) => fetcher(`/api/projects/${slug}`);
 export const getPublicContact = () => fetcher('/api/settings/contact');
-export const getPublicSkills = () => fetcher('/api/skills');
+export const getPublicSkills = (type) => {
+  const url = type ? `/api/skills?type=${type}` : '/api/skills';
+  return fetcher(url);
+};
 export const getPublicExperiences = () => fetcher('/api/experiences');
 
 // Auth
@@ -90,7 +93,10 @@ export const updateAdminContact = (data) =>
   });
 
 // Admin Skills
-export const getAdminSkills = () => fetcher('/api/admin/skills');
+export const getAdminSkills = (type) => {
+  const url = type ? `/api/admin/skills?type=${type}` : '/api/admin/skills';
+  return fetcher(url);
+};
 export const getAdminSkill = (id) => fetcher(`/api/admin/skills/${id}`);
 export const createSkill = (data) => 
   fetcher('/api/admin/skills', {
@@ -110,17 +116,22 @@ export const deleteSkill = (id) =>
 // Admin Experience
 export const getAdminExperiences = () => fetcher('/api/admin/experiences');
 export const getAdminExperience = (id) => fetcher(`/api/admin/experiences/${id}`);
-export const createExperience = (data) => 
-  fetcher('/api/admin/experiences', {
-    method: 'POST',
-    body: JSON.stringify(data),
-  });
-export const updateExperience = (id, data) => 
-  fetcher(`/api/admin/experiences/${id}`, {
-    method: 'PUT',
-    body: JSON.stringify(data),
-  });
-export const deleteExperience = (id) => 
-  fetcher(`/api/admin/experiences/${id}`, {
-    method: 'DELETE',
-  });
+export const createExperience = (data) => fetcher('/api/admin/experiences', { method: 'POST', body: JSON.stringify(data) });
+export const updateExperience = (id, data) => fetcher(`/api/admin/experiences/${id}`, { method: 'PUT', body: JSON.stringify(data) });
+export const deleteExperience = (id) => fetcher(`/api/admin/experiences/${id}`, { method: 'DELETE' });
+
+// Certifications
+export const getPublicCertifications = (filters = {}) => {
+  const query = new URLSearchParams(filters).toString();
+  return fetcher(`/api/certifications${query ? `?${query}` : ''}`);
+};
+
+// Admin Certifications
+export const getAdminCertifications = (filters = {}) => {
+  const query = new URLSearchParams(filters).toString();
+  return fetcher(`/api/admin/certifications${query ? `?${query}` : ''}`);
+};
+export const getAdminCertification = (id) => fetcher(`/api/admin/certifications/${id}`);
+export const createCertification = (data) => fetcher('/api/admin/certifications', { method: 'POST', body: JSON.stringify(data) });
+export const updateCertification = (id, data) => fetcher(`/api/admin/certifications/${id}`, { method: 'PUT', body: JSON.stringify(data) });
+export const deleteCertification = (id) => fetcher(`/api/admin/certifications/${id}`, { method: 'DELETE' });
