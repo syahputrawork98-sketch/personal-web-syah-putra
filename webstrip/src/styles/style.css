@@ -262,8 +262,5 @@ input:focus, textarea:focus {
   color: var(--primary-color);
 }
 
-@media (max-width: 768px) {
-  .nav-links {
-    display: none !important; /* Will add mobile menu later */
-  }
-}
+/* End of Styles */
+
