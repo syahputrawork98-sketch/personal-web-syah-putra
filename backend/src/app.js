@@ -14,6 +14,8 @@ app.use(express.json());
 
 // Routes
 const authRoutes = require('./routes/auth.routes');
+const publicProjectsRoutes = require('./routes/public/projects.routes');
+const adminProjectsRoutes = require('./routes/admin/projects.routes');
 
 // Health Check
 app.get('/api/health', (req, res) => {
@@ -22,6 +24,8 @@ app.get('/api/health', (req, res) => {
 
 // Use Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/projects', publicProjectsRoutes);
+app.use('/api/admin/projects', adminProjectsRoutes);
 
 // Global Error Handler
 app.use(errorHandler);
