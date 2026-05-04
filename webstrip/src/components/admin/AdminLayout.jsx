@@ -16,8 +16,12 @@ const AdminLayout = () => {
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-8)' }}>
             <h2 style={{ fontSize: '1.2rem', margin: 0 }}>Admin Dashboard</h2>
-            <nav>
+            <nav style={{ display: 'flex', gap: 'var(--space-4)' }}>
               <Link to="/admin/projects" style={{ textDecoration: 'none', color: 'var(--text-color)', opacity: 0.8 }}>Projects</Link>
+              <Link to="/admin/skills" style={{ textDecoration: 'none', color: 'var(--text-color)', opacity: 0.8 }}>Skills</Link>
+              <Link to="/admin/experience" style={{ textDecoration: 'none', color: 'var(--text-color)', opacity: 0.8 }}>Experience</Link>
+              <Link to="/admin/account" style={{ textDecoration: 'none', color: 'var(--text-color)', opacity: 0.8 }}>Account</Link>
+              <Link to="/admin/contact" style={{ textDecoration: 'none', color: 'var(--text-color)', opacity: 0.8 }}>Contact</Link>
             </nav>
           </div>
           <button onClick={handleLogout} className="btn btn-secondary" style={{ padding: '6px 12px', fontSize: '0.85rem' }}>

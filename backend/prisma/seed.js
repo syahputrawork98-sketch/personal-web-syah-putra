@@ -70,6 +70,55 @@ async function main() {
   }
 
   console.log('✅ Sample projects seeded.');
+  
+  // 3. Setup Default Contact Settings
+  const defaultContact = {
+    email: adminEmail,
+    phone: '',
+    whatsapp: '',
+    github: '',
+    linkedin: '',
+    instagram: '',
+    location: 'Indonesia'
+  };
+
+  await prisma.siteSetting.upsert({
+    where: { key: 'contact' },
+    update: {},
+    create: {
+      key: 'contact',
+      value: defaultContact,
+    },
+  });
+
+  console.log('✅ Default contact settings seeded.');
+
+  // 4. Setup Default Skills
+  const defaultSkills = [
+    { name: 'React', category: 'Frontend', level: 'Advanced', order: 1 },
+    { name: 'Node.js', category: 'Backend', level: 'Intermediate', order: 2 },
+    { name: 'Express.js', category: 'Backend', level: 'Intermediate', order: 3 },
+    { name: 'JavaScript', category: 'Language', level: 'Advanced', order: 4 },
+    { name: 'TypeScript', category: 'Language', level: 'Intermediate', order: 5 },
+    { name: 'PostgreSQL', category: 'Database', level: 'Intermediate', order: 6 },
+    { name: 'Prisma', category: 'ORM', level: 'Intermediate', order: 7 },
+    { name: 'Tailwind CSS', category: 'Styling', level: 'Advanced', order: 8 },
+    { name: 'Git', category: 'Tools', level: 'Intermediate', order: 9 },
+    { name: 'Python', category: 'Language', level: 'Basic', order: 10 },
+    { name: 'Java', category: 'Language', level: 'Basic', order: 11 },
+    { name: 'Rust', category: 'Language', level: 'Basic', order: 12 },
+  ];
+
+  const skillCount = await prisma.skill.count();
+  if (skillCount === 0) {
+    for (const skill of defaultSkills) {
+      await prisma.skill.create({ data: skill });
+    }
+    console.log('✅ Default skills seeded.');
+  } else {
+    console.log('ℹ️ Skills already exist, skipping default skills seed.');
+  }
+
   console.log('🏁 Seeding finished successfully.');
 }
 

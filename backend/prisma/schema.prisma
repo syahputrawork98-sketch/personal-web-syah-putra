@@ -39,3 +39,46 @@ enum ProjectStatus {
   DRAFT
   PUBLISHED
 }
+
+model SiteSetting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Skill {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  category  String?
+  icon      String?
+  level     String?
+  order     Int      @default(0)
+  visible   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Experience {
+  id          String           @id @default(cuid())
+  role        String
+  company     String
+  location    String?
+  type        String?
+  startDate   DateTime?
+  endDate     DateTime?
+  isCurrent   Boolean          @default(false)
+  description String?
+  highlights  String[]
+  techStack   String[]
+  status      ExperienceStatus @default(DRAFT)
+  order       Int              @default(0)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+}
+
+enum ExperienceStatus {
+  DRAFT
+  PUBLISHED
+}

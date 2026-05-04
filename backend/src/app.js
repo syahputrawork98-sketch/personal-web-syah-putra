@@ -16,6 +16,13 @@ app.use(express.json());
 const authRoutes = require('./routes/auth.routes');
 const publicProjectsRoutes = require('./routes/public/projects.routes');
 const adminProjectsRoutes = require('./routes/admin/projects.routes');
+const adminAccountRoutes = require('./routes/admin/account.routes');
+const settingsRoutes = require('./routes/settings.routes');
+const adminSettingsRoutes = require('./routes/admin/settings.routes');
+const skillsRoutes = require('./routes/skills.routes');
+const adminSkillsRoutes = require('./routes/admin/skills.routes');
+const experienceRoutes = require('./routes/experience.routes');
+const adminExperienceRoutes = require('./routes/admin/experience.routes');
 
 // Health Check
 app.get('/api/health', (req, res) => {
@@ -26,6 +33,13 @@ app.get('/api/health', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', publicProjectsRoutes);
 app.use('/api/admin/projects', adminProjectsRoutes);
+app.use('/api/admin/account', adminAccountRoutes);
+app.use('/api/settings', settingsRoutes);
+app.use('/api/admin/settings', adminSettingsRoutes);
+app.use('/api/skills', skillsRoutes);
+app.use('/api/admin/skills', adminSkillsRoutes);
+app.use('/api/experiences', experienceRoutes);
+app.use('/api/admin/experiences', adminExperienceRoutes);
 
 // Global Error Handler
 app.use(errorHandler);

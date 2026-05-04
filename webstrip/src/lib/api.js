@@ -32,6 +32,9 @@ const fetcher = async (endpoint, options = {}) => {
 // Public Projects
 export const getPublicProjects = () => fetcher('/api/projects');
 export const getPublicProjectBySlug = (slug) => fetcher(`/api/projects/${slug}`);
+export const getPublicContact = () => fetcher('/api/settings/contact');
+export const getPublicSkills = () => fetcher('/api/skills');
+export const getPublicExperiences = () => fetcher('/api/experiences');
 
 // Auth
 export const loginAdmin = (email, password) => 
@@ -60,5 +63,64 @@ export const updateProject = (id, data) =>
 
 export const deleteProject = (id) => 
   fetcher(`/api/admin/projects/${id}`, {
+    method: 'DELETE',
+  });
+
+// Admin Account
+export const getAdminAccount = () => fetcher('/api/admin/account');
+
+export const updateAdminEmail = (data) => 
+  fetcher('/api/admin/account/email', {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  });
+
+export const updateAdminPassword = (data) => 
+  fetcher('/api/admin/account/password', {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  });
+
+// Admin Settings
+export const getAdminContact = () => fetcher('/api/admin/settings/contact');
+export const updateAdminContact = (data) => 
+  fetcher('/api/admin/settings/contact', {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  });
+
+// Admin Skills
+export const getAdminSkills = () => fetcher('/api/admin/skills');
+export const getAdminSkill = (id) => fetcher(`/api/admin/skills/${id}`);
+export const createSkill = (data) => 
+  fetcher('/api/admin/skills', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+export const updateSkill = (id, data) => 
+  fetcher(`/api/admin/skills/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  });
+export const deleteSkill = (id) => 
+  fetcher(`/api/admin/skills/${id}`, {
+    method: 'DELETE',
+  });
+
+// Admin Experience
+export const getAdminExperiences = () => fetcher('/api/admin/experiences');
+export const getAdminExperience = (id) => fetcher(`/api/admin/experiences/${id}`);
+export const createExperience = (data) => 
+  fetcher('/api/admin/experiences', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+export const updateExperience = (id, data) => 
+  fetcher(`/api/admin/experiences/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  });
+export const deleteExperience = (id) => 
+  fetcher(`/api/admin/experiences/${id}`, {
     method: 'DELETE',
   });
