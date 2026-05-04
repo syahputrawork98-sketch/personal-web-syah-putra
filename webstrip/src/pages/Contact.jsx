@@ -5,90 +5,96 @@ import '../styles/contact.css';
 const Contact = () => {
   const { t } = useI18n();
 
-  const contactLinks = [
+  const contactItems = [
     {
       id: 'email',
       icon: '📧',
-      label: 'Email Me',
+      label: 'Email',
       value: t('about.email'),
-      url: `mailto:${t('about.email')}`,
-      primary: true
+      url: `mailto:${t('about.email')}`
+    },
+    {
+      id: 'location',
+      icon: '📍',
+      label: 'Location',
+      value: t('about.location'),
+      url: null
     },
     {
       id: 'linkedin',
       icon: '🔗',
       label: 'LinkedIn',
       value: 'Syah Putra Nugraha',
-      url: 'https://linkedin.com/in/syahputranugraha',
-      primary: false
+      url: 'https://linkedin.com/in/syahputranugraha'
     },
     {
       id: 'github',
       icon: '🐙',
       label: 'GitHub',
       value: 'syahputranugraha',
-      url: t('about.github'),
-      primary: false
+      url: t('about.github')
     },
     {
       id: 'instagram',
       icon: '📸',
       label: 'Instagram',
       value: '@syah_putra_n',
-      url: t('about.instagram'),
-      primary: false
+      url: t('about.instagram')
     }
   ];
 
   return (
-    <section id="contact" className="section-padding flex-center" style={{ minHeight: '80vh' }}>
-      <div className="container contact-container">
-        <div className="contact-header">
+    <section id="contact" className="section-padding flex-center" style={{ minHeight: '70vh' }}>
+      <div className="container" style={{ maxWidth: '600px' }}>
+        <div style={{ textAlign: 'center', marginBottom: 'var(--space-8)' }}>
           <h2 className="text-center">{t('contact.title')}</h2>
-          <p className="contact-subtitle">{t('contact.subtitle')}</p>
+          <p style={{ fontSize: '1.1rem', opacity: 0.8 }}>{t('contact.subtitle')}</p>
         </div>
 
-        <div className="contact-grid">
-          {/* Main Contact Card */}
-          <div className="card contact-info-card">
-            <h3 style={{ marginBottom: 'var(--space-5)', color: 'var(--primary-color)' }}>{t('contact.info_title')}</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
-              <div className="contact-item">
-                <div className="contact-icon">📍</div>
+        <div className="card" style={{ padding: 'var(--space-6)' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
+            {contactItems.map((item) => (
+              <div key={item.id} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)' }}>
+                <div style={{ 
+                  width: '40px', 
+                  height: '40px', 
+                  borderRadius: 'var(--radius-md)', 
+                  background: 'rgba(56, 189, 248, 0.1)', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  fontSize: '1.2rem' 
+                }}>
+                  {item.icon}
+                </div>
                 <div>
-                  <p className="contact-item-label">Location</p>
-                  <p className="contact-item-value">{t('about.location')}</p>
+                  <p style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', opacity: 0.6, marginBottom: '2px' }}>
+                    {item.label}
+                  </p>
+                  {item.url ? (
+                    <a 
+                      href={item.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      style={{ fontWeight: 600, color: 'var(--text-primary)', textDecoration: 'none' }}
+                      onMouseOver={(e) => e.target.style.color = 'var(--primary-color)'}
+                      onMouseOut={(e) => e.target.style.color = 'var(--text-primary)'}
+                    >
+                      {item.value}
+                    </a>
+                  ) : (
+                    <p style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{item.value}</p>
+                  )}
                 </div>
               </div>
-              
-              <div className="contact-item">
-                <div className="contact-icon">⏰</div>
-                <div>
-                  <p className="contact-item-label">Availability</p>
-                  <p className="contact-item-value" style={{ color: '#10B981' }}>Open to Work</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Contact Actions */}
-          <div className="contact-actions">
-            {contactLinks.map((link) => (
-              <a 
-                key={link.id}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`btn contact-btn ${link.primary ? 'btn-primary' : 'btn-secondary'}`}
-              >
-                <span className="contact-btn-icon">{link.icon}</span>
-                <div style={{ textAlign: 'left' }}>
-                  <p className="contact-item-label" style={{ opacity: 0.8 }}>{link.label}</p>
-                  <p style={{ fontSize: '0.95rem' }}>{link.value}</p>
-                </div>
-              </a>
             ))}
           </div>
+        </div>
+        
+        <div style={{ textAlign: 'center', marginTop: 'var(--space-8)' }}>
+          <p style={{ fontSize: '0.9rem', opacity: 0.6 }}>
+            {t('footer.copy')}
+          </p>
         </div>
       </div>
     </section>
