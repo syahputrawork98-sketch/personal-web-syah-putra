@@ -73,33 +73,48 @@
   "projects": {
     "title": "Featured Projects",
     "impact_label": "Impact:",
+    "challenge_label": "Challenge:",
+    "solution_label": "Solution:",
+    "features_label": "Key Features:",
     "proj1": {
       "title": "Construction Project Monitoring Application",
       "subtitle": "Rumahku Kontraktor",
       "tech": "React.js, Node.js, Express.js, MongoDB",
       "desc": "Web application for monitoring house construction progress. Key features include progress dashboards, daily reports, project documentation, and job monitoring.",
-      "impact": "Helped improve project reporting efficiency by about 35%."
+      "impact": "Helped improve project reporting efficiency by about 35%.",
+      "challenge": "Difficulty in monitoring daily progress in real-time across multiple construction sites.",
+      "solution": "Built a cloud-based reporting system that allows foremen to upload reports directly from the field.",
+      "features": "Progress Dashboard, Photo Uploads, Digital Daily Reports, Logistics Management."
     },
     "proj2": {
       "title": "Event Organizer Showcase Website",
       "subtitle": "Siqah",
       "tech": "React.js, Node.js, Express.js, MySQL",
       "desc": "Promotion website for event organizer and catering services with service catalogs, event portfolios, and inquiry/booking features.",
-      "impact": "Increased client trust and expanded the business's digital reach."
+      "impact": "Increased client trust and expanded the business's digital reach.",
+      "challenge": "Lack of digital presence to attract high-end clients in the EO industry.",
+      "solution": "Premium website design with interactive portfolio galleries and dynamic service catalogs.",
+      "features": "Portfolio Gallery, Inquiry Services, Catering Package Catalog, Mobile Responsive."
     },
     "proj3": {
       "title": "Internal Recruitment Application",
       "subtitle": "PT. OTICS Indonesia",
       "tech": "PHP, MySQL, HTML, CSS",
       "desc": "Internal system for managing applicant data and HR dashboard.",
-      "impact": "Sped up the recruitment process and reduced administrative data errors."
+      "impact": "Sped up the recruitment process and reduced administrative data errors.",
+      "challenge": "Manual management of thousands of applicant records that was error-prone and slow.",
+      "solution": "Automated applicant archiving and created a recruitment status monitoring dashboard.",
+      "features": "Applicant Database, Status Filters, HR Dashboard, Data Export."
     },
     "proj4": {
       "title": "Company Profile Website",
       "subtitle": "Wisata Ngaprak Bandung",
       "tech": "HTML, CSS, JavaScript, Bootstrap",
       "desc": "Company profile website to showcase business profile, services, and destination gallery.",
-      "impact": "Helped strengthen the company's digital presence."
+      "impact": "Helped strengthen the company's digital presence.",
+      "challenge": "Tourist service information was decentralized and difficult for customers to access.",
+      "solution": "Built an informative digital information hub with attractive destination visuals.",
+      "features": "Destination Info, Photo Gallery, Google Maps Integration, Quick Contact."
     }
   },
   "edu_cert": {

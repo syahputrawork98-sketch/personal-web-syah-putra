@@ -27,7 +27,7 @@ const Home = () => {
 
         <div className="cta-group" style={{ display: 'flex', gap: 'var(--space-4)', justifyContent: 'center', flexWrap: 'wrap' }}>
           <Link to="/projects" className="btn btn-primary">{t('hero.cta_primary')}</Link>
-          <Link to="/contact" className="btn btn-secondary">{t('hero.cta_contact')}</Link>
+          <a href="/CV_Syah_Putra_Nugraha.pdf" download className="btn btn-secondary">{t('hero.cta_secondary')}</a>
         </div>
       </div>
     </section>

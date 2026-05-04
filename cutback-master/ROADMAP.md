@@ -14,14 +14,14 @@ Dokumen ini berisi rencana pengembangan jangka panjang untuk website pribadi Sya
 - [x] Sistem Multi-language (i18n) dengan Context API.
 - [x] Dark/Light Mode Support.
 
-## Phase 3: Content Integration (Current)
+## Phase 3: Content Integration (Done)
 - [x] Integrasi konten CV (Hero, About, Experience, Education).
 - [x] Implementasi Showcase Proyek Utama.
 - [x] Sinkronisasi bahasa (Indonesia, English, Japanese).
-- [ ] Penambahan detail per proyek (Case Studies).
-- [ ] Download CV functionality (Link ke file PDF).
+- [x] Penambahan detail per proyek (Case Studies) - Struktur & Dummy Data Ready.
+- [x] Download CV functionality (Link ke file PDF).
 
-## Phase 4: Optimization & Deployment
+## Phase 4: Optimization & Deployment (Next)
 - [ ] Mobile Menu / Hamburger menu (Responsivitas Mobile).
 - [ ] SEO Optimization (OpenGraph, Meta Tags per page).
 - [ ] Performance audit (Lighthouse).

@@ -73,33 +73,48 @@
   "projects": {
     "title": "Proyek Terpilih",
     "impact_label": "Impact:",
+    "challenge_label": "Tantangan:",
+    "solution_label": "Solusi:",
+    "features_label": "Fitur Utama:",
     "proj1": {
       "title": "Construction Project Monitoring Application",
       "subtitle": "Rumahku Kontraktor",
       "tech": "React.js, Node.js, Express.js, MongoDB",
       "desc": "Aplikasi web untuk monitoring progres pembangunan rumah. Fitur utama mencakup dashboard progres, laporan harian, dokumentasi proyek, dan monitoring pekerjaan.",
-      "impact": "Membantu efisiensi pelaporan proyek hingga sekitar 35%."
+      "impact": "Membantu efisiensi pelaporan proyek hingga sekitar 35%.",
+      "challenge": "Sulitnya memantau progres harian secara real-time dari banyak lokasi proyek konstruksi.",
+      "solution": "Membangun sistem pelaporan berbasis cloud yang memungkinkan mandor mengupload laporan langsung dari lapangan.",
+      "features": "Dashboard Progres, Upload Dokumentasi Foto, Laporan Harian Digital, Manajemen Logistik."
     },
     "proj2": {
       "title": "Event Organizer Showcase Website",
       "subtitle": "Siqah",
       "tech": "React.js, Node.js, Express.js, MySQL",
       "desc": "Website promosi jasa event organizer dan catering dengan katalog layanan, portfolio acara, serta fitur inquiry/pemesanan.",
-      "impact": "Meningkatkan kepercayaan klien dan memperluas jangkauan digital bisnis."
+      "impact": "Meningkatkan kepercayaan klien dan memperluas jangkauan digital bisnis.",
+      "challenge": "Kurangnya kehadiran digital untuk menarik klien menengah-keatas dalam industri EO.",
+      "solution": "Desain website premium dengan galeri portofolio interaktif dan sistem katalog layanan yang dinamis.",
+      "features": "Portfolio Gallery, Layanan Inquiry, Katalog Paket Catering, Responsif Mobile."
     },
     "proj3": {
       "title": "Internal Recruitment Application",
       "subtitle": "PT. OTICS Indonesia",
       "tech": "PHP, MySQL, HTML, CSS",
       "desc": "Sistem internal untuk pengelolaan data pelamar dan dashboard HR.",
-      "impact": "Mempercepat proses rekrutmen dan mengurangi kesalahan administrasi data."
+      "impact": "Mempercepat proses rekrutmen dan mengurangi kesalahan administrasi data.",
+      "challenge": "Pengelolaan ribuan data pelamar secara manual yang rawan kesalahan dan lambat.",
+      "solution": "Automasi pengarsipan data pelamar dan pembuatan dashboard monitoring status rekrutmen.",
+      "features": "Database Pelamar, Filter Status, Dashboard HR, Export Data."
     },
     "proj4": {
       "title": "Company Profile Website",
       "subtitle": "Wisata Ngaprak Bandung",
       "tech": "HTML, CSS, JavaScript, Bootstrap",
       "desc": "Website company profile untuk menampilkan profil usaha, layanan, dan galeri destinasi.",
-      "impact": "Membantu memperkuat kehadiran digital perusahaan."
+      "impact": "Membantu memperkuat kehadiran digital perusahaan.",
+      "challenge": "Informasi layanan wisata yang tidak terpusat dan sulit diakses calon pelanggan.",
+      "solution": "Membangun pusat informasi digital yang informatif dengan visual destinasi yang menarik.",
+      "features": "Info Destinasi, Galeri Foto, Integrasi Google Maps, Kontak Cepat."
     }
   },
   "edu_cert": {
