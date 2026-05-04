@@ -1,14 +1,12 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAdminAuth } from '../../context/admin/AdminAuthContext';
+import { getToken } from '../../lib/auth';
 
 const ProtectedRoute = ({ children }) => {
-  const { token, loading } = useAdminAuth();
-
-  if (loading) return <div>Loading...</div>;
+  const token = getToken();
 
   if (!token) {
-    return <Navigate to="/admin/login" />;
+    return <Navigate to="/admin/login" replace />;
   }
 
   return children;

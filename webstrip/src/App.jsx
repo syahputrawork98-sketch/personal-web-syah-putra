@@ -10,52 +10,40 @@ import Contact from './pages/Contact';
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminProjects from './pages/admin/AdminProjects';
-import ProjectForm from './pages/admin/ProjectForm';
+import AdminProjectCreate from './pages/admin/AdminProjectCreate';
+import AdminProjectEdit from './pages/admin/AdminProjectEdit';
 import ProtectedRoute from './components/admin/ProtectedRoute';
-import { AdminAuthProvider } from './context/admin/AdminAuthContext';
+import AdminLayout from './components/admin/AdminLayout';
 
 function App() {
   return (
     <Router>
-      <AdminAuthProvider>
-        <MainLayout>
-          <Routes>
-            {/* Public Routes */}
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/experience" element={<Experience />} />
-            <Route path="/contact" element={<Contact />} />
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<MainLayout><Home /></MainLayout>} />
+        <Route path="/about" element={<MainLayout><About /></MainLayout>} />
+        <Route path="/projects" element={<MainLayout><Projects /></MainLayout>} />
+        <Route path="/experience" element={<MainLayout><Experience /></MainLayout>} />
+        <Route path="/contact" element={<MainLayout><Contact /></MainLayout>} />
 
-            {/* Admin Routes */}
-            <Route path="/admin/login" element={<AdminLogin />} />
-            <Route 
-              path="/admin/projects" 
-              element={
-                <ProtectedRoute>
-                  <AdminProjects />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/admin/projects/new" 
-              element={
-                <ProtectedRoute>
-                  <ProjectForm />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/admin/projects/edit/:id" 
-              element={
-                <ProtectedRoute>
-                  <ProjectForm />
-                </ProtectedRoute>
-              } 
-            />
-          </Routes>
-        </MainLayout>
-      </AdminAuthProvider>
+        {/* Admin Login - No Layout */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+
+        {/* Admin Dashboard Routes - Protected */}
+        <Route 
+          path="/admin" 
+          element={
+            <ProtectedRoute>
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<AdminProjects />} />
+          <Route path="projects" element={<AdminProjects />} />
+          <Route path="projects/new" element={<AdminProjectCreate />} />
+          <Route path="projects/:id/edit" element={<AdminProjectEdit />} />
+        </Route>
+      </Routes>
     </Router>
   );
 }

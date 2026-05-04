@@ -1,87 +1,124 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { useAdminAuth } from '../../context/admin/AdminAuthContext';
-import { motion } from 'framer-motion';
+import { Link, useNavigate } from 'react-router-dom';
+import { getAdminProjects, deleteProject } from '../../lib/api';
+import { removeToken } from '../../lib/auth';
 
 const AdminProjects = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { logout } = useAdminAuth();
-
-  useEffect(() => {
-    fetchProjects();
-  }, []);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const fetchProjects = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/projects');
-      setProjects(res.data);
+      setLoading(true);
+      const data = await getAdminProjects();
+      setProjects(data.projects);
+      setError('');
     } catch (err) {
-      console.error(err);
+      if (err.message.includes('401') || err.message.toLowerCase().includes('unauthorized')) {
+        removeToken();
+        navigate('/admin/login');
+      } else {
+        setError(err.message || 'Failed to load projects');
+      }
     } finally {
       setLoading(false);
     }
   };
 
-  const handleDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this project?')) {
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  const handleDelete = async (id, title) => {
+    if (window.confirm(`Are you sure you want to delete project: "${title}"?`)) {
       try {
-        await axios.delete(`http://localhost:5000/api/projects/${id}`);
-        setProjects(projects.filter(p => p.id !== id));
+        await deleteProject(id);
+        fetchProjects(); // Refresh list
       } catch (err) {
-        alert('Error deleting project');
+        alert(err.message || 'Failed to delete project');
       }
     }
   };
 
-  return (
-    <div className="section-padding">
-      <div className="container">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-8)' }}>
-          <h1>Manage Projects</h1>
-          <div style={{ display: 'flex', gap: 'var(--space-3)' }}>
-            <Link to="/admin/projects/new" className="btn btn-primary">+ Add New</Link>
-            <button onClick={logout} className="btn btn-secondary">Logout</button>
-          </div>
-        </div>
+  if (loading) return <div style={{ textAlign: 'center', padding: 'var(--space-8)' }}>Loading projects...</div>;
 
-        {loading ? (
-          <p>Loading projects...</p>
-        ) : (
-          <div className="card" style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-              <thead>
-                <tr style={{ borderBottom: '1px solid var(--border-color)', textAlign: 'left' }}>
-                  <th style={{ padding: 'var(--space-4)' }}>Title (ID)</th>
-                  <th style={{ padding: 'var(--space-4)' }}>Status</th>
-                  <th style={{ padding: 'var(--space-4)' }}>Featured</th>
-                  <th style={{ padding: 'var(--space-4)' }}>Actions</th>
+  return (
+    <div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-6)' }}>
+        <h1>Manage Projects</h1>
+        <Link to="/admin/projects/new" className="btn btn-primary">
+          + Add Project
+        </Link>
+      </div>
+
+      {error && (
+        <div style={{ backgroundColor: '#fee2e2', color: '#dc2626', padding: 'var(--space-4)', borderRadius: '4px', marginBottom: 'var(--space-6)' }}>
+          {error}
+        </div>
+      )}
+
+      <div className="card" style={{ overflowX: 'auto' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+          <thead>
+            <tr style={{ borderBottom: '1px solid var(--border-color)' }}>
+              <th style={{ padding: 'var(--space-3)' }}>Title</th>
+              <th style={{ padding: 'var(--space-3)' }}>Status</th>
+              <th style={{ padding: 'var(--space-3)' }}>Featured</th>
+              <th style={{ padding: 'var(--space-3)' }}>Order</th>
+              <th style={{ padding: 'var(--space-3)' }}>Last Updated</th>
+              <th style={{ padding: 'var(--space-3)' }}>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {projects.length === 0 ? (
+              <tr>
+                <td colSpan="6" style={{ padding: 'var(--space-8)', textAlign: 'center', opacity: 0.6 }}>No projects found.</td>
+              </tr>
+            ) : (
+              projects.map((project) => (
+                <tr key={project.id} style={{ borderBottom: '1px solid var(--border-color)', opacity: project.status === 'DRAFT' ? 0.7 : 1 }}>
+                  <td style={{ padding: 'var(--space-3)', fontWeight: 'bold' }}>{project.title}</td>
+                  <td style={{ padding: 'var(--space-3)' }}>
+                    <span style={{ 
+                      fontSize: '0.75rem', 
+                      padding: '2px 8px', 
+                      borderRadius: '12px', 
+                      backgroundColor: project.status === 'PUBLISHED' ? '#dcfce7' : '#f3f4f6',
+                      color: project.status === 'PUBLISHED' ? '#166534' : '#374151'
+                    }}>
+                      {project.status}
+                    </span>
+                  </td>
+                  <td style={{ padding: 'var(--space-3)' }}>{project.featured ? '⭐ Yes' : 'No'}</td>
+                  <td style={{ padding: 'var(--space-3)' }}>{project.order}</td>
+                  <td style={{ padding: 'var(--space-3)', fontSize: '0.85rem', opacity: 0.8 }}>
+                    {new Date(project.updatedAt).toLocaleDateString()}
+                  </td>
+                  <td style={{ padding: 'var(--space-3)' }}>
+                    <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
+                      <Link 
+                        to={`/admin/projects/${project.id}/edit`} 
+                        className="btn btn-secondary" 
+                        style={{ padding: '4px 8px', fontSize: '0.75rem' }}
+                      >
+                        Edit
+                      </Link>
+                      <button 
+                        onClick={() => handleDelete(project.id, project.title)}
+                        className="btn btn-secondary" 
+                        style={{ padding: '4px 8px', fontSize: '0.75rem', color: '#dc2626' }}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {projects.map((project) => (
-                  <tr key={project.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
-                    <td style={{ padding: 'var(--space-4)' }}>{project.title?.id || project.title?.en}</td>
-                    <td style={{ padding: 'var(--space-4)' }}>
-                      <span className="tech-badge">{project.status}</span>
-                    </td>
-                    <td style={{ padding: 'var(--space-4)' }}>{project.featured ? '⭐' : '-'}</td>
-                    <td style={{ padding: 'var(--space-4)', display: 'flex', gap: 'var(--space-2)' }}>
-                      <Link to={`/admin/projects/edit/${project.id}`} className="btn btn-secondary" style={{ padding: '4px 8px', fontSize: '0.8rem' }}>Edit</Link>
-                      <button onClick={() => handleDelete(project.id)} className="btn btn-secondary" style={{ padding: '4px 8px', fontSize: '0.8rem', color: '#ef4444' }}>Delete</button>
-                    </td>
-                  </tr>
-                ))}
-                {projects.length === 0 && (
-                  <tr>
-                    <td colSpan="4" style={{ padding: 'var(--space-8)', textAlign: 'center', opacity: 0.5 }}>No projects found. Create your first one!</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        )}
+              ))
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );
