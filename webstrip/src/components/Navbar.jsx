@@ -28,6 +28,7 @@ const Navbar = ({ theme, toggleTheme }) => {
   const navLinks = [
     { path: '/', label: 'Beranda' },
     { path: '/about', label: 'Tentang' },
+    { path: '/credentials', label: 'Kredensial' },
     { path: '/experience', label: 'Pengalaman' },
     { path: '/projects', label: 'Proyek' },
     { path: '/contact', label: 'Kontak' },

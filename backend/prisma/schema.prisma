@@ -10,6 +10,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// --------------------------------------
+// Authentication
+// --------------------------------------
+
 model AdminUser {
   id           String   @id @default(cuid())
   email        String   @unique
@@ -17,6 +21,10 @@ model AdminUser {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
+
+// --------------------------------------
+// Projects
+// --------------------------------------
 
 model Project {
   id               String        @id @default(cuid())
@@ -40,13 +48,110 @@ enum ProjectStatus {
   PUBLISHED
 }
 
-model SiteSetting {
-  id        String   @id @default(cuid())
-  key       String   @unique
-  value     Json
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+// --------------------------------------
+// Credentials & Certifications (REFACTORED)
+// --------------------------------------
+
+enum CredentialType {
+  CERTIFICATE
+  SUPPORTING_DOCUMENT
 }
+
+enum VerificationStatus {
+  VERIFIED
+  NEEDS_MANUAL_VERIFICATION
+  UNVERIFIED
+}
+
+enum CredentialSourceType {
+  DRAFT_FILE
+  GOOGLE_DRIVE
+  MANUAL_INPUT
+  CMS
+}
+
+model Credential {
+  id                String               @id
+  slug              String               @unique
+  type              CredentialType       @default(CERTIFICATE)
+  sourceType        CredentialSourceType @default(DRAFT_FILE)
+  
+  title             String
+  officialTitle     String?
+  category          String
+  subCategory       String?
+  issuer            String
+  issuerType        String?
+  certificateNumber String?
+  participantName   String               @default("Syah Putra Nugraha")
+  
+  // Dates: DateTime for logic, Original for context
+  issueDate         DateTime?
+  originalIssueDate String?
+  startDate         DateTime?
+  originalStartDate String?
+  endDate           DateTime?
+  originalEndDate   String?
+  duration          String?
+  
+  status            String?
+  grade             String?
+  level             String?
+  
+  // Hybrid Array Strategy
+  skills            String[]       // Canonical Names (e.g., "React", "Node.js")
+  relatedTech       String[]
+  relatedDomains    String[]
+  
+  // Content
+  competencies      Json?          
+  keyTopics         Json?          
+  summary           String         @db.Text
+  portfolioRelevance String        @db.Text
+  recruiterValue    String?        @db.Text
+  
+  // Visibility & Ranking
+  displayPriority   Int            @default(3)
+  featured          Boolean        @default(false)
+  showOnHomepage    Boolean        @default(false)
+  showOnCertificatePage Boolean    @default(true)
+  
+  // Assets & Documentation
+  driveUrl          String?
+  fileName          String?
+  language          String?        // "Indonesian", "English", or null
+  
+  // Internal Tracking
+  notes             String?        @db.Text
+  metadata          Json?          // For future complex metadata
+  verificationStatus VerificationStatus @default(NEEDS_MANUAL_VERIFICATION)
+
+  // Relations
+  featuredHighlight FeaturedCredential?
+
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+
+  @@index([category])
+  @@index([featured])
+  @@index([displayPriority])
+  @@index([verificationStatus])
+  @@index([type])
+  @@index([sourceType])
+}
+
+model FeaturedCredential {
+  id           String     @id @default(cuid())
+  credentialId String     @unique
+  priority     Int        @default(1)
+  reason       String?    @db.Text
+  
+  credential   Credential @relation(fields: [credentialId], references: [id], onDelete: Cascade)
+}
+
+// --------------------------------------
+// Skills & Experience
+// --------------------------------------
 
 enum SkillType {
   TECHNICAL
@@ -94,43 +199,9 @@ enum ExperienceStatus {
   PUBLISHED
 }
 
-enum CertificationType {
-  PROFESSIONAL
-  TECHNICAL
-  ACADEMIC
-  TRAINING
-  SOFT_SKILL
-  EVENT
-  OTHER
-}
-
-enum CertificationStatus {
-  DRAFT
-  PUBLISHED
-}
-
-model Certification {
-  id             String              @id @default(cuid())
-  title          String
-  issuer         String
-  type           CertificationType   @default(TRAINING)
-  category       String?
-  credentialId   String?
-  credentialUrl  String?
-  certificateUrl String?
-  driveUrl       String?
-  imageUrl       String?
-  issuedAt       DateTime?
-  expiredAt      DateTime?
-  doesNotExpire  Boolean             @default(true)
-  skills         String[]
-  description    String?
-  featured       Boolean             @default(false)
-  status         CertificationStatus @default(DRAFT)
-  order          Int                 @default(0)
-  createdAt      DateTime            @default(now())
-  updatedAt      DateTime            @updatedAt
-}
+// --------------------------------------
+// Education & Others
+// --------------------------------------
 
 model Education {
   id          String   @id @default(cuid())
@@ -144,3 +215,10 @@ model Education {
   updatedAt   DateTime @updatedAt
 }
 
+model SiteSetting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
