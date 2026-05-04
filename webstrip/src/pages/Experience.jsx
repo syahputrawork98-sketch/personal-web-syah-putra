@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useI18n } from '../layouts/MainLayout';
 import { motion } from 'framer-motion';
 import { getPublicExperiences, getPublicCertifications } from '../lib/api';
+import { EXPERIENCE_FALLBACK } from '../data/fallbacks';
 import '../styles/experience.css';
 
 const Experience = () => {
@@ -22,12 +23,12 @@ const Experience = () => {
         
         let hasApiData = false;
 
-        if (expData.experiences) {
+        if (expData.experiences && expData.experiences.length > 0) {
           setExperiences(expData.experiences);
           hasApiData = true;
         }
 
-        if (certData.certifications) {
+        if (certData.certifications && certData.certifications.length > 0) {
           setCertifications(certData.certifications);
           hasApiData = true;
         }
@@ -46,18 +47,17 @@ const Experience = () => {
     };
 
     const useFallback = () => {
-      const fallbackExps = [1, 2, 3, 4, 5].map(id => ({
-        id: `local-exp-${id}`,
-        role: t(`experience.exp${id}.role`),
-        company: t(`experience.exp${id}.company`),
-        description: t(`experience.exp${id}.desc`),
-        displayDate: t(`experience.exp${id}.date`),
+      // Map local fallback to match API structure
+      const fallbackExps = EXPERIENCE_FALLBACK.map(exp => ({
+        ...exp,
+        displayDate: exp.period,
         isLocal: true
       }));
 
-      const fallbackCerts = [1, 2, 3, 4, 5, 6, 7].map(id => ({
+      // Simplified certs fallback
+      const fallbackCerts = [1, 2, 3, 4, 5].map(id => ({
         id: `local-cert-${id}`,
-        title: t(`edu_cert.cert${id}`),
+        title: `Certification ${id} (Setup in Admin CMS)`,
         isLocal: true
       }));
 
@@ -68,6 +68,7 @@ const Experience = () => {
 
     fetchData();
   }, [t]);
+
 
   const formatDate = (dateString) => {
     if (!dateString) return '';

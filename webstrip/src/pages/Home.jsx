@@ -3,19 +3,20 @@ import { Link } from 'react-router-dom';
 import { useI18n } from '../layouts/MainLayout';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
-import { getPublicSkills } from '../lib/api';
+import { getPublicSkills, getPublicHero } from '../lib/api';
+import { HERO_FALLBACK } from '../data/fallbacks';
 import '../styles/home.css';
 
 const Home = () => {
   const { t, lang } = useI18n();
   const [highlightSkills, setHighlightSkills] = useState(['React.js', 'Node.js', 'Express.js', 'PHP', 'MySQL', 'MongoDB', 'PostgreSQL']);
+  const [heroData, setHeroData] = useState(null);
 
   useEffect(() => {
     const fetchSkills = async () => {
       try {
         const data = await getPublicSkills();
         if (data.skills && data.skills.length > 0) {
-          // Take the top 8 skills as highlights
           const topSkills = data.skills.slice(0, 8).map(s => s.name);
           setHighlightSkills(topSkills);
         }
@@ -23,7 +24,20 @@ const Home = () => {
         console.warn('Home: Failed to fetch skills, using fallback:', err.message);
       }
     };
+
+    const fetchHero = async () => {
+      try {
+        const data = await getPublicHero();
+        if (data.hero) {
+          setHeroData(data.hero);
+        }
+      } catch (err) {
+        console.warn('Home: Failed to fetch hero settings:', err.message);
+      }
+    };
+
     fetchSkills();
+    fetchHero();
   }, []);
 
   const containerVariants = {
@@ -42,30 +56,11 @@ const Home = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
 
-  // Typing animation sequence based on language
-  const getRoles = () => {
-    if (lang === 'id') {
-      return [
-        'Full Stack Developer', 2000,
-        'React Developer', 2000,
-        'Backend Specialist', 2000,
-        'Web App Builder', 2000
-      ];
-    } else if (lang === 'jp') {
-      return [
-        'フルスタック 開発者', 2000,
-        'React 開発者', 2000,
-        'バックエンド 開発者', 2000,
-        'ウェブアプリ 構築者', 2000
-      ];
-    }
-    return [
-      'Full Stack Developer', 2000,
-      'React Developer', 2000,
-      'Backend Developer', 2000,
-      'Web App Builder', 2000
-    ];
-  };
+  const currentHero = heroData || HERO_FALLBACK;
+
+  const typeSequence = currentHero.roles && currentHero.roles.length > 0 
+    ? currentHero.roles.flatMap(role => [role, 2000]) 
+    : [currentHero.name, 2000];
 
   return (
     <section id="home" className="section-padding flex-center hero-section">
@@ -77,7 +72,8 @@ const Home = () => {
       >
         <motion.p className="hero-role" variants={itemVariants}>
           <TypeAnimation
-            sequence={getRoles()}
+            key={heroData ? 'api' : lang}
+            sequence={typeSequence}
             wrapper="span"
             speed={50}
             repeat={Infinity}
@@ -86,11 +82,11 @@ const Home = () => {
         </motion.p>
         
         <motion.h1 className="hero-title" variants={itemVariants}>
-          {t('hero.title')}
+          {currentHero.title}
         </motion.h1>
         
         <motion.p className="hero-subtitle" variants={itemVariants}>
-          {t('hero.subtitle')}
+          {currentHero.subtitle}
         </motion.p>
         
         <motion.div className="skill-pills" variants={itemVariants}>
@@ -102,12 +98,13 @@ const Home = () => {
         </motion.div>
 
         <motion.div className="cta-group" variants={itemVariants}>
-          <Link to="/projects" className="btn btn-primary">{t('hero.cta_primary')}</Link>
-          <a href="/CV_Syah_Putra_Nugraha.pdf" download className="btn btn-secondary">{t('hero.cta_secondary')}</a>
+          <Link to="/projects" className="btn btn-primary">{currentHero.primaryCtaLabel}</Link>
+          <a href={currentHero.resumeUrl} download className="btn btn-secondary">{currentHero.secondaryCtaLabel}</a>
         </motion.div>
       </motion.div>
     </section>
   );
 };
+
 
 export default Home;

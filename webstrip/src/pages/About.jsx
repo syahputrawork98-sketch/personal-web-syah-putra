@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useI18n } from '../layouts/MainLayout';
 import { motion } from 'framer-motion';
-import { getPublicSkills } from '../lib/api';
+import { getPublicSkills, getPublicContact, getPublicProfile, getPublicEducation } from '../lib/api';
+import { PROFILE_FALLBACK, EDUCATION_FALLBACK, CONTACT_FALLBACK } from '../data/fallbacks';
 import '../styles/about.css';
 
 const About = () => {
   const { t } = useI18n();
   const [techSkills, setTechSkills] = useState({});
   const [contactData, setContactData] = useState(null);
+  const [profileData, setProfileData] = useState(null);
+  const [educationData, setEducationData] = useState([]);
   const softSkills = t('about.soft_skills').split(', ');
 
   useEffect(() => {
@@ -15,7 +18,6 @@ const About = () => {
       try {
         const data = await getPublicSkills();
         if (data.skills) {
-          // Group by category
           const grouped = data.skills.reduce((acc, skill) => {
             const cat = skill.category || 'Other';
             if (!acc[cat]) acc[cat] = [];
@@ -40,8 +42,32 @@ const About = () => {
       }
     };
 
+    const fetchProfile = async () => {
+      try {
+        const data = await getPublicProfile();
+        if (data.profile) {
+          setProfileData(data.profile);
+        }
+      } catch (err) {
+        console.warn('About: Failed to fetch profile settings:', err.message);
+      }
+    };
+
+    const fetchEducation = async () => {
+      try {
+        const data = await getPublicEducation();
+        if (data.education && data.education.length > 0) {
+          setEducationData(data.education);
+        }
+      } catch (err) {
+        console.warn('About: Failed to fetch education:', err.message);
+      }
+    };
+
     fetchSkills();
     fetchContact();
+    fetchProfile();
+    fetchEducation();
   }, []);
 
   const containerVariants = {
@@ -60,6 +86,10 @@ const About = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
 
+  const currentProfile = profileData || PROFILE_FALLBACK;
+  const currentEducation = educationData.length > 0 ? educationData : EDUCATION_FALLBACK;
+  const currentContact = contactData || CONTACT_FALLBACK;
+
   return (
     <section id="about" className="section-padding">
       <motion.div 
@@ -75,7 +105,7 @@ const About = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
         >
-          {t('about.title')}
+          {currentProfile.aboutTitle}
         </motion.h2>
         
         <div className="about-grid">
@@ -85,8 +115,8 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>{t('about.summary_title')}</h3>
-            <p dangerouslySetInnerHTML={{ __html: t('about.summary') }} className="about-summary"></p>
+            <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>{currentProfile.summaryTitle}</h3>
+            <p dangerouslySetInnerHTML={{ __html: currentProfile.summary }} className="about-summary"></p>
             
             <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>{t('about.soft_skills_title')}</h3>
             <motion.div 
@@ -141,25 +171,41 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.6 }}
           >
+            {currentProfile.avatarUrl && (
+              <motion.div className="card" whileHover={{ y: -5 }} style={{ padding: 0, overflow: 'hidden' }}>
+                <img 
+                  src={currentProfile.avatarUrl} 
+                  alt="Profile Avatar" 
+                  style={{ width: '100%', height: 'auto', display: 'block', maxHeight: '300px', objectFit: 'cover' }} 
+                />
+              </motion.div>
+            )}
+
             <motion.div className="card" whileHover={{ y: -5 }}>
               <h3 style={{ marginBottom: 'var(--space-4)' }}>Contact Info</h3>
               <div className="about-contact-card">
-                <p><strong>Location:</strong> {contactData?.location || t('about.location')}</p>
-                <p><strong>Email:</strong> <a href={`mailto:${contactData?.email || t('about.email')}`}>{contactData?.email || t('about.email')}</a></p>
+                <p><strong>Location:</strong> {currentContact.location}</p>
+                <p><strong>Email:</strong> <a href={`mailto:${currentContact.email}`}>{currentContact.email}</a></p>
                 <div className="about-cta-group">
-                  <a href={contactData?.github || t('about.github')} target="_blank" rel="noopener noreferrer" className="btn btn-secondary about-cta-btn">GitHub</a>
-                  <a href={contactData?.instagram || t('about.instagram')} target="_blank" rel="noopener noreferrer" className="btn btn-secondary about-cta-btn">Instagram</a>
-                  <a href="/CV_Syah_Putra_Nugraha.pdf" download className="btn btn-primary about-cta-btn" style={{ flex: '1 0 auto' }}>Download CV</a>
+                  <a href={currentContact.github} target="_blank" rel="noopener noreferrer" className="btn btn-secondary about-cta-btn">GitHub</a>
+                  <a href={currentContact.instagram} target="_blank" rel="noopener noreferrer" className="btn btn-secondary about-cta-btn">Instagram</a>
+                  <a href={currentProfile.resumeUrl} download className="btn btn-primary about-cta-btn" style={{ flex: '1 0 auto' }}>Download CV</a>
                 </div>
               </div>
             </motion.div>
 
             <motion.div className="card" whileHover={{ y: -5 }}>
               <h3 style={{ marginBottom: 'var(--space-3)' }}>{t('edu_cert.edu_title')}</h3>
-              <p><strong>{t('edu_cert.edu1.school')}</strong></p>
-              <p style={{ color: 'var(--primary-color)', fontSize: '0.9rem', fontWeight: 600 }}>{t('edu_cert.edu1.major')}</p>
-              <p style={{ opacity: 0.8, fontSize: '0.85rem' }}>{t('edu_cert.edu1.date')}</p>
+              {currentEducation.map((edu) => (
+                <div key={edu.id} style={{ marginBottom: 'var(--space-4)' }}>
+                  <p><strong>{edu.school}</strong></p>
+                  <p style={{ color: 'var(--primary-color)', fontSize: '0.9rem', fontWeight: 600 }}>{edu.degree}</p>
+                  <p style={{ opacity: 0.8, fontSize: '0.85rem' }}>{edu.period}</p>
+                  {edu.description && <p style={{ fontSize: '0.8rem', opacity: 0.7, marginTop: '4px' }}>{edu.description}</p>}
+                </div>
+              ))}
             </motion.div>
+
           </motion.div>
         </div>
       </motion.div>
