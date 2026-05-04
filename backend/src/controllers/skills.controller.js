@@ -2,9 +2,15 @@ const prisma = require('../lib/prisma');
 
 // Public
 const getAllPublicSkills = async (req, res, next) => {
+  const { type } = req.query;
   try {
+    const where = { visible: true };
+    if (type) {
+      where.type = type;
+    }
+
     const skills = await prisma.skill.findMany({
-      where: { visible: true },
+      where,
       orderBy: [
         { order: 'asc' },
         { name: 'asc' },
@@ -19,8 +25,15 @@ const getAllPublicSkills = async (req, res, next) => {
 
 // Admin
 const getAllAdminSkills = async (req, res, next) => {
+  const { type } = req.query;
   try {
+    const where = {};
+    if (type) {
+      where.type = type;
+    }
+
     const skills = await prisma.skill.findMany({
+      where,
       orderBy: [
         { order: 'asc' },
         { name: 'asc' },
@@ -54,7 +67,7 @@ const getSkillById = async (req, res, next) => {
 };
 
 const createSkill = async (req, res, next) => {
-  const { name, category, icon, level, order, visible } = req.body;
+  const { name, type, category, icon, level, description, order, visible } = req.body;
 
   if (!name) {
     return res.status(400).json({
@@ -63,24 +76,40 @@ const createSkill = async (req, res, next) => {
     });
   }
 
+  // Basic validation for type enum
+  const validTypes = ['TECHNICAL', 'SOFT', 'TOOL', 'LANGUAGE'];
+  if (type && !validTypes.includes(type)) {
+    return res.status(400).json({
+      status: 'error',
+      message: 'Invalid skill type',
+    });
+  }
+
   try {
     const existingSkill = await prisma.skill.findUnique({
-      where: { name },
+      where: { 
+        name_type: { 
+          name, 
+          type: type || 'TECHNICAL' 
+        } 
+      },
     });
 
     if (existingSkill) {
       return res.status(409).json({
         status: 'error',
-        message: 'Skill name already exists',
+        message: 'Skill with this name and type already exists',
       });
     }
 
     const skill = await prisma.skill.create({
       data: {
         name,
+        type: type || 'TECHNICAL',
         category,
         icon,
         level,
+        description,
         order: parseInt(order) || 0,
         visible: visible !== undefined ? visible : true,
       },
@@ -94,7 +123,7 @@ const createSkill = async (req, res, next) => {
 
 const updateSkill = async (req, res, next) => {
   const { id } = req.params;
-  const { name, category, icon, level, order, visible } = req.body;
+  const { name, type, category, icon, level, description, order, visible } = req.body;
 
   try {
     const existingSkill = await prisma.skill.findUnique({
@@ -108,15 +137,24 @@ const updateSkill = async (req, res, next) => {
       });
     }
 
-    if (name && name !== existingSkill.name) {
-      const duplicateName = await prisma.skill.findUnique({
-        where: { name },
+    // Uniqueness check for name + type
+    const newName = name !== undefined ? name : existingSkill.name;
+    const newType = type !== undefined ? type : existingSkill.type;
+
+    if (newName !== existingSkill.name || newType !== existingSkill.type) {
+      const duplicate = await prisma.skill.findUnique({
+        where: { 
+          name_type: { 
+            name: newName, 
+            type: newType 
+          } 
+        },
       });
 
-      if (duplicateName) {
+      if (duplicate) {
         return res.status(409).json({
           status: 'error',
-          message: 'Skill name already exists',
+          message: 'Skill with this name and type already exists',
         });
       }
     }
@@ -124,10 +162,12 @@ const updateSkill = async (req, res, next) => {
     const updatedSkill = await prisma.skill.update({
       where: { id },
       data: {
-        name: name !== undefined ? name : existingSkill.name,
+        name: newName,
+        type: newType,
         category: category !== undefined ? category : existingSkill.category,
         icon: icon !== undefined ? icon : existingSkill.icon,
         level: level !== undefined ? level : existingSkill.level,
+        description: description !== undefined ? description : existingSkill.description,
         order: order !== undefined ? parseInt(order) : existingSkill.order,
         visible: visible !== undefined ? visible : existingSkill.visible,
       },

@@ -7,11 +7,21 @@ const AdminSkills = () => {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [activeTab, setActiveTab] = useState('ALL');
   const navigate = useNavigate();
 
-  const fetchSkills = async () => {
+  const tabs = [
+    { id: 'ALL', label: 'All' },
+    { id: 'TECHNICAL', label: 'Technical' },
+    { id: 'SOFT', label: 'Soft' },
+    { id: 'LANGUAGE', label: 'Language' },
+    { id: 'TOOL', label: 'Tools' },
+  ];
+
+  const fetchSkills = async (type) => {
     try {
-      const data = await getAdminSkills();
+      setLoading(true);
+      const data = await getAdminSkills(type === 'ALL' ? null : type);
       setSkills(data.skills);
     } catch (err) {
       if (err.message.includes('401')) {
@@ -26,21 +36,19 @@ const AdminSkills = () => {
   };
 
   useEffect(() => {
-    fetchSkills();
-  }, []);
+    fetchSkills(activeTab);
+  }, [activeTab]);
 
   const handleDelete = async (id, name) => {
     if (window.confirm(`Are you sure you want to delete "${name}"?`)) {
       try {
         await deleteSkill(id);
-        fetchSkills();
+        fetchSkills(activeTab);
       } catch (err) {
         alert('Failed to delete: ' + err.message);
       }
     }
   };
-
-  if (loading) return <div style={{ textAlign: 'center', padding: 'var(--space-8)' }}>Loading skills...</div>;
 
   return (
     <div className="container">
@@ -49,59 +57,94 @@ const AdminSkills = () => {
         <Link to="/admin/skills/new" className="btn btn-primary">Add New Skill</Link>
       </div>
 
+      {/* Tabs Filter */}
+      <div style={{ display: 'flex', gap: 'var(--space-2)', marginBottom: 'var(--space-6)', borderBottom: '1px solid var(--border-color)', paddingBottom: 'var(--space-2)' }}>
+        {tabs.map(tab => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            style={{
+              padding: '8px 16px',
+              borderRadius: '4px',
+              border: 'none',
+              backgroundColor: activeTab === tab.id ? 'var(--primary-color)' : 'transparent',
+              color: activeTab === tab.id ? 'white' : 'var(--text-color)',
+              fontWeight: activeTab === tab.id ? '600' : '400',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              opacity: activeTab === tab.id ? 1 : 0.7
+            }}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
       {error && <div style={{ color: 'red', marginBottom: 'var(--space-4)' }}>{error}</div>}
 
       <div className="card" style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <thead>
-            <tr style={{ borderBottom: '1px solid var(--border-color)', textAlign: 'left' }}>
-              <th style={{ padding: '12px' }}>Order</th>
-              <th style={{ padding: '12px' }}>Name</th>
-              <th style={{ padding: '12px' }}>Category</th>
-              <th style={{ padding: '12px' }}>Level</th>
-              <th style={{ padding: '12px' }}>Visible</th>
-              <th style={{ padding: '12px' }}>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {skills.map((skill) => (
-              <tr key={skill.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
-                <td style={{ padding: '12px' }}>{skill.order}</td>
-                <td style={{ padding: '12px', fontWeight: 'bold' }}>{skill.name}</td>
-                <td style={{ padding: '12px' }}>{skill.category || '-'}</td>
-                <td style={{ padding: '12px' }}>{skill.level || '-'}</td>
-                <td style={{ padding: '12px' }}>
-                  <span style={{ 
-                    padding: '4px 8px', 
-                    borderRadius: '12px', 
-                    fontSize: '0.75rem',
-                    backgroundColor: skill.visible ? '#dcfce7' : '#f3f4f6',
-                    color: skill.visible ? '#166534' : '#374151'
-                  }}>
-                    {skill.visible ? 'Visible' : 'Hidden'}
-                  </span>
-                </td>
-                <td style={{ padding: '12px' }}>
-                  <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
-                    <Link to={`/admin/skills/${skill.id}/edit`} className="btn btn-secondary" style={{ padding: '6px 10px', fontSize: '0.8rem' }}>Edit</Link>
-                    <button 
-                      onClick={() => handleDelete(skill.id, skill.name)} 
-                      className="btn btn-secondary" 
-                      style={{ padding: '6px 10px', fontSize: '0.8rem', color: '#dc2626' }}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </td>
+        {loading ? (
+          <div style={{ textAlign: 'center', padding: 'var(--space-12)', opacity: 0.6 }}>Loading {activeTab.toLowerCase()} skills...</div>
+        ) : (
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid var(--border-color)', textAlign: 'left' }}>
+                <th style={{ padding: '12px' }}>Order</th>
+                <th style={{ padding: '12px' }}>Name</th>
+                <th style={{ padding: '12px' }}>Type</th>
+                <th style={{ padding: '12px' }}>Category</th>
+                <th style={{ padding: '12px' }}>Level</th>
+                <th style={{ padding: '12px' }}>Visible</th>
+                <th style={{ padding: '12px' }}>Actions</th>
               </tr>
-            ))}
-            {skills.length === 0 && (
-              <tr>
-                <td colSpan="6" style={{ padding: 'var(--space-8)', textAlign: 'center', opacity: 0.5 }}>No skills found.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {skills.map((skill) => (
+                <tr key={skill.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
+                  <td style={{ padding: '12px' }}>{skill.order}</td>
+                  <td style={{ padding: '12px', fontWeight: 'bold' }}>{skill.name}</td>
+                  <td style={{ padding: '12px' }}>
+                    <span style={{ fontSize: '0.75rem', padding: '2px 6px', borderRadius: '4px', backgroundColor: 'var(--bg-secondary)', opacity: 0.8 }}>
+                      {skill.type}
+                    </span>
+                  </td>
+                  <td style={{ padding: '12px' }}>{skill.category || '-'}</td>
+                  <td style={{ padding: '12px' }}>{skill.level || '-'}</td>
+                  <td style={{ padding: '12px' }}>
+                    <span style={{ 
+                      padding: '4px 8px', 
+                      borderRadius: '12px', 
+                      fontSize: '0.75rem',
+                      backgroundColor: skill.visible ? '#dcfce7' : '#f3f4f6',
+                      color: skill.visible ? '#166534' : '#374151'
+                    }}>
+                      {skill.visible ? 'Visible' : 'Hidden'}
+                    </span>
+                  </td>
+                  <td style={{ padding: '12px' }}>
+                    <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
+                      <Link to={`/admin/skills/${skill.id}/edit`} className="btn btn-secondary" style={{ padding: '6px 10px', fontSize: '0.8rem' }}>Edit</Link>
+                      <button 
+                        onClick={() => handleDelete(skill.id, skill.name)} 
+                        className="btn btn-secondary" 
+                        style={{ padding: '6px 10px', fontSize: '0.8rem', color: '#dc2626' }}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+              {skills.length === 0 && (
+                <tr>
+                  <td colSpan="7" style={{ padding: 'var(--space-12)', textAlign: 'center', opacity: 0.5 }}>
+                    No {activeTab === 'ALL' ? '' : activeTab.toLowerCase()} skills found.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );
