@@ -27,11 +27,12 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
 
   // Safe mapping for varied data sources (API vs Local)
   const title = getContent('title');
-  const subtitle = getContent('subtitle') || project.shortDescription || "";
-  const description = getContent('description') || getContent('desc') || project.description || project.shortDescription || "";
+  const subtitle = getContent('subtitle') || getContent('shortDescription') || "";
+  const description = getContent('description') || getContent('desc') || getContent('shortDescription') || "";
   const techStack = project.techStack || project.technologies || [];
   const githubUrl = project.githubUrl || project.github || "";
   const demoUrl = project.demoUrl || project.demo || project.liveUrl || "";
+
 
   const cardVariants = {
     hidden: { opacity: 0, y: 30 },
