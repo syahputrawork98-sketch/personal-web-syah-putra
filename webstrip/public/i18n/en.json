@@ -18,7 +18,7 @@
   "about": {
     "title": "About Me",
     "summary_title": "Professional Summary",
-    "summary": "Full Stack Web Developer with experience building web applications based on React.js, Node.js, Express.js, PHP, MySQL, MongoDB, and PostgreSQL. Has an 8+ year background in IT, business process digitalization, project administration, manufacturing, and construction.<br><br>Experienced in creating REST APIs, authentication systems, admin dashboards, monitoring applications, company profile websites, and internal systems. Familiar with the entire lifecycle from requirement analysis to deployment and maintenance. Currently focusing on returning to a career as a Frontend, Backend, or Full Stack Developer.",
+    "summary": "Full Stack Web Developer with experience building web applications based on React.js, Node.js, Express.js, PHP, MySQL, MongoDB, and PostgreSQL. Has an 8+ year background in IT, business process digitalization, project administration, manufacturing, and construction.<br><br><strong>Since mid-2025</strong>, I have decided to fully return to the world of software development (Developer), focusing on creating REST APIs, authentication systems, admin dashboards, and monitoring applications. Accustomed to working from requirement analysis to deployment. Currently focusing on returning to a career as a Frontend, Backend, or Full Stack Developer.",
     "soft_skills_title": "Soft Skills",
     "soft_skills": "Problem Solving, Adaptability, Teamwork, Analytical Thinking, Communication, Client Handling, Project Coordination, Documentation, Time Management",
     "location": "Cimahi, West Java, Indonesia",
@@ -41,13 +41,13 @@
     "exp1": {
       "role": "Freelance Full Stack Web Developer",
       "company": "Self-employed",
-      "date": "2025 – Present",
+      "date": "May 2025 – Present",
       "desc": "Developing websites and web applications for SMEs and local businesses using React.js and Node.js. Creating REST APIs, JWT-based login systems, and admin dashboards. Implementing responsive design and basic SEO optimization."
     },
     "exp2": {
       "role": "Field General Staff — Project Digitalization",
       "company": "PT. Sedayu Jaya Konstruksi",
-      "date": "Aug 2022 – Dec 2024",
+      "date": "Aug 2022 – Apr 2025",
       "desc": "Digitalizing daily, weekly, and monthly project reports. Preparing RAB, RAP, invoices, material reports, and project documentation. Coordinating with field teams, foremen, and main contractors."
     },
     "exp3": {
@@ -142,8 +142,10 @@
     "cert1": "Web Development Certification (Node.js & React) – BNSP 2025",
     "cert2": "Construction Service Competency – BNSP 2024",
     "cert3": "CAD Mechanical Manufacturing – BNSP 2025",
-    "cert4": "Global Azure Bootcamp 2017",
-    "cert5": "Web Development & Database Management Training 2020"
+    "cert4": "AI (Artificial Intelligence) Training Certification 2025",
+    "cert5": "CBIC & Maritim Muda Indonesia Certification 2025",
+    "cert6": "Global Azure Bootcamp 2017",
+    "cert7": "Web Development & Database Management Training 2020"
   },
   "footer": {
     "copy": "&copy; 2026 Syah Putra Nugraha. Built with Precision."

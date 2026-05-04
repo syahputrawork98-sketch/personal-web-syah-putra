@@ -1,5 +1,6 @@
 import React from 'react';
 import { useI18n } from '../layouts/MainLayout';
+import '../styles/about.css';
 
 const About = () => {
   const { t } = useI18n();
@@ -10,15 +11,15 @@ const About = () => {
       <div className="container">
         <h2 style={{ marginBottom: 'var(--space-6)' }}>{t('about.title')}</h2>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-8)', alignItems: 'start' }}>
+        <div className="about-grid">
           <div>
             <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>{t('about.summary_title')}</h3>
-            <p dangerouslySetInnerHTML={{ __html: t('about.summary') }} style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', lineHeight: '1.7', marginBottom: 'var(--space-6)' }}></p>
+            <p dangerouslySetInnerHTML={{ __html: t('about.summary') }} className="about-summary"></p>
             
             <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>{t('about.soft_skills_title')}</h3>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2)' }}>
+            <div className="soft-skills-container">
               {softSkills.map((skill, index) => (
-                <span key={index} className="cert-item" style={{ padding: '4px 12px', fontSize: '0.85rem', borderLeft: 'none', borderBottom: '2px solid var(--primary-color)', borderRadius: 'var(--radius-sm)' }}>
+                <span key={index} className="cert-item soft-skill-tag" style={{ borderLeft: 'none' }}>
                   {skill}
                 </span>
               ))}
@@ -28,13 +29,13 @@ const About = () => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
             <div className="card">
               <h3 style={{ marginBottom: 'var(--space-4)' }}>Contact Info</h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', fontSize: '0.95rem' }}>
+              <div className="about-contact-card">
                 <p><strong>Location:</strong> {t('about.location')}</p>
                 <p><strong>Email:</strong> <a href={`mailto:${t('about.email')}`}>{t('about.email')}</a></p>
-                <div style={{ marginTop: 'var(--space-3)', display: 'flex', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
-                  <a href={t('about.github')} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ padding: '6px 12px', fontSize: '0.8rem' }}>GitHub</a>
-                  <a href={t('about.instagram')} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ padding: '6px 12px', fontSize: '0.8rem' }}>Instagram</a>
-                  <a href="/CV_Syah_Putra_Nugraha.pdf" download className="btn btn-primary" style={{ padding: '6px 12px', fontSize: '0.8rem', flex: '1 0 auto' }}>Download CV</a>
+                <div className="about-cta-group">
+                  <a href={t('about.github')} target="_blank" rel="noopener noreferrer" className="btn btn-secondary about-cta-btn">GitHub</a>
+                  <a href={t('about.instagram')} target="_blank" rel="noopener noreferrer" className="btn btn-secondary about-cta-btn">Instagram</a>
+                  <a href="/CV_Syah_Putra_Nugraha.pdf" download className="btn btn-primary about-cta-btn" style={{ flex: '1 0 auto' }}>Download CV</a>
                 </div>
               </div>
             </div>

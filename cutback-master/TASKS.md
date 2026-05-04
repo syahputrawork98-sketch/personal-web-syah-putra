@@ -2,20 +2,20 @@
 
 Daftar tugas yang sedang berjalan dan yang akan datang untuk **Personal Web Syah Putra Nugraha**.
 
-## 🔴 High Priority (Current - Based on HR Audit)
-- [ ] Implementasi Mobile Navigation (Hamburger Menu) - **Urgent**.
-- [ ] Penggantian data dummy Proyek dengan narasi asli (Tantangan/Solusi).
-- [ ] SEO Optimization: Meta tags unik per halaman (React Helmet).
+## 🔴 High Priority (Phase 2 Preparation)
+- [ ] Setup Backend/Database (Supabase/Firebase).
+- [ ] Perancangan Schema Database untuk Projects.
+- [ ] Implementasi Admin Dashboard (`/admin`) untuk CRUD Projects.
 
 ## 🟡 Medium Priority
+- [ ] SEO Optimization (OpenGraph, Meta Tags per page).
 - [ ] Penambahan Foto Profil Profesional di Hero/About.
-- [ ] Perbaikan layout untuk layar sangat kecil (Ultra-mobile).
-- [ ] Penambahan section Sertifikasi yang lebih detail di halaman About.
+- [ ] Asset Management: Sistem upload gambar untuk thumbnail proyek.
 
 ## 🟢 Low Priority
 - [ ] Animasi transisi antar halaman (Framer Motion).
-- [ ] Penambahan sertifikasi internasional (Cloud/Global Dev Certs).
-- [ ] Konfigurasi GitHub Actions untuk auto-deploy ke GitHub Pages/Vercel.
+- [ ] Performance audit (Lighthouse).
+- [ ] Konfigurasi GitHub Actions untuk auto-deploy.
 
 ## ✅ Completed Tasks
 - [x] Inisialisasi Vite + React + React Router.
@@ -23,6 +23,8 @@ Daftar tugas yang sedang berjalan dan yang akan datang untuk **Personal Web Syah
 - [x] Implementasi i18n (ID, EN, JP).
 - [x] Migrasi dari Landing Page ke Multi-page.
 - [x] Integrasi konten CV utama.
-- [x] Struktur Detail Proyek (Case Study) & Expandable UI.
+- [x] **Refaktor Phase 1**: Penataan folder dan cleanup kode.
+- [x] **Refaktor Phase 1**: Halaman Proyek visual dengan struktur data siap DB.
+- [x] **Refaktor Phase 1**: Mobile Navbar dengan hamburger menu.
+- [x] **Refaktor Phase 1**: Optimasi CTA Kontak (menghapus form palsu).
 - [x] Fungsionalitas Download CV.
-- [x] Redesain Halaman Kontak (Simplified & Professional).
