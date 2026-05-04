@@ -48,16 +48,27 @@ model SiteSetting {
   updatedAt DateTime @updatedAt
 }
 
+enum SkillType {
+  TECHNICAL
+  SOFT
+  TOOL
+  LANGUAGE
+}
+
 model Skill {
-  id        String   @id @default(cuid())
-  name      String   @unique
-  category  String?
-  icon      String?
-  level     String?
-  order     Int      @default(0)
-  visible   Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String    @id @default(cuid())
+  name        String
+  type        SkillType @default(TECHNICAL)
+  category    String?
+  icon        String?
+  level       String?
+  description String?
+  order       Int       @default(0)
+  visible     Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([name, type])
 }
 
 model Experience {
@@ -81,4 +92,42 @@ model Experience {
 enum ExperienceStatus {
   DRAFT
   PUBLISHED
+}
+
+enum CertificationType {
+  PROFESSIONAL
+  TECHNICAL
+  ACADEMIC
+  TRAINING
+  SOFT_SKILL
+  EVENT
+  OTHER
+}
+
+enum CertificationStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model Certification {
+  id             String              @id @default(cuid())
+  title          String
+  issuer         String
+  type           CertificationType   @default(TRAINING)
+  category       String?
+  credentialId   String?
+  credentialUrl  String?
+  certificateUrl String?
+  driveUrl       String?
+  imageUrl       String?
+  issuedAt       DateTime?
+  expiredAt      DateTime?
+  doesNotExpire  Boolean             @default(true)
+  skills         String[]
+  description    String?
+  featured       Boolean             @default(false)
+  status         CertificationStatus @default(DRAFT)
+  order          Int                 @default(0)
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
 }
