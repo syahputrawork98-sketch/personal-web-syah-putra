@@ -12,6 +12,14 @@ import AdminLogin from './pages/admin/AdminLogin';
 import AdminProjects from './pages/admin/AdminProjects';
 import AdminProjectCreate from './pages/admin/AdminProjectCreate';
 import AdminProjectEdit from './pages/admin/AdminProjectEdit';
+import AdminAccount from './pages/admin/AdminAccount';
+import AdminContact from './pages/admin/AdminContact';
+import AdminSkills from './pages/admin/AdminSkills';
+import AdminSkillCreate from './pages/admin/AdminSkillCreate';
+import AdminSkillEdit from './pages/admin/AdminSkillEdit';
+import AdminExperiences from './pages/admin/AdminExperiences';
+import AdminExperienceCreate from './pages/admin/AdminExperienceCreate';
+import AdminExperienceEdit from './pages/admin/AdminExperienceEdit';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 import AdminLayout from './components/admin/AdminLayout';
 
@@ -42,6 +50,14 @@ function App() {
           <Route path="projects" element={<AdminProjects />} />
           <Route path="projects/new" element={<AdminProjectCreate />} />
           <Route path="projects/:id/edit" element={<AdminProjectEdit />} />
+          <Route path="account" element={<AdminAccount />} />
+          <Route path="contact" element={<AdminContact />} />
+          <Route path="skills" element={<AdminSkills />} />
+          <Route path="skills/new" element={<AdminSkillCreate />} />
+          <Route path="skills/:id/edit" element={<AdminSkillEdit />} />
+          <Route path="experience" element={<AdminExperiences />} />
+          <Route path="experience/new" element={<AdminExperienceCreate />} />
+          <Route path="experience/:id/edit" element={<AdminExperienceEdit />} />
         </Route>
       </Routes>
     </Router>
