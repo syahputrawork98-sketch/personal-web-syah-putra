@@ -33,6 +33,9 @@ const fetcher = async (endpoint, options = {}) => {
 export const getPublicProjects = () => fetcher('/api/projects');
 export const getPublicProjectBySlug = (slug) => fetcher(`/api/projects/${slug}`);
 export const getPublicContact = () => fetcher('/api/settings/contact');
+export const getPublicHero = () => fetcher('/api/settings/hero');
+export const getPublicProfile = () => fetcher('/api/settings/profile');
+export const getPublicEducation = () => fetcher('/api/education');
 export const getPublicSkills = (type) => {
   const url = type ? `/api/skills?type=${type}` : '/api/skills';
   return fetcher(url);
@@ -90,6 +93,38 @@ export const updateAdminContact = (data) =>
   fetcher('/api/admin/settings/contact', {
     method: 'PUT',
     body: JSON.stringify(data),
+  });
+
+export const getAdminHero = () => fetcher('/api/admin/settings/hero');
+export const updateAdminHero = (data) => 
+  fetcher('/api/admin/settings/hero', {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  });
+
+export const getAdminProfile = () => fetcher('/api/admin/settings/profile');
+export const updateAdminProfile = (data) => 
+  fetcher('/api/admin/settings/profile', {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  });
+
+// Admin Education
+export const getAdminEducation = () => fetcher('/api/admin/education');
+export const getAdminEducationById = (id) => fetcher(`/api/admin/education/${id}`);
+export const createAdminEducation = (data) => 
+  fetcher('/api/admin/education', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+export const updateAdminEducation = (id, data) => 
+  fetcher(`/api/admin/education/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  });
+export const deleteAdminEducation = (id) => 
+  fetcher(`/api/admin/education/${id}`, {
+    method: 'DELETE',
   });
 
 // Admin Skills
