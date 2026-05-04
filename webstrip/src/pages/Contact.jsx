@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { FiMail, FiMapPin, FiPhone } from 'react-icons/fi';
 import { FaLinkedin, FaGithub, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { getPublicContact } from '../lib/api';
+import { CONTACT_FALLBACK } from '../data/fallbacks';
 import '../styles/contact.css';
 
 const Contact = () => {
@@ -24,26 +25,28 @@ const Contact = () => {
     fetchContact();
   }, []);
 
+  const currentContact = contactData || CONTACT_FALLBACK;
+
   const contactItems = [
     {
       id: 'email',
       icon: <FiMail />,
       label: 'Email',
-      value: contactData?.email || t('about.email'),
-      url: `mailto:${contactData?.email || t('about.email')}`
+      value: currentContact.email,
+      url: `mailto:${currentContact.email}`
     },
     {
       id: 'phone',
       icon: <FiPhone />,
       label: 'Phone / WhatsApp',
-      value: contactData?.whatsapp || contactData?.phone || '+62...',
-      url: contactData?.whatsapp ? `https://wa.me/${contactData.whatsapp.replace(/\D/g, '')}` : null
+      value: currentContact.whatsapp || currentContact.phone || '+62...',
+      url: currentContact.whatsapp ? `https://wa.me/${currentContact.whatsapp.replace(/\D/g, '')}` : null
     },
     {
       id: 'location',
       icon: <FiMapPin />,
       label: 'Location',
-      value: contactData?.location || t('about.location'),
+      value: currentContact.location,
       url: null
     },
     {
@@ -51,23 +54,24 @@ const Contact = () => {
       icon: <FaLinkedin />,
       label: 'LinkedIn',
       value: 'Syah Putra Nugraha',
-      url: contactData?.linkedin || 'https://linkedin.com/in/syahputranugraha'
+      url: currentContact.linkedin || 'https://linkedin.com/in/syahputranugraha'
     },
     {
       id: 'github',
       icon: <FaGithub />,
       label: 'GitHub',
       value: 'syahputranugraha',
-      url: contactData?.github || t('about.github')
+      url: currentContact.github
     },
     {
       id: 'instagram',
       icon: <FaInstagram />,
       label: 'Instagram',
       value: '@syah_putra_n',
-      url: contactData?.instagram || t('about.instagram')
+      url: currentContact.instagram
     }
   ];
+
 
   const containerVariants = {
     hidden: { opacity: 0 },
