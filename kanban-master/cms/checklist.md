@@ -5,8 +5,8 @@
 - [x] Hero Settings
 - [x] Profile/About Settings
 - [x] Education
-- [ ] Experience
-- [ ] Skills
-- [ ] Contact
-- [ ] Certifications review/final
-- [ ] Account Settings
+- [ ] Experience (Planned)
+- [ ] Skills (Partial)
+- [ ] Contact (Planned)
+- [ ] Certifications review/final (Planned)
+- [ ] Account Settings (Planned)

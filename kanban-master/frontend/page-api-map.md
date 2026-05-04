@@ -1,12 +1,10 @@
 # Page - API Mapping
 
 | Page | Current Data Source | Target Data Source | Status | Notes |
-|---|---|---|---|---|
-| Home.jsx | API + `fallbacks.js` | API (`/api/settings/hero`) | Done | Fallback via JS aman |
-| About.jsx | API + `fallbacks.js` | API (`/api/settings/profile`, `/api/education`, dll) | Done | Fallback via JS aman |
-| Projects.jsx | API + `projects.js` | API (`/api/projects`) | Done | Fallback via `data/projects.js` |
-| Experience.jsx | API + `fallbacks.js` | API (`/api/experiences`, `/api/certifications`) | Done | Sertifikasi masih pakai fallback `t()` |
-| Contact.jsx | API + `fallbacks.js` | API (`/api/contact`) | Done | Fallback via JS aman |
-| AdminDashboard.jsx| API (Stats) | API endpoints | Planned | Butuh grafik atau rekap |
-| AdminEducation.jsx| API | API (`/api/admin/education`) | Done | |
-| AdminSettings.jsx | API | API (`/api/admin/settings/*`) | Done | |
+| :--- | :--- | :--- | :---: | :--- |
+| Home.jsx | API + `fallbacks.js` | `/api/settings/hero` | Done | |
+| About.jsx | API + `fallbacks.js` | `/api/settings/profile`, `/api/education`, `/api/skills` | Done | |
+| Projects.jsx | API + `projects.js` | `/api/projects` | Done | |
+| Experience.jsx | `fallbacks.js` | `/api/experience`, `/api/certifications` | Partial | Menunggu audit endpoint |
+| Contact.jsx | API + `fallbacks.js` | `/api/contact` | Done | |
+| Admin Dashboard | API | Various Admin APIs | Done | |

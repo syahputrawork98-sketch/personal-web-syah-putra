@@ -1,73 +1,57 @@
-# Admin API Endpoints
+# Admin Protected API Endpoints
 
-*Semua endpoint di bawah ini (kecuali login) dilindungi oleh middleware `requireAdmin` (JWT Auth).*
+*All endpoints below require a valid JWT token in the Authorization header.*
 
-## Auth
+## Auth Login
 - **Method**: POST
 - **Path**: `/api/auth/login`
 - **Auth required**: No
-- **Used by admin page**: `/admin/login`
+- **Used by admin page**: `Login.jsx`
 - **Status**: Done
 
-## Projects
+## Admin Projects CRUD
 - **Method**: GET, POST, PUT, DELETE
 - **Path**: `/api/admin/projects` (and `/:id`)
 - **Auth required**: Yes
 - **Used by admin page**: `AdminProjects.jsx`
 - **Status**: Done
 
-## Hero Settings
+## Admin Settings (Hero/Profile)
 - **Method**: GET, PUT
-- **Path**: `/api/admin/settings/hero`
+- **Path**: `/api/admin/settings/hero`, `/api/admin/settings/profile`
 - **Auth required**: Yes
-- **Used by admin page**: `AdminHeroSettings.jsx`
+- **Used by admin page**: `AdminHeroSettings.jsx`, `AdminProfileSettings.jsx`
 - **Status**: Done
 
-## Profile Settings
-- **Method**: GET, PUT
-- **Path**: `/api/admin/settings/profile`
-- **Auth required**: Yes
-- **Used by admin page**: `AdminProfileSettings.jsx`
-- **Status**: Done
-
-## Education
+## Admin Education CRUD
 - **Method**: GET, POST, PUT, DELETE
 - **Path**: `/api/admin/education` (and `/:id`)
 - **Auth required**: Yes
 - **Used by admin page**: `AdminEducation.jsx`
 - **Status**: Done
 
-## Experience
-- **Method**: GET, POST, PUT, DELETE
-- **Path**: `/api/admin/experiences` (and `/:id`)
+## Admin Experience CRUD
+- **Method**: Needs Audit
+- **Path**: `/api/admin/experiences`
 - **Auth required**: Yes
-- **Used by admin page**: N/A (Admin page planned)
-- **Status**: Partial
-
-## Certifications
-- **Method**: GET, POST, PUT, DELETE
-- **Path**: `/api/admin/certifications` (and `/:id`)
-- **Auth required**: Yes
-- **Used by admin page**: `AdminCertifications.jsx` (and Create/Edit)
 - **Status**: Needs Audit
 
-## Skills
-- **Method**: GET, POST, PUT, DELETE
-- **Path**: `/api/admin/skills` (and `/:id`)
+## Admin Certifications CRUD
+- **Method**: Needs Audit
+- **Path**: `/api/admin/certifications`
 - **Auth required**: Yes
-- **Used by admin page**: `AdminSkills.jsx`
-- **Status**: Partial (Needs grouping/tab features)
+- **Status**: Needs Audit
 
-## Contact / Settings
-- **Method**: GET, PUT
-- **Path**: `/api/admin/settings/contact`
+## Admin Skills CRUD
+- **Method**: Needs Audit
+- **Path**: `/api/admin/skills`
 - **Auth required**: Yes
-- **Used by admin page**: N/A (Admin page planned)
-- **Status**: Planned
+- **Status**: Needs Audit
 
-## Account Settings
-- **Method**: GET, PUT
-- **Path**: `/api/admin/account`
-- **Auth required**: Yes
-- **Used by admin page**: `AdminAccount.jsx` (If exists)
-- **Status**: Planned / Needs Audit
+## Admin Contact/Settings
+- **Method**: Needs Audit
+- **Status**: Needs Audit
+
+## Account/Admin User Settings
+- **Method**: Needs Audit
+- **Status**: Needs Audit

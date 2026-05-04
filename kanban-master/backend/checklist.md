@@ -6,11 +6,11 @@
 - [x] Admin auth JWT
 - [x] bcryptjs password auth
 - [x] Projects CRUD
-- [x] SiteSetting model/settings API if exists
-- [x] Hero settings endpoints if exists
-- [x] Profile settings endpoints if exists
-- [x] Education model/API if exists
-- [ ] Audit response consistency
-- [ ] Audit protected routes
-- [ ] Audit seed/default data
-- [ ] Audit validation
+- [x] SiteSetting model/settings API exists
+- [x] Hero settings endpoints exists
+- [x] Profile settings endpoints exists
+- [x] Education model/API exists
+- [ ] Audit response consistency (Needs Audit)
+- [ ] Audit protected routes (Needs Audit)
+- [ ] Audit seed/default data (Needs Audit)
+- [ ] Audit validation (Needs Audit)
