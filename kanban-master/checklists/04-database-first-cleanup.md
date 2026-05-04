@@ -20,5 +20,8 @@
 - [x] `en.json` cleaned from business content
 - [x] `jp.json` cleaned from business content
 - [x] `npm run build` success after cleanup
-- [ ] Runtime test API failure fallback behavior
-- [ ] Runtime test empty database state
+- [x] Runtime test API failure fallback behavior
+- [x] Runtime test empty database state
+- [x] Implemented `EmptyState` component for data-not-available scenarios
+- [x] Removed automatic fallback rendering in production-like behavior
+- [x] Fallback JS files kept as archive only
