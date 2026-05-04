@@ -1,0 +1,105 @@
+{
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "hero": {
+    "name": "Syah Putra Nugraha",
+    "role": "Full Stack Web Developer",
+    "title": "Building Digital Experiences with Precision.",
+    "subtitle": "Specialist in web application development, digitalization of work systems, and ready to contribute as a professional developer.",
+    "cta_primary": "View Projects",
+    "cta_secondary": "Download CV",
+    "cta_contact": "Contact Me"
+  },
+  "about": {
+    "title": "About Me",
+    "content": "I am a Full Stack Web Developer with experience in building web applications focused on functionality and efficiency. I have a strong background in creating REST APIs, authentication systems, admin dashboards, and responsive design using modern stacks (React.js, Node.js, Express.js) as well as PHP/MySQL.<br><br>My cross-industry experience in manufacturing and construction provides a unique perspective on problem-solving, team communication, and deep understanding of digital business needs.",
+    "location": "Cimahi, West Java, Indonesia",
+    "email": "syah.putrawork98@gmail.com"
+  },
+  "skills": {
+    "title": "Technical Skills",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "database": "Database",
+    "tools": "Tools & Deployment",
+    "other": "Others"
+  },
+  "experience": {
+    "title": "Work Experience",
+    "exp1": {
+      "role": "Freelance Full Stack Web Developer",
+      "company": "Self-employed",
+      "date": "2025 – Present",
+      "desc": "Building custom web applications for various clients, focusing on business process efficiency."
+    },
+    "exp2": {
+      "role": "Field General Staff / Project Digitalization",
+      "company": "PT. Sedayu Jaya Konstruksi",
+      "date": "2022 – 2024",
+      "desc": "Digitalization of project work systems, field database management, and operational coordination."
+    },
+    "exp3": {
+      "role": "Personal Assistant & General Staff / Digital Documentation",
+      "company": "PT. Erusatria Grup",
+      "date": "2020 – 2022",
+      "desc": "Managing digital documentation and providing corporate administrative system support."
+    },
+    "exp4": {
+      "role": "General Affair & System Support",
+      "company": "Wisata Ngaprak Bandung",
+      "date": "2018 – 2019",
+      "desc": "IT system support and operational administration."
+    },
+    "exp5": {
+      "role": "IT Support & System Administrator",
+      "company": "PT. OTICS Indonesia",
+      "date": "2016 – 2017",
+      "desc": "IT infrastructure maintenance, server management, and internal technical support."
+    }
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "proj1": {
+      "title": "Construction Project Monitoring",
+      "tech": "React.js, Node.js, MongoDB",
+      "desc": "Home construction progress monitoring application with progress dashboards and daily reports."
+    },
+    "proj2": {
+      "title": "Event Organizer Showcase",
+      "tech": "React.js, Node.js, MySQL",
+      "desc": "EO and catering service promotion website with service catalogs and booking features."
+    },
+    "proj3": {
+      "title": "Internal Recruitment Application",
+      "tech": "PHP, MySQL, Bootstrap",
+      "desc": "Internal system for managing applicant data and HR dashboard at PT. OTICS Indonesia."
+    },
+    "proj4": {
+      "title": "Company Profile Website",
+      "tech": "HTML, CSS, JS, Bootstrap",
+      "desc": "Business profile website for Wisata Ngaprak Bandung with destination gallery."
+    }
+  },
+  "edu_cert": {
+    "edu_title": "Education",
+    "cert_title": "Certifications",
+    "edu1": {
+      "school": "SMK Negeri 1 Cimahi",
+      "major": "Software Engineering (D1/4 Years)",
+      "date": "2013 – 2017"
+    },
+    "cert1": "Web Development (Node.js & React) – BNSP 2025",
+    "cert2": "Construction Service Competency – BNSP 2024",
+    "cert3": "CAD Mechanical Manufacturing – BNSP 2025",
+    "cert4": "Global Azure Bootcamp 2017"
+  },
+  "footer": {
+    "copy": "&copy; 2026 Syah Putra Nugraha. Built with Precision."
+  }
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Syah Putra Nugraha | Full Stack Web Developer</title>
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="Personal website of Syah Putra Nugraha, a modern Full Stack Web Developer with experience in React.js, Node.js, and PHP." />
+  </head>
+  <body data-theme="dark">
+    <div id="app">
+      <!-- Navbar -->
+      <nav class="navbar">
+        <div class="container flex-center" style="justify-content: space-between; height: 80px;">
+          <div class="logo" style="font-family: var(--font-heading); font-weight: 800; font-size: 1.5rem; color: var(--text-primary);">
+            SYAH<span style="color: var(--primary-color);">PUTRA NUGRAHA</span>
+          </div>
+          <div class="nav-links" style="display: flex; gap: var(--space-4); align-items: center;">
+            <a href="#home" data-i18n="nav.home">Beranda</a>
+            <a href="#about" data-i18n="nav.about">Tentang</a>
+            <a href="#projects" data-i18n="nav.projects">Proyek</a>
+            <a href="#contact" data-i18n="nav.contact">Kontak</a>
+            
+            <select id="lang-select" class="btn-secondary" style="padding: 4px 8px; border-radius: var(--radius-md); cursor: pointer; outline: none; border-color: var(--border-color); background: var(--surface-color); color: var(--text-primary);">
+              <option value="id">ID</option>
+              <option value="en">EN</option>
+              <option value="jp">JP</option>
+            </select>
+
+            <button id="theme-toggle" class="btn-secondary" style="padding: 4px 12px; border-radius: var(--radius-md); font-size: 1rem;">🌙</button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <main>
+        <!-- Hero Section -->
+        <section id="home" class="section-padding flex-center" style="min-height: 90vh; text-align: center;">
+          <div class="container">
+            <p data-i18n="hero.role" style="color: var(--primary-color); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: var(--space-2);">Full Stack Web Developer</p>
+            <h1 data-i18n="hero.title" style="margin-bottom: var(--space-3); font-size: clamp(2.5rem, 8vw, 4rem);">Membangun Pengalaman Digital dengan Precision.</h1>
+            <p data-i18n="hero.subtitle" style="max-width: 700px; margin: 0 auto var(--space-5); font-size: 1.2rem;">
+              Spesialis dalam pembangunan aplikasi web, digitalisasi sistem kerja, dan siap berkontribusi kembali sebagai tenaga pengembang profesional.
+            </p>
+            <div class="cta-group" style="display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap;">
+              <a href="#projects" class="btn btn-primary" data-i18n="hero.cta_primary">Lihat Proyek</a>
+              <a href="#" class="btn btn-secondary" data-i18n="hero.cta_secondary">Download CV</a>
+              <a href="#contact" class="btn btn-secondary" data-i18n="hero.cta_contact">Hubungi Saya</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section-padding" style="background-color: var(--surface-color);">
+          <div class="container">
+            <h2 data-i18n="about.title">Tentang Saya</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); align-items: start;">
+              <div>
+                <p data-i18n="about.content" style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8;">
+                  Saya adalah seorang Full Stack Web Developer dengan pengalaman membangun aplikasi web yang berfokus pada fungsionalitas dan efisiensi.
+                </p>
+              </div>
+              <div class="card">
+                <p style="margin-bottom: var(--space-2);"><strong>Location:</strong> <span data-i18n="about.location">Cimahi, Jawa Barat</span></p>
+                <p><strong>Email:</strong> <span data-i18n="about.email">syah.putrawork98@gmail.com</span></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section-padding">
+          <div class="container">
+            <h2 data-i18n="skills.title">Keahlian Teknis</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-4);">
+              <div class="card">
+                <h3 data-i18n="skills.frontend" style="color: var(--primary-color); margin-bottom: var(--space-2);">Frontend</h3>
+                <p>HTML5, CSS3, JavaScript ES6+, React.js, Bootstrap, Responsive Design</p>
+              </div>
+              <div class="card">
+                <h3 data-i18n="skills.backend" style="color: var(--primary-color); margin-bottom: var(--space-2);">Backend</h3>
+                <p>Node.js, Express.js, PHP Native, REST API, JWT Authentication</p>
+              </div>
+              <div class="card">
+                <h3 data-i18n="skills.database" style="color: var(--primary-color); margin-bottom: var(--space-2);">Database</h3>
+                <p>MySQL, MongoDB, PostgreSQL</p>
+              </div>
+              <div class="card">
+                <h3 data-i18n="skills.tools" style="color: var(--primary-color); margin-bottom: var(--space-2);">Tools & Deployment</h3>
+                <p>Git, GitHub, Vercel, Netlify, cPanel, Postman</p>
+              </div>
+              <div class="card">
+                <h3 data-i18n="skills.other" style="color: var(--primary-color); margin-bottom: var(--space-2);">Lainnya</h3>
+                <p>Excel VBA, Google Sheets, Google Apps Script, Figma Basic, SEO Basic</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section-padding" style="background-color: var(--surface-color);">
+          <div class="container">
+            <h2 data-i18n="projects.title">Proyek Terpilih</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-5);">
+              <!-- Project 1 -->
+              <div class="card">
+                <h3 data-i18n="projects.proj1.title">Construction Project Monitoring</h3>
+                <p style="color: var(--primary-color); font-size: 0.8rem; font-weight: 600; margin-bottom: var(--space-2);" data-i18n="projects.proj1.tech">React.js, Node.js, MongoDB</p>
+                <p data-i18n="projects.proj1.desc">Aplikasi monitoring progres pembangunan rumah dengan dashboard progres dan laporan harian.</p>
+              </div>
+              <!-- Project 2 -->
+              <div class="card">
+                <h3 data-i18n="projects.proj2.title">Event Organizer Showcase</h3>
+                <p style="color: var(--primary-color); font-size: 0.8rem; font-weight: 600; margin-bottom: var(--space-2);" data-i18n="projects.proj2.tech">React.js, Node.js, MySQL</p>
+                <p data-i18n="projects.proj2.desc">Website promosi jasa EO dan catering dengan katalog layanan dan fitur pemesanan.</p>
+              </div>
+              <!-- Project 3 -->
+              <div class="card">
+                <h3 data-i18n="projects.proj3.title">Internal Recruitment Application</h3>
+                <p style="color: var(--primary-color); font-size: 0.8rem; font-weight: 600; margin-bottom: var(--space-2);" data-i18n="projects.proj3.tech">PHP, MySQL, Bootstrap</p>
+                <p data-i18n="projects.proj3.desc">Sistem internal untuk pengelolaan data pelamar dan dashboard HR di PT. OTICS Indonesia.</p>
+              </div>
+              <!-- Project 4 -->
+              <div class="card">
+                <h3 data-i18n="projects.proj4.title">Company Profile Website</h3>
+                <p style="color: var(--primary-color); font-size: 0.8rem; font-weight: 600; margin-bottom: var(--space-2);" data-i18n="projects.proj4.tech">HTML, CSS, JS, Bootstrap</p>
+                <p data-i18n="projects.proj4.desc">Website profil usaha untuk Wisata Ngaprak Bandung dengan galeri destinasi.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Experience & Education Section -->
+        <section id="experience" class="section-padding">
+          <div class="container">
+            <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--space-8);">
+              <!-- Experience -->
+              <div>
+                <h2 data-i18n="experience.title">Pengalaman Kerja</h2>
+                <div style="display: flex; flex-direction: column; gap: var(--space-5);">
+                  <div class="card">
+                    <h3 data-i18n="experience.exp1.role">Freelance Full Stack Web Developer</h3>
+                    <p style="color: var(--primary-color); font-weight: 600;" data-i18n="experience.exp1.company">Mandiri</p>
+                    <p style="font-size: 0.9rem; margin-bottom: var(--space-2);" data-i18n="experience.exp1.date">2025 – Sekarang</p>
+                    <p data-i18n="experience.exp1.desc">Membangun aplikasi web kustom untuk berbagai klien.</p>
+                  </div>
+                  <div class="card">
+                    <h3 data-i18n="experience.exp2.role">Field General Staff / Project Digitalization</h3>
+                    <p style="color: var(--primary-color); font-weight: 600;" data-i18n="experience.exp2.company">PT. Sedayu Jaya Konstruksi</p>
+                    <p style="font-size: 0.9rem; margin-bottom: var(--space-2);" data-i18n="experience.exp2.date">2022 – 2024</p>
+                    <p data-i18n="experience.exp2.desc">Digitalisasi sistem kerja proyek dan manajemen database.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Education & Certs -->
+              <div>
+                <h2 data-i18n="edu_cert.edu_title">Pendidikan</h2>
+                <div class="card" style="margin-bottom: var(--space-5);">
+                  <h3 data-i18n="edu_cert.edu1.school">SMK Negeri 1 Cimahi</h3>
+                  <p data-i18n="edu_cert.edu1.major">Rekayasa Perangkat Lunak (D1/4 Tahun)</p>
+                  <p data-i18n="edu_cert.edu1.date">2013 – 2017</p>
+                </div>
+                
+                <h2 data-i18n="edu_cert.cert_title">Sertifikasi</h2>
+                <ul style="display: flex; flex-direction: column; gap: var(--space-2); list-style: none;">
+                  <li class="card" data-i18n="edu_cert.cert1" style="padding: var(--space-3);">Web Development (Node.js & React) - BNSP 2025</li>
+                  <li class="card" data-i18n="edu_cert.cert2" style="padding: var(--space-3);">Construction Service Competency - BNSP 2024</li>
+                  <li class="card" data-i18n="edu_cert.cert3" style="padding: var(--space-3);">CAD Mechanical Manufacturing - BNSP 2025</li>
+                  <li class="card" data-i18n="edu_cert.cert4" style="padding: var(--space-3);">Global Azure Bootcamp 2017</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer style="padding: var(--space-6) 0; border-top: 1px solid var(--border-color); text-align: center;">
+        <div class="container">
+          <p data-i18n="footer.copy">&copy; 2026 Syah Putra Nugraha. Dibangun dengan Presisi.</p>
+        </div>
+      </footer>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

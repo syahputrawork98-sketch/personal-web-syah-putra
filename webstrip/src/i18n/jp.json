@@ -1,0 +1,105 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "projects": "プロジェクト",
+    "about": "私について",
+    "skills": "スキル",
+    "experience": "経歴",
+    "contact": "お問い合わせ"
+  },
+  "hero": {
+    "name": "Syah Putra Nugraha (シャー・プトラ・ヌグラハ)",
+    "role": "フルスタック Web 開発者",
+    "title": "精密さでデジタル体験を構築する。",
+    "subtitle": "Webアプリケーション開発、業務システムのデジタル化を専門とし、プロの開発者として貢献する準備ができています。",
+    "cta_primary": "プロジェクトを見る",
+    "cta_secondary": "履歴書をダウンロード",
+    "cta_contact": "お問い合わせ"
+  },
+  "about": {
+    "title": "私について",
+    "content": "私は機能性と効率性に焦点を当てたWebアプリケーションの構築経験を持つフルスタックWeb開発者です。最新のスタック（React.js、Node.js、Express.js）やPHP/MySQLを使用して、REST API、認証システム、管理ダッシュボード、レスポンシブデザインを作成した強力な背景があります。<br><br>製造業や建設業での異業種経験は、問題解決、チームコミュニケーション、デジタルビジネスニーズへの深い理解において独自の視点を提供します。",
+    "location": "インドネシア、西ジャワ州、チマヒ",
+    "email": "syah.putrawork98@gmail.com"
+  },
+  "skills": {
+    "title": "技術スキル",
+    "frontend": "フロントエンド",
+    "backend": "バックエンド",
+    "database": "データベース",
+    "tools": "ツールとデプロイ",
+    "other": "その他"
+  },
+  "experience": {
+    "title": "職務経歴",
+    "exp1": {
+      "role": "フリーランス・フルスタック Web 開発者",
+      "company": "個人事業主",
+      "date": "2025年 – 現在",
+      "desc": "様々なクライアント向けにカスタムWebアプリケーションを構築し、ビジネスプロセスの効率化に焦点を当てています。"
+    },
+    "exp2": {
+      "role": "フィールド・ゼネラル・スタッフ / プロジェクト・デジタル化",
+      "company": "PT. Sedayu Jaya Konstruksi",
+      "date": "2022年 – 2024年",
+      "desc": "プロジェクトの作業システムのデジタル化、フィールドデータベースの管理、業務調整。"
+    },
+    "exp3": {
+      "role": "パーソナルアシスタント & ゼネラルスタッフ / デジタルドキュメンテーション",
+      "company": "PT. Erusatria Grup",
+      "date": "2020年 – 2022年",
+      "desc": "デジタルドキュメントの管理および企業の管理システムのサポート。"
+    },
+    "exp4": {
+      "role": "総務 & システムサポート",
+      "company": "Wisata Ngaprak Bandung",
+      "date": "2018年 – 2019年",
+      "desc": "ITシステムのサポートおよび業務管理。"
+    },
+    "exp5": {
+      "role": "ITサポート & システム管理者",
+      "company": "PT. OTICS Indonesia",
+      "date": "2016年 – 2017年",
+      "desc": "ITインフラの保守、サーバー管理、内部テクニカルサポート。"
+    }
+  },
+  "projects": {
+    "title": "主なプロジェクト",
+    "proj1": {
+      "title": "建設プロジェクト・モニタリング",
+      "tech": "React.js, Node.js, MongoDB",
+      "desc": "進捗ダッシュボードと日報機能を備えた住宅建設進捗監視アプリケーション。"
+    },
+    "proj2": {
+      "title": "イベントオーガナイザー・ショーケース",
+      "tech": "React.js, Node.js, MySQL",
+      "desc": "サービスカタログと予約機能を備えたEOおよびケータリングサービスのプロモーションウェブサイト。"
+    },
+    "proj3": {
+      "title": "内部採用アプリケーション",
+      "tech": "PHP, MySQL, Bootstrap",
+      "desc": "PT. OTICS Indonesiaでの応募者データ管理および人事ダッシュボードのための内部システム。"
+    },
+    "proj4": {
+      "title": "会社案内ウェブサイト",
+      "tech": "HTML, CSS, JS, Bootstrap",
+      "desc": "Wisata Ngaprak Bandungのためのビジネスプロファイルウェブサイト（目的地ギャラリー付き）。"
+    }
+  },
+  "edu_cert": {
+    "edu_title": "学歴",
+    "cert_title": "資格・認証",
+    "edu1": {
+      "school": "チマヒ第1職業高校 (SMK Negeri 1 Cimahi)",
+      "major": "ソフトウェアエンジニアリング (D1/4年制)",
+      "date": "2013年 – 2017年"
+    },
+    "cert1": "Web開発（Node.js & React）認定 – BNSP 2025",
+    "cert2": "建設サービス能力認定 – BNSP 2024",
+    "cert3": "CAD機械製造認定 – BNSP 2025",
+    "cert4": "Global Azure Bootcamp 2017"
+  },
+  "footer": {
+    "copy": "&copy; 2026 Syah Putra Nugraha. 精密さを持って構築されました。"
+  }
+}
