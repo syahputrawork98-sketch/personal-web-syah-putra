@@ -1,67 +1,93 @@
 import React from 'react';
 import { useI18n } from '../layouts/MainLayout';
+import '../styles/contact.css';
 
 const Contact = () => {
   const { t } = useI18n();
 
+  const contactLinks = [
+    {
+      id: 'email',
+      icon: '📧',
+      label: 'Email Me',
+      value: t('about.email'),
+      url: `mailto:${t('about.email')}`,
+      primary: true
+    },
+    {
+      id: 'linkedin',
+      icon: '🔗',
+      label: 'LinkedIn',
+      value: 'Syah Putra Nugraha',
+      url: 'https://linkedin.com/in/syahputranugraha',
+      primary: false
+    },
+    {
+      id: 'github',
+      icon: '🐙',
+      label: 'GitHub',
+      value: 'syahputranugraha',
+      url: t('about.github'),
+      primary: false
+    },
+    {
+      id: 'instagram',
+      icon: '📸',
+      label: 'Instagram',
+      value: '@syah_putra_n',
+      url: t('about.instagram'),
+      primary: false
+    }
+  ];
+
   return (
     <section id="contact" className="section-padding flex-center" style={{ minHeight: '80vh' }}>
-      <div className="container" style={{ maxWidth: '700px' }}>
-        <div style={{ marginBottom: 'var(--space-8)', textAlign: 'center' }}>
-          <h2 className="text-center" style={{ marginBottom: 'var(--space-4)' }}>{t('contact.title')}</h2>
-          <p style={{ fontSize: '1.1rem', opacity: 0.8 }}>{t('contact.subtitle')}</p>
+      <div className="container contact-container">
+        <div className="contact-header">
+          <h2 className="text-center">{t('contact.title')}</h2>
+          <p className="contact-subtitle">{t('contact.subtitle')}</p>
         </div>
 
-        <div className="card" style={{ height: 'auto', padding: 'var(--space-8)' }}>
-          <h3 style={{ marginBottom: 'var(--space-6)', textAlign: 'center', color: 'var(--primary-color)' }}>{t('contact.info_title')}</h3>
-          
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
-            {/* Email */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)' }}>
-              <div style={{ width: '45px', height: '45px', borderRadius: 'var(--radius-md)', background: 'rgba(56, 189, 248, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem' }}>📧</div>
-              <div style={{ flex: 1 }}>
-                <p style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', opacity: 0.6, marginBottom: '2px' }}>Email</p>
-                <a href={`mailto:${t('about.email')}`} style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '1.05rem' }}>{t('about.email')}</a>
+        <div className="contact-grid">
+          {/* Main Contact Card */}
+          <div className="card contact-info-card">
+            <h3 style={{ marginBottom: 'var(--space-5)', color: 'var(--primary-color)' }}>{t('contact.info_title')}</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
+              <div className="contact-item">
+                <div className="contact-icon">📍</div>
+                <div>
+                  <p className="contact-item-label">Location</p>
+                  <p className="contact-item-value">{t('about.location')}</p>
+                </div>
+              </div>
+              
+              <div className="contact-item">
+                <div className="contact-icon">⏰</div>
+                <div>
+                  <p className="contact-item-label">Availability</p>
+                  <p className="contact-item-value" style={{ color: '#10B981' }}>Open to Work</p>
+                </div>
               </div>
             </div>
+          </div>
 
-            {/* Location */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)' }}>
-              <div style={{ width: '45px', height: '45px', borderRadius: 'var(--radius-md)', background: 'rgba(56, 189, 248, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem' }}>📍</div>
-              <div style={{ flex: 1 }}>
-                <p style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', opacity: 0.6, marginBottom: '2px' }}>Location</p>
-                <p style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '1.05rem' }}>{t('about.location')}</p>
-              </div>
-            </div>
-
-            <div style={{ height: '1px', background: 'var(--border-color)', margin: 'var(--space-2) 0' }}></div>
-
-            {/* LinkedIn */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)' }}>
-              <div style={{ width: '45px', height: '45px', borderRadius: 'var(--radius-md)', background: 'rgba(56, 189, 248, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem' }}>🔗</div>
-              <div style={{ flex: 1 }}>
-                <p style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', opacity: 0.6, marginBottom: '2px' }}>LinkedIn</p>
-                <a href="https://linkedin.com/in/syahputranugraha" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '1.05rem' }}>linkedin.com/in/syahputranugraha</a>
-              </div>
-            </div>
-
-            {/* GitHub */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)' }}>
-              <div style={{ width: '45px', height: '45px', borderRadius: 'var(--radius-md)', background: 'rgba(56, 189, 248, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem' }}>🐙</div>
-              <div style={{ flex: 1 }}>
-                <p style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', opacity: 0.6, marginBottom: '2px' }}>GitHub</p>
-                <a href={t('about.github')} target="_blank" rel="noopener noreferrer" style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '1.05rem' }}>{t('about.github').replace('https://', '')}</a>
-              </div>
-            </div>
-
-            {/* Instagram */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)' }}>
-              <div style={{ width: '45px', height: '45px', borderRadius: 'var(--radius-md)', background: 'rgba(56, 189, 248, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem' }}>📸</div>
-              <div style={{ flex: 1 }}>
-                <p style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', opacity: 0.6, marginBottom: '2px' }}>Instagram</p>
-                <a href={t('about.instagram')} target="_blank" rel="noopener noreferrer" style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '1.05rem' }}>{t('about.instagram').replace('https://instagram.com/', '@')}</a>
-              </div>
-            </div>
+          {/* Contact Actions */}
+          <div className="contact-actions">
+            {contactLinks.map((link) => (
+              <a 
+                key={link.id}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`btn contact-btn ${link.primary ? 'btn-primary' : 'btn-secondary'}`}
+              >
+                <span className="contact-btn-icon">{link.icon}</span>
+                <div style={{ textAlign: 'left' }}>
+                  <p className="contact-item-label" style={{ opacity: 0.8 }}>{link.label}</p>
+                  <p style={{ fontSize: '0.95rem' }}>{link.value}</p>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </div>

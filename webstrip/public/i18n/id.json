@@ -18,7 +18,7 @@
   "about": {
     "title": "Tentang Saya",
     "summary_title": "Ringkasan Profesional",
-    "summary": "Full Stack Web Developer dengan pengalaman membangun aplikasi web berbasis React.js, Node.js, Express.js, PHP, MySQL, MongoDB, dan PostgreSQL. Memiliki latar belakang 8+ tahun di bidang IT, digitalisasi proses bisnis, administrasi proyek, manufaktur, dan konstruksi.<br><br>Berpengalaman membuat REST API, sistem autentikasi, dashboard admin, aplikasi monitoring, website company profile, serta sistem internal perusahaan. Terbiasa bekerja dari analisis kebutuhan, pengembangan, deployment, hingga maintenance aplikasi. Saat ini berfokus untuk kembali berkarier sebagai Frontend Developer, Backend Developer, atau Full Stack Developer.",
+    "summary": "Full Stack Web Developer dengan pengalaman membangun aplikasi web berbasis React.js, Node.js, Express.js, PHP, MySQL, MongoDB, dan PostgreSQL. Memiliki latar belakang 8+ tahun di bidang IT, digitalisasi proses bisnis, administrasi proyek, manufaktur, dan konstruksi.<br><br><strong>Sejak pertengahan tahun 2025</strong>, saya memutuskan untuk kembali sepenuhnya ke dunia pengembangan perangkat lunak (Developer), fokus pada pembuatan REST API, sistem autentikasi, dashboard admin, dan aplikasi monitoring. Terbiasa bekerja dari analisis kebutuhan hingga deployment. Saat ini berfokus untuk berkarier kembali sebagai Frontend Developer, Backend Developer, atau Full Stack Developer.",
     "soft_skills_title": "Soft Skills",
     "soft_skills": "Problem Solving, Adaptability, Teamwork, Analytical Thinking, Communication, Client Handling, Project Coordination, Documentation, Time Management",
     "location": "Cimahi, Jawa Barat",
@@ -41,13 +41,13 @@
     "exp1": {
       "role": "Freelance Full Stack Web Developer",
       "company": "Mandiri",
-      "date": "2025 – Sekarang",
+      "date": "Mei 2025 – Sekarang",
       "desc": "Mengembangkan website dan aplikasi web untuk UMKM dan bisnis lokal menggunakan React.js dan Node.js. Membuat REST API, sistem login berbasis JWT, dan dashboard admin. Mengimplementasikan responsive design dan optimasi SEO dasar."
     },
     "exp2": {
       "role": "Field General Staff — Project Digitalization",
       "company": "PT. Sedayu Jaya Konstruksi",
-      "date": "Agu 2022 – Des 2024",
+      "date": "Agu 2022 – Apr 2025",
       "desc": "Mendigitalisasi laporan proyek harian, mingguan, dan bulanan. Menyusun RAB, RAP, invoice, laporan material, dan dokumentasi proyek. Berkoordinasi dengan tim lapangan, mandor, dan kontraktor utama."
     },
     "exp3": {
@@ -142,8 +142,10 @@
     "cert1": "Sertifikasi Web Development (Node.js & React) – BNSP 2025",
     "cert2": "Sertifikasi Kompetensi Jasa Konstruksi – BNSP 2024",
     "cert3": "Sertifikasi CAD Mechanical Manufacturing – BNSP 2025",
-    "cert4": "Global Azure Bootcamp 2017",
-    "cert5": "Web Development & Database Management Training 2020"
+    "cert4": "Sertifikasi Pelatihan AI (Artificial Intelligence) 2025",
+    "cert5": "Sertifikasi CBIC & Maritim Muda Indonesia 2025",
+    "cert6": "Global Azure Bootcamp 2017",
+    "cert7": "Web Development & Database Management Training 2020"
   },
   "footer": {
     "copy": "&copy; 2026 Syah Putra Nugraha. Dibangun dengan Presisi."

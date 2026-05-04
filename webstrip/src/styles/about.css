@@ -1,0 +1,45 @@
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.about-summary {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--space-6);
+}
+
+.soft-skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.soft-skill-tag {
+  padding: 4px 12px;
+  font-size: 0.85rem;
+  border-bottom: 2px solid var(--primary-color);
+  border-radius: var(--radius-sm);
+}
+
+.about-contact-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: 0.95rem;
+}
+
+.about-cta-group {
+  margin-top: var(--space-3);
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.about-cta-btn {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+}
