@@ -41,8 +41,9 @@ Kita akan menggunakan struktur **JSON-based Translation** agar scalable dan muda
     2. Jika tidak ada, sistem akan menggunakan **Bahasa Indonesia** sebagai default.
     3. Opsional: Deteksi bahasa browser sebagai *fallback* sebelum ke default ID.
 - **Switching Logic**:
-    - Saat user memilih bahasa di UI, sistem mengupdate status bahasa global.
-    - Semua elemen DOM yang ditandai dengan atribut khusus (misal: `data-i18n`) akan diperbarui isinya secara dinamis tanpa refresh halaman (SPA style).
+    - Menggunakan **React Context API (`I18nContext`)** untuk manajemen state bahasa secara global.
+    - Data terjemahan dimuat secara asinkron dari `/public/i18n/` menggunakan `fetch`.
+    - Semua komponen halaman menggunakan hook `useI18n()` untuk mengakses fungsi terjemahan `t`.
 
 ## 4. UI/UX Language Switcher
 
