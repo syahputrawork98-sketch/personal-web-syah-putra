@@ -61,27 +61,19 @@ Menggunakan font modern yang sangat terbaca (*highly readable*) dan memiliki kes
 
 ---
 
-## 4. Visual Direction
+## 5. Layout & Page Structure
 
-- **Karakter**: "The Reliable Architect". Menggabungkan presisi kode (developer) dengan estetika yang rapi (corporate).
-- **Prinsip**:
-    - **Consistency**: Komponen yang sama harus berperilaku sama di semua halaman.
-    - **Readability**: Kontras tinggi antara teks dan background adalah prioritas utama.
-    - **Hierarchy**: Gunakan ukuran font dan berat (weight) untuk memandu mata pengguna ke informasi penting (CTA).
+Website menggunakan arsitektur **Multi-page Routing** untuk memisahkan konten secara logis.
 
----
-
-## 5. Layout Structure (Landing Page)
-
-1.  **Navbar**: Sticky, logo di kiri, navigasi (Home, Projects, About, Contact), **Language Switcher (Dropdown/Toggle)**, serta **Theme Toggle** (🌙/☀️).
-2.  **Hero Section**:
-    - Headline: "Building Digital Experiences with Precision."
-    - Sub-headline: Perkenalkan diri secara singkat (Role & Passion).
-    - CTA: "View My Works" (Primary) & "Read More" (Secondary).
-3.  **About Preview**: Ringkasan singkat pengalaman teknis dan filosofi kerja.
-4.  **Project Showcase**: Grid 2x2 atau 3x1 yang menampilkan project unggulan dengan Card desain modern.
-5.  **Contact Section**: Headline besar "Let's Work Together" dengan link ke email/LinkedIn.
-6.  **Footer**: Copyright, social links, dan link navigasi cepat.
+1.  **Global Elements**:
+    - **Navbar**: Sticky, logo, navigasi utama, **Language Switcher**, dan **Theme Toggle**.
+    - **Footer**: Copyright, link sosial, dan navigasi cepat.
+2.  **Pages**:
+    - **Home**: Hero section, ringkasan profil, dan highlight skill utama.
+    - **About**: Narasi karier mendalam, Soft Skills, Pendidikan, dan Sertifikasi.
+    - **Experience**: Riwayat kerja mendetail dengan bullet points tanggung jawab.
+    - **Projects**: Grid showcase proyek dengan deskripsi teknologi dan **Impact**.
+    - **Contact**: Hub informasi kontak, GitHub, dan Portfolio.
 
 ---
 
