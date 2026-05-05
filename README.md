@@ -15,9 +15,9 @@ Repository ini menggunakan struktur modular untuk memisahkan antara manajemen pr
 
 Saat ini website fokus pada implementasi **Database-First Content Management**. 
 
-- **Fitur Kredensial**: Telah ditambahkan halaman `/credentials` yang menampilkan sertifikasi, kredensial unggulan, dan dokumen pendukung.
-- **Data Kredensial**: Saat ini data dikelola melalui file draft `credentialDraft.js` sebelum migrasi penuh ke database. Data dibedakan menjadi status `verified` dan `needs_manual_verification`.
-- **i18n Status**: Fitur multi-bahasa tetap dinonaktifkan sementara untuk stabilitas konten.
+- **Fitur Kredensial**: Telah diintegrasikan ke halaman `/about`. Seluruh data sertifikasi, kredensial unggulan, dan dokumen pendukung kini dikelola sepenuhnya melalui database (PostgreSQL) dan API.
+- **Credentials Migration**: Migrasi data dari `credentialDraft.js` ke database PostgreSQL telah selesai dilakukan. Seluruh kredensial kini bersifat dinamis.
+- **Status Project**: Arsitektur sekarang sepenuhnya *Database-Driven Content Management*.
 
 ## 🛠️ Tech Stack
 
