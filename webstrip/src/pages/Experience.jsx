@@ -164,12 +164,12 @@ const Experience = () => {
                 <div style={{ fontWeight: 600, fontSize: '0.95rem', marginBottom: '2px' }}>{cert.title}</div>
                 {cert.issuer && (
                   <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>
-                    {cert.issuer} {cert.issuedAt && `• ${new Date(cert.issuedAt).getFullYear()}`}
+                    {cert.issuer} {cert.issueDate && `• ${new Date(cert.issueDate).getFullYear()}`}
                   </div>
                 )}
-                {cert.credentialUrl && (
+                {cert.driveUrl && (
                   <a 
-                    href={cert.credentialUrl} 
+                    href={cert.driveUrl} 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     style={{ fontSize: '0.7rem', color: 'var(--primary-color)', marginTop: '8px', textDecoration: 'none', borderBottom: '1px solid transparent' }}
