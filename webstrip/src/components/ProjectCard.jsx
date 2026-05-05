@@ -17,9 +17,11 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
   const getContent = (field) => {
     const data = project[field];
     if (!data) return '';
-    // Handle string directly (common from API)
+    // Handle string directly
     if (typeof data === 'string') return data;
-    // Handle object (fallback to id if still present)
+    // Handle array (like features)
+    if (Array.isArray(data)) return data;
+    // Handle object fallback (if still present in some legacy data)
     return data['id'] || data['en'] || '';
   };
 
