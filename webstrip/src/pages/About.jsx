@@ -152,68 +152,76 @@ const About = () => {
           {currentProfile.aboutTitle || "Tentang Saya"}
         </motion.h2>
         
-        <div className="about-grid">
+        <div className="about-grid-split" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: 'var(--space-8)', marginBottom: 'var(--space-12)' }}>
+          {/* Left Column: Summary */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>{currentProfile.summaryTitle || "Professional Summary"}</h3>
-            <p dangerouslySetInnerHTML={{ __html: currentProfile.summary || "Data belum tersedia." }} className="about-summary" style={{ marginBottom: 'var(--space-8)' }}></p>
-            
-            {currentProfile.professionalSummary && (
-              <div style={{ marginBottom: 'var(--space-8)' }}>
-                <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>Professional Summary</h3>
-                <p dangerouslySetInnerHTML={{ __html: currentProfile.professionalSummary }} className="about-summary"></p>
-              </div>
-            )}
+            <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-4)', fontSize: '1.5rem' }}>
+              {currentProfile.summaryTitle || "Professional Journey"}
+            </h3>
+            <div 
+              dangerouslySetInnerHTML={{ __html: currentProfile.summary || "Data belum tersedia." }} 
+              className="about-summary" 
+              style={{ fontSize: '1.05rem', lineHeight: 1.8, opacity: 0.9 }}
+            />
+          </motion.div>
 
-            {currentProfile.valuePropositions && (
-              <div style={{ marginBottom: 'var(--space-8)' }}>
-                <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>{currentProfile.valuePropositionTitle || "Value Proposition"}</h3>
-                <p style={{ marginBottom: 'var(--space-4)', opacity: 0.9 }}>{currentProfile.valuePropositionIntro}</p>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: 'var(--space-4)' }}>
-                  {currentProfile.valuePropositions.map((vp, idx) => (
-                    <div key={idx} className="card" style={{ padding: 'var(--space-4)' }}>
-                      <h4 style={{ fontSize: '1rem', marginBottom: 'var(--space-2)' }}>{vp.title}</h4>
-                      <p style={{ fontSize: '0.85rem', opacity: 0.8 }}>{vp.description}</p>
-                    </div>
-                  ))}
+          {/* Right Column: Values & Soft Skills */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
+            <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-4)', fontSize: '1.5rem' }}>
+              {currentProfile.valuePropositionTitle || "Core Strengths"}
+            </h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+              {currentProfile.valuePropositions ? currentProfile.valuePropositions.map((vp, idx) => (
+                <div key={idx} className="card" style={{ padding: 'var(--space-4)', borderLeft: '3px solid var(--primary-color)' }}>
+                  <h4 style={{ fontSize: '1rem', marginBottom: 'var(--space-1)', color: 'var(--text-primary)' }}>{vp.title}</h4>
+                  <p style={{ fontSize: '0.85rem', opacity: 0.8 }}>{vp.description}</p>
                 </div>
-              </div>
-            )}
-            
-            {softSkills.length > 0 && (
-              <>
-                <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>Soft Skills</h3>
-                <motion.div 
-                  className="soft-skills-container"
-                  variants={containerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  style={{ marginBottom: 'var(--space-8)' }}
-                >
-                  {softSkills.map((skill, index) => (
-                    <motion.span 
-                      key={index} 
-                      className="cert-item soft-skill-tag" 
-                      style={{ borderLeft: 'none' }}
-                      variants={itemVariants}
-                      whileHover={{ scale: 1.05, color: 'var(--primary-color)' }}
-                    >
-                      {skill}
-                    </motion.span>
-                  ))}
-                </motion.div>
-              </>
-            )}
+              )) : (
+                <div className="card" style={{ padding: 'var(--space-4)' }}>
+                  <p style={{ fontSize: '0.9rem', opacity: 0.7 }}>Data keahlian pendukung belum tersedia.</p>
+                </div>
+              )}
+              
+              {softSkills.length > 0 && (
+                <div style={{ marginTop: 'var(--space-4)' }}>
+                  <h4 style={{ fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px', opacity: 0.6, marginBottom: 'var(--space-3)' }}>
+                    Soft Skills
+                  </h4>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2)' }}>
+                    {softSkills.map((skill, index) => (
+                      <span key={index} className="tech-badge" style={{ fontSize: '0.7rem', padding: '4px 10px', background: 'var(--surface-color)', border: '1px solid var(--border-color)' }}>
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        </div>
 
-            {/* Technical Skills Section */}
+        {/* Bottom Section: Technical Skills & Sidebar */}
+        <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 350px', gap: 'var(--space-8)', alignItems: 'start' }}>
+          {/* Left Column: Tech Skills */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
             {Object.keys(techSkills).length > 0 && (
-              <>
-                <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-4)' }}>Keahlian Teknis</h3>
+              <div>
+                <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-4)', fontSize: '1.5rem' }}>Keahlian Teknis</h3>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--space-6)' }}>
                   {Object.entries(techSkills).map(([category, skills]) => (
                     <div key={category} className="skill-category-group">
@@ -230,10 +238,11 @@ const About = () => {
                     </div>
                   ))}
                 </div>
-              </>
+              </div>
             )}
           </motion.div>
 
+          {/* Right Column: Sidebar */}
           <motion.div 
             style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}
             initial={{ opacity: 0, x: 20 }}
@@ -283,7 +292,6 @@ const About = () => {
                 <p style={{ opacity: 0.6, fontSize: '0.9rem' }}>Data belum tersedia.</p>
               )}
             </motion.div>
-
           </motion.div>
         </div>
 

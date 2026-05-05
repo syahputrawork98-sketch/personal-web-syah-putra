@@ -13,6 +13,8 @@ const AdminCertifications = () => {
   const tabs = [
     { id: 'ALL', label: 'All' },
     { id: 'FEATURED', label: 'Featured' },
+    { id: 'CERTIFICATE', label: 'Sertifikat' },
+    { id: 'SUPPORTING_DOCUMENT', label: 'Dokumen' },
     { id: 'BNSP', label: 'BNSP' },
     { id: 'PROFESSIONAL', label: 'Professional' },
     { id: 'TECHNICAL', label: 'Technical' },
@@ -28,9 +30,15 @@ const AdminCertifications = () => {
       setLoading(true);
       let filters = {};
       
-      if (tabId === 'FEATURED') filters.featured = 'true';
-      else if (tabId === 'BNSP') filters.issuer = 'BNSP';
-      else if (tabId !== 'ALL') filters.type = tabId;
+      if (tabId === 'FEATURED') {
+        filters.featured = 'true';
+      } else if (tabId === 'CERTIFICATE' || tabId === 'SUPPORTING_DOCUMENT') {
+        filters.type = tabId;
+      } else if (tabId === 'BNSP') {
+        filters.issuer = 'BNSP';
+      } else if (tabId !== 'ALL') {
+        filters.category = tabId;
+      }
 
       const data = await getAdminCertifications(filters);
       setCertifications(data.certifications);

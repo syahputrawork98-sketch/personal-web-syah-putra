@@ -14,3 +14,7 @@
 - [x] **Mobile Navigation**: Hamburger menu with animations and scroll lock.
 - [x] **i18n Removal**: Completely decommissioned the multilingual layer (I18nContext, language switcher, static JSONs) to prioritize Database-First Indonesian content.
 - [x] **Credentials System (Draft)**: Implemented `/credentials` page with structured data draft supporting IT, Maritime, and Blue Economy certifications.
+- [x] **Credentials Migration**: Fully migrated `credentialDraft.js` to PostgreSQL `Credential` table using mass seeding.
+- [x] **Data Parsing Hardening**: Implemented resilient parsing in frontend for all API modules to handle nested response structures.
+- [x] **Frontend UI Polish**: Removed `whileInView` animation blockers and redirected old routes (e.g., `/credentials` to `/about`).
+- [x] **Kanban Master Sync**: Updated documentation to match actual implementation (2026-05-05).
