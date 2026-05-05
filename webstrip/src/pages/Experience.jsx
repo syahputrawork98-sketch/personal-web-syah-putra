@@ -17,11 +17,18 @@ const Experience = () => {
       setLoading(true);
       setError(false);
       try {
-        const expData = await getPublicExperiences();
-        if (expData.experiences) setExperiences(expData.experiences);
+        const response = await getPublicExperiences();
+        console.log('DEBUG: Experience Data received:', response);
 
+        if (Array.isArray(response)) {
+          setExperiences(response);
+        } else if (response && response.experiences) {
+          setExperiences(response.experiences);
+        } else if (response && response.data && Array.isArray(response.data.experiences)) {
+          setExperiences(response.data.experiences);
+        }
       } catch (err) {
-        console.warn('Experience: API Fetch failed:', err.message);
+        console.error('Experience Fetch Error:', err);
         setError(true);
       } finally {
         setLoading(false);
@@ -58,15 +65,15 @@ const Experience = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
+        staggerChildren: 0.1,
+        delayChildren: 0.1
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
+    hidden: { opacity: 0, x: -10 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.4 } }
   };
 
   return (
@@ -77,8 +84,7 @@ const Experience = () => {
         >
           <motion.h2 
             initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, x: 0 }}
           >
             Pengalaman Kerja
           </motion.h2>
@@ -94,8 +100,7 @@ const Experience = () => {
             className="experience-list"
             variants={containerVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            animate="visible"
           >
             {experiences.map(exp => (
               <motion.div 

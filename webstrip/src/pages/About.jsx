@@ -36,10 +36,15 @@ const About = () => {
           getPublicProfile(),
           getPublicEducation()
         ]);
+        console.log('DEBUG: About Skills:', skillsData);
+        console.log('DEBUG: About Contact:', contactResp);
+        console.log('DEBUG: About Profile:', profileResp);
+        console.log('DEBUG: About Education:', educationResp);
 
-        if (skillsData.skills) {
+        if (skillsData) {
+          const skillsArr = Array.isArray(skillsData) ? skillsData : (skillsData.skills || []);
           // Technical Skills (grouped by category)
-          const grouped = skillsData.skills
+          const grouped = skillsArr
             .filter(s => s.type === 'TECHNICAL' || !s.type)
             .reduce((acc, skill) => {
               const cat = skill.category || 'Other';
@@ -50,15 +55,23 @@ const About = () => {
           setTechSkills(grouped);
 
           // Soft Skills
-          const soft = skillsData.skills
+          const soft = skillsArr
             .filter(s => s.type === 'SOFT')
             .map(s => s.name);
           setSoftSkills(soft);
         }
 
-        if (contactResp.contact) setContactData(contactResp.contact);
-        if (profileResp.profile) setProfileData(profileResp.profile);
-        if (educationResp.education) setEducationData(educationResp.education);
+        const extractData = (resp, key) => {
+          if (!resp) return null;
+          if (resp[key]) return resp[key];
+          if (resp.data && resp.data[key]) return resp.data[key];
+          if (resp && !resp.success && !resp.data) return resp; // Direct object
+          return null;
+        };
+
+        setContactData(extractData(contactResp, 'contact'));
+        setProfileData(extractData(profileResp, 'profile'));
+        setEducationData(extractData(educationResp, 'education') || []);
 
       } catch (err) {
         console.warn('About: Failed to fetch data:', err.message);

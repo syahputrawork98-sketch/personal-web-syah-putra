@@ -17,7 +17,14 @@ const Projects = () => {
       setError(false);
       try {
         const data = await getPublicProjects();
-        if (data.projects) setProjects(data.projects);
+        console.log('DEBUG: Projects Data received:', data);
+        if (Array.isArray(data)) {
+          setProjects(data);
+        } else if (data && data.projects) {
+          setProjects(data.projects);
+        } else if (data && data.data && Array.isArray(data.data.projects)) {
+          setProjects(data.data.projects);
+        }
       } catch (err) {
         console.warn('Projects: API Fetch failed:', err.message);
         setError(true);
