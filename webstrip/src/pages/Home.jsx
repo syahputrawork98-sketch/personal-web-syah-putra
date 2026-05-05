@@ -22,14 +22,23 @@ const Home = () => {
           getPublicSkills(),
           getPublicHero()
         ]);
+        console.log('DEBUG: Home Skills Data:', skillsData);
+        console.log('DEBUG: Home Hero Data:', heroResponse);
 
-        if (skillsData.skills && skillsData.skills.length > 0) {
+        if (skillsData && Array.isArray(skillsData.skills)) {
           const topSkills = skillsData.skills.slice(0, 8).map(s => s.name);
+          setHighlightSkills(topSkills);
+        } else if (Array.isArray(skillsData)) {
+          const topSkills = skillsData.slice(0, 8).map(s => s.name);
           setHighlightSkills(topSkills);
         }
 
-        if (heroResponse.hero) {
+        if (heroResponse && heroResponse.hero) {
           setHeroData(heroResponse.hero);
+        } else if (heroResponse && heroResponse.data && heroResponse.data.hero) {
+          setHeroData(heroResponse.data.hero);
+        } else if (heroResponse && !heroResponse.success && heroResponse.title) {
+          setHeroData(heroResponse); // Fallback for direct object
         }
       } catch (err) {
         console.warn('Home: Failed to fetch data:', err.message);

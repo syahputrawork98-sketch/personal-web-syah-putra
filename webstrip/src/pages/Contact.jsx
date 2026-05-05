@@ -19,8 +19,12 @@ const Contact = () => {
       setError(false);
       try {
         const data = await getPublicContact();
-        if (data.contact) {
+        if (data && data.contact) {
           setContactData(data.contact);
+        } else if (data && data.data && data.data.contact) {
+          setContactData(data.data.contact);
+        } else if (data && !data.success && data.email) {
+          setContactData(data); // Direct object fallback
         }
       } catch (err) {
         console.warn('Contact: Failed to fetch contact info:', err.message);
