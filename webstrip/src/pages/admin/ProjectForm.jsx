@@ -10,17 +10,15 @@ const ProjectForm = () => {
 
   const [formData, setFormData] = useState({
     slug: '',
-    // TODO: Simplify these multilingual objects to plain strings once DB schema is cleaned up.
-    // Currently kept for DB compatibility.
-    title: { id: '', en: '', jp: '' },
-    shortDescription: { id: '', en: '', jp: '' },
-    description: { id: '', en: '', jp: '' },
+    title: '',
+    shortDescription: '',
+    description: '',
     role: '',
     techStack: [],
-    impact: { id: '', en: '', jp: '' },
-    challenge: { id: '', en: '', jp: '' },
-    solution: { id: '', en: '', jp: '' },
-    features: { id: [], en: [], jp: [] },
+    impact: '',
+    challenge: '',
+    solution: '',
+    features: [],
     imageUrl: '',
     demoUrl: '',
     githubUrl: '',
@@ -48,18 +46,10 @@ const ProjectForm = () => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    if (name.includes('.')) {
-      const [field, lang] = name.split('.');
-      setFormData(prev => ({
-        ...prev,
-        [field]: { ...prev[field], [lang]: value }
-      }));
-    } else {
-      setFormData(prev => ({
-        ...prev,
-        [name]: type === 'checkbox' ? checked : value
-      }));
-    }
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
   };
 
   const handleTechAdd = (e) => {
@@ -120,11 +110,8 @@ const ProjectForm = () => {
           </div>
 
           <div style={{ marginBottom: 'var(--space-6)' }}>
-            <label className="detail-label">Title (Indonesian / English)</label>
-            <div className="grid-2" style={{ gap: 'var(--space-4)' }}>
-              <input name="title.id" className="lang-select" placeholder="ID" value={formData.title.id} onChange={handleChange} required />
-              <input name="title.en" className="lang-select" placeholder="EN" value={formData.title.en} onChange={handleChange} required />
-            </div>
+            <label className="detail-label">Title</label>
+            <input name="title" className="lang-select" style={{ width: '100%' }} value={formData.title} onChange={handleChange} required placeholder="e.g. Construction Monitoring System" />
           </div>
 
           <div style={{ marginBottom: 'var(--space-6)' }}>
