@@ -9,8 +9,8 @@
 | `/api/settings/profile` | GET | Public | Profile | `About.jsx` | ✅ | |
 | `/api/settings/contact` | GET | Public | Contact | `Contact.jsx`, `About.jsx` | ✅ | |
 | `/api/education` | GET | Public | Education | `About.jsx` | ✅ | |
-| `/api/experiences` | GET | Public | Experience | `Experience.jsx` | ✅ | Pluralized |
-| `/api/certifications`| GET | Public | Certs | `Experience.jsx` | ✅ | |
+| `/api/experiences` | GET | Public | Experience | `Experience.jsx` | ✅ | Pluralized & Filter Published |
+| `/api/certifications`| GET | Public | Certs/Docs | `CredentialsSection.jsx` | ✅ | Used in About page |
 | `/api/skills` | GET | Public | Skills | `About.jsx`, `Home.jsx` | ✅ | |
 | `/api/skills?type=SOFT`| GET | Public | Skills | `About.jsx` | ✅ | |
 | `/api/admin/projects` | GET/POST | Admin | Projects | `AdminProjects.jsx` | ✅ | |

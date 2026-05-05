@@ -2,12 +2,21 @@ const prisma = require('../lib/prisma');
 
 // Public
 const getAllPublicCertifications = async (req, res, next) => {
-  const { type, featured, issuer } = req.query;
+  const { type, featured, issuer, category } = req.query;
   try {
     const where = { status: 'PUBLISHED' };
     
-    if (type) where.type = type;
+    if (type) {
+      if (['CERTIFICATE', 'SUPPORTING_DOCUMENT'].includes(type)) {
+        where.type = type;
+      } else {
+        // If invalid type passed, we can either ignore it or filter by category instead
+        // For robustness, let's only set it if it matches the enum
+      }
+    }
+    
     if (featured === 'true') where.featured = true;
+    if (category) where.category = { contains: category, mode: 'insensitive' };
     if (issuer) where.issuer = { contains: issuer, mode: 'insensitive' };
 
     const certifications = await prisma.credential.findMany({
@@ -26,14 +35,19 @@ const getAllPublicCertifications = async (req, res, next) => {
 
 // Admin
 const getAllAdminCertifications = async (req, res, next) => {
-  const { type, featured, issuer } = req.query;
+  const { type, featured, issuer, category } = req.query;
   try {
     const where = {};
     
-    if (type) where.type = type;
+    if (type) {
+      if (['CERTIFICATE', 'SUPPORTING_DOCUMENT'].includes(type)) {
+        where.type = type;
+      }
+    }
+
     if (featured === 'true') where.featured = true;
+    if (category) where.category = { contains: category, mode: 'insensitive' };
     if (issuer) {
-      // User requested issuer=BNSP specifically or general issuer filter
       where.issuer = { contains: issuer, mode: 'insensitive' };
     }
 
@@ -46,6 +60,7 @@ const getAllAdminCertifications = async (req, res, next) => {
     });
 
     res.json({ certifications });
+
   } catch (error) {
     next(error);
   }

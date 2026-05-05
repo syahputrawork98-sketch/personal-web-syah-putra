@@ -143,6 +143,31 @@ const Home = () => {
           </motion.div>
         )}
 
+        {/* What I Can Do Section */}
+        <motion.div 
+          variants={itemVariants} 
+          style={{ 
+            marginTop: 'var(--space-10)', 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+            gap: 'var(--space-4)',
+            maxWidth: '1000px',
+            marginInline: 'auto'
+          }}
+        >
+          {[
+            { title: 'Responsive Web Apps', desc: 'Membangun UI interaktif dengan React & Next.js' },
+            { title: 'API & Backend Systems', desc: 'Integrasi sistem dengan Node.js & REST API' },
+            { title: 'Database Management', desc: 'Optimasi data flow dengan PostgreSQL & Prisma' },
+            { title: 'System Performance', desc: 'Debugging & peningkatan efisiensi sistem' }
+          ].map((item, idx) => (
+            <div key={idx} className="card" style={{ padding: 'var(--space-4)', textAlign: 'center', background: 'rgba(var(--primary-color-rgb), 0.05)', border: '1px solid rgba(var(--primary-color-rgb), 0.1)' }}>
+              <h4 style={{ fontSize: '0.95rem', marginBottom: 'var(--space-1)', color: 'var(--primary-color)' }}>{item.title}</h4>
+              <p style={{ fontSize: '0.8rem', opacity: 0.7 }}>{item.desc}</p>
+            </div>
+          ))}
+        </motion.div>
+
         <motion.div className="cta-group" variants={itemVariants}>
           {currentHero.primaryCtaLabel && (
             <Link to="/projects" className="btn btn-primary">{currentHero.primaryCtaLabel}</Link>

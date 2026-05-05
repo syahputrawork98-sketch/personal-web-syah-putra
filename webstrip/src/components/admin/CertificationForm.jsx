@@ -4,8 +4,8 @@ const CertificationForm = ({ initialData, onSubmit, saving }) => {
   const [formData, setFormData] = useState({
     title: initialData?.title || '',
     issuer: initialData?.issuer || '',
-    type: initialData?.type || 'TRAINING',
-    category: initialData?.category || '',
+    type: initialData?.type || 'CERTIFICATE',
+    category: initialData?.category || 'PROFESSIONAL',
     credentialId: initialData?.credentialId || '',
     credentialUrl: initialData?.credentialUrl || '',
     certificateUrl: initialData?.certificateUrl || '',
@@ -75,6 +75,19 @@ const CertificationForm = ({ initialData, onSubmit, saving }) => {
             onChange={handleChange}
             style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
           >
+            <option value="CERTIFICATE">CERTIFICATE (Sertifikat)</option>
+            <option value="SUPPORTING_DOCUMENT">SUPPORTING_DOCUMENT (Dokumen Pendukung)</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Category*</label>
+          <select 
+            name="category"
+            required
+            value={formData.category}
+            onChange={handleChange}
+            style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
+          >
             <option value="PROFESSIONAL">PROFESSIONAL</option>
             <option value="TECHNICAL">TECHNICAL</option>
             <option value="ACADEMIC">ACADEMIC</option>
@@ -83,16 +96,6 @@ const CertificationForm = ({ initialData, onSubmit, saving }) => {
             <option value="EVENT">EVENT</option>
             <option value="OTHER">OTHER</option>
           </select>
-        </div>
-        <div className="form-group">
-          <label style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Category (Optional)</label>
-          <input 
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            placeholder="e.g. Cloud Computing"
-            style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
-          />
         </div>
       </div>
 
