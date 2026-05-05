@@ -23,9 +23,12 @@ const About = () => {
     'others': 'Desain & Lainnya'
   };
 
+  const [error, setError] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
+      setError(false);
       try {
         const [skillsData, contactResp, profileResp, educationResp] = await Promise.all([
           getPublicSkills(),
@@ -59,6 +62,7 @@ const About = () => {
 
       } catch (err) {
         console.warn('About: Failed to fetch data:', err.message);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -83,11 +87,31 @@ const About = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
 
-  if (!loading && !profileData) {
+  if (loading) {
     return (
-      <section id="about" className="section-padding">
+      <section id="about" className="section-padding flex-center">
         <div className="container">
-          <EmptyState message="Data belum tersedia." />
+          <p style={{ opacity: 0.6, fontSize: '1rem', textAlign: 'center' }}>Memuat data profil...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="about" className="section-padding flex-center">
+        <div className="container">
+          <EmptyState message="Gagal memuat data profil." />
+        </div>
+      </section>
+    );
+  }
+
+  if (!profileData) {
+    return (
+      <section id="about" className="section-padding flex-center">
+        <div className="container">
+          <EmptyState message="Data profil belum tersedia." />
         </div>
       </section>
     );

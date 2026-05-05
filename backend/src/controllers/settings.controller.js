@@ -8,7 +8,8 @@ const getContact = async (req, res, next) => {
     });
 
     res.json({
-      contact: setting ? setting.value : null,
+      success: true,
+      data: { contact: setting ? setting.value : null }
     });
   } catch (error) {
     next(error);
@@ -67,7 +68,7 @@ const updateContact = async (req, res, next) => {
 const getHero = async (req, res, next) => {
   try {
     const setting = await prisma.siteSetting.findUnique({ where: { key: 'hero' } });
-    res.json({ hero: setting ? setting.value : null });
+    res.json({ success: true, data: { hero: setting ? setting.value : null } });
   } catch (error) { next(error); }
 };
 
@@ -95,7 +96,7 @@ const updateHero = async (req, res, next) => {
 const getProfile = async (req, res, next) => {
   try {
     const setting = await prisma.siteSetting.findUnique({ where: { key: 'profile' } });
-    res.json({ profile: setting ? setting.value : null });
+    res.json({ success: true, data: { profile: setting ? setting.value : null } });
   } catch (error) { next(error); }
 };
 

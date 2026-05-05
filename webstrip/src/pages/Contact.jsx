@@ -11,16 +11,20 @@ const Contact = () => {
   const [contactData, setContactData] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const [error, setError] = useState(false);
+
   useEffect(() => {
     const fetchContact = async () => {
+      setLoading(true);
+      setError(false);
       try {
-        setLoading(true);
         const data = await getPublicContact();
         if (data.contact) {
           setContactData(data.contact);
         }
       } catch (err) {
         console.warn('Contact: Failed to fetch contact info:', err.message);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -28,12 +32,32 @@ const Contact = () => {
     fetchContact();
   }, []);
 
-  if (!loading && !contactData) {
+  if (loading) {
+    return (
+      <section id="contact" className="section-padding flex-center" style={{ minHeight: '70vh' }}>
+        <div className="container" style={{ maxWidth: '600px' }}>
+          <p style={{ opacity: 0.6, fontSize: '1rem', textAlign: 'center' }}>Memuat data kontak...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="contact" className="section-padding flex-center" style={{ minHeight: '70vh' }}>
+        <div className="container" style={{ maxWidth: '600px' }}>
+          <EmptyState message="Gagal memuat data kontak." />
+        </div>
+      </section>
+    );
+  }
+
+  if (!contactData) {
     return (
       <section id="contact" className="section-padding flex-center" style={{ minHeight: '70vh' }}>
         <div className="container" style={{ maxWidth: '600px' }}>
           <h2 className="text-center">Hubungi Saya</h2>
-          <EmptyState message="Data belum tersedia." />
+          <EmptyState message="Data kontak belum tersedia." />
         </div>
       </section>
     );
@@ -114,8 +138,8 @@ const Contact = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-center">Hubungi Saya</h2>
-          <p style={{ fontSize: '1.1rem', opacity: 0.8 }}>Punya ide atau peluang kerja? Saya siap mendiskusikannya dengan Anda.</p>
+          <h2 className="text-center">{currentContact.title || 'Hubungi Saya'}</h2>
+          <p style={{ fontSize: '1.1rem', opacity: 0.8 }}>{currentContact.description || 'Punya ide atau peluang kerja? Saya siap mendiskusikannya dengan Anda.'}</p>
           {loading && <p style={{ opacity: 0.6, marginTop: 'var(--space-2)' }}>Memuat data...</p>}
         </motion.div>
 

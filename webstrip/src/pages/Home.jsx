@@ -11,10 +11,12 @@ const Home = () => {
   const [heroData, setHeroData] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
+      setError(false);
       try {
         const [skillsData, heroResponse] = await Promise.all([
           getPublicSkills(),
@@ -31,6 +33,7 @@ const Home = () => {
         }
       } catch (err) {
         console.warn('Home: Failed to fetch data:', err.message);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -55,11 +58,31 @@ const Home = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
 
-  if (!loading && !heroData) {
+  if (loading) {
     return (
       <section id="home" className="section-padding flex-center hero-section">
         <div className="container">
-          <EmptyState message="Data belum tersedia." />
+          <p style={{ opacity: 0.6, fontSize: '1rem', textAlign: 'center' }}>Memuat data beranda...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="home" className="section-padding flex-center hero-section">
+        <div className="container">
+          <EmptyState message="Gagal memuat data beranda." />
+        </div>
+      </section>
+    );
+  }
+
+  if (!heroData) {
+    return (
+      <section id="home" className="section-padding flex-center hero-section">
+        <div className="container">
+          <EmptyState message="Data beranda belum tersedia." />
         </div>
       </section>
     );

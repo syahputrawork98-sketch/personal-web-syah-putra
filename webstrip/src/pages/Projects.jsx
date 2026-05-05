@@ -9,18 +9,18 @@ const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [expandedId, setExpandedId] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchProjects = async () => {
+      setLoading(true);
+      setError(false);
       try {
-        setLoading(true);
         const data = await getPublicProjects();
-        
-        if (data.projects) {
-          setProjects(data.projects);
-        }
+        if (data.projects) setProjects(data.projects);
       } catch (err) {
         console.warn('Projects: API Fetch failed:', err.message);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -48,6 +48,36 @@ const Projects = () => {
   const featuredProjects = sortedProjects.filter(p => p.featured);
   const otherProjects = sortedProjects.filter(p => !p.featured);
 
+  if (loading) {
+    return (
+      <section id="projects" className="section-padding flex-center">
+        <div className="container">
+          <p style={{ opacity: 0.6, fontSize: '1rem', textAlign: 'center' }}>Memuat data proyek...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="projects" className="section-padding flex-center">
+        <div className="container">
+          <EmptyState message="Gagal memuat data proyek." />
+        </div>
+      </section>
+    );
+  }
+
+  if (projects.length === 0) {
+    return (
+      <section id="projects" className="section-padding flex-center">
+        <div className="container">
+          <EmptyState message="Data proyek belum tersedia." />
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="projects" className="section-padding">
       <div className="container">
@@ -58,12 +88,7 @@ const Projects = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-center">Proyek Unggulan</h2>
-          {loading && <p style={{ opacity: 0.6, marginTop: 'var(--space-4)' }}>Memuat data...</p>}
         </motion.div>
-
-        {!loading && projects.length === 0 ? (
-          <EmptyState message="Data belum tersedia." />
-        ) : (
           <>
             {/* Featured Projects Grid */}
             {featuredProjects.length > 0 && (
@@ -128,7 +153,6 @@ const Projects = () => {
               </motion.div>
             )}
           </>
-        )}
       </div>
     </section>
   );
