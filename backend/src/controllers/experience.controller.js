@@ -11,6 +11,7 @@ const getAllPublicExperiences = async (req, res, next) => {
       ],
     });
 
+    console.log(`[API] getAllPublicExperiences: Found ${experiences.length} records with status PUBLISHED`);
     res.json({ success: true, data: { experiences } });
   } catch (error) {
     next(error);

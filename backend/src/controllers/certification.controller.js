@@ -99,6 +99,7 @@ const createCertification = async (req, res, next) => {
         portfolioRelevance: 'Added via CMS',
         featured: featured === true || featured === 'true',
         displayPriority: parseInt(order) || 3,
+        status: status || 'PUBLISHED',
         verificationStatus: 'VERIFIED'
       },
     });
@@ -140,6 +141,7 @@ const updateCertification = async (req, res, next) => {
         summary: description !== undefined ? description : existing.summary,
         featured: featured !== undefined ? (featured === true || featured === 'true') : existing.featured,
         displayPriority: order !== undefined ? parseInt(order) : existing.displayPriority,
+        status: status !== undefined ? status : existing.status,
       },
     });
 
