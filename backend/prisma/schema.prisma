@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,10 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// --------------------------------------
-// Authentication
-// --------------------------------------
-
 model AdminUser {
   id           String   @id @default(cuid())
   email        String   @unique
@@ -21,10 +14,6 @@ model AdminUser {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
-
-// --------------------------------------
-// Projects
-// --------------------------------------
 
 model Project {
   id               String        @id @default(cuid())
@@ -43,94 +32,50 @@ model Project {
   updatedAt        DateTime      @updatedAt
 }
 
-enum ProjectStatus {
-  DRAFT
-  PUBLISHED
-}
-
-// --------------------------------------
-// Credentials & Certifications (REFACTORED)
-// --------------------------------------
-
-enum CredentialType {
-  CERTIFICATE
-  SUPPORTING_DOCUMENT
-}
-
-enum VerificationStatus {
-  VERIFIED
-  NEEDS_MANUAL_VERIFICATION
-  UNVERIFIED
-}
-
-enum CredentialSourceType {
-  DRAFT_FILE
-  GOOGLE_DRIVE
-  MANUAL_INPUT
-  CMS
-}
-
 model Credential {
-  id                String               @id
-  slug              String               @unique
-  type              CredentialType       @default(CERTIFICATE)
-  sourceType        CredentialSourceType @default(DRAFT_FILE)
-  
-  title             String
-  officialTitle     String?
-  category          String
-  subCategory       String?
-  issuer            String
-  issuerType        String?
-  certificateNumber String?
-  participantName   String               @default("Syah Putra Nugraha")
-  
-  // Dates: DateTime for logic, Original for context
-  issueDate         DateTime?
-  originalIssueDate String?
-  startDate         DateTime?
-  originalStartDate String?
-  endDate           DateTime?
-  originalEndDate   String?
-  duration          String?
-  
-  status            String?
-  grade             String?
-  level             String?
-  
-  // Hybrid Array Strategy
-  skills            String[]       // Canonical Names (e.g., "React", "Node.js")
-  relatedTech       String[]
-  relatedDomains    String[]
-  
-  // Content
-  competencies      Json?          
-  keyTopics         Json?          
-  summary           String         @db.Text
-  portfolioRelevance String        @db.Text
-  recruiterValue    String?        @db.Text
-  
-  // Visibility & Ranking
-  displayPriority   Int            @default(3)
-  featured          Boolean        @default(false)
-  showOnHomepage    Boolean        @default(false)
-  showOnCertificatePage Boolean    @default(true)
-  
-  // Assets & Documentation
-  driveUrl          String?
-  fileName          String?
-  language          String?        // "Indonesian", "English", or null
-  
-  // Internal Tracking
-  notes             String?        @db.Text
-  metadata          Json?          // For future complex metadata
-  verificationStatus VerificationStatus @default(NEEDS_MANUAL_VERIFICATION)
-
-  // Relations
-  featuredHighlight FeaturedCredential?
-
-  createdAt         DateTime       @default(now())
-  updatedAt         DateTime       @updatedAt
+  id                    String               @id
+  slug                  String               @unique
+  type                  CredentialType       @default(CERTIFICATE)
+  sourceType            CredentialSourceType @default(DRAFT_FILE)
+  title                 String
+  officialTitle         String?
+  category              String
+  subCategory           String?
+  issuer                String
+  issuerType            String?
+  certificateNumber     String?
+  participantName       String               @default("Syah Putra Nugraha")
+  issueDate             DateTime?
+  originalIssueDate     String?
+  startDate             DateTime?
+  originalStartDate     String?
+  endDate               DateTime?
+  originalEndDate       String?
+  duration              String?
+  status                String?
+  grade                 String?
+  level                 String?
+  skills                String[]
+  relatedTech           String[]
+  relatedDomains        String[]
+  competencies          Json?
+  keyTopics             Json?
+  summary               String
+  portfolioRelevance    String
+  recruiterValue        String?
+  displayPriority       Int                  @default(3)
+  featured              Boolean              @default(false)
+  showOnHomepage        Boolean              @default(false)
+  showOnCertificatePage Boolean              @default(true)
+  driveUrl              String?
+  fileName              String?
+  language              String?
+  notes                 String?
+  metadata              Json?
+  verificationStatus    VerificationStatus   @default(NEEDS_MANUAL_VERIFICATION)
+  createdAt             DateTime             @default(now())
+  updatedAt             DateTime             @updatedAt
+  featuredHighlight     FeaturedCredential?
 
   @@index([category])
   @@index([featured])
@@ -144,20 +89,8 @@ model FeaturedCredential {
   id           String     @id @default(cuid())
   credentialId String     @unique
   priority     Int        @default(1)
-  reason       String?    @db.Text
-  
+  reason       String?
   credential   Credential @relation(fields: [credentialId], references: [id], onDelete: Cascade)
-}
-
-// --------------------------------------
-// Skills & Experience
-// --------------------------------------
-
-enum SkillType {
-  TECHNICAL
-  SOFT
-  TOOL
-  LANGUAGE
 }
 
 model Skill {
@@ -194,15 +127,6 @@ model Experience {
   updatedAt   DateTime         @updatedAt
 }
 
-enum ExperienceStatus {
-  DRAFT
-  PUBLISHED
-}
-
-// --------------------------------------
-// Education & Others
-// --------------------------------------
-
 model Education {
   id          String   @id @default(cuid())
   school      String
@@ -221,4 +145,39 @@ model SiteSetting {
   value     Json
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+enum ProjectStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum CredentialType {
+  CERTIFICATE
+  SUPPORTING_DOCUMENT
+}
+
+enum VerificationStatus {
+  VERIFIED
+  NEEDS_MANUAL_VERIFICATION
+  UNVERIFIED
+}
+
+enum CredentialSourceType {
+  DRAFT_FILE
+  GOOGLE_DRIVE
+  MANUAL_INPUT
+  CMS
+}
+
+enum SkillType {
+  TECHNICAL
+  SOFT
+  TOOL
+  LANGUAGE
+}
+
+enum ExperienceStatus {
+  DRAFT
+  PUBLISHED
 }

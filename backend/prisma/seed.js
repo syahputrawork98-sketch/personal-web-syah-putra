@@ -288,31 +288,117 @@ async function main() {
   }
   console.log('✅ Projects seeded.');
 
-  // 6. Setup Credentials (Sample if needed, or based on previous draft)
-  const credentials = [
-    {
-      id: 'cert-001',
-      slug: 'full-stack-web-development',
-      title: 'Full Stack Web Development',
-      issuer: 'Udemy',
-      category: 'IT & Software',
-      summary: 'Comprehensive course covering frontend and backend technologies.',
-      portfolioRelevance: 'Directly applicable to current role.',
-      skills: ['React', 'Node.js', 'PostgreSQL'],
-      issueDate: new Date('2023-01-01'),
-      driveUrl: 'https://google.com',
-      featured: true,
-      showOnCertificatePage: true,
-      verificationStatus: 'VERIFIED',
-      status: 'PUBLISHED'
-    }
-  ];
+  // 6. Setup Credentials & Certifications (Migrated from draft)
+  console.log('📜 Seeding Credentials & Certifications...');
+  try {
+    const credentialsData = require('../data/credentials.json');
+    const { certificates, supportingDocuments, featuredCredentials } = credentialsData;
 
-  await prisma.credential.deleteMany({});
-  for (const cert of credentials) {
-    await prisma.credential.create({ data: cert });
+    await prisma.credential.deleteMany({});
+    await prisma.featuredCredential.deleteMany({});
+
+    // Seed Certificates
+    for (const cert of certificates) {
+      await prisma.credential.create({
+        data: {
+          id: cert.id,
+          slug: cert.id, // Using ID as slug for consistency
+          type: 'CERTIFICATE',
+          sourceType: 'DRAFT_FILE',
+          title: cert.title,
+          officialTitle: cert.officialTitle,
+          category: cert.category,
+          subCategory: cert.subCategory,
+          issuer: cert.issuer,
+          issuerType: cert.issuerType,
+          certificateNumber: cert.certificateNumber,
+          participantName: cert.participantName || 'Syah Putra Nugraha',
+          issueDate: cert.issueDate ? new Date(cert.issueDate) : null,
+          originalIssueDate: cert.issueDate,
+          startDate: cert.startDate ? new Date(cert.startDate) : null,
+          originalStartDate: cert.startDate,
+          endDate: cert.endDate ? new Date(cert.endDate) : null,
+          originalEndDate: cert.endDate,
+          duration: cert.duration,
+          status: 'PUBLISHED', // Internal status for public visibility
+          grade: cert.grade || cert.status, // Putting "Lulus/Completed" in grade
+          level: cert.level,
+          skills: cert.skills || [],
+          relatedTech: cert.relatedTechnologies || [],
+          relatedDomains: cert.relatedDomains || [],
+          competencies: cert.competencies || [],
+          summary: cert.summary || '',
+          portfolioRelevance: cert.portfolioRelevance || '',
+          recruiterValue: cert.recruiterValue,
+          displayPriority: cert.displayPriority || 3,
+          featured: cert.featured || false,
+          showOnHomepage: cert.showOnHomepage || false,
+          showOnCertificatePage: cert.showOnCertificatePage !== undefined ? cert.showOnCertificatePage : true,
+          driveUrl: cert.driveUrl,
+          fileName: cert.fileName,
+          language: cert.language,
+          notes: cert.notes,
+          verificationStatus: cert.verificationStatus === 'verified' ? 'VERIFIED' : 'NEEDS_MANUAL_VERIFICATION'
+        }
+      });
+    }
+
+    // Seed Supporting Documents
+    for (const doc of supportingDocuments) {
+      await prisma.credential.create({
+        data: {
+          id: doc.id,
+          slug: doc.id,
+          type: 'SUPPORTING_DOCUMENT',
+          sourceType: 'DRAFT_FILE',
+          title: doc.title,
+          category: doc.category,
+          subCategory: doc.documentType,
+          issuer: doc.institutionOrContext,
+          participantName: doc.authorName || 'Syah Putra Nugraha',
+          issueDate: doc.date ? new Date(doc.date) : null,
+          originalIssueDate: doc.date,
+          summary: doc.summary || '',
+          keyTopics: doc.keyTopics || [],
+          skills: doc.skillsDemonstrated || [],
+          portfolioRelevance: doc.portfolioRelevance || '',
+          recruiterValue: doc.recruiterValue,
+          displayPriority: doc.displayPriority || 3,
+          featured: doc.featured || false,
+          showOnHomepage: doc.showOnHomepage || false,
+          showOnCertificatePage: doc.showOnCertificatePage !== undefined ? doc.showOnCertificatePage : true,
+          driveUrl: doc.driveUrl,
+          fileName: doc.fileName,
+          language: doc.language,
+          notes: doc.notes,
+          status: 'PUBLISHED',
+          verificationStatus: doc.verificationStatus === 'verified' ? 'VERIFIED' : 'NEEDS_MANUAL_VERIFICATION'
+        }
+      });
+    }
+
+    // Seed Featured Highlights
+    if (featuredCredentials && featuredCredentials.length > 0) {
+      for (const fc of featuredCredentials) {
+        // Verify the credential exists before creating highlight
+        const exists = await prisma.credential.findUnique({ where: { id: fc.id } });
+        if (exists) {
+          await prisma.featuredCredential.create({
+            data: {
+              credentialId: fc.id,
+              priority: fc.priority || 1,
+              reason: fc.reason
+            }
+          });
+        }
+      }
+    }
+
+    console.log(`✅ Successfully seeded ${certificates.length} certificates and ${supportingDocuments.length} documents.`);
+  } catch (err) {
+    console.error('⚠️ Warning: Failed to seed credentials from JSON:', err.message);
+    // Fallback or skip
   }
-  console.log('✅ Credentials seeded.');
 
   console.log('🏁 Seeding finished successfully.');
 }
