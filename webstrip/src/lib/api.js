@@ -22,10 +22,14 @@ const fetcher = async (endpoint, options = {}) => {
 
   const data = await response.json();
 
-  if (!response.ok) {
+  if (!response.ok || data.success === false) {
     throw new Error(data.message || 'Something went wrong');
   }
 
+  // Helper parser for consistent response formats
+  if (data.success && data.data !== undefined) {
+    return data.data;
+  }
   return data;
 };
 

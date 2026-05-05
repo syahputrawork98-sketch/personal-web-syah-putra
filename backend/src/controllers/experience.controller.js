@@ -11,7 +11,7 @@ const getAllPublicExperiences = async (req, res, next) => {
       ],
     });
 
-    res.json({ experiences });
+    res.json({ success: true, data: { experiences } });
   } catch (error) {
     next(error);
   }

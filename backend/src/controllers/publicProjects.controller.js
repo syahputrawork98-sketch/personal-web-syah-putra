@@ -13,7 +13,8 @@ const getAllProjects = async (req, res, next) => {
     });
 
     res.json({
-      projects,
+      success: true,
+      data: { projects },
     });
   } catch (error) {
     next(error);
@@ -33,13 +34,14 @@ const getProjectBySlug = async (req, res, next) => {
 
     if (!project) {
       return res.status(404).json({
-        status: 'error',
+        success: false,
         message: 'Project not found',
       });
     }
 
     res.json({
-      project,
+      success: true,
+      data: { project },
     });
   } catch (error) {
     next(error);

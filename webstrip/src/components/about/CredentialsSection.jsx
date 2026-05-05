@@ -9,14 +9,18 @@ const CredentialsSection = () => {
   const [certifications, setCertifications] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [error, setError] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
+      setError(false);
       try {
-        setLoading(true);
         const certData = await getPublicCertifications();
         if (certData.certifications) setCertifications(certData.certifications);
       } catch (err) {
         console.warn('CredentialsSection: API Fetch failed:', err.message);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -51,9 +55,9 @@ const CredentialsSection = () => {
         Kredensial / Sertifikat
       </motion.h3>
       
-      {loading && <span style={{ opacity: 0.6, fontSize: '0.9rem' }}>Memuat data...</span>}
-      
-      {!loading && certifications.length === 0 ? (
+      {loading && <p style={{ opacity: 0.6, fontSize: '0.9rem', textAlign: 'center' }}>Memuat data sertifikat...</p>}
+      {error && !loading && <EmptyState message="Gagal memuat data sertifikat." />}
+      {!loading && !error && certifications.length === 0 ? (
         <EmptyState message="Data sertifikat belum tersedia." />
       ) : (
         <motion.div 

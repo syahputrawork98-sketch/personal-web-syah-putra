@@ -17,7 +17,7 @@ const getAllPublicSkills = async (req, res, next) => {
       ],
     });
 
-    res.json({ skills });
+    res.json({ success: true, data: { skills } });
   } catch (error) {
     next(error);
   }

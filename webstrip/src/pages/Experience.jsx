@@ -10,15 +10,19 @@ const Experience = () => {
 
   const [loading, setLoading] = useState(true);
 
+  const [error, setError] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
+      setError(false);
       try {
-        setLoading(true);
         const expData = await getPublicExperiences();
         if (expData.experiences) setExperiences(expData.experiences);
 
       } catch (err) {
         console.warn('Experience: API Fetch failed:', err.message);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -81,8 +85,10 @@ const Experience = () => {
           {loading && <span style={{ opacity: 0.6, fontSize: '0.9rem' }}>Memuat data...</span>}
         </motion.div>
         
-        {!loading && experiences.length === 0 ? (
-          <EmptyState message="Data belum tersedia." />
+        {loading && <p style={{ opacity: 0.6, fontSize: '1rem', textAlign: 'center' }}>Memuat data pengalaman...</p>}
+        {error && !loading && <EmptyState message="Gagal memuat data pengalaman." />}
+        {!loading && !error && experiences.length === 0 ? (
+          <EmptyState message="Data pengalaman belum tersedia." />
         ) : (
           <motion.div 
             className="experience-list"

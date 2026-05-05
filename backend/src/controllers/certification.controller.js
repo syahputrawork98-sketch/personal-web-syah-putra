@@ -18,7 +18,7 @@ const getAllPublicCertifications = async (req, res, next) => {
       ],
     });
 
-    res.json({ certifications });
+    res.json({ success: true, data: { certifications } });
   } catch (error) {
     next(error);
   }
