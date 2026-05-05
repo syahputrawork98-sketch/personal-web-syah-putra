@@ -1,26 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { getPublicExperiences, getPublicCertifications } from '../lib/api';
+import { getPublicExperiences } from '../lib/api';
 import EmptyState from '../components/EmptyState';
 import '../styles/experience.css';
 
 
 const Experience = () => {
   const [experiences, setExperiences] = useState([]);
-  const [certifications, setCertifications] = useState([]);
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const [expData, certData] = await Promise.all([
-          getPublicExperiences(),
-          getPublicCertifications()
-        ]);
-        
+        const expData = await getPublicExperiences();
         if (expData.experiences) setExperiences(expData.experiences);
-        if (certData.certifications) setCertifications(certData.certifications);
 
       } catch (err) {
         console.warn('Experience: API Fetch failed:', err.message);
@@ -134,55 +129,7 @@ const Experience = () => {
           </motion.div>
         )}
         
-        <motion.h2 
-          style={{ marginTop: 'var(--space-12)', marginBottom: 'var(--space-8)' }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          Sertifikasi
-        </motion.h2>
-        
-        {!loading && certifications.length === 0 ? (
-          <EmptyState message="Data belum tersedia." />
-        ) : (
-          <motion.div 
-            className="certs-grid"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-          >
-            {certifications.map(cert => (
-              <motion.div 
-                key={cert.id} 
-                className="cert-item"
-                variants={itemVariants}
-                whileHover={{ scale: 1.02, color: 'var(--primary-color)', borderColor: 'var(--primary-color)' }}
-                style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', height: 'auto', textAlign: 'left' }}
-              >
-                <div style={{ fontWeight: 600, fontSize: '0.95rem', marginBottom: '2px' }}>{cert.title}</div>
-                {cert.issuer && (
-                  <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>
-                    {cert.issuer} {cert.issueDate && `• ${new Date(cert.issueDate).getFullYear()}`}
-                  </div>
-                )}
-                {cert.driveUrl && (
-                  <a 
-                    href={cert.driveUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    style={{ fontSize: '0.7rem', color: 'var(--primary-color)', marginTop: '8px', textDecoration: 'none', borderBottom: '1px solid transparent' }}
-                    onMouseOver={e => e.target.style.borderBottom = '1px solid var(--primary-color)'}
-                    onMouseOut={e => e.target.style.borderBottom = '1px solid transparent'}
-                  >
-                    Lihat Kredensial &rarr;
-                  </a>
-                )}
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
+
       </div>
     </section>
   );

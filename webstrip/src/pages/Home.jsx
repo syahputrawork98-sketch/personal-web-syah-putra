@@ -116,8 +116,9 @@ const Home = () => {
             <Link to="/projects" className="btn btn-primary">{currentHero.primaryCtaLabel}</Link>
           )}
           {currentHero.secondaryCtaLabel && (
-            <a href={currentHero.resumeUrl} download className="btn btn-secondary">{currentHero.secondaryCtaLabel}</a>
+            <a href={currentHero.resumeUrl || '#'} download className="btn btn-secondary">{currentHero.secondaryCtaLabel}</a>
           )}
+          <Link to="/contact" className="btn btn-secondary">Hubungi Saya</Link>
         </motion.div>
       </motion.div>
     </section>
