@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { getPublicSkills, getPublicContact, getPublicProfile, getPublicEducation } from '../lib/api';
 import EmptyState from '../components/EmptyState';
+import CredentialsSection from '../components/about/CredentialsSection';
 import '../styles/about.css';
 
 const About = () => {
@@ -121,8 +122,30 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>{currentProfile.summaryTitle || "Ringkasan Profesional"}</h3>
-            <p dangerouslySetInnerHTML={{ __html: currentProfile.summary || "Data belum tersedia." }} className="about-summary"></p>
+            <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>{currentProfile.summaryTitle || "Professional Summary"}</h3>
+            <p dangerouslySetInnerHTML={{ __html: currentProfile.summary || "Data belum tersedia." }} className="about-summary" style={{ marginBottom: 'var(--space-8)' }}></p>
+            
+            {currentProfile.professionalSummary && (
+              <div style={{ marginBottom: 'var(--space-8)' }}>
+                <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>Professional Summary</h3>
+                <p dangerouslySetInnerHTML={{ __html: currentProfile.professionalSummary }} className="about-summary"></p>
+              </div>
+            )}
+
+            {currentProfile.valuePropositions && (
+              <div style={{ marginBottom: 'var(--space-8)' }}>
+                <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-3)' }}>{currentProfile.valuePropositionTitle || "Value Proposition"}</h3>
+                <p style={{ marginBottom: 'var(--space-4)', opacity: 0.9 }}>{currentProfile.valuePropositionIntro}</p>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: 'var(--space-4)' }}>
+                  {currentProfile.valuePropositions.map((vp, idx) => (
+                    <div key={idx} className="card" style={{ padding: 'var(--space-4)' }}>
+                      <h4 style={{ fontSize: '1rem', marginBottom: 'var(--space-2)' }}>{vp.title}</h4>
+                      <p style={{ fontSize: '0.85rem', opacity: 0.8 }}>{vp.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
             
             {softSkills.length > 0 && (
               <>
@@ -225,6 +248,11 @@ const About = () => {
             </motion.div>
 
           </motion.div>
+        </div>
+
+        {/* Credentials Section */}
+        <div style={{ marginTop: 'var(--space-12)' }}>
+          <CredentialsSection />
         </div>
       </motion.div>
     </section>
