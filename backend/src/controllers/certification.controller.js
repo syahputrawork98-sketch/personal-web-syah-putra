@@ -10,11 +10,11 @@ const getAllPublicCertifications = async (req, res, next) => {
     if (featured === 'true') where.featured = true;
     if (issuer) where.issuer = { contains: issuer, mode: 'insensitive' };
 
-    const certifications = await prisma.certification.findMany({
+    const certifications = await prisma.credential.findMany({
       where,
       orderBy: [
-        { order: 'asc' },
-        { issuedAt: 'desc' },
+        { displayPriority: 'asc' },
+        { createdAt: 'desc' },
       ],
     });
 
@@ -37,11 +37,11 @@ const getAllAdminCertifications = async (req, res, next) => {
       where.issuer = { contains: issuer, mode: 'insensitive' };
     }
 
-    const certifications = await prisma.certification.findMany({
+    const certifications = await prisma.credential.findMany({
       where,
       orderBy: [
-        { order: 'asc' },
-        { issuedAt: 'desc' },
+        { displayPriority: 'asc' },
+        { createdAt: 'desc' },
       ],
     });
 
@@ -54,7 +54,7 @@ const getAllAdminCertifications = async (req, res, next) => {
 const getCertificationById = async (req, res, next) => {
   const { id } = req.params;
   try {
-    const certification = await prisma.certification.findUnique({
+    const certification = await prisma.credential.findUnique({
       where: { id },
     });
 
@@ -86,25 +86,20 @@ const createCertification = async (req, res, next) => {
   }
 
   try {
-    const certification = await prisma.certification.create({
+    const certification = await prisma.credential.create({
       data: {
+        id: credentialId || `cert-${Date.now()}`,
+        slug: title.toLowerCase().replace(/ /g, '-'),
         title,
         issuer,
-        type: type || 'TRAINING',
-        category,
-        credentialId,
-        credentialUrl,
-        certificateUrl,
+        category: category || 'Other',
         driveUrl,
-        imageUrl,
-        issuedAt: issuedAt ? new Date(issuedAt) : null,
-        expiredAt: expiredAt ? new Date(expiredAt) : null,
-        doesNotExpire: doesNotExpire === true || doesNotExpire === 'true',
         skills: Array.isArray(skills) ? skills : (typeof skills === 'string' ? skills.split(',').map(s => s.trim()).filter(s => s) : []),
-        description,
+        summary: description || '',
+        portfolioRelevance: 'Added via CMS',
         featured: featured === true || featured === 'true',
-        status: status || 'DRAFT',
-        order: parseInt(order) || 0,
+        displayPriority: parseInt(order) || 3,
+        verificationStatus: 'VERIFIED'
       },
     });
 
@@ -123,7 +118,7 @@ const updateCertification = async (req, res, next) => {
   } = req.body;
 
   try {
-    const existing = await prisma.certification.findUnique({
+    const existing = await prisma.credential.findUnique({
       where: { id },
     });
 
@@ -134,26 +129,17 @@ const updateCertification = async (req, res, next) => {
       });
     }
 
-    const updated = await prisma.certification.update({
+    const updated = await prisma.credential.update({
       where: { id },
       data: {
         title: title !== undefined ? title : existing.title,
         issuer: issuer !== undefined ? issuer : existing.issuer,
-        type: type !== undefined ? type : existing.type,
         category: category !== undefined ? category : existing.category,
-        credentialId: credentialId !== undefined ? credentialId : existing.credentialId,
-        credentialUrl: credentialUrl !== undefined ? credentialUrl : existing.credentialUrl,
-        certificateUrl: certificateUrl !== undefined ? certificateUrl : existing.certificateUrl,
         driveUrl: driveUrl !== undefined ? driveUrl : existing.driveUrl,
-        imageUrl: imageUrl !== undefined ? imageUrl : existing.imageUrl,
-        issuedAt: issuedAt !== undefined ? (issuedAt ? new Date(issuedAt) : null) : existing.issuedAt,
-        expiredAt: expiredAt !== undefined ? (expiredAt ? new Date(expiredAt) : null) : existing.expiredAt,
-        doesNotExpire: doesNotExpire !== undefined ? (doesNotExpire === true || doesNotExpire === 'true') : existing.doesNotExpire,
         skills: skills !== undefined ? (Array.isArray(skills) ? skills : (typeof skills === 'string' ? skills.split(',').map(s => s.trim()).filter(s => s) : [])) : existing.skills,
-        description: description !== undefined ? description : existing.description,
+        summary: description !== undefined ? description : existing.summary,
         featured: featured !== undefined ? (featured === true || featured === 'true') : existing.featured,
-        status: status !== undefined ? status : existing.status,
-        order: order !== undefined ? parseInt(order) : existing.order,
+        displayPriority: order !== undefined ? parseInt(order) : existing.displayPriority,
       },
     });
 
@@ -166,7 +152,7 @@ const updateCertification = async (req, res, next) => {
 const deleteCertification = async (req, res, next) => {
   const { id } = req.params;
   try {
-    await prisma.certification.delete({
+    await prisma.credential.delete({
       where: { id },
     });
     res.json({ message: 'Certification deleted successfully' });

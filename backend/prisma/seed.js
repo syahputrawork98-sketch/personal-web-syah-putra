@@ -203,27 +203,31 @@ async function main() {
     console.log('✅ Experience seeded.');
   }
 
-  // 7. Setup Sample Certifications
+  // 7. Setup Sample Credentials
   const sampleCerts = [
     {
+      id: 'cert-001',
+      slug: 'full-stack-web-development',
       title: 'Full Stack Web Development',
       issuer: 'Udemy',
-      credentialId: 'UC-123456',
-      credentialUrl: 'https://udemy.com/certificate/UC-123456',
-      issuedAt: new Date('2023-01-01'),
-      doesNotExpire: true,
+      category: 'IT & Software',
+      summary: 'Comprehensive course covering frontend and backend technologies.',
+      portfolioRelevance: 'Directly applicable to current role.',
       skills: ['React', 'Node.js', 'PostgreSQL'],
-      status: 'PUBLISHED',
-      order: 1
+      issueDate: new Date('2023-01-01'),
+      driveUrl: 'https://google.com',
+      featured: true,
+      showOnCertificatePage: true,
+      verificationStatus: 'VERIFIED'
     }
   ];
 
-  const certCount = await prisma.certification.count();
+  const certCount = await prisma.credential.count();
   if (certCount === 0) {
     for (const cert of sampleCerts) {
-      await prisma.certification.create({ data: cert });
+      await prisma.credential.create({ data: cert });
     }
-    console.log('✅ Sample certifications seeded.');
+    console.log('✅ Sample credentials seeded.');
   }
 
   console.log('🏁 Seeding finished successfully.');
