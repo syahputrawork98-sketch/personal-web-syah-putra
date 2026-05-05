@@ -12,7 +12,7 @@ const ExperienceForm = ({ initialData, onSubmit, saving }) => {
     description: initialData?.description || '',
     highlights: initialData?.highlights ? initialData.highlights.join('\n') : '',
     techStack: initialData?.techStack ? initialData.techStack.join(', ') : '',
-    status: initialData?.status || 'DRAFT',
+    status: initialData?.status || 'PUBLISHED',
     order: initialData?.order || 0
   });
 
@@ -160,10 +160,19 @@ const ExperienceForm = ({ initialData, onSubmit, saving }) => {
             name="status"
             value={formData.status}
             onChange={handleChange}
-            style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
+            style={{ 
+              width: '100%', 
+              padding: '10px', 
+              borderRadius: '4px', 
+              border: '1px solid var(--border-color)', 
+              backgroundColor: 'var(--bg-color)', 
+              color: formData.status === 'PUBLISHED' ? '#166534' : '#854d0e',
+              fontWeight: '600',
+              borderLeft: formData.status === 'PUBLISHED' ? '4px solid #22c55e' : '4px solid #eab308'
+            }}
           >
-            <option value="DRAFT">DRAFT</option>
-            <option value="PUBLISHED">PUBLISHED</option>
+            <option value="DRAFT">DRAFT (Hidden from Public)</option>
+            <option value="PUBLISHED">PUBLISHED (Visible to Public)</option>
           </select>
         </div>
         <div className="form-group">
