@@ -25,7 +25,7 @@ const CredentialsSection = () => {
     { id: 'SOFT_SKILL', label: 'Soft Skill / Other' },
   ];
 
-  const [activeTab, setActiveTab] = useState('ALL');
+  const [activeTab, setActiveTab] = useState('CERTIFICATE');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,8 +46,8 @@ const CredentialsSection = () => {
 
   const filteredCerts = certifications.filter(cert => {
     if (activeTab === 'ALL') return true;
-    if (activeTab === 'CERTIFICATE') return cert.type === 'CERTIFICATE' || cert.category === 'TECHNICAL';
-    if (activeTab === 'SOFT_SKILL') return cert.category === 'SOFT_SKILL' || cert.category === 'TRAINING';
+    if (activeTab === 'CERTIFICATE') return cert.category === 'TECHNICAL';
+    if (activeTab === 'SOFT_SKILL') return cert.category === 'SOFT_SKILL';
     return cert.category === activeTab;
   });
 
@@ -157,10 +157,10 @@ const CredentialsSection = () => {
                 letterSpacing: '0.5px',
                 color: 'var(--primary-color)'
               }}>
-                {cert.category === 'ACADEMIC' ? 'Academic' : 
-                 (cert.category === 'TECHNICAL' || cert.type === 'CERTIFICATE') ? 'Programming / IT' : 
+                {cert.category === 'TECHNICAL' ? 'Programming / IT' : 
                  cert.category === 'PROFESSIONAL' ? 'Professional' : 
-                 (cert.category === 'SOFT_SKILL' || cert.category === 'TRAINING') ? 'Soft Skill' : 'Other'}
+                 cert.category === 'ACADEMIC' ? 'Academic' : 
+                 cert.category === 'SOFT_SKILL' ? 'Soft Skill' : 'Other'}
               </div>
               
               <h4 style={{ 
