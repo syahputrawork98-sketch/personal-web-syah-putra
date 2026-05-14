@@ -221,6 +221,20 @@ Perubahan Batch 16 Fix:
 - Mempertahankan link GitHub profil Syah Putra N sebagai satu-satunya link aktif yang valid untuk saat ini.
 - Menyiapkan *clean state* data aset proyek untuk pengisian URL asli di masa mendatang (HOLD).
 
+## Catatan Batch 17
+
+Status: Executed - Project Visual Polish & UI/UX Refinement selesai.
+
+Perubahan Batch 17:
+- Melakukan **Visual Polish** mendalam pada seluruh komponen halaman Projects:
+  - **Category Tabs**: Menambahkan efek transisi halus, bayangan dinamis pada *active state*, dan dukungan scroll horizontal pada tampilan mobile.
+  - **Project Cards**: Memperbaiki hierarki tipografi, menambahkan gradien overlay pada gambar untuk keterbacaan badge, dan memperhalus animasi hover.
+  - **Project Detail Modal**: Memperluas area informasi, menambahkan efek *glassmorphism* yang lebih kuat pada *backdrop*, dan memperbaiki tata letak dua kolom agar lebih seimbang.
+  - **Link Tiles**: Memperbaiki *spacing*, menambahkan animasi mikro saat hover, dan memastikan responsivitas grid (1 kolom di mobile sangat kecil).
+- Melakukan **CSS Namespace Refactoring**:
+  - Mengganti class generik menjadi lebih spesifik untuk menghindari konflik gaya (misal: `.project-modal-overlay`, `.project-link-tile`).
+- Meningkatkan **Responsivitas**: Menyesuaikan padding, ukuran font, dan penataan elemen agar terlihat premium di semua ukuran layar (Mobile, Tablet, Desktop).
+
 ## Roadmap Refactor Awal (COMPLETED)
 
 1. Root structure refactor (Selesai).

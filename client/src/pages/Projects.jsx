@@ -85,14 +85,17 @@ const Projects = () => {
     <section id="projects" className="section-padding">
       <div className="container">
         <motion.div 
-          style={{ textAlign: 'center', marginBottom: 'var(--space-10)' }}
+          style={{ textAlign: 'center', marginBottom: 'var(--space-12)' }}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-center">Portfolio Proyek</h2>
-          <p style={{ maxWidth: '600px', margin: 'var(--space-2) auto 0', opacity: 0.7 }}>
-            Eksplorasi karya saya di berbagai bidang, mulai dari pengembangan perangkat lunak hingga desain teknis manufaktur.
+          <h2 className="text-center" style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.5px' }}>
+            Portfolio Proyek
+          </h2>
+          <div style={{ width: '60px', height: '4px', background: 'var(--primary-color)', margin: 'var(--space-4) auto', borderRadius: 'var(--radius-full)' }} />
+          <p style={{ maxWidth: '650px', margin: '0 auto', opacity: 0.8, fontSize: '1.1rem', lineHeight: 1.6 }}>
+            Eksplorasi karya saya di berbagai bidang, mulai dari pengembangan perangkat lunak hingga desain teknis manufaktur dan estimasi konstruksi.
           </p>
         </motion.div>
 

@@ -19,98 +19,67 @@ const ProjectDetailModal = ({ isOpen, onClose, project }) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div 
-          className="modal-overlay" 
-          onClick={onClose}
-          style={{
-            position: 'fixed',
-            top: 0, left: 0, right: 0, bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.9)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            zIndex: 2000,
-            padding: 'var(--space-4)',
-            backdropFilter: 'blur(10px)'
-          }}
-        >
+        <div className="project-modal-overlay" onClick={onClose}>
           <motion.div 
-            className="modal-content card"
+            className="project-modal-content"
             initial={{ opacity: 0, scale: 0.9, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 30 }}
             onClick={(e) => e.stopPropagation()}
-            style={{
-              maxWidth: '900px',
-              width: '100%',
-              maxHeight: '90vh',
-              overflowY: 'auto',
-              padding: 0,
-              position: 'relative',
-              border: '1px solid rgba(var(--primary-color-rgb), 0.2)'
-            }}
           >
             <button 
-              className="modal-close"
+              className="project-modal-close"
               onClick={onClose}
               aria-label="Tutup detail proyek"
-              style={{
-                position: 'absolute',
-                top: 'var(--space-4)',
-                right: 'var(--space-4)',
-                background: 'rgba(15, 23, 42, 0.8)',
-                border: '1px solid var(--border-color)',
-                borderRadius: '50%',
-                width: '40px',
-                height: '40px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '1.2rem',
-                cursor: 'pointer',
-                color: 'white',
-                zIndex: 10
-              }}
             >
               &times;
             </button>
 
             {/* Header Image */}
-            <div style={{ width: '100%', height: '300px', overflow: 'hidden' }}>
+            <div style={{ width: '100%', height: '350px', overflow: 'hidden', position: 'relative' }}>
               <img 
                 src={project.imageUrl || 'https://via.placeholder.com/1200x600?text=Project+Detail'} 
                 alt={project.title}
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
+              <div style={{ 
+                position: 'absolute', 
+                bottom: 0, left: 0, right: 0, 
+                height: '50%', 
+                background: 'linear-gradient(to top, var(--background-color), transparent)',
+                zIndex: 1
+              }} />
             </div>
 
-            <div style={{ padding: 'var(--space-8)' }}>
-              <div style={{ marginBottom: 'var(--space-6)' }}>
-                <span className="category-badge" style={{ marginBottom: 'var(--space-2)', display: 'inline-block' }}>
+            <div style={{ padding: 'var(--space-10)', marginTop: '-var(--space-12)', position: 'relative', zIndex: 2 }}>
+              <div style={{ marginBottom: 'var(--space-8)' }}>
+                <span className="category-badge" style={{ marginBottom: 'var(--space-3)', display: 'inline-block' }}>
                   {project.category}
                 </span>
-                <h2 style={{ fontSize: '2rem', marginBottom: 'var(--space-2)' }}>{project.title}</h2>
-                <p style={{ fontSize: '1.1rem', opacity: 0.8, color: 'var(--primary-color)', fontWeight: 600 }}>
+                <h2 style={{ fontSize: '2.5rem', marginBottom: 'var(--space-2)', fontWeight: 800 }}>{project.title}</h2>
+                <p style={{ fontSize: '1.25rem', opacity: 0.9, color: 'var(--primary-color)', fontWeight: 700, letterSpacing: '0.5px' }}>
                   {project.subtitle || project.shortDescription}
                 </p>
               </div>
 
-              <div className="modal-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-8)' }}>
+              <div className="project-modal-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-10)' }}>
                 {/* Left Column: Info */}
                 <div>
-                  <div style={{ marginBottom: 'var(--space-6)' }}>
+                  <div style={{ marginBottom: 'var(--space-8)' }}>
                     <h4 className="detail-label">Ringkasan Proyek</h4>
-                    <p style={{ lineHeight: 1.7, opacity: 0.9 }}>{project.description}</p>
+                    <p style={{ lineHeight: 1.8, opacity: 0.9, fontSize: '1.05rem' }}>
+                      {project.description || 'Detail deskripsi proyek belum tersedia.'}
+                    </p>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)', marginBottom: 'var(--space-6)' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-6)', marginBottom: 'var(--space-8)' }}>
                     <div>
                       <h4 className="detail-label">Peran</h4>
-                      <p style={{ fontSize: '0.95rem' }}>{project.role || 'Contributor'}</p>
+                      <p style={{ fontSize: '1rem', fontWeight: 600 }}>{project.role || 'Contributor'}</p>
                     </div>
                     <div>
                       <h4 className="detail-label">Status</h4>
-                      <p style={{ fontSize: '0.95rem' }}>{project.status || 'Completed'}</p>
+                      <p style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--primary-color)' }}>{project.status || 'Completed'}</p>
                     </div>
                   </div>
 
@@ -118,7 +87,7 @@ const ProjectDetailModal = ({ isOpen, onClose, project }) => {
                     <h4 className="detail-label">Teknologi & Tools</h4>
                     <div className="tech-badges">
                       {techStack.map((tech, i) => (
-                        <span key={i} className="tech-badge">{tech}</span>
+                        <span key={i} className="tech-badge" style={{ fontSize: '0.75rem', padding: '4px 12px' }}>{tech}</span>
                       ))}
                     </div>
                   </div>
@@ -126,33 +95,37 @@ const ProjectDetailModal = ({ isOpen, onClose, project }) => {
 
                 {/* Right Column: Challenges & Links */}
                 <div>
-                  {project.challenge && (
-                    <div style={{ marginBottom: 'var(--space-6)' }}>
-                      <h4 className="detail-label">Tantangan</h4>
-                      <p style={{ fontSize: '0.9rem', lineHeight: 1.6, opacity: 0.8 }}>{project.challenge}</p>
-                    </div>
-                  )}
-                  {project.solution && (
-                    <div style={{ marginBottom: 'var(--space-6)' }}>
-                      <h4 className="detail-label">Solusi</h4>
-                      <p style={{ fontSize: '0.9rem', lineHeight: 1.6, opacity: 0.8 }}>{project.solution}</p>
+                  {(project.challenge || project.solution) && (
+                    <div style={{ padding: 'var(--space-6)', background: 'rgba(var(--primary-color-rgb), 0.03)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-color)', marginBottom: 'var(--space-8)' }}>
+                      {project.challenge && (
+                        <div style={{ marginBottom: 'var(--space-6)' }}>
+                          <h4 className="detail-label">Tantangan</h4>
+                          <p style={{ fontSize: '0.95rem', lineHeight: 1.7, opacity: 0.85 }}>{project.challenge}</p>
+                        </div>
+                      )}
+                      {project.solution && (
+                        <div>
+                          <h4 className="detail-label">Solusi</h4>
+                          <p style={{ fontSize: '0.95rem', lineHeight: 1.7, opacity: 0.85 }}>{project.solution}</p>
+                        </div>
+                      )}
                     </div>
                   )}
 
                   {linkTiles.length > 0 && (
                     <div>
-                      <h4 className="detail-label" style={{ marginBottom: 'var(--space-3)' }}>Aset & Tautan</h4>
-                      <div className="link-tiles-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                      <h4 className="detail-label" style={{ marginBottom: 'var(--space-4)' }}>Aset & Tautan Terkait</h4>
+                      <div className="project-link-tiles-grid">
                         {linkTiles.map(tile => (
                           <a 
                             key={tile.key}
                             href={tile.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="link-tile"
+                            className="project-link-tile"
                           >
-                            <span className="link-tile-icon">{tile.icon}</span>
-                            <span className="link-tile-label">{tile.label}</span>
+                            <span className="project-link-tile-icon">{tile.icon}</span>
+                            <span className="project-link-tile-label">{tile.label}</span>
                           </a>
                         ))}
                       </div>
@@ -162,13 +135,20 @@ const ProjectDetailModal = ({ isOpen, onClose, project }) => {
               </div>
 
               {project.features && project.features.length > 0 && (
-                <div style={{ marginTop: 'var(--space-8)', paddingTop: 'var(--space-6)', borderTop: '1px solid var(--border-color)' }}>
-                  <h4 className="detail-label">Fitur Utama</h4>
-                  <ul style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--space-2)', paddingLeft: '1.2rem' }}>
+                <div style={{ marginTop: 'var(--space-10)', paddingTop: 'var(--space-8)', borderTop: '1px solid var(--border-color)' }}>
+                  <h4 className="detail-label" style={{ marginBottom: 'var(--space-6)' }}>Fitur Utama Proyek</h4>
+                  <ul style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 'var(--space-4)', paddingLeft: '1.2rem' }}>
                     {project.features.map((feature, i) => (
-                      <li key={i} style={{ fontSize: '0.9rem', opacity: 0.8 }}>{feature}</li>
+                      <li key={i} style={{ fontSize: '0.95rem', opacity: 0.85, lineHeight: 1.6 }}>{feature}</li>
                     ))}
                   </ul>
+                </div>
+              )}
+
+              {project.impact && (
+                <div style={{ marginTop: 'var(--space-8)', padding: 'var(--space-6)', background: 'rgba(var(--primary-color-rgb), 0.05)', borderRadius: 'var(--radius-lg)', textAlign: 'center' }}>
+                  <h4 className="detail-label" style={{ justifyContent: 'center' }}>Dampak & Hasil</h4>
+                  <p style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)' }}>{project.impact}</p>
                 </div>
               )}
             </div>

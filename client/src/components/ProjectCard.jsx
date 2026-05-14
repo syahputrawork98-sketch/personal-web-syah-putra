@@ -51,12 +51,22 @@ const ProjectCard = ({ project, onClick }) => {
           alt={title}
           className="project-image"
         />
+        <div className="project-image-overlay" style={{
+          position: 'absolute',
+          top: 0, left: 0, right: 0, bottom: 0,
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.3), transparent 40%, rgba(0,0,0,0.5))',
+          zIndex: 1
+        }} />
         <div className="project-badges-top">
           <span className="category-badge">{project.category || "General"}</span>
           {project.status && (
             <span 
               className="project-status-badge"
-              style={{ color: getStatusColor(project.status), border: `1px solid ${getStatusColor(project.status)}` }}
+              style={{ 
+                color: 'white', 
+                backgroundColor: getStatusColor(project.status),
+                borderColor: 'rgba(255,255,255,0.2)'
+              }}
             >
               {project.status}
             </span>
