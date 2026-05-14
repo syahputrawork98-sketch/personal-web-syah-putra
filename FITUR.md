@@ -166,6 +166,22 @@ Perubahan Batch 13 Fix:
 - Menambahkan kategori filter yang lebih komprehensif: BNSP, IT & Digital, Teknik & Manufaktur, Konstruksi, Pengembangan Diri, Magang & Partisipasi, Dokumen Pendukung.
 - Seluruh 20 item telah terhubung dengan `viewUrl` dan `previewUrl` Google Drive yang valid.
 
+## Catatan Batch 14
+
+Status: Executed - Project Category Tabs + Project Data Model selesai.
+
+Perubahan Batch 14:
+- Menambahkan sistem **Tab Kategori** pada halaman Proyek untuk mendukung klasifikasi lintas bidang:
+  - IT & Web
+  - Manufaktur & Teknik
+  - Model Mesin 3D
+  - Model Bangunan & RAB
+- Menormalisasi **Data Model Proyek** di frontend dengan field baru: `category`, `links` object (github, demo, drive, model, rab), dan `featured`.
+- Memperbarui `projectsFallback.js` dengan contoh proyek di setiap kategori baru untuk validasi UI.
+- Mengimplementasikan logika filter kategori di `Projects.jsx` dengan dukungan *fallback* otomatis ke "IT & Web" untuk data lama.
+- Memperbarui komponen `ProjectCard` agar dapat merender lencana kategori dan menangani struktur link yang baru.
+- Menambahkan styling responsif untuk tab filter kategori di `projects.css`.
+
 ## Roadmap Refactor Awal (COMPLETED)
 
 1. Root structure refactor (Selesai).

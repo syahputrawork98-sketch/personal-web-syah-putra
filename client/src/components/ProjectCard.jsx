@@ -29,8 +29,14 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
   const title = getContent('title');
   const subtitle = getContent('subtitle') || getContent('shortDescription') || "";
   const techStack = project.techStack || project.technologies || [];
-  const githubUrl = project.githubUrl || project.github || "";
-  const demoUrl = project.demoUrl || project.demo || project.liveUrl || "";
+  
+  // Link mapping (Batch 14 normalization)
+  const links = project.links || {};
+  const githubUrl = links.github || project.githubUrl || project.github || "";
+  const demoUrl = links.demo || project.demoUrl || project.demo || project.liveUrl || "";
+  const driveUrl = links.drive || "";
+  const modelUrl = links.model || "";
+  const rabUrl = links.rab || "";
 
 
   const cardVariants = {
@@ -51,11 +57,16 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
           alt={title}
           className="project-image"
         />
-        <div 
-          className="project-status-badge"
-          style={{ color: getStatusColor(project.status), border: `1px solid ${getStatusColor(project.status)}` }}
-        >
-          {project.status}
+        <div className="project-badges-top">
+          <span className="category-badge">{project.category || "General"}</span>
+          {project.status && (
+            <span 
+              className="project-status-badge"
+              style={{ color: getStatusColor(project.status), border: `1px solid ${getStatusColor(project.status)}` }}
+            >
+              {project.status}
+            </span>
+          )}
         </div>
       </div>
 

@@ -7,12 +7,36 @@ import { useFetch } from '../hooks/useFetch';
 import { projectsFallback } from '../fallback/projectsFallback';
 
 
+const projectCategories = [
+  "Semua",
+  "IT & Web",
+  "Manufaktur & Teknik",
+  "Model Mesin 3D",
+  "Model Bangunan & RAB"
+];
+
 const Projects = () => {
   const { data, loading, error } = useFetch(getPublicProjects);
+  const [activeCategory, setActiveCategory] = useState("Semua");
   const [expandedId, setExpandedId] = useState(null);
-  const projects = (Array.isArray(data) 
+
+  const rawProjects = (Array.isArray(data) 
     ? data 
     : (data?.projects || data?.data?.projects)) || (error ? projectsFallback : []);
+
+  // Normalize and Sort
+  const projects = rawProjects.map(p => ({
+    ...p,
+    category: p.category || "IT & Web" // Fallback for old data
+  })).sort((a, b) => (a.order || a.orderIndex) - (b.order || b.orderIndex));
+
+  // Filter by Category
+  const filteredProjects = activeCategory === "Semua"
+    ? projects
+    : projects.filter(p => p.category === activeCategory);
+
+  const featuredProjects = filteredProjects.filter(p => p.featured);
+  const otherProjects = filteredProjects.filter(p => !p.featured);
 
   const toggleExpand = (id) => {
     setExpandedId(expandedId === id ? null : id);
@@ -23,15 +47,11 @@ const Projects = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
+        staggerChildren: 0.1,
+        delayChildren: 0.1
       }
     }
   };
-
-  const sortedProjects = [...projects].sort((a, b) => (a.order || a.orderIndex) - (b.order || b.orderIndex));
-  const featuredProjects = sortedProjects.filter(p => p.featured);
-  const otherProjects = sortedProjects.filter(p => !p.featured);
 
   if (loading) {
     return (
@@ -57,13 +77,29 @@ const Projects = () => {
     <section id="projects" className="section-padding">
       <div className="container">
         <motion.div 
-          style={{ textAlign: 'center', marginBottom: 'var(--space-12)' }}
+          style={{ textAlign: 'center', marginBottom: 'var(--space-10)' }}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-center">Proyek Unggulan</h2>
+          <h2 className="text-center">Portfolio Proyek</h2>
+          <p style={{ maxWidth: '600px', margin: 'var(--space-2) auto 0', opacity: 0.7 }}>
+            Eksplorasi karya saya di berbagai bidang, mulai dari pengembangan perangkat lunak hingga desain teknis manufaktur.
+          </p>
         </motion.div>
+
+        {/* Category Tabs */}
+        <div className="filter-container" style={{ marginBottom: 'var(--space-10)' }}>
+          {projectCategories.map(cat => (
+            <button
+              key={cat}
+              className={`filter-btn ${activeCategory === cat ? 'active' : ''}`}
+              onClick={() => setActiveCategory(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
           <>
             {/* Featured Projects Grid */}
             {featuredProjects.length > 0 && (
@@ -126,6 +162,12 @@ const Projects = () => {
                   />
                 ))}
               </motion.div>
+            )}
+
+            {filteredProjects.length === 0 && (
+              <div style={{ padding: 'var(--space-12) 0' }}>
+                <EmptyState message={`Belum ada proyek di kategori ${activeCategory}.`} />
+              </div>
             )}
           </>
       </div>
