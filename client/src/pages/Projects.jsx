@@ -100,7 +100,7 @@ const Projects = () => {
         </motion.div>
 
         {/* Category Tabs */}
-        <div className="filter-container" style={{ marginBottom: 'var(--space-10)' }}>
+        <div className="filter-container">
           {projectCategories.map(cat => (
             <button
               key={cat}

@@ -1,6 +1,6 @@
 /* ==========================================
    PROJECT PAGE STYLES
-   Batch 17 - Visual Polish & UI/UX Refinement
+   Batch 17 Fix - Refined Cards & Quick Actions
    ========================================== */
 
 .project-card {
@@ -13,6 +13,7 @@
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   transition: all var(--transition-normal);
+  position: relative;
 }
 
 .project-card:hover {
@@ -23,7 +24,7 @@
 
 .project-image-container {
   position: relative;
-  height: 220px;
+  height: 200px; /* Consistent height */
   width: 100%;
   overflow: hidden;
 }
@@ -41,9 +42,9 @@
 
 .project-badges-top {
   position: absolute;
-  top: 16px;
-  left: 16px;
-  right: 16px;
+  top: 12px;
+  left: 12px;
+  right: 12px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -52,21 +53,21 @@
 }
 
 .category-badge {
-  padding: 4px 12px;
-  border-radius: 6px;
-  font-size: 0.65rem;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 0.6rem;
   font-weight: 800;
   background: var(--primary-color);
   color: white;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.4);
+  letter-spacing: 0.8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .project-status-badge {
-  padding: 4px 12px;
+  padding: 3px 10px;
   border-radius: var(--radius-full);
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 800;
   background: rgba(15, 23, 42, 0.9);
   color: white;
@@ -75,46 +76,80 @@
 }
 
 .project-content {
-  padding: var(--space-6);
+  padding: var(--space-5);
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
 .project-role {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 800;
   color: var(--primary-color);
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: var(--space-2);
+  letter-spacing: 1.2px;
+  margin-bottom: var(--space-1);
 }
 
 .project-content h3 {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   margin-bottom: var(--space-2);
-  line-height: 1.3;
+  line-height: 1.2;
 }
 
 .tech-badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: var(--space-6);
+  gap: 5px;
+  margin-bottom: var(--space-5);
 }
 
 .tech-badge {
-  padding: 3px 10px;
+  padding: 2px 8px;
   border-radius: 4px;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 700;
-  background: rgba(var(--primary-color-rgb), 0.08);
+  background: rgba(var(--primary-color-rgb), 0.06);
   color: var(--primary-color);
-  border: 1px solid rgba(var(--primary-color-rgb), 0.15);
+  border: 1px solid rgba(var(--primary-color-rgb), 0.1);
 }
 
+/* Quick Actions Style */
 .project-actions {
   margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.project-quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.quick-link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(var(--primary-color-rgb), 0.05);
+  border: 1px solid rgba(var(--primary-color-rgb), 0.1);
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.quick-link-btn:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(var(--primary-color-rgb), 0.3);
 }
 
 /* Filter Category Tabs */
@@ -123,6 +158,7 @@
   flex-wrap: wrap;
   gap: var(--space-3);
   justify-content: center;
+  margin-bottom: var(--space-12) !important; /* Force more spacing */
   padding: 0 var(--space-4);
 }
 
@@ -181,7 +217,6 @@
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Custom Scrollbar for Modal */
 .project-modal-content::-webkit-scrollbar {
   width: 8px;
 }
@@ -293,7 +328,8 @@
   .filter-container {
     justify-content: flex-start;
     overflow-x: auto;
-    padding-bottom: 8px;
+    padding-bottom: 12px; /* More padding for scrollbar */
+    margin-bottom: var(--space-8) !important;
     -webkit-overflow-scrolling: touch;
     flex-wrap: nowrap;
   }
@@ -313,5 +349,9 @@
 
   .project-content h3 {
     font-size: 1.15rem;
+  }
+
+  .project-image-container {
+    height: 180px;
   }
 }

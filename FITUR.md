@@ -235,6 +235,22 @@ Perubahan Batch 17:
   - Mengganti class generik menjadi lebih spesifik untuk menghindari konflik gaya (misal: `.project-modal-overlay`, `.project-link-tile`).
 - Meningkatkan **Responsivitas**: Menyesuaikan padding, ukuran font, dan penataan elemen agar terlihat premium di semua ukuran layar (Mobile, Tablet, Desktop).
 
+## Catatan Batch 17 Fix
+
+Status: Executed - Refine Project Cards, Category Spacing, and Quick Actions selesai.
+
+Perubahan Batch 17 Fix:
+- Memperbaiki **Spasi Antar Elemen**: Menambah jarak yang signifikan antara tab filter kategori dengan grid proyek untuk menghindari kesan tumpang tindih.
+- Optimalisasi **Project Card**:
+  - Menetapkan tinggi gambar yang konsisten untuk menjaga keselarasan baris grid.
+  - Membatasi jumlah teks deskripsi agar kartu tetap rapi.
+  - Memperkecil ukuran lencana (*badge*) pada gambar agar tidak mendominasi visual.
+- Implementasi **Quick Action Buttons**:
+  - Menambahkan baris tautan cepat di bawah tombol utama pada setiap kartu proyek.
+  - Tautan (GitHub, Demo, Drive, dll) muncul secara otomatis hanya jika URL tersedia.
+  - Menggunakan `e.stopPropagation()` agar klik pada tautan cepat tidak memicu pembukaan modal detail.
+- Peningkatan **UX Mobile**: Memberikan ruang gerak lebih luas pada tab filter dan menyesuaikan proporsi kartu untuk layar kecil.
+
 ## Roadmap Refactor Awal (COMPLETED)
 
 1. Root structure refactor (Selesai).

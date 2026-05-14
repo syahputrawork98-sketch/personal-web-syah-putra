@@ -14,22 +14,19 @@ const ProjectCard = ({ project, onClick }) => {
     }
   };
 
-  const getContent = (field) => {
-    const data = project[field];
-    if (!data) return '';
-    if (typeof data === 'string') return data;
-    if (Array.isArray(data)) return data;
-    return data['id'] || data['en'] || '';
-  };
-
-  const title = getContent('title');
-  const subtitle = getContent('subtitle') || getContent('shortDescription') || "";
+  const title = project.title || "";
+  const subtitle = project.subtitle || project.shortDescription || "";
   const techStack = project.techStack || project.technologies || [];
   
   const links = project.links || {};
-  const githubUrl = links.github || project.githubUrl || project.github || "";
-  const demoUrl = links.demo || project.demoUrl || project.demo || project.liveUrl || "";
-
+  const quickLinks = [
+    { key: 'demo', icon: '🌐', url: links.demo || project.demoUrl || project.demo || project.liveUrl },
+    { key: 'github', icon: '💻', url: links.github || project.githubUrl || project.github },
+    { key: 'figma', icon: '🎨', url: links.figma },
+    { key: 'drive', icon: '📂', url: links.drive || links.googleDrive },
+    { key: 'rab', icon: '📊', url: links.rab },
+    { key: 'model', icon: '🏗️', url: links.model || links.modelPreview },
+  ].filter(link => link.url);
 
   const cardVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -38,9 +35,8 @@ const ProjectCard = ({ project, onClick }) => {
 
   return (
     <motion.div 
-      className="card project-card"
+      className="project-card"
       variants={cardVariants}
-      whileHover={{ y: -8, transition: { duration: 0.3 } }}
       onClick={onClick}
       style={{ cursor: 'pointer' }}
     >
@@ -54,7 +50,7 @@ const ProjectCard = ({ project, onClick }) => {
         <div className="project-image-overlay" style={{
           position: 'absolute',
           top: 0, left: 0, right: 0, bottom: 0,
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.3), transparent 40%, rgba(0,0,0,0.5))',
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.2), transparent 50%, rgba(0,0,0,0.4))',
           zIndex: 1
         }} />
         <div className="project-badges-top">
@@ -63,9 +59,7 @@ const ProjectCard = ({ project, onClick }) => {
             <span 
               className="project-status-badge"
               style={{ 
-                color: 'white', 
-                backgroundColor: getStatusColor(project.status),
-                borderColor: 'rgba(255,255,255,0.2)'
+                backgroundColor: getStatusColor(project.status)
               }}
             >
               {project.status}
@@ -77,35 +71,56 @@ const ProjectCard = ({ project, onClick }) => {
       {/* Project Content */}
       <div className="project-content">
         <div style={{ marginBottom: 'var(--space-3)' }}>
-          <p className="project-role">{project.role}</p>
-          <h3 style={{ marginBottom: 'var(--space-2)' }}>{title}</h3>
-          <p style={{ fontSize: '0.9rem', opacity: 0.8, marginBottom: 'var(--space-4)' }}>{subtitle}</p>
+          <p className="project-role">{project.role || "Project"}</p>
+          <h3>{title}</h3>
+          <p style={{ fontSize: '0.85rem', opacity: 0.7, lineHeight: 1.4, marginBottom: 'var(--space-4)' }}>
+            {subtitle.length > 80 ? subtitle.substring(0, 80) + "..." : subtitle}
+          </p>
         </div>
 
         {/* Tech Stack Badges */}
         <div className="tech-badges">
-          {techStack.slice(0, 4).map((tech, idx) => (
+          {techStack.slice(0, 3).map((tech, idx) => (
             <span key={idx} className="tech-badge">
               {tech}
             </span>
           ))}
-          {techStack.length > 4 && (
-            <span className="tech-badge">+{techStack.length - 4}</span>
+          {techStack.length > 3 && (
+            <span className="tech-badge">+{techStack.length - 3}</span>
           )}
         </div>
 
-        {/* Buttons */}
-        <div className="project-actions" style={{ marginTop: 'auto' }}>
+        {/* Actions Container */}
+        <div className="project-actions">
           <button 
             className="btn btn-primary" 
-            style={{ width: '100%', fontSize: '0.85rem' }}
+            style={{ width: '100%', fontSize: '0.8rem', padding: '8px 0' }}
             onClick={(e) => {
               e.stopPropagation();
               onClick();
             }}
           >
-            Lihat Detail Proyek
+            Detail Proyek
           </button>
+
+          {/* Quick Links Row */}
+          {quickLinks.length > 0 && (
+            <div className="project-quick-links">
+              {quickLinks.map(link => (
+                <a 
+                  key={link.key}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="quick-link-btn"
+                  title={link.key.toUpperCase()}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {link.icon}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </motion.div>
