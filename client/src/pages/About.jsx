@@ -4,6 +4,9 @@ import { getPublicSkills, getPublicContact, getPublicProfile, getPublicEducation
 import EmptyState from '../components/EmptyState';
 import CredentialsSection from '../components/about/CredentialsSection';
 import { categoryMap, experienceReframing } from '../data/aboutData';
+import TechSkillGroup from '../components/about/TechSkillGroup';
+import ExperienceReframing from '../components/about/ExperienceReframing';
+import EducationCard from '../components/about/EducationCard';
 import '../styles/about.css';
 
 const About = () => {
@@ -189,18 +192,7 @@ const About = () => {
           </h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 'var(--space-8)' }}>
             {Object.entries(techSkills).map(([category, skills]) => (
-              <div key={category}>
-                <h4 style={{ fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1.5px', opacity: 0.6, marginBottom: 'var(--space-4)', borderBottom: '2px solid var(--primary-color)', display: 'inline-block', paddingBottom: '4px' }}>
-                  {categoryMap[category.toLowerCase()] || category}
-                </h4>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2)' }}>
-                  {skills.map(skill => (
-                    <span key={skill.id} className="tech-badge" style={{ fontSize: '0.8rem', padding: '6px 12px', fontWeight: 600 }}>
-                      {skill.name}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              <TechSkillGroup key={category} category={category} skills={skills} />
             ))}
           </div>
         </motion.div>
@@ -217,12 +209,7 @@ const About = () => {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-6)' }}>
             {currentEducation.length > 0 ? (
               currentEducation.map((edu) => (
-                <div key={edu.id} className="card" style={{ padding: 'var(--space-6)' }}>
-                  <p style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '4px' }}>{edu.school}</p>
-                  <p style={{ color: 'var(--primary-color)', fontWeight: 600, fontSize: '0.95rem' }}>{edu.degree}</p>
-                  <p style={{ opacity: 0.6, fontSize: '0.85rem', marginBottom: 'var(--space-3)' }}>{edu.period}</p>
-                  {edu.description && <p style={{ fontSize: '0.9rem', opacity: 0.8, lineHeight: 1.5 }}>{edu.description}</p>}
-                </div>
+                <EducationCard key={edu.id} {...edu} />
               ))
             ) : (
               <p style={{ opacity: 0.6 }}>Data pendidikan belum tersedia.</p>
@@ -238,20 +225,7 @@ const About = () => {
           transition={{ delay: 0.4, duration: 0.6 }}
           style={{ marginBottom: 'var(--space-12)' }}
         >
-          <div className="card" style={{ padding: 'var(--space-8)', borderLeft: '5px solid var(--primary-color)' }}>
-            <h3 style={{ marginBottom: 'var(--space-4)', fontSize: '1.5rem' }}>8+ Tahun Fondasi IT & Digitalisasi</h3>
-            <p style={{ fontSize: '1.05rem', lineHeight: 1.7, opacity: 0.9, marginBottom: 'var(--space-6)' }}>
-              Bukan sekadar pengalaman masa lalu, 8 tahun berkecimpung di dunia IT sistem telah membentuk cara saya berpikir dalam membangun aplikasi. Saya membawa keahlian dalam:
-            </p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--space-4)' }}>
-              {experienceReframing.map((item, i) => (
-                <div key={i}>
-                  <p style={{ fontWeight: 700, color: 'var(--primary-color)', marginBottom: '4px' }}>{item.title}</p>
-                  <p style={{ fontSize: '0.85rem', opacity: 0.7 }}>{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          <ExperienceReframing />
         </motion.div>
 
         {/* 5. Values & Strengths (Soft Skills) */}

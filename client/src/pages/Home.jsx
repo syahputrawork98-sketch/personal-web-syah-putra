@@ -5,6 +5,7 @@ import { TypeAnimation } from 'react-type-animation';
 import { getPublicSkills, getPublicHero } from '../lib/api';
 import EmptyState from '../components/EmptyState';
 import { services } from '../data/homeData';
+import ServiceCard from '../components/home/ServiceCard';
 import '../styles/home.css';
 
 
@@ -158,10 +159,7 @@ const Home = () => {
           }}
         >
           {services.map((item, idx) => (
-            <div key={idx} className="card" style={{ padding: 'var(--space-4)', textAlign: 'center', background: 'rgba(var(--primary-color-rgb), 0.05)', border: '1px solid rgba(var(--primary-color-rgb), 0.1)' }}>
-              <h4 style={{ fontSize: '0.95rem', marginBottom: 'var(--space-1)', color: 'var(--primary-color)' }}>{item.title}</h4>
-              <p style={{ fontSize: '0.8rem', opacity: 0.7 }}>{item.desc}</p>
-            </div>
+            <ServiceCard key={idx} {...item} />
           ))}
         </motion.div>
 

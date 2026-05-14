@@ -47,12 +47,24 @@ Perubahan Batch 3:
 - Halaman publik (`Home.jsx` & `About.jsx`) menjadi lebih bersih dan modular.
 - Verifikasi visual dan behavior tetap konsisten.
 
+## Catatan Batch 4
+
+Status: Executed - Ekstraksi komponen publik ringan selesai.
+
+Perubahan Batch 4:
+- Membuat folder komponen untuk tiap area halaman publik (`home/`, `about/`, `experience/`, dsb).
+- Ekstraksi `ServiceCard` di halaman Home.
+- Ekstraksi `TechSkillGroup`, `EducationCard`, dan `ExperienceReframing` di halaman About.
+- Ekstraksi `ExperienceCard` di halaman Experience.
+- Kode pada `pages/` menjadi lebih modular dan fokus pada manajemen state/data.
+- Verifikasi visual dan behavior tetap konsisten.
+
 ## Roadmap Refactor Awal
 
 1. Root structure refactor (Selesai).
 2. Client folder layering (Selesai).
 3. Static data extraction (Selesai).
-4. Component extraction.
+4. Component extraction (Selesai).
 5. Hooks, services, dan dokumentasi sinkron.
 
 ## Catatan Batch 1
