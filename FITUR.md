@@ -283,6 +283,27 @@ Perubahan Batch 19:
 - Validasi **CTA & Alur Navigasi**: Mengonfirmasi bahwa seluruh tombol fungsional (Unduh CV, Detail Proyek, Drive Preview) bekerja dengan stabil tanpa adanya tautan palsu atau data dummy yang tersisa.
 - Audit **Data Sensitif**: Memastikan tidak ada alamat pribadi, nomor telepon privat yang tidak terproteksi, atau dokumen internal yang terekspos di dalam repositori.
 
+## Catatan Batch 20
+
+Status: Executed - Final Documentation & Production Readiness Checklist selesai.
+
+Perubahan Batch 20:
+- Melakukan pemutakhiran menyeluruh pada **README.md** untuk mencerminkan branding SPN dan seluruh fitur yang telah dibangun hingga Batch 20.
+- Menyusun **Production Readiness Checklist** (dalam `docs/production-checklist.md`) untuk memetakan status setiap fitur publik.
+- Mengidentifikasi secara formal butir-butir **HOLD** (seperti PDF CV asli, Admin Auth, dan Deployment) untuk referensi pengembangan fase berikutnya.
+- Memastikan riwayat Batch 14-20 tercatat dengan rapi sebagai basis audit pengembangan.
+- Verifikasi akhir melalui `npm run build` untuk memastikan integritas kode tetap terjaga setelah seluruh pembersihan data.
+
+---
+**Siklus Batch 1 - 20 Resmi Diselesaikan.**
+
+Status Final:
+- Website Publik: **STABLE & POLISHED**.
+- Project Categorization: **ACTIVE**.
+- CV Variant Selector: **ACTIVE**.
+- Data Integrity: **VERIFIED (No Dummy Data)**.
+- Backend/Admin/Auth: **HOLD**.
+
 ## Roadmap Refactor Awal (COMPLETED)
 
 1. Root structure refactor (Selesai).

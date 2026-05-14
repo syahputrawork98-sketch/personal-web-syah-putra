@@ -1,42 +1,44 @@
-# Production Readiness Checklist
+# Production Readiness Checklist (Batch 20 Final)
 
-Dokumen ini mencatat status kesiapan website untuk dideploy ke lingkungan produksi setelah siklus refactor Batch 1-10.
+Dokumen ini mencatat status kesiapan website untuk dideploy ke lingkungan produksi setelah siklus pengembangan Batch 1-20.
 
 ## ✅ Frontend Core (Passed)
 - [x] **Build Stability**: `npm run build` berjalan tanpa error.
 - [x] **Code Structure**: Menggunakan folder layering (`pages`, `components`, `hooks`, `lib`).
-- [x] **Styling Cleanliness**: Minimal inline styles, menggunakan sistem CSS modular.
-- [x] **Component Extraction**: Bagian UI repetitif telah dipisah menjadi komponen reusable.
-- [x] **Data Extraction**: Konten statis dipindah ke file data eksternal untuk kemudahan maintenance.
+- [x] **Namespace Safety**: Class CSS spesifik (misal: `.project-modal-*`) untuk mencegah bentrok gaya.
+- [x] **Component Optimization**: Modal detail, Link Tiles, dan Card Action telah dipoles secara visual.
 
-## ✅ SEO & Metadata (Ready)
-- [x] **Favicon**: Menggunakan `/favicon.svg` milik project.
-- [x] **Page Titles**: Judul halaman deskriptif dan konsisten.
-- [x] **Meta Description**: Tersedia untuk indexing mesin pencari.
-- [x] **Open Graph (Social Sharing)**: Tag OG lengkap untuk preview LinkedIn/Facebook.
-- [x] **Twitter Cards**: Tag Twitter lengkap untuk preview di platform X.
+## ✅ SEO & Branding (Ready)
+- [x] **Branding SPN**: Logo monogram dan nama publik "Syah Putra N" konsisten di seluruh halaman.
+- [x] **Page Titles**: Deskripsi halaman (`Home`, `Projects`, `Credentials`) jelas dan informatif.
+- [x] **Meta Tags**: Tag Open Graph dan Twitter Card telah dikonfigurasi untuk sharing sosial media.
+
+## ✅ Portfolio & Content (Ready)
+- [x] **Multi-Category Filter**: Tab kategori (IT, Manufaktur, 3D, RAB) berfungsi dengan transisi halus.
+- [x] **Data Integrity**: Seluruh tautan proyek yang bersifat dummy/placeholder telah dihapus.
+- [x] **Quick Actions**: Tombol akses cepat (GitHub/Drive) hanya muncul jika URL asli tersedia.
+- [x] **Credentials Preview**: Integrasi link Google Drive untuk sertifikat profesional telah divalidasi.
+
+## ✅ CV Variant System (Ready)
+- [x] **Variant Selector**: Modal pilihan versi CV (Web Dev, Manufaktur, Sipil) berfungsi stabil.
+- [x] **Newspaper Wireframe**: Pratinjau konsep CV editorial koran dapat ditampilkan dengan benar.
+- [x] **Status Guard**: Tombol unduh PDF ditandai "Belum Tersedia" secara eksplisit jika file asli belum ada.
 
 ## ✅ UX & Accessibility (Ready)
-- [x] **Mobile Responsiveness**: Layout adaptif untuk mobile, tablet, dan desktop.
-- [x] **Fallback Content**: Website tetap menampilkan konten dari file `fallback/` jika API backend mati.
-- [x] **Link Sanity**: Link eksternal menggunakan `rel="noopener noreferrer"`.
-- [x] **Accessibility**: Tombol ikon memiliki `aria-label`, gambar memiliki `alt` text.
-- [x] **Console Cleanliness**: Bebas dari `console.log` debug di area publik.
+- [x] **Mobile Responsiveness**: Layout adaptif sepenuhnya (termasuk horizontal scroll pada filter tab di mobile).
+- [x] **A11y Support**: Penambahan `aria-label` pada elemen interaktif utama (Close buttons, Toggles).
+- [x] **Fallback Mechanism**: Sistem tetap menampilkan data fallback dari direktori `fallback/` jika API backend tidak terjangkau.
 
-## ⚠️ Assets & External Links (HOLD)
-- [ ] **Final CV File**: File `public/CV_Syah_Putra_Nugraha.pdf` masih placeholder (80 bytes).
-- [ ] **Production Domain**: Belum ada domain/URL kanonikal tetap.
-- [ ] **External Links Audit**: Perlu verifikasi link sosial media final milik user.
+## ⚠️ Assets & HOLD Items (Next Phase)
+- [ ] **Final CV PDF**: File PDF asli perlu diunggah untuk menggantikan status "Coming Soon".
+- [ ] **Real Assets Links**: Penambahan URL asli untuk aset proyek (Figma/RAB/Model) secara bertahap.
+- [ ] **Admin Authentication**: Sistem Login/CMS masih berada dalam status **HOLD** (Private).
+- [ ] **Deployment**: Menunggu pemilihan provider (Vercel/Netlify) dan konfigurasi domain.
 
-## 🔒 Security & Admin (HOLD)
-- [x] **Public Login Link**: Tidak ada tombol/link login di UI publik.
-- [ ] **Admin Authentication**: Masih menggunakan skeleton/HOLD.
-- [ ] **Environment Variables**: Perlu pemindahan rahasia ke `.env` saat deploy.
-
-## 🚀 Deployment (HOLD)
-- [ ] **Hosting Provider Selection**: (Vercel/Netlify/VPS).
-- [ ] **CI/CD Pipeline**: Belum dikonfigurasi.
-- [ ] **SSL Certificate**: Belum dikonfigurasi.
+## 🔒 Security & Privacy (Guarded)
+- [x] **No Public Login**: Tidak ada pintu masuk admin/login yang terekspos di UI publik.
+- [x] **Privacy Audit**: Tidak ada alamat rumah lengkap, NIK, atau dokumen pribadi sensitif di repositori.
+- [x] **Sensitive Data**: File `.env` dan rahasia lainnya tidak terekspos dalam commit history.
 
 ---
-*Terakhir diperbarui: 15 Mei 2026 (Setelah Batch 10)*
+*Terakhir diperbarui: 15 Mei 2026 (Batch 20 Final)*

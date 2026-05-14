@@ -1,40 +1,47 @@
-# Personal Web Syah Putra Nugraha
+# Personal Web Syah Putra N (SPN)
 
-Selamat datang di repository **Personal Web Syah Putra Nugraha**. Ini adalah pusat pengembangan website pribadi yang dibangun dengan pendekatan modern, terstruktur, dan profesional.
+Selamat datang di repository **Personal Web Syah Putra N**. Website ini dirancang sebagai platform portofolio profesional lintas bidang, mulai dari pengembangan perangkat lunak (IT & Web) hingga desain teknik manufaktur dan estimasi biaya konstruksi (RAB).
 
-## 📂 Struktur Project (Post-Refactor Batch 10)
+## 📂 Struktur Project (Update Batch 20)
 
-Repository ini telah melalui siklus refactor besar untuk meningkatkan maintainability, performa, dan kesiapan produksi:
+Repository ini telah melalui 20 fase pengembangan (*Batch*) untuk memastikan standar kualitas tinggi, estetika premium, dan fungsionalitas yang solid:
 
 - **`README.md`**: Dokumentasi utama repository (file ini).
-- **`FITUR.md`**: Catatan riwayat Batch 1-10 dan status fitur.
-- **`docs/`**: Dokumentasi internal, roadmap, production checklist, dan catatan teknis.
-- **`client/`**: Source code Frontend (React + Vite) yang telah dioptimasi.
-- **`server/`**: Skeleton/Legacy Backend API (HOLD - bukan fokus produksi saat ini).
+- **`FITUR.md`**: Catatan riwayat Batch 1-20 dan status fitur secara mendalam.
+- **`docs/`**: Dokumentasi internal, roadmap, production readiness checklist, dan catatan teknis.
+- **`client/`**: Source code Frontend (React + Vite) dengan sistem kategori proyek dinamis dan CV Variant Selector.
+- **`server/`**: Backend API (HOLD - saat ini website berjalan dengan data statis/fallback yang stabil).
 
-## 🚀 Cara Menjalankan Frontend
+## ✨ Fitur Utama (Batch 20)
 
-Untuk menjalankan frontend di lokal, masuk ke folder `client/` dan gunakan npm:
+- **Branding Monogram SPN**: Identitas visual yang konsisten dengan nama publik "Syah Putra N".
+- **Multi-Category Portfolio**: Sistem filter proyek untuk IT & Web, Manufaktur & Teknik, Model 3D, serta Bangunan & RAB.
+- **Project Detail Modal**: Overlay interaktif dengan Link Tiles dinamis (GitHub, Drive, Figma, Model Preview).
+- **CV Variant Selector**: Memungkinkan pengunjung memilih versi CV yang relevan (Web Dev, Manufaktur, atau Sipil/RAB).
+- **Newspaper CV Wireframe**: Pratinjau konsep CV bergaya editorial koran yang unik.
+- **Credentials Manager**: Integrasi pratinjau sertifikat profesional melalui Google Drive.
+- **High Performance & A11y**: Dioptimasi untuk kecepatan akses dan aksesibilitas dasar (aria-labels).
 
-```bash
-cd client
-npm install
-npm run dev
-```
+## 🚀 Cara Menjalankan Lokal
 
-Untuk melakukan build produksi:
+1. Clone repository ini.
+2. Masuk ke direktori `client/`.
+3. Jalankan perintah:
+   ```bash
+   npm install
+   npm run dev
+   ```
+4. Untuk verifikasi kesiapan produksi, jalankan:
+   ```bash
+   npm run build
+   ```
 
-```bash
-npm run build
-```
+## 🛠️ Status Pengembangan & Batasan (HOLD)
 
-## 🛠️ Status Pengembangan & Production Readiness
-
-- **Frontend**: Telah dioptimasi dengan pembersihan styling, ekstraksi komponen, metadata SEO, aksesibilitas dasar, dan mekanisme fallback data statis.
-- **Backend (`server/`)**: Saat ini masih berupa skeleton/placeholder. Fokus utama adalah kemandirian frontend (self-sufficient with fallbacks).
-- **Login & Auth**: Saat ini **HOLD** hingga fase akhir. Sistem admin/login tidak ditampilkan di UI publik dan hanya dapat diakses melalui URL manual nantinya.
-- **CV Asset**: File `CV_Syah_Putra_Nugraha.pdf` di folder `public/` saat ini masih berupa **placeholder**. Perlu diganti dengan file final sebelum go-live.
-- **Deployment**: Belum dikonfigurasi (HOLD).
+- **PDF CV Final**: File PDF CV asli masih dalam tahap finalisasi tata letak (Status: *Coming Soon* di UI).
+- **Login & Auth**: Sistem Admin tetap **HOLD** untuk menjaga keamanan publik. Tidak ada tombol login publik di situs ini.
+- **Project Assets**: Link eksternal (Figma/Drive/RAB) hanya muncul jika URL asli telah tersedia di data model.
+- **Deployment**: Menunggu konfirmasi lingkungan produksi (Status: *Local-Ready*).
 
 ---
-&copy; 2026 Syah Putra Nugraha.
+&copy; 2026 Syah Putra N. Dibangun dengan Presisi.
