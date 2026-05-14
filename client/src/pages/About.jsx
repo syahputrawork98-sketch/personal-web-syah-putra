@@ -155,7 +155,7 @@ const About = () => {
           transition={{ duration: 0.6 }}
           style={{ marginBottom: 'var(--space-12)' }}
         >
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 'var(--space-8)', alignItems: 'center' }}>
+          <div className="profile-summary-container">
             <div>
               <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-4)', fontSize: '1.6rem' }}>
                 {currentProfile.summaryTitle || "Perjalanan Profesional & Transisi"}
@@ -163,11 +163,10 @@ const About = () => {
               <div 
                 dangerouslySetInnerHTML={{ __html: currentProfile.summary || "Data belum tersedia." }} 
                 className="about-summary" 
-                style={{ fontSize: '1.1rem', lineHeight: 1.8, opacity: 0.9 }}
               />
             </div>
             {currentProfile.avatarUrl && (
-              <div className="card" style={{ padding: 0, overflow: 'hidden', borderRadius: 'var(--radius-lg)' }}>
+              <div className="card profile-image-card">
                 <img 
                   src={currentProfile.avatarUrl} 
                   alt="Profile Avatar" 
@@ -184,12 +183,12 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          style={{ marginBottom: 'var(--space-12)', padding: 'var(--space-8)', background: 'rgba(var(--primary-color-rgb), 0.03)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-color)' }}
+          className="tech-focus-section"
         >
           <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-6)', fontSize: '1.5rem', textAlign: 'center' }}>
             Technical Focus & Core Stack
           </h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 'var(--space-8)' }}>
+          <div className="tech-focus-grid">
             {Object.entries(techSkills).map(([category, skills]) => (
               <TechSkillGroup key={category} category={category} skills={skills} />
             ))}
@@ -205,7 +204,7 @@ const About = () => {
           style={{ marginBottom: 'var(--space-12)' }}
         >
           <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-6)', fontSize: '1.5rem' }}>Pendidikan & Fondasi Dasar</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-6)' }}>
+          <div className="education-grid">
             {currentEducation.length > 0 ? (
               currentEducation.map((edu) => (
                 <EducationCard key={edu.id} {...edu} />
@@ -236,7 +235,7 @@ const About = () => {
           style={{ marginBottom: 'var(--space-12)' }}
         >
           <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-6)', fontSize: '1.4rem' }}>Values & Strengths</h3>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-3)' }}>
+          <div className="values-container">
             {softSkills.map((skill, index) => (
               <span key={index} className="tech-badge" style={{ padding: '8px 20px', borderRadius: 'var(--radius-full)', background: 'var(--surface-color)', border: '1px solid var(--border-color)', fontWeight: 600 }}>
                 {skill}

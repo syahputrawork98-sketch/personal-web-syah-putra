@@ -149,14 +149,7 @@ const Home = () => {
         {/* What I Can Do Section */}
         <motion.div 
           variants={itemVariants} 
-          style={{ 
-            marginTop: 'var(--space-10)', 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-            gap: 'var(--space-4)',
-            maxWidth: '1000px',
-            marginInline: 'auto'
-          }}
+          className="services-grid"
         >
           {services.map((item, idx) => (
             <ServiceCard key={idx} {...item} />

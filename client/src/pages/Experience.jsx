@@ -36,7 +36,7 @@ const Experience = () => {
     <section id="experience" className="section-padding">
       <div className="container">
         <motion.div
-          style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 'var(--space-8)' }}
+          className="experience-section-header"
         >
           <motion.h2 
             initial={{ opacity: 0, x: -20 }}

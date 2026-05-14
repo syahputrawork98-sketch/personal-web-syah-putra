@@ -1,15 +1,56 @@
-.about-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--space-8);
-  align-items: start;
-}
-
 .about-summary {
   font-size: 1.05rem;
   color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: var(--space-6);
+}
+
+.profile-summary-container {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+@media (max-width: 850px) {
+  .profile-summary-container {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+.profile-image-card {
+  padding: 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  max-width: 300px;
+  margin-inline: auto;
+}
+
+.tech-focus-section {
+  margin-bottom: var(--space-12);
+  padding: var(--space-8);
+  background: rgba(var(--primary-color-rgb), 0.03);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+.tech-focus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-8);
+}
+
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+}
+
+.values-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
 }
 
 .soft-skills-container {
@@ -23,23 +64,4 @@
   font-size: 0.85rem;
   border-bottom: 2px solid var(--primary-color);
   border-radius: var(--radius-sm);
-}
-
-.about-contact-card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  font-size: 0.95rem;
-}
-
-.about-cta-group {
-  margin-top: var(--space-3);
-  display: flex;
-  gap: var(--space-3);
-  flex-wrap: wrap;
-}
-
-.about-cta-btn {
-  padding: 6px 12px;
-  font-size: 0.8rem;
 }

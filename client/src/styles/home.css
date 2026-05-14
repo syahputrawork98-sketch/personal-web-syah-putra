@@ -56,3 +56,12 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
+.services-grid {
+  margin-top: var(--space-10);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+  max-width: 1000px;
+  margin-inline: auto;
+}

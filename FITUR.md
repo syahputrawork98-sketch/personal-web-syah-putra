@@ -71,6 +71,17 @@ Perubahan Batch 5:
 - Kode menjadi jauh lebih bersih, kering (DRY), dan mudah dipelihara.
 - Verifikasi visual dan behavior tetap konsisten.
 
+## Catatan Batch 6
+
+Status: Executed - Styling cleanup dan responsive polish ringan selesai.
+
+Perubahan Batch 6:
+- Memindahkan inline style yang repetitif dan kompleks ke file CSS (`home.css`, `about.css`, `experience.css`).
+- Membuat class CSS baru: `.services-grid`, `.profile-summary-container`, `.tech-focus-section`, `.education-grid`, `.values-container`, dan `.experience-section-header`.
+- Melakukan responsive polish pada layout profil (About) dan header pengalaman (Experience) agar lebih aman di tampilan mobile/tablet.
+- Mengurangi penggunaan style inline pada level halaman (`pages/`).
+- Verifikasi visual tetap konsisten dengan desain awal.
+
 ## Roadmap Refactor Awal
 
 1. Root structure refactor (Selesai).
@@ -78,6 +89,8 @@ Perubahan Batch 5:
 3. Static data extraction (Selesai).
 4. Component extraction (Selesai).
 5. Hooks, services, dan cleanup (Selesai).
+6. Styling cleanup (Selesai).
+7. Final integrity check & documentation.
 
 ## Catatan Batch 1
 
