@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import BrandLogo from './BrandLogo';
 import '../styles/navbar.css';
 
 const Navbar = ({ theme, toggleTheme }) => {
@@ -47,7 +48,7 @@ const Navbar = ({ theme, toggleTheme }) => {
     <nav className="navbar">
       <div className="container navbar-container">
         <Link to="/" className="logo" onClick={closeMenu}>
-          SYAH<span style={{ color: 'var(--primary-color)' }}>PUTRA NUGRAHA</span>
+          <BrandLogo />
         </Link>
 
         {/* Hamburger Toggle */}

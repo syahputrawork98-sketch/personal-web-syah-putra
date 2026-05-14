@@ -126,6 +126,17 @@ Perubahan Batch 10:
 - Verifikasi akhir kestabilan build produksi.
 - Penutupan siklus refactor Batch 1-10 secara formal.
 
+## Catatan Batch 11
+
+Status: Executed - Branding Header SPN + Public Name selesai.
+
+Perubahan Batch 11:
+- Membuat komponen `BrandLogo.jsx` dan `BrandLogo.css` untuk manajemen branding terpusat.
+- Mengubah logo Navbar dari teks "SYAHPUTRA NUGRAHA" menjadi monogram **"SPN"** bergaya gradient dan nama publik **"Syah Putra N"**.
+- Menyelaraskan branding di Footer agar menggunakan nama publik **"Syah Putra N"**.
+- Memastikan tampilan responsif Navbar tetap aman dengan branding baru.
+- Nama panjang penuh "Syah Putra Nugraha" tetap digunakan di metadata SEO dan dokumen resmi, namun tidak lagi digunakan di branding utama UI.
+
 ## Roadmap Refactor Awal (COMPLETED)
 
 1. Root structure refactor (Selesai).
