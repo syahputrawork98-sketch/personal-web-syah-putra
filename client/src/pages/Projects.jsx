@@ -1,40 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ProjectCard from '../components/ProjectCard';
 import { motion } from 'framer-motion';
 import { getPublicProjects } from '../lib/api';
 import EmptyState from '../components/EmptyState';
+import { useFetch } from '../hooks/useFetch';
 
 
 const Projects = () => {
-  const [projects, setProjects] = useState([]);
+  const { data, loading, error } = useFetch(getPublicProjects);
   const [expandedId, setExpandedId] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      setLoading(true);
-      setError(false);
-      try {
-        const data = await getPublicProjects();
-        console.log('DEBUG: Projects Data received:', data);
-        if (Array.isArray(data)) {
-          setProjects(data);
-        } else if (data && data.projects) {
-          setProjects(data.projects);
-        } else if (data && data.data && Array.isArray(data.data.projects)) {
-          setProjects(data.data.projects);
-        }
-      } catch (err) {
-        console.warn('Projects: API Fetch failed:', err.message);
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProjects();
-  }, []);
+  const projects = Array.isArray(data) 
+    ? data 
+    : (data?.projects || data?.data?.projects || []);
 
   const toggleExpand = (id) => {
     setExpandedId(expandedId === id ? null : id);

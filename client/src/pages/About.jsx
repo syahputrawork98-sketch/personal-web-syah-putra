@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { getPublicSkills, getPublicContact, getPublicProfile, getPublicEducation } from '../lib/api';
 import EmptyState from '../components/EmptyState';
 import CredentialsSection from '../components/about/CredentialsSection';
-import { categoryMap, experienceReframing } from '../data/aboutData';
 import TechSkillGroup from '../components/about/TechSkillGroup';
 import ExperienceReframing from '../components/about/ExperienceReframing';
 import EducationCard from '../components/about/EducationCard';

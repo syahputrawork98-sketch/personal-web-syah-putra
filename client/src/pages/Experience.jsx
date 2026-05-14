@@ -2,64 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { getPublicExperiences } from '../lib/api';
 import EmptyState from '../components/EmptyState';
+import { useFetch } from '../hooks/useFetch';
 import ExperienceCard from '../components/experience/ExperienceCard';
+import { getExperienceDisplayDate } from '../lib/dateUtils';
 import '../styles/experience.css';
 
 
 const Experience = () => {
-  const [experiences, setExperiences] = useState([]);
-
-  const [loading, setLoading] = useState(true);
-
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(false);
-      try {
-        const response = await getPublicExperiences();
-        console.log('DEBUG: Experience Data received:', response);
-
-        if (Array.isArray(response)) {
-          setExperiences(response);
-        } else if (response && response.experiences) {
-          setExperiences(response.experiences);
-        } else if (response && response.data && Array.isArray(response.data.experiences)) {
-          setExperiences(response.data.experiences);
-        }
-      } catch (err) {
-        console.error('Experience Fetch Error:', err);
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const { data: response, loading, error } = useFetch(getPublicExperiences);
+  const experiences = Array.isArray(response) 
+    ? response 
+    : (response?.experiences || response?.data?.experiences || []);
 
 
-  const formatDate = (dateString) => {
-    if (!dateString) return '';
-    try {
-      const date = new Date(dateString);
-      if (isNaN(date.getTime())) return '';
-      return date.toLocaleDateString('id-ID', {
-        month: 'short',
-        year: 'numeric'
-      });
-    } catch (e) {
-      return '';
-    }
-  };
-
-  const getDisplayDate = (exp) => {
-    if (exp.isLocal) return exp.displayDate;
-    const start = formatDate(exp.startDate);
-    const end = exp.isCurrent ? 'Sekarang' : formatDate(exp.endDate);
-    return `${start} ${start && end ? '–' : ''} ${end}`;
-  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -107,7 +62,7 @@ const Experience = () => {
               <ExperienceCard 
                 key={exp.id} 
                 exp={exp} 
-                displayDate={getDisplayDate(exp)} 
+                displayDate={getExperienceDisplayDate(exp)} 
                 variants={itemVariants} 
               />
             ))}

@@ -59,13 +59,25 @@ Perubahan Batch 4:
 - Kode pada `pages/` menjadi lebih modular dan fokus pada manajemen state/data.
 - Verifikasi visual dan behavior tetap konsisten.
 
+## Catatan Batch 5
+
+Status: Executed - Cleanup ringan dan stabilisasi hook/service selesai.
+
+Perubahan Batch 5:
+- Membersihkan import tidak terpakai di `About.jsx`.
+- Membuat helper `client/src/lib/dateUtils.js` untuk manajemen format tanggal yang konsisten.
+- Membuat custom hook `client/src/hooks/useFetch.js` untuk standarisasi logic fetching data (loading, error, data management).
+- Refactor halaman `Experience.jsx`, `Projects.jsx`, dan `Contact.jsx` menggunakan hook `useFetch` dan helper `dateUtils`.
+- Kode menjadi jauh lebih bersih, kering (DRY), dan mudah dipelihara.
+- Verifikasi visual dan behavior tetap konsisten.
+
 ## Roadmap Refactor Awal
 
 1. Root structure refactor (Selesai).
 2. Client folder layering (Selesai).
 3. Static data extraction (Selesai).
 4. Component extraction (Selesai).
-5. Hooks, services, dan dokumentasi sinkron.
+5. Hooks, services, dan cleanup (Selesai).
 
 ## Catatan Batch 1
 

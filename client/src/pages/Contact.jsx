@@ -4,37 +4,13 @@ import { FiMail, FiMapPin, FiPhone } from 'react-icons/fi';
 import { FaLinkedin, FaGithub, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { getPublicContact } from '../lib/api';
 import EmptyState from '../components/EmptyState';
+import { useFetch } from '../hooks/useFetch';
 import '../styles/contact.css';
 
 
 const Contact = () => {
-  const [contactData, setContactData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    const fetchContact = async () => {
-      setLoading(true);
-      setError(false);
-      try {
-        const data = await getPublicContact();
-        if (data && data.contact) {
-          setContactData(data.contact);
-        } else if (data && data.data && data.data.contact) {
-          setContactData(data.data.contact);
-        } else if (data && !data.success && data.email) {
-          setContactData(data); // Direct object fallback
-        }
-      } catch (err) {
-        console.warn('Contact: Failed to fetch contact info:', err.message);
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchContact();
-  }, []);
+  const { data, loading, error } = useFetch(getPublicContact);
+  const contactData = data?.contact || data?.data?.contact || (data && !data.success && data.email ? data : null);
 
   if (loading) {
     return (
