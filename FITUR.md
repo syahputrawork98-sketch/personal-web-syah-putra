@@ -116,7 +116,17 @@ Perubahan Batch 9:
 - Melakukan sanity check pada teks publik dan memastikan fallback tetap bekerja dengan baik.
 - Memastikan tidak ada rute admin atau tombol login yang bocor ke area publik.
 
-## Roadmap Refactor Awal
+## Catatan Batch 10
+
+Status: Executed - Documentation Final & Production Checklist selesai.
+
+Perubahan Batch 10:
+- Sinkronisasi `README.md` dengan struktur dan status project terbaru.
+- Pembuatan `docs/production-checklist.md` sebagai panduan persiapan publikasi.
+- Verifikasi akhir kestabilan build produksi.
+- Penutupan siklus refactor Batch 1-10 secara formal.
+
+## Roadmap Refactor Awal (COMPLETED)
 
 1. Root structure refactor (Selesai).
 2. Client folder layering (Selesai).
@@ -127,7 +137,15 @@ Perubahan Batch 9:
 7. SEO & Production Assets (Selesai).
 8. i18n & Public Content Readiness (Selesai).
 9. Accessibility & Link Sanity (Selesai).
-10. Documentation final & production checklist.
+10. Documentation final & production checklist (Selesai).
+
+## 🚩 Status HOLD (PENTING)
+
+Daftar item yang masih tertahan (HOLD) dan memerlukan keputusan/file dari user sebelum publikasi final:
+1. **CV Final**: File `public/CV_Syah_Putra_Nugraha.pdf` masih berupa placeholder.
+2. **Login/Admin**: Sistem admin dikerjakan di fase akhir; tidak ada akses publik saat ini.
+3. **Domain & Deployment**: Hosting dan konfigurasi URL kanonikal belum ditetapkan.
+4. **Credential**: Tidak ada rahasia/password yang disimpan di repository ini.
 
 ## Catatan Batch 1
 
