@@ -29,7 +29,7 @@ import AdminCertificationEdit from './pages/admin/AdminCertificationEdit';
 import AdminEducation from './pages/admin/AdminEducation';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 
-import AdminLayout from './components/admin/AdminLayout';
+import AdminLayout from './layouts/AdminLayout';
 
 function App() {
   return (

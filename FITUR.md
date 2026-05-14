@@ -26,10 +26,20 @@ FITUR.md
 | Modularisasi frontend | Planned | Rencana pemisahan halaman, komponen, data, hook, service, layout, dan style. |
 | Server skeleton | Planned | Disiapkan sebagai folder backend ringan untuk pengembangan berikutnya. |
 
+## Catatan Batch 2
+
+Status: Executed - Struktur `client/src/` telah distabilkan.
+
+Perubahan Batch 2:
+- Menghapus file duplikat `client/src/pages/admin/ProjectForm.jsx` (menggunakan versi di `components/admin/`).
+- Memindahkan `AdminLayout.jsx` dari `components/admin/` ke `layouts/` agar sesuai standar arsitektur.
+- Memperbaiki import path `AdminLayout` di `App.jsx` dan import `auth lib` di dalam `AdminLayout.jsx`.
+- Verifikasi Navbar publik tetap bersih dari tombol login.
+
 ## Roadmap Refactor Awal
 
-1. Root structure refactor.
-2. Client folder layering.
+1. Root structure refactor (Selesai).
+2. Client folder layering (Selesai).
 3. Static data extraction.
 4. Component extraction.
 5. Hooks, services, dan dokumentasi sinkron.

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate, Outlet } from 'react-router-dom';
-import { removeToken } from '../../lib/auth';
+import { removeToken } from '../lib/auth';
 
 const AdminLayout = () => {
   const navigate = useNavigate();
