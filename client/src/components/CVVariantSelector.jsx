@@ -53,6 +53,7 @@ const CVVariantSelector = ({ isOpen, onClose }) => {
           >
             <button 
               onClick={onClose}
+              aria-label="Tutup pemilih CV"
               style={{
                 position: 'absolute',
                 top: '20px',

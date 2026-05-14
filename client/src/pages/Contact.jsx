@@ -167,7 +167,7 @@ const Contact = () => {
           viewport={{ once: true }}
         >
           <p style={{ fontSize: '0.9rem', opacity: 0.6 }}>
-            &copy; 2026 Syah Putra Nugraha. Dibangun dengan Presisi.
+            &copy; 2026 Syah Putra N. Dibangun dengan Presisi.
           </p>
         </motion.div>
       </div>

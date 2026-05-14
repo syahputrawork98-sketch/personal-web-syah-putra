@@ -272,6 +272,17 @@ Status: Executed - Resolve CV Wireframe Preview Runtime Issue selesai.
 Perubahan Batch 18 Fix:
 - Memperbaiki kesalahan referensi variabel (`selectedProject` menjadi `selectedVariant`) pada komponen `CVVariantSelector.jsx` untuk mencegah *runtime error* saat membuka pratinjau wireframe.
 
+## Catatan Batch 19
+
+Status: Executed - Public QA & Final Content Audit selesai.
+
+Perubahan Batch 19:
+- Melakukan **Public QA & Content Audit** menyeluruh pada seluruh halaman utama (Beranda, Tentang, Proyek, Sertifikat, Kontak).
+- Memastikan **Konsistensi Branding**: Memperbaiki sisa-sisa penggunaan nama panjang penuh pada bagian copyright (Kontak) menjadi "Syah Putra N" agar selaras dengan identitas visual website.
+- Meningkatkan **Aksesibilitas (A11y)**: Menambahkan atribut `aria-label` pada tombol-tombol interaktif (seperti tombol tutup modal CV) untuk pengalaman pengguna yang lebih inklusif.
+- Validasi **CTA & Alur Navigasi**: Mengonfirmasi bahwa seluruh tombol fungsional (Unduh CV, Detail Proyek, Drive Preview) bekerja dengan stabil tanpa adanya tautan palsu atau data dummy yang tersisa.
+- Audit **Data Sensitif**: Memastikan tidak ada alamat pribadi, nomor telepon privat yang tidak terproteksi, atau dokumen internal yang terekspos di dalam repositori.
+
 ## Roadmap Refactor Awal (COMPLETED)
 
 1. Root structure refactor (Selesai).
