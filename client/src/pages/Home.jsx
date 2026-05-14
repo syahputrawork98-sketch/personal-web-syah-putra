@@ -6,6 +6,7 @@ import { getPublicSkills, getPublicHero } from '../lib/api';
 import EmptyState from '../components/EmptyState';
 import { services } from '../data/homeData';
 import ServiceCard from '../components/home/ServiceCard';
+import CVVariantSelector from '../components/CVVariantSelector';
 import { heroFallback } from '../fallback/heroFallback';
 import { skillsFallback } from '../fallback/skillsFallback';
 import '../styles/home.css';
@@ -17,6 +18,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
 
   const [error, setError] = useState(false);
+  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -157,11 +159,21 @@ const Home = () => {
             <Link to="/projects" className="btn btn-primary">{currentHero.primaryCtaLabel}</Link>
           )}
           {currentHero.secondaryCtaLabel && (
-            <a href={currentHero.resumeUrl || '#'} download className="btn btn-secondary">{currentHero.secondaryCtaLabel}</a>
+            <button 
+              onClick={() => setIsCVModalOpen(true)} 
+              className="btn btn-secondary"
+            >
+              {currentHero.secondaryCtaLabel}
+            </button>
           )}
           <Link to="/contact" className="btn btn-secondary">Hubungi Saya</Link>
         </motion.div>
       </motion.div>
+
+      <CVVariantSelector 
+        isOpen={isCVModalOpen} 
+        onClose={() => setIsCVModalOpen(false)} 
+      />
     </section>
   );
 };

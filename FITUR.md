@@ -251,6 +251,20 @@ Perubahan Batch 17 Fix:
   - Menggunakan `e.stopPropagation()` agar klik pada tautan cepat tidak memicu pembukaan modal detail.
 - Peningkatan **UX Mobile**: Memberikan ruang gerak lebih luas pada tab filter dan menyesuaikan proporsi kartu untuk layar kecil.
 
+## Catatan Batch 18
+
+Status: Executed - CV Variant Selector + Newspaper CV Wireframe Readiness selesai.
+
+Perubahan Batch 18:
+- Mengimplementasikan sistem **CV Variant Selector** untuk menggantikan alur unduh file tunggal:
+  - Tersedia 3 varian CV: **Web Developer**, **Manufaktur & Teknik**, serta **Sipil / Estimator / RAB**.
+  - Mengintegrasikan modal selector pada tombol "Unduh CV" di halaman Beranda.
+- Menambahkan **Newspaper CV Wireframe**:
+  - Pratinjau visual konsep CV bergaya editorial koran (headline besar, kolom berita, skill highlight).
+  - Menggunakan tipografi serif dan layout satu halaman yang elegan untuk memberikan gambaran format CV masa depan.
+- Menyiapkan **Data Model CV**: Struktur data varian CV yang mencakup fokus bidang, proyek unggulan, dan daftar alat/teknologi terkait.
+- Penanganan **Status PDF**: Tombol unduhan PDF secara otomatis menampilkan status "Belum Tersedia" (Coming Soon) karena file asli sedang dalam tahap finalisasi tata letak, mencegah tautan rusak atau palsu.
+
 ## Roadmap Refactor Awal (COMPLETED)
 
 1. Root structure refactor (Selesai).
