@@ -82,6 +82,18 @@ Perubahan Batch 6:
 - Mengurangi penggunaan style inline pada level halaman (`pages/`).
 - Verifikasi visual tetap konsisten dengan desain awal.
 
+## Catatan Batch 7
+
+Status: Executed - SEO metadata dasar dan kesiapan aset produksi selesai.
+
+Perubahan Batch 7:
+- Mengupdate `index.html` untuk menggunakan `favicon.svg` milik project sebagai icon situs.
+- Menambahkan metadata SEO dasar: `author`, `theme-color`, dan instruksi `robots`.
+- Melengkapi metadata Social Sharing (Open Graph & Twitter Card) untuk meningkatkan kualitas preview saat link dibagikan.
+- Memverifikasi keberadaan aset publik (`favicon.svg`, `CV_Syah_Putra_Nugraha.pdf`).
+- Status CV: File tersedia di `public/` namun masih berupa placeholder (80 bytes). HOLD hingga user memberikan file CV final.
+- Verifikasi build produksi tetap stabil.
+
 ## Roadmap Refactor Awal
 
 1. Root structure refactor (Selesai).
@@ -90,7 +102,8 @@ Perubahan Batch 6:
 4. Component extraction (Selesai).
 5. Hooks, services, dan cleanup (Selesai).
 6. Styling cleanup (Selesai).
-7. Final integrity check & documentation.
+7. SEO & Production Assets (Selesai).
+8. Final integrity check & documentation.
 
 ## Catatan Batch 1
 
