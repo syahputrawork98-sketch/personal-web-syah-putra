@@ -35,10 +35,6 @@ const About = () => {
           getPublicProfile(),
           getPublicEducation()
         ]);
-        console.log('DEBUG: About Skills:', skillsData);
-        console.log('DEBUG: About Contact:', contactResp);
-        console.log('DEBUG: About Profile:', profileResp);
-        console.log('DEBUG: About Education:', educationResp);
 
         if (skillsData) {
           const skillsArr = Array.isArray(skillsData) ? skillsData : (skillsData.skills || []);

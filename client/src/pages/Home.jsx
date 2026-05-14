@@ -27,8 +27,6 @@ const Home = () => {
           getPublicSkills(),
           getPublicHero()
         ]);
-        console.log('DEBUG: Home Skills Data:', skillsData);
-        console.log('DEBUG: Home Hero Data:', heroResponse);
 
         if (skillsData && Array.isArray(skillsData.skills)) {
           const topSkills = skillsData.skills.slice(0, 8).map(s => s.name);

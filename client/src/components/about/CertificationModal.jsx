@@ -56,6 +56,7 @@ const CertificationModal = ({ isOpen, onClose, certification }) => {
           >
             <button 
               onClick={onClose}
+              aria-label="Tutup modal"
               style={{
                 position: 'absolute',
                 top: 'var(--space-4)',

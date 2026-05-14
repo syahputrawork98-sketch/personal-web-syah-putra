@@ -115,7 +115,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                   ))}
                 </div>
                 <motion.div className="nav-actions" variants={linkVariants}>
-                  <button onClick={toggleTheme} className="theme-toggle" type="button">
+                  <button onClick={toggleTheme} className="theme-toggle" type="button" aria-label="Toggle theme">
                     {theme === 'dark' ? '🌙' : '☀️'}
                   </button>
                 </motion.div>

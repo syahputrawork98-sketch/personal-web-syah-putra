@@ -105,6 +105,17 @@ Perubahan Batch 8:
 - Verifikasi link aset publik (CV/Favicon) tetap stabil.
 - Perbaikan typo kecil dan penyelarasan label tombol/link eksternal.
 
+## Catatan Batch 9
+
+Status: Executed - Accessibility, Link Sanity, dan Public QA Light selesai.
+
+Perubahan Batch 9:
+- Melakukan audit aksesibilitas ringan dengan menambahkan `aria-label` pada tombol interaktif (close modal, theme toggle mobile).
+- Membersihkan log debug (`console.log`) pada halaman utama (`Home`, `About`) untuk menjaga kebersihan konsol produksi.
+- Verifikasi link eksternal telah menggunakan `rel="noopener noreferrer"` untuk keamanan dan performa.
+- Melakukan sanity check pada teks publik dan memastikan fallback tetap bekerja dengan baik.
+- Memastikan tidak ada rute admin atau tombol login yang bocor ke area publik.
+
 ## Roadmap Refactor Awal
 
 1. Root structure refactor (Selesai).
@@ -115,7 +126,7 @@ Perubahan Batch 8:
 6. Styling cleanup (Selesai).
 7. SEO & Production Assets (Selesai).
 8. i18n & Public Content Readiness (Selesai).
-9. Final public polish / accessibility / link sanity.
+9. Accessibility & Link Sanity (Selesai).
 10. Documentation final & production checklist.
 
 ## Catatan Batch 1
