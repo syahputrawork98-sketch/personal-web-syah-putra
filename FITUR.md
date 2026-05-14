@@ -182,6 +182,20 @@ Perubahan Batch 14:
 - Memperbarui komponen `ProjectCard` agar dapat merender lencana kategori dan menangani struktur link yang baru.
 - Menambahkan styling responsif untuk tab filter kategori di `projects.css`.
 
+## Catatan Batch 15
+
+Status: Executed - Project Detail Modal + Link Tiles selesai.
+
+Perubahan Batch 15:
+- Mengimplementasikan **Project Detail Modal** sebagai overlay interaktif untuk menampilkan rincian proyek secara komprehensif.
+- Menghubungkan tombol "Lihat Detail Proyek" di `ProjectCard` untuk membuka modal dengan animasi *smooth* menggunakan Framer Motion.
+- Menambahkan sistem **Link Tiles** (Ubin Tautan) yang dinamis:
+  - Muncul secara otomatis berdasarkan ketersediaan aset di data proyek (`links`).
+  - Mendukung ikon dan label khusus untuk: **GitHub, Demo, Figma, Google Drive, RAB, dan Model Preview**.
+  - Menggunakan `target="_blank"` dan `rel="noopener noreferrer"` untuk keamanan tautan eksternal.
+- Menyempurnakan tata letak modal dengan desain dua kolom pada desktop dan tumpukan responsif pada mobile.
+- Menyederhanakan `ProjectCard` dengan menghapus ekspansi baris (*inline expansion*) demi pengalaman pengguna yang lebih bersih dan terpusat.
+
 ## Roadmap Refactor Awal (COMPLETED)
 
 1. Root structure refactor (Selesai).

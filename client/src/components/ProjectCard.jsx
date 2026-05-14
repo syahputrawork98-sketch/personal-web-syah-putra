@@ -1,8 +1,8 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import '../styles/projects.css';
 
-const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
+const ProjectCard = ({ project, onClick }) => {
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -17,26 +17,18 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
   const getContent = (field) => {
     const data = project[field];
     if (!data) return '';
-    // Handle string directly
     if (typeof data === 'string') return data;
-    // Handle array (like features)
     if (Array.isArray(data)) return data;
-    // Handle object fallback (if still present in some legacy data)
     return data['id'] || data['en'] || '';
   };
 
-  // Safe mapping for varied data sources (API vs Local)
   const title = getContent('title');
   const subtitle = getContent('subtitle') || getContent('shortDescription') || "";
   const techStack = project.techStack || project.technologies || [];
   
-  // Link mapping (Batch 14 normalization)
   const links = project.links || {};
   const githubUrl = links.github || project.githubUrl || project.github || "";
   const demoUrl = links.demo || project.demoUrl || project.demo || project.liveUrl || "";
-  const driveUrl = links.drive || "";
-  const modelUrl = links.model || "";
-  const rabUrl = links.rab || "";
 
 
   const cardVariants = {
@@ -49,6 +41,8 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
       className="card project-card"
       variants={cardVariants}
       whileHover={{ y: -8, transition: { duration: 0.3 } }}
+      onClick={onClick}
+      style={{ cursor: 'pointer' }}
     >
       {/* Project Image */}
       <div className="project-image-container">
@@ -80,85 +74,30 @@ const ProjectCard = ({ project, onToggleExpand, isExpanded }) => {
 
         {/* Tech Stack Badges */}
         <div className="tech-badges">
-          {techStack.map((tech, idx) => (
+          {techStack.slice(0, 4).map((tech, idx) => (
             <span key={idx} className="tech-badge">
               {tech}
             </span>
           ))}
+          {techStack.length > 4 && (
+            <span className="tech-badge">+{techStack.length - 4}</span>
+          )}
         </div>
 
         {/* Buttons */}
         <div className="project-actions" style={{ marginTop: 'auto' }}>
           <button 
-            onClick={() => onToggleExpand(project.id)}
-            className="btn btn-secondary" 
-            style={{ padding: '8px 16px', fontSize: '0.85rem', flex: 1 }}
+            className="btn btn-primary" 
+            style={{ width: '100%', fontSize: '0.85rem' }}
+            onClick={(e) => {
+              e.stopPropagation();
+              onClick();
+            }}
           >
-            {isExpanded ? 'Tutup Detail' : 'Lihat Detail'}
+            Lihat Detail Proyek
           </button>
-          
-          {demoUrl && (
-            <a 
-              href={demoUrl} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="btn btn-primary" 
-              style={{ padding: '8px 16px', fontSize: '0.85rem' }}
-            >
-              Demo
-            </a>
-          )}
-          
-          {githubUrl && (
-            <a 
-              href={githubUrl} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="btn btn-secondary" 
-              style={{ padding: '8px 16px', fontSize: '0.85rem' }}
-            >
-              GitHub
-            </a>
-          )}
         </div>
       </div>
-
-      {/* Expandable Details Section */}
-      <AnimatePresence>
-        {isExpanded && (
-          <motion.div 
-            className="project-details"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            style={{ overflow: 'hidden' }}
-          >
-            <div className="detail-item">
-              <div>
-                <p className="detail-label">Tantangan:</p>
-                <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>{getContent('challenge')}</p>
-              </div>
-              <div>
-                <p className="detail-label">Solusi:</p>
-                <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>{getContent('solution')}</p>
-              </div>
-              <div>
-                <p className="detail-label">Dampak:</p>
-                <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>{getContent('impact')}</p>
-              </div>
-              <div>
-                <p className="detail-label">Fitur Utama:</p>
-                <ul style={{ fontSize: '0.9rem', opacity: 0.9, paddingLeft: '1.2rem', margin: '4px 0 0' }}>
-                  {(getContent('features') || []).map((feature, i) => (
-                    <li key={i}>{feature}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.div>
   );
 };

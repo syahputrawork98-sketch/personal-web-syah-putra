@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ProjectCard from '../components/ProjectCard';
+import ProjectDetailModal from '../components/ProjectDetailModal';
 import { motion } from 'framer-motion';
 import { getPublicProjects } from '../lib/api';
 import EmptyState from '../components/EmptyState';
@@ -18,7 +19,8 @@ const projectCategories = [
 const Projects = () => {
   const { data, loading, error } = useFetch(getPublicProjects);
   const [activeCategory, setActiveCategory] = useState("Semua");
-  const [expandedId, setExpandedId] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const rawProjects = (Array.isArray(data) 
     ? data 
@@ -38,8 +40,14 @@ const Projects = () => {
   const featuredProjects = filteredProjects.filter(p => p.featured);
   const otherProjects = filteredProjects.filter(p => !p.featured);
 
-  const toggleExpand = (id) => {
-    setExpandedId(expandedId === id ? null : id);
+  const handleOpenModal = (project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedProject(null), 300);
   };
 
   const containerVariants = {
@@ -119,8 +127,7 @@ const Projects = () => {
                   <ProjectCard 
                     key={project.id} 
                     project={project} 
-                    isExpanded={expandedId === project.id}
-                    onToggleExpand={toggleExpand}
+                    onClick={() => handleOpenModal(project)}
                   />
                 ))}
               </motion.div>
@@ -157,8 +164,7 @@ const Projects = () => {
                   <ProjectCard 
                     key={project.id} 
                     project={project} 
-                    isExpanded={expandedId === project.id}
-                    onToggleExpand={toggleExpand}
+                    onClick={() => handleOpenModal(project)}
                   />
                 ))}
               </motion.div>
@@ -170,6 +176,12 @@ const Projects = () => {
               </div>
             )}
           </>
+
+          <ProjectDetailModal 
+            isOpen={isModalOpen} 
+            onClose={handleCloseModal} 
+            project={selectedProject} 
+          />
       </div>
     </section>
   );
