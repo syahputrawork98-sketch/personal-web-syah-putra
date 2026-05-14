@@ -94,6 +94,17 @@ Perubahan Batch 7:
 - Status CV: File tersedia di `public/` namun masih berupa placeholder (80 bytes). HOLD hingga user memberikan file CV final.
 - Verifikasi build produksi tetap stabil.
 
+## Catatan Batch 8
+
+Status: Executed - i18n & Public Content Readiness selesai.
+
+Perubahan Batch 8:
+- Audit teks publik untuk konsistensi bahasa (Bahasa Indonesia).
+- Integrasi fallback data ke seluruh halaman publik (`Home`, `About`, `Projects`, `Experience`, `Contact`).
+- Website kini tetap menampilkan konten statis berkualitas (dari `fallback/`) jika API backend gagal atau kosong, menjamin "Production Readiness" dari sisi konten.
+- Verifikasi link aset publik (CV/Favicon) tetap stabil.
+- Perbaikan typo kecil dan penyelarasan label tombol/link eksternal.
+
 ## Roadmap Refactor Awal
 
 1. Root structure refactor (Selesai).
@@ -103,7 +114,9 @@ Perubahan Batch 7:
 5. Hooks, services, dan cleanup (Selesai).
 6. Styling cleanup (Selesai).
 7. SEO & Production Assets (Selesai).
-8. Final integrity check & documentation.
+8. i18n & Public Content Readiness (Selesai).
+9. Final public polish / accessibility / link sanity.
+10. Documentation final & production checklist.
 
 ## Catatan Batch 1
 

@@ -6,6 +6,8 @@ import { getPublicSkills, getPublicHero } from '../lib/api';
 import EmptyState from '../components/EmptyState';
 import { services } from '../data/homeData';
 import ServiceCard from '../components/home/ServiceCard';
+import { heroFallback } from '../fallback/heroFallback';
+import { skillsFallback } from '../fallback/skillsFallback';
 import '../styles/home.css';
 
 
@@ -44,8 +46,13 @@ const Home = () => {
           setHeroData(heroResponse); // Fallback for direct object
         }
       } catch (err) {
-        console.warn('Home: Failed to fetch data:', err.message);
-        setError(true);
+        console.warn('Home: Failed to fetch data, using fallback:', err.message);
+        // Use fallback if API fails
+        if (skillsFallback && Array.isArray(skillsFallback)) {
+           const topSkills = skillsFallback.slice(0, 8).map(s => s.name);
+           setHighlightSkills(topSkills);
+        }
+        setHeroData(heroFallback);
       } finally {
         setLoading(false);
       }
@@ -80,15 +87,6 @@ const Home = () => {
     );
   }
 
-  if (error) {
-    return (
-      <section id="home" className="section-padding flex-center hero-section">
-        <div className="container">
-          <EmptyState message="Gagal memuat data beranda." />
-        </div>
-      </section>
-    );
-  }
 
   if (!heroData) {
     return (

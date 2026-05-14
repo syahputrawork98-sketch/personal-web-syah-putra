@@ -5,14 +5,15 @@ import EmptyState from '../components/EmptyState';
 import { useFetch } from '../hooks/useFetch';
 import ExperienceCard from '../components/experience/ExperienceCard';
 import { getExperienceDisplayDate } from '../lib/dateUtils';
+import { experienceFallback } from '../fallback/experienceFallback';
 import '../styles/experience.css';
 
 
 const Experience = () => {
   const { data: response, loading, error } = useFetch(getPublicExperiences);
-  const experiences = Array.isArray(response) 
+  const experiences = (Array.isArray(response) 
     ? response 
-    : (response?.experiences || response?.data?.experiences || []);
+    : (response?.experiences || response?.data?.experiences)) || (error ? experienceFallback : []);
 
 
 
@@ -48,7 +49,6 @@ const Experience = () => {
         </motion.div>
         
         {loading && <p style={{ opacity: 0.6, fontSize: '1rem', textAlign: 'center' }}>Memuat data pengalaman...</p>}
-        {error && !loading && <EmptyState message="Gagal memuat data pengalaman." />}
         {!loading && !error && experiences.length === 0 ? (
           <EmptyState message="Data pengalaman belum tersedia." />
         ) : (

@@ -4,14 +4,15 @@ import { motion } from 'framer-motion';
 import { getPublicProjects } from '../lib/api';
 import EmptyState from '../components/EmptyState';
 import { useFetch } from '../hooks/useFetch';
+import { projectsFallback } from '../fallback/projectsFallback';
 
 
 const Projects = () => {
   const { data, loading, error } = useFetch(getPublicProjects);
   const [expandedId, setExpandedId] = useState(null);
-  const projects = Array.isArray(data) 
+  const projects = (Array.isArray(data) 
     ? data 
-    : (data?.projects || data?.data?.projects || []);
+    : (data?.projects || data?.data?.projects)) || (error ? projectsFallback : []);
 
   const toggleExpand = (id) => {
     setExpandedId(expandedId === id ? null : id);
@@ -42,17 +43,7 @@ const Projects = () => {
     );
   }
 
-  if (error) {
-    return (
-      <section id="projects" className="section-padding flex-center">
-        <div className="container">
-          <EmptyState message="Gagal memuat data proyek." />
-        </div>
-      </section>
-    );
-  }
-
-  if (projects.length === 0) {
+  if (projects.length === 0 && !error) {
     return (
       <section id="projects" className="section-padding flex-center">
         <div className="container">
