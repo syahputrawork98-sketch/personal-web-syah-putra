@@ -1,7 +1,8 @@
 /**
  * Data Proyek Fallback
- * Batch 16 - Project Data Population
- * Berisi data proyek realistis untuk berbagai kategori lintas bidang.
+ * Batch 16 Fix - Clean Project Asset Links
+ * Menghapus semua link demonstratif/placeholder dan hanya menyisakan field kosong 
+ * atau URL yang benar-benar asli.
  */
 
 export const projectsFallback = [
@@ -24,8 +25,8 @@ export const projectsFallback = [
     imageUrl: "https://images.unsplash.com/photo-1503387762-592dea58ef23?auto=format&fit=crop&q=80&w=800",
     links: {
       github: "https://github.com/syahputranugraha",
-      demo: "https://construction-demo.example.com",
-      figma: "https://www.figma.com/proto/example-id"
+      demo: "",
+      figma: ""
     },
     featured: true,
     orderIndex: 1
@@ -46,7 +47,7 @@ export const projectsFallback = [
     imageUrl: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800",
     links: {
       github: "https://github.com/syahputranugraha",
-      demo: "https://siqah-eo.example.com"
+      demo: ""
     },
     featured: true,
     orderIndex: 2
@@ -70,8 +71,8 @@ export const projectsFallback = [
     features: ["Precision Alignment Pins", "Quick-Release Clamping System", "Material Sourcing List", "Detailed Shop Drawings"],
     imageUrl: "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&q=80&w=800",
     links: {
-      drive: "https://drive.google.com/drive/folders/example-id",
-      model: "https://grabcad.com/library/example-id"
+      drive: "",
+      model: ""
     },
     featured: false,
     orderIndex: 3
@@ -115,8 +116,8 @@ export const projectsFallback = [
     features: ["Exploded View Animation", "High-Resolution Render", "Accurate Dimension Scaling", "Multiple Format Export (STEP, OBJ)"],
     imageUrl: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
     links: {
-      model: "https://skfb.ly/example-id",
-      preview: "https://viewer.example.com/piston-v6"
+      model: "",
+      preview: ""
     },
     featured: false,
     orderIndex: 5
@@ -157,11 +158,11 @@ export const projectsFallback = [
     impact: "Memberikan transparansi biaya bagi klien dan mencegah pembengkakan anggaran saat konstruksi.",
     challenge: "Menyesuaikan desain keinginan klien dengan budget yang terbatas tanpa mengurangi kualitas struktur.",
     solution: "Melakukan analisis harga satuan material secara mendalam dan menawarkan alternatif material berkualitas setara.",
-    features: ["Detail Daftar Kuantitas (BoQ)", "Visualisasi Eksterior 3D", "Analisis Harga Satuan (AHS)", "Jadwal Pelaksanaan (Curve-S)"],
+    features: ["Detail Daftar Kuantitas (BoQ)", "Visualisasi Eksterior 3D", "Analisis Harga Sahuan (AHS)", "Jadwal Pelaksanaan (Curve-S)"],
     imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800",
     links: {
-      rab: "https://drive.google.com/file/d/example-rab-id/view",
-      drive: "https://drive.google.com/drive/folders/example-folder-id"
+      rab: "",
+      drive: ""
     },
     featured: false,
     orderIndex: 7

@@ -211,6 +211,16 @@ Perubahan Batch 16:
 - Memastikan konsistensi data model antara frontend dan modal detail untuk mencegah error tampilan.
 - Sebagian besar link Google Drive/RAB/Model masih menggunakan *placeholder* atau link komunitas sebagai demonstrasi fungsionalitas Link Tiles (Batch 17 akan mematangkan URL asli).
 
+## Catatan Batch 16 Fix
+
+Status: Executed - Remove Placeholder Project Asset Links selesai.
+
+Perubahan Batch 16 Fix:
+- Menghapus seluruh URL **dummy, placeholder, dan demonstratif** (seperti *example.com*, *figma prototype id*, dll) dari data proyek di `projectsFallback.js`.
+- Memastikan sistem **Link Tiles** pada modal detail proyek hanya merender tombol untuk link yang benar-benar tersedia dan asli.
+- Mempertahankan link GitHub profil Syah Putra N sebagai satu-satunya link aktif yang valid untuk saat ini.
+- Menyiapkan *clean state* data aset proyek untuk pengisian URL asli di masa mendatang (HOLD).
+
 ## Roadmap Refactor Awal (COMPLETED)
 
 1. Root structure refactor (Selesai).
