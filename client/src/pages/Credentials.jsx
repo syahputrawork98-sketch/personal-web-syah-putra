@@ -11,9 +11,14 @@ const Credentials = () => {
   const [selectedCredential, setSelectedCredential] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const filteredCredentials = activeCategory === "Semua"
+  const filteredCredentials = (activeCategory === "Semua"
     ? credentialsData
-    : credentialsData.filter(item => item.category === activeCategory);
+    : credentialsData.filter(item => item.category === activeCategory)
+  ).sort((a, b) => {
+    if (a.featured && !b.featured) return -1;
+    if (!a.featured && b.featured) return 1;
+    return 0;
+  });
 
   const handleOpenModal = (credential) => {
     setSelectedCredential(credential);

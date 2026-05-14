@@ -149,16 +149,22 @@ Perubahan Batch 12:
 - Mendukung filter kategori (BNSP, Web Development, Konstruksi, Manufaktur, Pelatihan).
 - Halaman ini dirancang untuk kemandirian konten; data final link Google Drive akan diisi pada Batch 13.
 
-## Catatan Batch 13
+## Catatan Batch 13 Fix
 
-Status: Executed - Credentials Data Migration + Google Drive Links selesai.
+Status: Executed - Complete Drive Certificate Inventory selesai.
 
-Perubahan Batch 13:
-- Mengisi `credentialsData.js` dengan data sertifikat asli dan menyematkan link **Google Drive (View & Preview)** untuk sertifikat BNSP, RevoU, dan ITENAS.
-- Menyempurnakan komponen `CredentialModal.jsx` untuk menangani item yang belum memiliki link Drive dengan pesan informatif "Link Drive belum tersedia".
-- Menyederhanakan halaman **About** dengan mengganti daftar sertifikat panjang menjadi komponen **CTA (Call-to-Action)** yang mengarah ke halaman `/credentials`.
-- Memusatkan seluruh manajemen sertifikat publik ke satu rute utama demi kerapian struktur informasi.
-- Sertifikat yang belum memiliki File ID individual tetap ditampilkan sebagai *card* untuk kelengkapan riwayat, namun tanpa fitur pratinjau (HOLD).
+Perubahan Batch 13 Fix:
+- Melakukan audit mendalam terhadap folder Google Drive **02–07** (folder 08 tidak ditemukan).
+- Mengintegrasikan **20 item** sertifikat/kredensial asli ke dalam `credentialsData.js`.
+- Menerapkan sistem klasifikasi item:
+  - `featured: true`: Untuk sertifikat utama (BNSP, BBPVP, RevoU, OJT).
+  - `status: "active"`: Item valid dan utama.
+  - `status: "supporting"`: Dokumen pendukung atau verifikasi tambahan.
+  - `status: "duplicate-review"`: Item yang muncul di lebih dari satu folder Drive untuk ditinjau lebih lanjut.
+- Memperbarui komponen `CredentialCard` untuk menampilkan lencana status (**STAR / SUPPORTING / REVIEW**) secara visual.
+- Memperbarui halaman `/credentials` agar mengurutkan item **Featured** di posisi teratas.
+- Menambahkan kategori filter yang lebih komprehensif: BNSP, IT & Digital, Teknik & Manufaktur, Konstruksi, Pengembangan Diri, Magang & Partisipasi, Dokumen Pendukung.
+- Seluruh 20 item telah terhubung dengan `viewUrl` dan `previewUrl` Google Drive yang valid.
 
 ## Roadmap Refactor Awal (COMPLETED)
 
