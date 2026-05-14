@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  marginBottom: var(--space-8);
+  margin-bottom: var(--space-8);
 }
 
 @media (max-width: 600px) {
