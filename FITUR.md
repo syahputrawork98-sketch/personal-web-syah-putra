@@ -137,6 +137,18 @@ Perubahan Batch 11:
 - Memastikan tampilan responsif Navbar tetap aman dengan branding baru.
 - Nama panjang penuh "Syah Putra Nugraha" tetap digunakan di metadata SEO dan dokumen resmi, namun tidak lagi digunakan di branding utama UI.
 
+## Catatan Batch 12
+
+Status: Executed - Credentials Page Structure + Drive Preview Support selesai.
+
+Perubahan Batch 12:
+- Membuat halaman publik baru **"Sertifikat & Kredensial"** di route `/credentials`.
+- Menambahkan menu **"Sertifikat"** pada Navbar publik.
+- Membuat komponen `CredentialCard.jsx` dan `CredentialModal.jsx` dengan dukungan **Google Drive Preview** (iframe).
+- Menyiapkan struktur data terpusat di `client/src/data/credentialsData.js`.
+- Mendukung filter kategori (BNSP, Web Development, Konstruksi, Manufaktur, Pelatihan).
+- Halaman ini dirancang untuk kemandirian konten; data final link Google Drive akan diisi pada Batch 13.
+
 ## Roadmap Refactor Awal (COMPLETED)
 
 1. Root structure refactor (Selesai).

@@ -1,0 +1,87 @@
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { credentialsData, credentialCategories } from '../data/credentialsData';
+import CredentialCard from '../components/credentials/CredentialCard';
+import CredentialModal from '../components/credentials/CredentialModal';
+import EmptyState from '../components/EmptyState';
+import '../styles/credentials.css';
+
+const Credentials = () => {
+  const [activeCategory, setActiveCategory] = useState("Semua");
+  const [selectedCredential, setSelectedCredential] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const filteredCredentials = activeCategory === "Semua"
+    ? credentialsData
+    : credentialsData.filter(item => item.category === activeCategory);
+
+  const handleOpenModal = (credential) => {
+    setSelectedCredential(credential);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedCredential(null), 300);
+  };
+
+  return (
+    <section id="credentials" className="section-padding">
+      <div className="container">
+        <motion.div 
+          style={{ textAlign: 'center', marginBottom: 'var(--space-12)' }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-center">Sertifikat & Kredensial</h2>
+          <p style={{ maxWidth: '700px', margin: '0 auto', opacity: 0.8, fontSize: '1.1rem' }}>
+            Kumpulan sertifikasi kompetensi, pelatihan, dan penghargaan profesional yang saya peroleh selama perjalanan karir saya.
+          </p>
+        </motion.div>
+
+        {/* Filter Categories */}
+        <div className="filter-container">
+          {credentialCategories.map(cat => (
+            <button
+              key={cat}
+              className={`filter-btn ${activeCategory === cat ? 'active' : ''}`}
+              onClick={() => setActiveCategory(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Credentials Grid */}
+        {filteredCredentials.length > 0 ? (
+          <motion.div 
+            className="credentials-grid"
+            layout
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            {filteredCredentials.map(item => (
+              <CredentialCard 
+                key={item.id} 
+                credential={item} 
+                onClick={() => handleOpenModal(item)}
+              />
+            ))}
+          </motion.div>
+        ) : (
+          <EmptyState message={`Belum ada sertifikat di kategori ${activeCategory}.`} />
+        )}
+
+        <CredentialModal 
+          isOpen={isModalOpen} 
+          onClose={handleCloseModal} 
+          credential={selectedCredential} 
+        />
+      </div>
+    </section>
+  );
+};
+
+export default Credentials;
