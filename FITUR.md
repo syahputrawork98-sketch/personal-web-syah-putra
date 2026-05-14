@@ -36,11 +36,22 @@ Perubahan Batch 2:
 - Memperbaiki import path `AdminLayout` di `App.jsx` dan import `auth lib` di dalam `AdminLayout.jsx`.
 - Verifikasi Navbar publik tetap bersih dari tombol login.
 
+## Catatan Batch 3
+
+Status: Executed - Data statis telah diekstrak dari halaman publik.
+
+Perubahan Batch 3:
+- Membuat folder `client/src/data/` untuk penyimpanan data statis.
+- Ekstraksi data layanan "What I Can Do" dari `Home.jsx` ke `data/homeData.js`.
+- Ekstraksi `categoryMap` dan data "Experience Reframing" dari `About.jsx` ke `data/aboutData.js`.
+- Halaman publik (`Home.jsx` & `About.jsx`) menjadi lebih bersih dan modular.
+- Verifikasi visual dan behavior tetap konsisten.
+
 ## Roadmap Refactor Awal
 
 1. Root structure refactor (Selesai).
 2. Client folder layering (Selesai).
-3. Static data extraction.
+3. Static data extraction (Selesai).
 4. Component extraction.
 5. Hooks, services, dan dokumentasi sinkron.
 

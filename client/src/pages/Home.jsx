@@ -4,7 +4,9 @@ import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { getPublicSkills, getPublicHero } from '../lib/api';
 import EmptyState from '../components/EmptyState';
+import { services } from '../data/homeData';
 import '../styles/home.css';
+
 
 const Home = () => {
   const [highlightSkills, setHighlightSkills] = useState([]);
@@ -155,12 +157,7 @@ const Home = () => {
             marginInline: 'auto'
           }}
         >
-          {[
-            { title: 'Responsive Web Apps', desc: 'Membangun UI interaktif dengan React & Next.js' },
-            { title: 'API & Backend Systems', desc: 'Integrasi sistem dengan Node.js & REST API' },
-            { title: 'Database Management', desc: 'Optimasi data flow dengan PostgreSQL & Prisma' },
-            { title: 'System Performance', desc: 'Debugging & peningkatan efisiensi sistem' }
-          ].map((item, idx) => (
+          {services.map((item, idx) => (
             <div key={idx} className="card" style={{ padding: 'var(--space-4)', textAlign: 'center', background: 'rgba(var(--primary-color-rgb), 0.05)', border: '1px solid rgba(var(--primary-color-rgb), 0.1)' }}>
               <h4 style={{ fontSize: '0.95rem', marginBottom: 'var(--space-1)', color: 'var(--primary-color)' }}>{item.title}</h4>
               <p style={{ fontSize: '0.8rem', opacity: 0.7 }}>{item.desc}</p>

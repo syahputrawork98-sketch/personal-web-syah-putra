@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { getPublicSkills, getPublicContact, getPublicProfile, getPublicEducation } from '../lib/api';
 import EmptyState from '../components/EmptyState';
 import CredentialsSection from '../components/about/CredentialsSection';
+import { categoryMap, experienceReframing } from '../data/aboutData';
 import '../styles/about.css';
 
 const About = () => {
@@ -14,14 +15,6 @@ const About = () => {
   const [loading, setLoading] = useState(true);
 
   // Mapping for skill categories
-  const categoryMap = {
-    'frontend': 'Frontend',
-    'backend': 'Backend',
-    'database': 'Database',
-    'tools': 'Tools & Deployment',
-    'automation': 'Otomasi & Produktivitas',
-    'others': 'Desain & Lainnya'
-  };
 
   const [error, setError] = useState(false);
 
@@ -251,11 +244,7 @@ const About = () => {
               Bukan sekadar pengalaman masa lalu, 8 tahun berkecimpung di dunia IT sistem telah membentuk cara saya berpikir dalam membangun aplikasi. Saya membawa keahlian dalam:
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--space-4)' }}>
-              {[
-                { title: 'Digitalization', desc: 'Mengubah proses manual yang kompleks menjadi sistem digital yang efisien.' },
-                { title: 'System Reliability', desc: 'Memastikan aplikasi dibangun dengan ketahanan operasional tinggi.' },
-                { title: 'Practical Problem Solving', desc: 'Menemukan solusi teknis tercepat dan paling efektif untuk masalah bisnis.' }
-              ].map((item, i) => (
+              {experienceReframing.map((item, i) => (
                 <div key={i}>
                   <p style={{ fontWeight: 700, color: 'var(--primary-color)', marginBottom: '4px' }}>{item.title}</p>
                   <p style={{ fontSize: '0.85rem', opacity: 0.7 }}>{item.desc}</p>
