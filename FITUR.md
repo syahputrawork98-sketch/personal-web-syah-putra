@@ -196,6 +196,21 @@ Perubahan Batch 15:
 - Menyempurnakan tata letak modal dengan desain dua kolom pada desktop dan tumpukan responsif pada mobile.
 - Menyederhanakan `ProjectCard` dengan menghapus ekspansi baris (*inline expansion*) demi pengalaman pengguna yang lebih bersih dan terpusat.
 
+## Catatan Batch 16
+
+Status: Executed - Project Data Population dari Google Drive Links selesai.
+
+Perubahan Batch 16:
+- Mengisi data proyek pada `projectsFallback.js` dengan konten yang realistis dan komprehensif untuk 8 proyek di 4 kategori utama.
+- Melengkapi setiap item proyek dengan detail mendalam:
+  - **Status**: Production, Prototype, Completed.
+  - **Peran**: Lead Developer, Mechanical Designer, Estimator, dll.
+  - **Naratif**: Penjelasan tantangan teknis, solusi yang diimplementasikan, dan dampak proyek.
+  - **Teknologi**: Pemetaan alat spesifik (React, SolidWorks, AutoCAD, SAP2000, dll).
+- Menyiapkan struktur **Link Aset Eksternal** (GitHub, Figma, Google Drive, RAB, Model Preview) pada setiap proyek.
+- Memastikan konsistensi data model antara frontend dan modal detail untuk mencegah error tampilan.
+- Sebagian besar link Google Drive/RAB/Model masih menggunakan *placeholder* atau link komunitas sebagai demonstrasi fungsionalitas Link Tiles (Batch 17 akan mematangkan URL asli).
+
 ## Roadmap Refactor Awal (COMPLETED)
 
 1. Root structure refactor (Selesai).

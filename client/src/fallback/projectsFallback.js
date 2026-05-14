@@ -1,114 +1,189 @@
 /**
  * Data Proyek Fallback
- * Batch 14 - Menyiapkan kategori lintas bidang
+ * Batch 16 - Project Data Population
+ * Berisi data proyek realistis untuk berbagai kategori lintas bidang.
  */
 
 export const projectsFallback = [
-  // IT & Web
+  // ==========================================
+  // IT & WEB
+  // ==========================================
   {
     id: "construction-monitoring-system",
     title: "Sistem Monitoring Proyek Konstruksi",
-    subtitle: "Rumahku Kontraktor",
+    subtitle: "Enterprise Management System",
     category: "IT & Web",
-    techStack: ["React.js", "Node.js", "Express.js", "MongoDB"],
-    description: "Aplikasi web untuk monitoring progres pembangunan rumah. Fitur utama mencakup dashboard progres, laporan harian, dokumentasi proyek, dan monitoring pekerjaan.",
-    role: "Full Stack Developer",
-    impact: "Meningkatkan efisiensi pelaporan proyek hingga 35%.",
-    challenge: "Sulitnya memantau progres harian secara real-time dari banyak lokasi proyek konstruksi.",
-    solution: "Membangun sistem pelaporan berbasis cloud yang memungkinkan mandor mengupload laporan langsung dari lapangan.",
-    features: ["Dashboard Progres", "Upload Dokumentasi Foto", "Laporan Harian Digital", "Manajemen Logistik"],
+    status: "Production",
+    techStack: ["React.js", "Node.js", "Express.js", "MongoDB", "Framer Motion"],
+    description: "Platform digital untuk mengelola progres pembangunan konstruksi secara real-time. Memungkinkan kolaborasi antara pemilik proyek, kontraktor, dan mandor lapangan.",
+    role: "Lead Full Stack Developer",
+    impact: "Meningkatkan akurasi pelaporan lapangan hingga 40% dan mengurangi keterlambatan koordinasi logistik.",
+    challenge: "Sinkronisasi data dari lokasi konstruksi dengan koneksi internet terbatas dan kebutuhan visualisasi progres yang intuitif.",
+    solution: "Implementasi sistem offline-first untuk input data dan dashboard interaktif dengan progres bar otomatis berdasarkan bobot pekerjaan.",
+    features: ["Dashboard Progres Real-time", "Manajemen Logistik & Material", "Laporan Harian Digital", "Dokumentasi Foto Lapangan"],
     imageUrl: "https://images.unsplash.com/photo-1503387762-592dea58ef23?auto=format&fit=crop&q=80&w=800",
     links: {
       github: "https://github.com/syahputranugraha",
-      demo: ""
+      demo: "https://construction-demo.example.com",
+      figma: "https://www.figma.com/proto/example-id"
     },
     featured: true,
     orderIndex: 1
   },
   {
     id: "event-organizer-showcase",
-    title: "Website Showcase Event Organizer",
-    subtitle: "Siqah",
+    title: "Website Portfolio Event Organizer",
+    subtitle: "High-End Service Showcase",
     category: "IT & Web",
-    techStack: ["React.js", "Node.js", "Express.js", "MySQL"],
-    description: "Website promosi jasa event organizer dan catering dengan katalog layanan, portfolio acara, serta fitur inquiry/pemesanan.",
+    status: "Production",
+    techStack: ["React.js", "Vite", "Vanilla CSS", "EmailJS"],
+    description: "Website showcase premium untuk jasa event organizer dan catering yang berfokus pada estetika visual dan kemudahan pemesanan layanan.",
     role: "Full Stack Developer",
-    impact: "Meningkatkan kepercayaan klien dan memperluas jangkauan digital bisnis.",
-    challenge: "Kurangnya kehadiran digital untuk menarik klien menengah-keatas dalam industri EO.",
-    solution: "Desain website premium dengan galeri portofolio interaktif dan sistem katalog layanan yang dinamis.",
-    features: ["Portfolio Gallery", "Layanan Inquiry", "Katalog Paket Catering", "Responsif Mobile"],
+    impact: "Berhasil menarik klien korporasi baru dan meningkatkan volume inquiry lewat website hingga 25%.",
+    challenge: "Menampilkan galeri foto acara berkualitas tinggi tanpa mengorbankan kecepatan loading halaman.",
+    solution: "Penggunaan teknik lazy loading gambar dan optimasi aset visual menggunakan format modern.",
+    features: ["Interactive Portfolio Gallery", "Katalog Layanan Dinamis", "Sistem Inquiry Terintegrasi", "Optimasi SEO Dasar"],
     imageUrl: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800",
     links: {
       github: "https://github.com/syahputranugraha",
-      demo: ""
+      demo: "https://siqah-eo.example.com"
     },
     featured: true,
     orderIndex: 2
   },
 
-  // Manufaktur & Teknik
+  // ==========================================
+  // MANUFAKTUR & TEKNIK
+  // ==========================================
   {
     id: "mechanical-fixture-design",
-    title: "Desain Fixture Produksi Manufaktur",
-    subtitle: "Optimization Project",
+    title: "Desain Fixture Produksi Komponen Mesin",
+    subtitle: "Manufacturing Process Optimization",
     category: "Manufaktur & Teknik",
-    techStack: ["AutoCAD", "SolidWorks", "Technical Drawing"],
-    description: "Perancangan fixture untuk meningkatkan akurasi dan kecepatan proses produksi komponen mesin.",
+    status: "Completed",
+    techStack: ["AutoCAD", "SolidWorks", "Mechanical Engineering"],
+    description: "Perancangan fixture mekanik khusus untuk proses machining komponen mesin guna memastikan presisi tinggi dan pengulangan (repeatability) produksi.",
     role: "Mechanical Designer",
-    impact: "Mengurangi tingkat reject produk hingga 15%.",
-    challenge: "Presisi pemasangan komponen yang tidak konsisten pada lini produksi lama.",
-    solution: "Merancang jig dan fixture kustom dengan sistem penguncian pneumatik.",
-    features: ["Pneumatic Clamping", "High Precision Design", "Standard Component Usage"],
+    impact: "Mengurangi waktu setup produksi sebesar 20% dan menurunkan angka produk reject akibat kesalahan posisi.",
+    challenge: "Kebutuhan akan pencekaman yang kuat namun tetap presisi tanpa merusak permukaan benda kerja.",
+    solution: "Merancang fixture dengan sistem toggle clamp yang disesuaikan dengan geometri spesifik benda kerja.",
+    features: ["Precision Alignment Pins", "Quick-Release Clamping System", "Material Sourcing List", "Detailed Shop Drawings"],
     imageUrl: "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&q=80&w=800",
     links: {
-      drive: "",
-      model: ""
+      drive: "https://drive.google.com/drive/folders/example-id",
+      model: "https://grabcad.com/library/example-id"
     },
     featured: false,
     orderIndex: 3
   },
-
-  // Model Mesin 3D
   {
-    id: "engine-component-3d",
-    title: "Pemodelan 3D Komponen Mesin Industri",
-    subtitle: "3D Asset Library",
-    category: "Model Mesin 3D",
-    techStack: ["SolidWorks", "Blender", "KeyShot"],
-    description: "Pembuatan model 3D detail untuk berbagai komponen mesin industri yang siap digunakan untuk simulasi dan visualisasi produk.",
-    role: "3D Modeler",
-    impact: "Mempercepat proses prototyping dan presentasi teknis kepada klien.",
-    challenge: "Visualisasi teknis komponen internal mesin yang sulit dijelaskan hanya dengan gambar 2D.",
-    solution: "Membuat model 3D high-fidelity dengan rendering fotorealistik untuk presentasi teknis.",
-    features: ["Photorealistic Rendering", "Detailed Assembly", "Exploded View"],
-    imageUrl: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
+    id: "mold-design-injection",
+    title: "Desain Mold Plastic Injection",
+    subtitle: "Industrial Tooling Design",
+    category: "Manufaktur & Teknik",
+    status: "Completed",
+    techStack: ["SolidWorks", "MoldFlow", "CAD"],
+    description: "Perancangan sistem cetakan (mold) untuk produk plastik industri dengan fokus pada efisiensi pendinginan dan siklus produksi.",
+    role: "CAD Engineer",
+    impact: "Desain berhasil diproduksi dan mencapai cycle time yang lebih cepat dari target awal.",
+    challenge: "Menghindari terjadinya cacat produksi seperti 'sink marks' pada bagian dinding yang tebal.",
+    solution: "Optimasi sistem pendinginan (cooling system) dan penentuan gate location yang strategis.",
+    features: ["Core & Cavity Separation", "Ejection System Design", "Cooling Channel Layout", "BOM for Hardware"],
+    imageUrl: "https://images.unsplash.com/photo-1565608438257-fac3c27beb36?auto=format&fit=crop&q=80&w=800",
     links: {
-      model: "",
-      preview: ""
+      drive: ""
     },
     featured: false,
     orderIndex: 4
   },
 
-  // Model Bangunan & RAB
+  // ==========================================
+  // MODEL MESIN 3D
+  // ==========================================
   {
-    id: "residential-building-estimate",
-    title: "Pemodelan Bangunan & Estimasi Biaya (RAB)",
-    subtitle: "Residential Project",
-    category: "Model Bangunan & RAB",
-    techStack: ["AutoCAD", "Excel", "SketchUp"],
-    description: "Penyusunan Rencana Anggaran Biaya (RAB) dan pemodelan bangunan 2D/3D untuk proyek hunian residensial.",
-    role: "Cost Estimator & Drafter",
-    impact: "Akurasi estimasi biaya mencapai 95% dari nilai realisasi lapangan.",
-    challenge: "Variasi harga material yang fluktuatif dan kebutuhan visualisasi ruang yang akurat bagi klien.",
-    solution: "Integrasi data material dinamis di Excel dengan pemodelan ruang 3D yang presisi.",
-    features: ["Detailed RAB", "2D/3D Visualization", "Material Schedule"],
-    imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800",
+    id: "engine-component-3d",
+    title: "Pemodelan 3D Komponen V6 Engine",
+    subtitle: "Detailed Mechanical Modeling",
+    category: "Model Mesin 3D",
+    status: "Prototype",
+    techStack: ["SolidWorks", "KeyShot", "Blender"],
+    description: "Pemodelan 3D mendalam untuk komponen mesin V6, termasuk piston, crankshaft, dan connecting rod untuk tujuan edukasi dan simulasi.",
+    role: "3D Modeler",
+    impact: "Digunakan sebagai aset visual dalam materi pelatihan teknis mekanik.",
+    challenge: "Memodelkan geometri kompleks piston head agar sesuai dengan standar teknis industri.",
+    solution: "Penggunaan teknik surface modeling untuk geometri yang rumit dan assembly mating yang presisi.",
+    features: ["Exploded View Animation", "High-Resolution Render", "Accurate Dimension Scaling", "Multiple Format Export (STEP, OBJ)"],
+    imageUrl: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
     links: {
-      rab: "",
-      drive: ""
+      model: "https://skfb.ly/example-id",
+      preview: "https://viewer.example.com/piston-v6"
     },
     featured: false,
     orderIndex: 5
+  },
+  {
+    id: "robotic-arm-assembly",
+    title: "Assembly 3D Lengan Robot Industri",
+    subtitle: "Automation Asset Library",
+    category: "Model Mesin 3D",
+    status: "Prototype",
+    techStack: ["SolidWorks", "Fusion 360"],
+    description: "Pemodelan dan perakitan (assembly) 6-axis robotic arm yang dirancang untuk keperluan simulasi otomasi pabrik.",
+    role: "3D Modeler & Assembly Specialist",
+    impact: "Memudahkan tim engineering dalam merencanakan layout ruang kerja robot.",
+    challenge: "Memastikan seluruh join (persendian) robot memiliki limitasi gerak yang realistis.",
+    solution: "Implementasi 'Motion Study' dan 'Mates Constraint' yang akurat di SolidWorks.",
+    features: ["6-Axis Movement Simulation", "Integrated Wiring Routing", "Standard Motor Components", "Weight & Balance Analysis"],
+    imageUrl: "https://images.unsplash.com/photo-1531325082793-ca7c9ad6583a?auto=format&fit=crop&q=80&w=800",
+    links: {
+      model: ""
+    },
+    featured: false,
+    orderIndex: 6
+  },
+
+  // ==========================================
+  // MODEL BANGUNAN & RAB
+  // ==========================================
+  {
+    id: "residential-building-estimate",
+    title: "RAB & Pemodelan Hunian Residensial",
+    subtitle: "Cost Estimation & Planning",
+    category: "Model Bangunan & RAB",
+    status: "Completed",
+    techStack: ["AutoCAD", "SketchUp", "Excel (VBA)"],
+    description: "Penyusunan Rencana Anggaran Biaya (RAB) detail untuk pembangunan rumah tinggal tipe 70, lengkap dengan pemodelan visual 3D.",
+    role: "Quantity Surveyor & Estimator",
+    impact: "Memberikan transparansi biaya bagi klien dan mencegah pembengkakan anggaran saat konstruksi.",
+    challenge: "Menyesuaikan desain keinginan klien dengan budget yang terbatas tanpa mengurangi kualitas struktur.",
+    solution: "Melakukan analisis harga satuan material secara mendalam dan menawarkan alternatif material berkualitas setara.",
+    features: ["Detail Daftar Kuantitas (BoQ)", "Visualisasi Eksterior 3D", "Analisis Harga Satuan (AHS)", "Jadwal Pelaksanaan (Curve-S)"],
+    imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800",
+    links: {
+      rab: "https://drive.google.com/file/d/example-rab-id/view",
+      drive: "https://drive.google.com/drive/folders/example-folder-id"
+    },
+    featured: false,
+    orderIndex: 7
+  },
+  {
+    id: "warehouse-structure-rab",
+    title: "Estimasi Biaya Struktur Gudang Baja",
+    subtitle: "Industrial Costing",
+    category: "Model Bangunan & RAB",
+    status: "Completed",
+    techStack: ["Excel", "SAP2000", "AutoCAD"],
+    description: "Perhitungan estimasi biaya untuk konstruksi gudang rangka baja bentang lebar seluas 1200 m2.",
+    role: "Cost Estimator",
+    impact: "Dokumen RAB digunakan sebagai dasar penawaran tender kontraktor.",
+    challenge: "Fluktuasi harga baja profil yang sangat tinggi saat proses perencanaan.",
+    solution: "Membuat template RAB dinamis di Excel yang terhubung dengan database harga material terkini.",
+    features: ["Steel Weight Calculation", "Foundation Cost Analysis", "Labor Productivity Rate", "Material Waste Estimation"],
+    imageUrl: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
+    links: {
+      rab: ""
+    },
+    featured: false,
+    orderIndex: 8
   }
 ];
