@@ -82,18 +82,19 @@ const CredentialModal = ({ isOpen, onClose, credential }) => {
                 ></iframe>
               </div>
             ) : (
-              <div className="drive-preview-container flex-center" style={{ background: 'rgba(var(--primary-color-rgb), 0.03)' }}>
-                <p style={{ opacity: 0.5, fontSize: '0.9rem' }}>Pratinjau sertifikat belum tersedia.</p>
+              <div className="drive-preview-container flex-center" style={{ background: 'rgba(var(--primary-color-rgb), 0.03)', flexDirection: 'column', gap: 'var(--space-2)' }}>
+                <span style={{ fontSize: '2rem', opacity: 0.2 }}>📄</span>
+                <p style={{ opacity: 0.5, fontSize: '0.9rem', fontWeight: 500 }}>Pratinjau sertifikat belum tersedia di sistem.</p>
               </div>
             )}
 
             <div style={{ marginBottom: 'var(--space-8)' }}>
               <h4 style={{ marginBottom: 'var(--space-2)', color: 'var(--text-primary)' }}>Deskripsi Kredensial</h4>
-              <p style={{ fontSize: '1rem', lineHeight: 1.7, opacity: 0.8 }}>{credential.summary}</p>
+              <p style={{ fontSize: '1rem', lineHeight: 1.7, opacity: 0.8 }}>{credential.summary || 'Detail deskripsi belum ditambahkan.'}</p>
             </div>
 
             <div className="modal-actions" style={{ display: 'flex', gap: 'var(--space-4)', marginTop: 'var(--space-4)' }}>
-              {credential.viewUrl && (
+              {credential.viewUrl ? (
                 <a 
                   href={credential.viewUrl} 
                   target="_blank" 
@@ -103,6 +104,13 @@ const CredentialModal = ({ isOpen, onClose, credential }) => {
                 >
                   Buka di Google Drive
                 </a>
+              ) : (
+                <div 
+                  className="btn btn-secondary" 
+                  style={{ flex: 1, textAlign: 'center', opacity: 0.5, cursor: 'not-allowed', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+                >
+                  <span>🔒</span> Link Drive belum tersedia
+                </div>
               )}
               <button 
                 onClick={onClose} 

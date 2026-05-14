@@ -149,6 +149,17 @@ Perubahan Batch 12:
 - Mendukung filter kategori (BNSP, Web Development, Konstruksi, Manufaktur, Pelatihan).
 - Halaman ini dirancang untuk kemandirian konten; data final link Google Drive akan diisi pada Batch 13.
 
+## Catatan Batch 13
+
+Status: Executed - Credentials Data Migration + Google Drive Links selesai.
+
+Perubahan Batch 13:
+- Mengisi `credentialsData.js` dengan data sertifikat asli dan menyematkan link **Google Drive (View & Preview)** untuk sertifikat BNSP, RevoU, dan ITENAS.
+- Menyempurnakan komponen `CredentialModal.jsx` untuk menangani item yang belum memiliki link Drive dengan pesan informatif "Link Drive belum tersedia".
+- Menyederhanakan halaman **About** dengan mengganti daftar sertifikat panjang menjadi komponen **CTA (Call-to-Action)** yang mengarah ke halaman `/credentials`.
+- Memusatkan seluruh manajemen sertifikat publik ke satu rute utama demi kerapian struktur informasi.
+- Sertifikat yang belum memiliki File ID individual tetap ditampilkan sebagai *card* untuk kelengkapan riwayat, namun tanpa fitur pratinjau (HOLD).
+
 ## Roadmap Refactor Awal (COMPLETED)
 
 1. Root structure refactor (Selesai).
