@@ -265,6 +265,13 @@ Perubahan Batch 18:
 - Menyiapkan **Data Model CV**: Struktur data varian CV yang mencakup fokus bidang, proyek unggulan, dan daftar alat/teknologi terkait.
 - Penanganan **Status PDF**: Tombol unduhan PDF secara otomatis menampilkan status "Belum Tersedia" (Coming Soon) karena file asli sedang dalam tahap finalisasi tata letak, mencegah tautan rusak atau palsu.
 
+## Catatan Batch 18 Fix
+
+Status: Executed - Resolve CV Wireframe Preview Runtime Issue selesai.
+
+Perubahan Batch 18 Fix:
+- Memperbaiki kesalahan referensi variabel (`selectedProject` menjadi `selectedVariant`) pada komponen `CVVariantSelector.jsx` untuk mencegah *runtime error* saat membuka pratinjau wireframe.
+
 ## Roadmap Refactor Awal (COMPLETED)
 
 1. Root structure refactor (Selesai).

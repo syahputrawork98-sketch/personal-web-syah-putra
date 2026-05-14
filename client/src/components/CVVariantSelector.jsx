@@ -142,7 +142,7 @@ const CVVariantSelector = ({ isOpen, onClose }) => {
                   >
                     &larr; Kembali
                   </button>
-                  <h2 style={{ fontSize: '1.5rem', margin: 0 }}>Wireframe Preview: {selectedProject?.title || selectedVariant?.title}</h2>
+                  <h2 style={{ fontSize: '1.5rem', margin: 0 }}>Wireframe Preview: {selectedVariant?.title}</h2>
                 </div>
 
                 <div style={{ marginBottom: 'var(--space-8)' }}>
