@@ -2,29 +2,31 @@
 
 Selamat datang di repository **Personal Web Syah Putra Nugraha**. Ini adalah pusat pengembangan website pribadi yang dibangun dengan pendekatan modern, terstruktur, dan profesional.
 
-## 📂 Struktur Project
+## 📂 Struktur Project (Batch 1 - Refactored)
 
 Repository ini menggunakan struktur modular untuk memisahkan antara manajemen project dan implementasi teknis:
 
 - **`README.md`**: Dokumentasi utama repository (file ini).
-- **`kanban-master/`**: Dokumentasi internal, perencanaan, roadmap, task list, dan catatan pengembangan.
-- **`webstrip/`**: Source code Frontend (React + Vite).
-- **`backend/`**: Source code Backend API (Express.js + Prisma + PostgreSQL).
+- **`FITUR.md`**: Catatan status pengembangan dan fitur.
+- **`docs/`**: Dokumentasi internal, perencanaan (`refactor-plan.md`), roadmap, task list, dan catatan pengembangan.
+- **`client/`**: Source code Frontend (React + Vite).
+- **`server/`**: Skeleton ringan untuk Backend API.
 
-## 🚀 Status Pengembangan
+## 🚀 Cara Menjalankan Frontend
 
-Saat ini website fokus pada implementasi **Database-First Content Management**. 
+Untuk menjalankan frontend di lokal, masuk ke folder `client/` dan gunakan npm:
 
-- **Fitur Kredensial**: Telah diintegrasikan ke halaman `/about`. Seluruh data sertifikasi, kredensial unggulan, dan dokumen pendukung kini dikelola sepenuhnya melalui database (PostgreSQL) dan API.
-- **Credentials Migration**: Migrasi data dari `credentialDraft.js` ke database PostgreSQL telah selesai dilakukan. Seluruh kredensial kini bersifat dinamis.
-- **Status Project**: Arsitektur sekarang sepenuhnya *Database-Driven Content Management*.
+```bash
+cd client
+npm install
+npm run dev
+```
 
-## 🛠️ Tech Stack
+## 🛠️ Status Pengembangan
 
-- **Frontend**: React.js, Vite, Framer Motion
-- **Backend**: Node.js, Express.js
-- **Database**: PostgreSQL dengan Prisma ORM
-- **Deployment**: Vercel/Netlify (Frontend) & VPS/Managed Service (Backend)
+- **Frontend**: Berada di folder `client/`. Tidak ada perubahan pada UI/Behavior saat ini.
+- **Backend (`server/`)**: Saat ini masih berupa skeleton ringan (placeholder).
+- **Login & Auth**: Saat ini **BELUM DIKERJAKAN** (HOLD hingga fase akhir). Tidak ada tombol login di UI publik.
 
 ---
 &copy; 2026 Syah Putra Nugraha.

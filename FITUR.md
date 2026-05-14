@@ -34,6 +34,24 @@ FITUR.md
 4. Component extraction.
 5. Hooks, services, dan dokumentasi sinkron.
 
+## Catatan Batch 1
+
+Status: Executed - menunggu push final setelah rebase conflict selesai.
+
+Perubahan Batch 1:
+- `webstrip/` dipindahkan menjadi `client/`.
+- `kanban-master/` dipindahkan menjadi `docs/`.
+- `backend/` dipindahkan menjadi `server/`.
+- `README.md` disesuaikan dengan struktur baru.
+- Tidak ada perubahan UI/behavior frontend.
+
+## Hold / Fase Akhir
+
+- Login/auth/admin access dikerjakan di fase akhir.
+- Website publik tidak menampilkan tombol/link login.
+- Akses admin/login nantinya cukup lewat URL langsung/manual.
+- Credential tidak boleh disimpan di repository.
+
 ## Catatan
 
 Fokus refactor adalah kerapian struktur, modularitas, maintainability, dan menjaga project tetap ringan.
