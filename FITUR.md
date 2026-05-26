@@ -294,6 +294,20 @@ Perubahan Batch 20:
 - Memastikan riwayat Batch 14-20 tercatat dengan rapi sebagai basis audit pengembangan.
 - Verifikasi akhir melalui `npm run build` untuk memastikan integritas kode tetap terjaga setelah seluruh pembersihan data.
 
+## Catatan Batch 21
+
+Status: Executed - Portable AI Workflow & Project Governance SOP selesai.
+
+Perubahan Batch 21:
+- Membuat dokumentasi SOP ChatGPT Project untuk PW Personal Web.
+- Menetapkan Roomchat 00 sebagai Manager utama.
+- Menetapkan Roomchat 01 sebagai Analis, Auditor, dan Checker.
+- Menetapkan Gemini Anti-Gravity sebagai eksekutor satu kali, bukan checker utama.
+- Menegaskan VS Code sebagai tempat validasi nyata oleh user.
+- Menegaskan GitHub sebagai memori portable dan sumber dokumentasi utama project.
+- Menambahkan aturan pemilihan Gemini 3.1 Pro Low dan Gemini 3.1 Pro High.
+- Menambahkan format output Roomchat 00, Roomchat 01, laporan Gemini, dan commit/push workflow.
+
 ---
 **Siklus Batch 1 - 20 Resmi Diselesaikan.**
 
