@@ -18,8 +18,6 @@ Untuk menjaga kerapian dan fokus, dokumentasi dibagi ke dalam direktori terstruk
 - **`03-technical-notes/`**
   Catatan spesifik mengenai arsitektur. Membahas keputusan dan batasan pada sisi `FRONTEND`, status skeleton `BACKEND`, serta aturan penulisan `DATABASE`.
 
-- File lain yang bersifat sementara atau operasional audit berada sejajar di direktori ini atau direferensikan pada fase QA produksi (seperti checklist).
-
 ## Aturan Utama
 1. **Pembaruan Konsisten**: Setiap ada penyelesaian *batch* baru, riwayat wajib dicatat pada folder `01-batch-history/`.
 2. **GitHub sebagai Memori Utama**: Direktori `docs/` ini adalah memori portable yang akan menjadi rujukan AI pada diskusi roomchat selanjutnya.

@@ -11,7 +11,7 @@ GitHub adalah sumber utama dokumentasi project ini (`syahputrawork98-sketch/pers
 - **Roomchat 00**: Manager utama
 - **Roomchat 01**: Analis, Auditor, dan Checker
 - **Gemini Anti-Gravity**: Eksekutor satu kali
-- **VS Code**: Tempat validasi nyata
+- **Anti-Gravity IDE**: Tempat validasi nyata
 - **GitHub**: Arsip dan sumber dokumentasi resmi
 
 ## Tugas Roomchat 00
@@ -29,7 +29,7 @@ GitHub adalah sumber utama dokumentasi project ini (`syahputrawork98-sketch/pers
 - Audit hasil kerja
 - Checker perubahan
 - Review risiko
-- Membuat checklist VS Code
+- Membuat checklist Anti-Gravity IDE
 - Memberi rekomendasi kepada Roomchat 00
 - Tidak mengambil keputusan final
 - Tidak langsung memberi instruksi final ke Gemini
@@ -55,7 +55,7 @@ GitHub adalah sumber utama dokumentasi project ini (`syahputrawork98-sketch/pers
 8. Gemini memberi laporan hasil
 9. User copy-paste laporan ke Roomchat 00
 10. Jika perlu, Roomchat 00 meminta Roomchat 01 audit/checking
-11. User cek hasil di VS Code
+11. User cek hasil di Anti-Gravity IDE
 12. Jika aman, Roomchat 00 memberi judul commit dan command commit/push
 13. User commit dan push ke GitHub
 
@@ -72,7 +72,7 @@ GitHub adalah sumber utama dokumentasi project ini (`syahputrawork98-sketch/pers
 - Model Gemini yang disarankan
 - Instruksi final untuk Gemini Anti-Gravity
 - Format laporan Gemini
-- Cara cek hasil di VS Code
+- Cara cek hasil di Anti-Gravity IDE
 - Judul commit siap copy-paste
 - Command commit dan push siap copy-paste
 - Status akhir
@@ -82,11 +82,11 @@ GitHub adalah sumber utama dokumentasi project ini (`syahputrawork98-sketch/pers
 - Risiko teknis
 - Rekomendasi file
 - Batasan aman
-- Checklist pengecekan VS Code
+- Checklist pengecekan Anti-Gravity IDE
 - Catatan apakah hasil aman
 - Saran Gemini 3.1 Pro Low atau High
 
-## Validasi VS Code
+## Validasi Anti-Gravity IDE
 - Cek struktur folder
 - Cek file yang dibuat/diubah
 - `git status`
@@ -99,7 +99,7 @@ GitHub adalah sumber utama dokumentasi project ini (`syahputrawork98-sketch/pers
 - Jangan membuat instruksi besar sekaligus
 - Gunakan batch kecil, jelas, dan bisa dicek
 - Jangan menyuruh Gemini mengecek pekerjaannya sendiri
-- Validasi akhir tetap di VS Code
+- Validasi akhir tetap di Anti-Gravity IDE
 - Commit dan push hanya setelah user yakin hasil aman
 - GitHub adalah memori portable project
 - User tetap pemilik keputusan akhir

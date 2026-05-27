@@ -65,5 +65,5 @@ Setelah selesai, berikan laporan dengan format:
 3. File yang diubah
 4. Hal yang sengaja tidak diubah
 5. Catatan risiko
-6. Saran pengecekan di VS Code (karena validasi nyata dilakukan user di VS Code, bukan oleh Gemini).
+6. Saran pengecekan di Anti-Gravity IDE (karena validasi nyata dilakukan user di Anti-Gravity IDE, bukan oleh eksekutor mandiri).
 ```
