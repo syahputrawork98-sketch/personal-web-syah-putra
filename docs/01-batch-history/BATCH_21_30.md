@@ -28,10 +28,21 @@ Perubahan Batch 22:
 - Menyediakan instruksi copy-paste untuk alur ChatGPT di `CHATGPT_PROJECT_INSTRUCTION.md`.
 
 ## Catatan Batch 23
-*(Placeholder untuk riwayat batch selanjutnya)*
+
+Status: Executed - Legacy Docs Cleanup & Anti-Gravity Workflow Alignment selesai.
+
+Perubahan Batch 23:
+- Membersihkan dokumentasi lama (folder audits, checklists, maps, roadmap).
+- Mengubah rujukan proses validasi dari VS Code menjadi Anti-Gravity IDE.
 
 ## Catatan Batch 24
-*(Placeholder untuk riwayat batch selanjutnya)*
+
+Status: Executed - Project Bootstrap Memory File selesai.
+
+Perubahan Batch 24:
+- Membuat Project Bootstrap Memory File (`PROJECT_BOOTSTRAP.md`).
+- Menyediakan prompt siap copy-paste untuk ChatGPT Project, Roomchat 01, dan Gemini Anti-Gravity.
+- Menegaskan GitHub sebagai memori portable project.
 
 ## Catatan Batch 25
 *(Placeholder untuk riwayat batch selanjutnya)*

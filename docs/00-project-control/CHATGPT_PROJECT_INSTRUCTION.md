@@ -1,5 +1,7 @@
 # Instruksi ChatGPT Project (Siap Copy-Paste)
 
+> **Catatan:** Jika memulai dari akun, project, atau roomchat baru, gunakan `PROJECT_BOOTSTRAP.md` terlebih dahulu.
+
 Gunakan template di bawah ini saat memberikan instruksi baru kepada Roomchat 00 untuk dieksekusi oleh Gemini Anti-Gravity. Template ini berdasarkan panduan `SOP_CHATGPT_PROJECT.md`.
 
 ---
