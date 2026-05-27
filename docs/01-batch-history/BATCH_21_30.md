@@ -45,7 +45,13 @@ Perubahan Batch 24:
 - Menegaskan GitHub sebagai memori portable project.
 
 ## Catatan Batch 25
-*(Placeholder untuk riwayat batch selanjutnya)*
+
+Status: Executed - Vercel Deployment Readiness selesai.
+
+Perubahan Batch 25:
+- Menambahkan Vercel SPA rewrite
+- Menambahkan deployment notes
+- Menyiapkan Vercel frontend-only deployment
 
 ## Catatan Batch 26
 *(Placeholder untuk riwayat batch selanjutnya)*

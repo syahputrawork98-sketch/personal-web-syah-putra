@@ -36,6 +36,14 @@ Repository ini telah melalui iterasi pengembangan (*Batch*) untuk memastikan sta
    npm run build
    ```
 
+## 🌐 Deployment Preview ke Vercel
+
+Deployment awal menggunakan Vercel untuk frontend-only:
+- **Root Directory**: `client`
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist`
+- Catatan detail ada di `docs/02-project-status/DEPLOYMENT_NOTES.md`
+
 ## 🛠️ Status Pengembangan & Batasan (HOLD)
 
 - **PDF CV Final**: File PDF CV asli masih dalam tahap finalisasi tata letak (Status: *Coming Soon* di UI).
