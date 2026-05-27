@@ -2,13 +2,13 @@
 
 Selamat datang di repository **Personal Web Syah Putra N**. Website ini dirancang sebagai platform portofolio profesional lintas bidang, mulai dari pengembangan perangkat lunak (IT & Web) hingga desain teknik manufaktur dan estimasi biaya konstruksi (RAB).
 
-## 📂 Struktur Project (Update Batch 20)
+## 📂 Struktur Project (Update Batch 22)
 
-Repository ini telah melalui 20 fase pengembangan (*Batch*) untuk memastikan standar kualitas tinggi, estetika premium, dan fungsionalitas yang solid:
+Repository ini telah melalui iterasi pengembangan (*Batch*) untuk memastikan standar kualitas tinggi, estetika premium, dan fungsionalitas yang solid:
 
 - **`README.md`**: Dokumentasi utama repository (file ini).
-- **`FITUR.md`**: Catatan riwayat Batch 1-20 dan status fitur secara mendalam.
-- **`docs/`**: Dokumentasi internal, roadmap, production readiness checklist, dan catatan teknis.
+- **`FITUR.md`**: Ringkasan fitur utama website dan referensi status HOLD.
+- **`docs/`**: Pusat dokumentasi internal, SOP pengelolaan AI, riwayat batch, dan catatan teknis.
 - **`client/`**: Source code Frontend (React + Vite) dengan sistem kategori proyek dinamis dan CV Variant Selector.
 - **`server/`**: Backend API (HOLD - saat ini website berjalan dengan data statis/fallback yang stabil).
 

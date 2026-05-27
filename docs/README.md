@@ -1,25 +1,25 @@
-# Kanban Master - Project Control Center
+# Pusat Dokumentasi - PW Personal Web
 
-Kanban Master is the central hub for project documentation, progress tracking, and system planning. It serves as the single source of truth for the entire development lifecycle.
+Selamat datang di pusat dokumentasi resmi untuk project PW Personal Web. Direktori ini berfungsi sebagai sumber kebenaran (single source of truth) untuk tata kelola, riwayat teknis, status project, dan panduan pengembangan bagi seluruh pengelola (termasuk asisten AI dan sistem otomatis).
 
-## Project Workflow
-The development follows a structured synchronization flow:
-**Kanban Master (Planning/Docs)** -> **Backend (Express/API)** -> **Webstrip (Frontend/UI)**
+## Struktur Folder Dokumentasi
 
-Every feature must be documented here before, during, and after implementation to ensure consistency and maintainability.
+Untuk menjaga kerapian dan fokus, dokumentasi dibagi ke dalam direktori terstruktur:
 
-## Document Organization
-- **[STATUS.md](./STATUS.md)**: High-level overview of all project components.
-- **[CHANGELOG.md](./CHANGELOG.md)**: Record of completed milestones and significant changes.
-- **[NEXT-STEPS.md](./NEXT-STEPS.md)**: Immediate priorities and upcoming tasks.
-- **[checklists/](./checklists/)**: Atomic task lists for every system module.
-- **[maps/](./maps/)**: Technical mappings of APIs, data sources, and menu structures.
-- **[audits/](./audits/)**: Historical and current system audits (HRD, Sync, Build).
-- **[roadmap/](./roadmap/)**: Granular progress tracking (Done, Doing, Next, Backlog).
+- **`00-project-control/`**
+  Folder ini berisi panduan manajerial, SOP komunikasi antar AI (Roomchat 00/01, Gemini), dan template instruksi pengerjaan task.
 
-## Status Definitions
-- 🟢 **Done**: Fully implemented, tested, and documented.
-- 🟡 **Partial**: Partially implemented or missing specific sub-features.
-- 🔵 **Planned**: Scheduled for implementation but not yet started.
-- 🟠 **Needs Audit**: Implemented but requires verification or refinement.
-- 🔴 **Blocked**: Implementation stopped due to external or technical dependencies.
+- **`01-batch-history/`**
+  Arsip catatan pengembangan iteratif. Setiap tahapan *batch* didokumentasikan di sini untuk memudahkan pelacakan perubahan historis secara detail tanpa mengotori `FITUR.md`.
+
+- **`02-project-status/`**
+  Catatan status krusial, termasuk `HOLD_ITEMS.md` yang memuat fitur, credential, atau integrasi yang belum dirilis/tersedia.
+
+- **`03-technical-notes/`**
+  Catatan spesifik mengenai arsitektur. Membahas keputusan dan batasan pada sisi `FRONTEND`, status skeleton `BACKEND`, serta aturan penulisan `DATABASE`.
+
+- File lain yang bersifat sementara atau operasional audit berada sejajar di direktori ini atau direferensikan pada fase QA produksi (seperti checklist).
+
+## Aturan Utama
+1. **Pembaruan Konsisten**: Setiap ada penyelesaian *batch* baru, riwayat wajib dicatat pada folder `01-batch-history/`.
+2. **GitHub sebagai Memori Utama**: Direktori `docs/` ini adalah memori portable yang akan menjadi rujukan AI pada diskusi roomchat selanjutnya.
