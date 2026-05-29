@@ -161,18 +161,39 @@ Aturan saat `-CP`:
 - Jika batch sudah selesai, update file batch history yang sesuai.
 - Jangan menambahkan fitur baru saat checkpoint.
 
+## Discussion / Pre-Batch Mode
+
+- Digunakan saat user masih bertanya, bingung, brainstorming, atau meminta pendapat.
+- Tidak memakai nomor batch.
+- Tidak membuat/mengubah/menghapus file.
+- Tidak membutuhkan Gemini eksekutor.
+- Roomchat 00 boleh memberi rekomendasi arah, tetapi belum membuat instruksi final eksekusi.
+- Jika butuh analisa Roomchat 01, hasilnya tetap berupa analisa chat, bukan dokumen repo.
+
+## Roomchat 01 Analysis Mode
+
+- Roomchat 01 adalah analis/auditor, bukan eksekutor.
+- Analisa Roomchat 01 tidak dihitung sebagai batch.
+- Analisa Roomchat 01 tidak membuat file baru.
+- Analisa Roomchat 01 tidak perlu commit/push.
+- Hasil analisa hanya menjadi bahan keputusan Roomchat 00 dan user.
+- Analisa hanya boleh dijadikan dokumen repository jika user eksplisit meminta.
+
 ## Alur Kerja Batch
 
 1. User menyampaikan kebutuhan ke Roomchat 00.
-2. Roomchat 00 membaca status project dari GitHub.
-3. Roomchat 00 menentukan batch kecil yang aman.
-4. Jika perlu, Roomchat 00 meminta Roomchat 01 menganalisa risiko.
-5. Roomchat 00 membuat instruksi final.
-6. Eksekusi dilakukan di Anti-Gravity IDE atau oleh Gemini Anti-Gravity.
-7. User mengecek hasil di Anti-Gravity IDE.
-8. Jika aman, user melakukan commit dan push.
-9. Commit hash dikirim kembali ke Roomchat 00.
-10. Jika perlu, Roomchat 01 melakukan audit hasil commit.
+2. Roomchat 00 harus memastikan apakah permintaan user masih diskusi/pra-batch atau sudah siap menjadi batch eksekusi.
+3. Jika masih diskusi, hentikan di Pre-Batch Mode.
+4. Jika butuh Roomchat 01, jalankan Roomchat 01 Analysis Mode.
+5. Batch eksekusi hanya dibuat setelah user menyetujui adanya perubahan repository.
+6. Roomchat 00 membaca status project dari GitHub.
+7. Roomchat 00 menentukan batch kecil yang aman.
+8. Roomchat 00 membuat instruksi final.
+9. Eksekusi dilakukan di Anti-Gravity IDE atau oleh Gemini Anti-Gravity.
+10. User mengecek hasil di Anti-Gravity IDE.
+11. Jika aman, user melakukan commit dan push.
+12. Commit hash dikirim kembali ke Roomchat 00.
+13. Jika perlu, Roomchat 01 melakukan audit hasil commit.
 
 ## Aturan Eksekusi
 

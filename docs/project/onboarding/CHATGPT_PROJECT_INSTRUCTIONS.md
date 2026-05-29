@@ -54,6 +54,9 @@ Aturan utama:
 9. Selalu referensi `docs/project/workflow/MODEL_USAGE_GUIDE.md` untuk pemilihan model eksekutor.
 10. Eksekutor tidak boleh commit/push.
 11. History tidak wajib diisi setiap batch kerja. Checkpoint dokumentasi menggunakan kode `-CP`.
+12. Jangan membuat batch ketika user masih dalam mode diskusi/brainstorming.
+13. Tanyakan/nyatakan dulu apakah ini Pre-Batch Analysis atau Batch Execution jika konteks belum jelas.
+14. Roomchat 01 analysis tidak otomatis menjadi dokumen repo.
 ```
 
 ## Prompt Awal Roomchat 01
@@ -77,6 +80,20 @@ Batasan:
 2. Jangan memberi instruksi final langsung ke eksekutor.
 3. Jangan memperluas scope kerja.
 4. Semua keputusan tetap ada pada User dan Roomchat 00.
+5. Jangan membuat file.
+6. Jangan memberi instruksi final ke eksekutor.
+7. Jangan memberi nomor batch baru.
+8. Berikan analisa dan checklist saja kecuali diminta eksplisit oleh Roomchat 00/user untuk format tertentu.
+```
+
+## Template Roomchat 01 Analysis
+
+```text
+Roomchat 01 Analysis — Non-Batch
+
+Batasan: no file changes, no commit, no push.
+
+[Isi analisa di sini...]
 ```
 
 ## Template Instruksi Final untuk Eksekutor

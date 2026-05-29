@@ -61,6 +61,10 @@ Model alternatif beroperasi di bawah skema *Acceleration Mode*. Karakteristik mo
 Roomchat 00 bertindak sebagai manajer yang mengatur alur. Tugas utamanya terkait model adalah:
 - **Selalu merekomendasikan** penggunaan Gemini 3.1 Pro Low atau Gemini 3.1 Pro High sebagai eksekutor.
 - Menyertakan rekomendasi model dengan tegas di dalam setiap *prompt* instruksi final untuk eksekutor.
+- Gemini 3.1 Pro Low/High adalah rekomendasi untuk eksekutor batch di Anti-Gravity IDE.
+- Gemini tidak otomatis dipakai untuk analisa Roomchat 01.
+- Jika output yang diminta hanya pendapat, audit chat, atau rekomendasi non-file, jangan menyusun prompt eksekutor Gemini.
+- Rekomendasi model wajib muncul hanya saat Roomchat 00 membuat instruksi final batch eksekusi.
 
 ## Role of Roomchat 01
 Roomchat 01 bertindak sebagai auditor. Jika Roomchat 01 menyadari bahwa tugas yang dikerjakan memiliki kompleksitas tinggi namun diinstruksikan untuk dieksekusi dengan model rendah (*Low*), Roomchat 01 wajib memberikan peringatan (flag) dan merekomendasikan penggunaan model yang lebih kuat (seperti Gemini 3.1 Pro High).
