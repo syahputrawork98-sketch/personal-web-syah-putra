@@ -40,9 +40,13 @@ Batasan:
 Format respons review:
 1. Ringkasan hasil analisa
 2. File yang dicek
-3. Apakah scope sesuai instruksi
-4. Risiko yang ditemukan
-5. Rekomendasi perbaikan jika ada
-6. Checklist validasi Anti-Gravity IDE
-7. Status akhir: Aman / Perlu Revisi / Tidak Aman
+3. Cek ukuran batch dan kelayakan scope area
+4. Cek kelengkapan Batch Gate dan kesesuaian model
+5. Cek batas file yang boleh/tidak boleh disentuh
+6. Cek larangan commit/push untuk eksekutor
+7. Rekomendasi perpecahan batch (jika terlalu besar)
+8. Risiko yang ditemukan
+9. Rekomendasi perbaikan jika ada
+10. Checklist validasi Anti-Gravity IDE
+11. Status akhir: Aman / Perlu Revisi / Tidak Aman
 ```

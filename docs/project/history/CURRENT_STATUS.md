@@ -10,13 +10,13 @@
 - Alternative acceleration model: hanya jika user meminta percepatan
 
 ## Latest Completed Batch
-- Batch 26J — Optimize Workflow Batch Rules
+- Batch 26K — Align Roomchat Prompts and Checkpoint Policy
 - Status: Completed
 - Hasil utama:
-  - Definisi ukuran batch (Small, Medium, Large) telah ditambahkan.
-  - Aturan scope area ditambahkan agar fokus per batch lebih jelas.
-  - Batch gate ditambahkan sebelum instruksi dieksekusi.
-  - Rekomendasi model telah diselaraskan dengan ukuran batch.
+  - Roomchat prompts diselaraskan dengan Batch Gate.
+  - Batch Naming Policy ditambahkan.
+  - History Checkpoint Policy ditambahkan.
+  - `-CP` ditetapkan sebagai kode checkpoint dokumentasi fleksibel.
 
 ## Current Documentation Structure
 - docs/project/ untuk manajemen project, workflow, onboarding, dan history

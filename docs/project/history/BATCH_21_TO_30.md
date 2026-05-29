@@ -118,6 +118,14 @@ Batch 26 terdiri dari beberapa sub-batch:
 - Menyelaraskan rekomendasi model dengan ukuran batch.
 - Menegaskan Anti-Gravity IDE sebagai workspace, bukan pengambil keputusan.
 
+### Batch 26K — Align Roomchat Prompts and Checkpoint Policy
+- Menyelaraskan prompt Roomchat 00 dan Roomchat 01 dengan Batch Gate.
+- Menambahkan Batch Naming Policy.
+- Menambahkan History Checkpoint Policy.
+- Menetapkan `-CP` sebagai kode checkpoint dokumentasi fleksibel.
+- Menegaskan bahwa history detail tidak wajib diisi setiap batch kerja.
+- Menegaskan bahwa checkpoint merapikan CURRENT_STATUS, batch history, dan docs/frontend/backend/database sesuai area kerja sebelumnya.
+
 Hasil akhir Batch 26:
 - Struktur dokumentasi final menjadi:
   - `docs/project/` untuk manajemen project, workflow, onboarding, dan history.

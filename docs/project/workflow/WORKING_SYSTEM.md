@@ -126,6 +126,41 @@ Sebelum instruksi diberikan ke eksekutor, Roomchat 00 wajib memastikan:
 - Commit message disiapkan
 - Eksekutor dilarang commit dan push
 
+## Batch Naming Policy
+
+Gunakan aturan berikut:
+- `Batch 27` = fase besar project.
+- `Batch 27A`, `27B`, `27C` = batch kerja utama dalam fase tersebut.
+- `Batch 27A.1`, `27A.2` = pecahan kecil dari satu batch kerja.
+- `Batch 27-CP` = checkpoint dokumentasi fleksibel.
+- `-CP` tidak memiliki turunan seperti `CP2` atau `CP3`.
+- Jika checkpoint dibutuhkan lagi pada fase yang sama, tetap gunakan kode `-CP`, bukan membuat varian baru.
+
+Penjelasan:
+- Huruf A, B, C dipakai untuk pekerjaan utama.
+- Titik `.1`, `.2` dipakai untuk memecah batch kerja yang terlalu besar.
+- `-CP` dipakai hanya untuk checkpoint dokumentasi.
+- `-CP` bukan batch fitur baru.
+
+## History Checkpoint Policy
+
+Isi aturan:
+- History detail tidak wajib diisi setiap batch kerja.
+- Batch kerja boleh fokus ke eksekusi.
+- CURRENT_STATUS.md wajib diupdate jika ada perubahan besar.
+- Checkpoint dokumentasi dilakukan saat user meminta `Batch [nomor]-CP`.
+- Checkpoint dapat dilakukan kapan saja sesuai kondisi fokus user.
+- Checkpoint tidak wajib setiap 5 batch atau 10 batch, tetapi bisa dipakai sebagai kebiasaan kerja jika user ingin.
+- Saat checkpoint, rangkum hasil kerja sebelumnya ke dokumentasi yang sesuai.
+
+Aturan saat `-CP`:
+- Jika perubahan terjadi di client/frontend, update docs/frontend/.
+- Jika perubahan terjadi di server/backend, update docs/backend/.
+- Jika perubahan terjadi di database/data model, update docs/database/.
+- Jika status project berubah, update docs/project/history/CURRENT_STATUS.md.
+- Jika batch sudah selesai, update file batch history yang sesuai.
+- Jangan menambahkan fitur baru saat checkpoint.
+
 ## Alur Kerja Batch
 
 1. User menyampaikan kebutuhan ke Roomchat 00.

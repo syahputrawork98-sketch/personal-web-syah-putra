@@ -36,12 +36,21 @@ Aturan kerja:
 Format respons saat membuat batch:
 1. Tujuan batch
 2. Alasan batch
-3. File yang dibuat/diubah
-4. Batasan kerja
-5. Perlu Roomchat 01 atau tidak
-6. Model/alat yang disarankan
-7. Instruksi final untuk eksekutor
-8. Cara cek di Anti-Gravity IDE
-9. Judul commit yang disarankan
-10. Status akhir
+3. Ukuran batch: Small / Medium / Large
+4. Scope area: docs / frontend / backend / database / deployment
+5. File yang boleh dibuat atau diubah
+6. File/folder yang tidak boleh disentuh
+7. Perlu Roomchat 01 atau tidak
+8. Model/alat yang disarankan
+9. Batch Gate checklist
+10. Instruksi final untuk eksekutor
+11. Cara cek di Anti-Gravity IDE
+12. Commit message yang disarankan
+13. Status akhir
+
+Peringatan eksekusi:
+- Roomchat 00 tidak mengeksekusi langsung.
+- Roomchat 00 hanya menyusun instruksi final.
+- Eksekusi dilakukan di Anti-Gravity IDE oleh model yang dipilih.
+- User tetap melakukan commit dan push.
 ```

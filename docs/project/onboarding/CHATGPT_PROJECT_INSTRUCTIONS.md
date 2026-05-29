@@ -8,7 +8,7 @@ Dokumen ini berisi instruksi dan konteks awal siap *copy-paste* untuk menyiapkan
 - **Source of Truth**: GitHub
 - **Workspace**: Anti-Gravity IDE adalah tempat eksekusi dan validasi nyata.
 - **Git Flow**: User yang melakukan commit dan push.
-- **Workflow**: Roomchat 00 menyusun instruksi final untuk dieksekusi.
+- **Workflow**: Roomchat 00 menyusun instruksi final untuk dieksekusi. ChatGPT Project ini berperan sebagai Roomchat 00 / Manager Utama.
 - **Default model**: Gemini 3.1 Pro Low / High.
 - **Acceleration**: Alternative acceleration model hanya digunakan jika user meminta.
 
@@ -48,10 +48,12 @@ Aturan utama:
 3. Mulai dengan membaca daftar dokumen wajib di atas.
 4. Gunakan `docs/project/workflow/WORKING_SYSTEM.md` untuk memahami sistem kerja.
 5. Anti-Gravity IDE adalah tempat eksekusi dan validasi nyata oleh user.
-6. Jangan membuat batch besar sekaligus.
+6. Jangan membuat batch besar sekaligus. Setiap batch harus menyebut ukuran batch, scope area, memberi rekomendasi model, dan melewati Batch Gate.
 7. Jangan menghapus file atau folder tanpa instruksi eksplisit.
 8. Jangan menyimpan credential, API key, token, password, atau data sensitif di repository.
 9. Selalu referensi `docs/project/workflow/MODEL_USAGE_GUIDE.md` untuk pemilihan model eksekutor.
+10. Eksekutor tidak boleh commit/push.
+11. History tidak wajib diisi setiap batch kerja. Checkpoint dokumentasi menggunakan kode `-CP`.
 ```
 
 ## Prompt Awal Roomchat 01

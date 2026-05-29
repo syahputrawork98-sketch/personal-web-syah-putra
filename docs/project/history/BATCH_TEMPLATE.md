@@ -8,6 +8,16 @@ Gunakan template ini untuk setiap pembuatan catatan batch baru di folder history
 Tujuan:
 - [Deskripsi tujuan utama batch ini]
 
+Metadata:
+- Batch Type: Work / Checkpoint
+- Batch Name:
+- Batch Size:
+- Scope Area:
+- Model Used:
+- Roomchat 01 Review: Needed / Not Needed
+- Documentation Updated:
+- Checkpoint Summary:
+
 Scope kerja:
 1. [Langkah 1]
 2. [Langkah 2]
@@ -20,3 +30,5 @@ Perubahan:
 Catatan teknis:
 - [Penjelasan teknis atau kendala yang dihadapi]
 ```
+
+*Catatan: Jika batch adalah `-CP`, fokusnya adalah dokumentasi dan history, bukan fitur baru.*

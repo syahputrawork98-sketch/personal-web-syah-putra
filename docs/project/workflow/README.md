@@ -18,6 +18,9 @@ Folder ini digunakan untuk memahami:
 - Aturan scope area.
 - Aturan batch gate sebelum instruksi dieksekusi.
 - Pemilihan model by batch size.
+- Batch Naming Policy.
+- History Checkpoint Policy.
+- `-CP` sebagai checkpoint dokumentasi.
 
 ## Catatan Historis
 
