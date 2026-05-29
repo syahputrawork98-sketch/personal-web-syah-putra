@@ -145,6 +145,3 @@ Batch [NOMOR] — [NAMA BATCH] selesai dieksekusi.
 - ...
 ```
 
-## Catatan Historis
-
-Dokumen ini menggantikan fungsi utama dari file lama `docs/00-project-control/CHATGPT_PROJECT_INSTRUCTION.md` yang telah dihapus sepenuhnya pada Batch 26C.
