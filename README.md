@@ -42,7 +42,7 @@ Deployment awal menggunakan Vercel untuk frontend-only:
 - **Root Directory**: `client`
 - **Build Command**: `npm run build`
 - **Output Directory**: `dist`
-- Catatan detail ada di `docs/project/history/DEPLOYMENT_NOTES.md`
+- Catatan detail ada di `docs/project/history/CURRENT_STATUS.md`
 
 ## 🛠️ Status Pengembangan & Batasan (HOLD)
 

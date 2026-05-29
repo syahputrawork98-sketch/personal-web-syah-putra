@@ -105,6 +105,12 @@ Batch 26 terdiri dari beberapa sub-batch:
 - Menghapus PROJECT_BOOTSTRAP.md karena fungsinya sudah digabung ke README dan CHATGPT_PROJECT_INSTRUCTIONS.
 - Membersihkan seluruh referensi ke PROJECT_BOOTSTRAP.md.
 
+### Batch 26I — Consolidate Active Project Status
+- Menggabungkan HOLD items dan deployment notes ke CURRENT_STATUS.md.
+- Menjadikan CURRENT_STATUS.md sebagai satu patokan status aktif.
+- Menghapus HOLD_ITEMS.md dan DEPLOYMENT_NOTES.md agar history folder lebih sederhana.
+- Menegaskan batch history sebagai arsip, bukan status aktif.
+
 Hasil akhir Batch 26:
 - Struktur dokumentasi final menjadi:
   - `docs/project/` untuk manajemen project, workflow, onboarding, dan history.

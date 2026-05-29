@@ -24,7 +24,7 @@ FITUR.md      # Rangkuman fitur berjalan dan status fungsionalitas
 
 ## 🚩 Status HOLD (Tertahan)
 Daftar fitur, aset, dan lingkungan yang belum aktif atau masih menunggu penyelesaian akhir.
-Selengkapnya dapat dilihat pada: **[docs/project/history/HOLD_ITEMS.md](docs/project/history/HOLD_ITEMS.md)**
+Selengkapnya dapat dilihat pada: **[docs/project/history/CURRENT_STATUS.md](docs/project/history/CURRENT_STATUS.md)**
 
 1. **CV Final (PDF)**
 2. **Sistem Admin & Auth (Login)**
