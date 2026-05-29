@@ -95,6 +95,11 @@ Batch 26 terdiri dari beberapa sub-batch:
 - Menetapkan Gemini 3.5 Flash, Claude Sonnet, Claude Opus, dan GPT OSS sebagai alternative acceleration models.
 - Menambahkan aturan pencatatan model jika acceleration mode digunakan.
 
+### Batch 26G — Final Instruction Cleanup Before ChatGPT Project Use
+- Membersihkan struktur bootstrap agar tidak lagi menyebut docs/project/technical.
+- Menegaskan aturan no commit/no push untuk eksekutor.
+- Menyiapkan instruksi agar aman dipakai di ChatGPT Project.
+
 Hasil akhir Batch 26:
 - Struktur dokumentasi final menjadi:
   - `docs/project/` untuk manajemen project, workflow, onboarding, dan history.

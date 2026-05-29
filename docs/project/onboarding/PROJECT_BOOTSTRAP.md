@@ -30,19 +30,21 @@ Gunakan dokumen ini ketika:
 Dokumentasi utama diarahkan ke struktur berikut:
 
 ```txt
-docs/project/
-├── README.md
-├── workflow/
-├── history/
-├── onboarding/
-└── technical/
+docs/
+├── project/
+│   ├── workflow/
+│   ├── history/
+│   └── onboarding/
+├── frontend/
+├── backend/
+└── database/
 ```
 
 Fungsi folder:
-- `workflow/` untuk sistem kerja, role, SOP, dan aturan penggunaan AI/tools.
-- `history/` untuk status project, riwayat batch, dan catatan perubahan.
-- `onboarding/` untuk bootstrap, prompt awal, dan instruksi saat pindah akun atau roomchat.
-- `technical/` untuk catatan teknis frontend, backend, database, deployment, dan batasan teknis.
+- `docs/project/` untuk manajemen project, workflow, onboarding, dan history.
+- `docs/frontend/` untuk dokumentasi frontend.
+- `docs/backend/` untuk dokumentasi backend.
+- `docs/database/` untuk dokumentasi database.
 
 ## Role Kerja
 

@@ -97,7 +97,7 @@ Aturan Gemini:
 - Jangan mengerjakan hal di luar instruksi batch.
 - Jangan membuat framework, package, dependency, atau konfigurasi baru tanpa instruksi eksplisit.
 - Jangan mencampur pekerjaan dokumentasi, frontend, backend, dan deployment dalam satu batch besar kecuali memang diminta.
-- Jangan menghapus file lama sebelum fase migrasi menyatakan aman.
+- Jangan menghapus file atau folder apa pun tanpa instruksi eksplisit dari user atau Roomchat 00.
 - Jangan mengganti nama file atau folder tanpa instruksi eksplisit.
 - Jangan menyimpan password, API key, token, credential, atau data sensitif di repository.
 

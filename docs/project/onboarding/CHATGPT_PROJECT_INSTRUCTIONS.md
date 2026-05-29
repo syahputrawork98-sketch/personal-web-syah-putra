@@ -88,6 +88,9 @@ Batasan:
 3. Jangan membuat dependency, package, atau config baru tanpa instruksi.
 4. Jangan menghapus file lama tanpa instruksi eksplisit.
 5. Jangan menyimpan credential atau data sensitif.
+6. Jangan commit.
+7. Jangan push.
+8. Commit dan push hanya dilakukan oleh user setelah hasil dicek di Anti-Gravity IDE.
 
 Setelah selesai, berikan laporan:
 1. Ringkasan perubahan
