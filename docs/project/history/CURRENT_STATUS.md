@@ -5,6 +5,7 @@ Status project terbaru:
 - **Batch 26E selesai**: Cleanup catatan transisi pasca-migrasi telah dilakukan.
 - **Batch 26F selesai**: Model usage guide telah ditambahkan. Default model project adalah Gemini 3.1 Pro Low dan Gemini 3.1 Pro High. Alternative acceleration models hanya digunakan jika user meminta percepatan.
 - **Batch 26G selesai**: Cleanup final instruksi sebelum digunakan sebagai Add Instructions di ChatGPT Project.
+- **Batch 26H selesai**: Onboarding disederhanakan. `PROJECT_BOOTSTRAP.md` dihapus, fungsinya digabung ke `README.md` dan `CHATGPT_PROJECT_INSTRUCTIONS.md`. Onboarding final hanya memakai 4 dokumen utama.
 - **Struktur docs final**:
   - `docs/project/`
   - `docs/frontend/`

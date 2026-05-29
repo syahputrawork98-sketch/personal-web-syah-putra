@@ -100,6 +100,11 @@ Batch 26 terdiri dari beberapa sub-batch:
 - Menegaskan aturan no commit/no push untuk eksekutor.
 - Menyiapkan instruksi agar aman dipakai di ChatGPT Project.
 
+### Batch 26H — Simplify Onboarding Structure
+- Menyederhanakan folder onboarding agar mengikuti pola KBT.
+- Menghapus PROJECT_BOOTSTRAP.md karena fungsinya sudah digabung ke README dan CHATGPT_PROJECT_INSTRUCTIONS.
+- Membersihkan seluruh referensi ke PROJECT_BOOTSTRAP.md.
+
 Hasil akhir Batch 26:
 - Struktur dokumentasi final menjadi:
   - `docs/project/` untuk manajemen project, workflow, onboarding, dan history.

@@ -21,7 +21,7 @@ Untuk memahami project secara komprehensif, silakan ikuti urutan baca berikut:
 2. `FITUR.md` (Root)
 3. `docs/README.md` (Halaman ini)
 4. `docs/project/README.md`
-5. `docs/project/onboarding/PROJECT_BOOTSTRAP.md`
+5. `docs/project/onboarding/CHATGPT_PROJECT_INSTRUCTIONS.md`
 6. `docs/project/workflow/WORKING_SYSTEM.md`
 7. `docs/project/history/CURRENT_STATUS.md`
 8. `docs/project/history/BATCH_21_TO_30.md`

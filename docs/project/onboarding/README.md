@@ -1,13 +1,21 @@
 # Onboarding
 
-Folder ini berisi dokumen untuk memulai ulang project **PW Personal Web** dari akun, roomchat, AI tools, atau workspace baru.
+Folder ini adalah pintu masuk utama untuk menyiapkan akun, roomchat, AI tools, atau workspace baru untuk project **PW Personal Web**.
+Struktur onboarding ini dirancang sederhana dan mandiri, cukup menggunakan dokumen di dalam folder ini untuk memulai.
 
-Dokumen utama:
+## Dokumen Utama
 
-- `PROJECT_BOOTSTRAP.md` — pintu masuk konteks project.
-- `CHATGPT_PROJECT_INSTRUCTIONS.md` — instruksi siap copy-paste untuk ChatGPT Project dan eksekutor.
+- `CHATGPT_PROJECT_INSTRUCTIONS.md` — instruksi siap copy-paste untuk setup ChatGPT Project dan prompt eksekutor.
 - `ROOM_00_MANAGER_PROMPT.md` — prompt khusus Roomchat 00 sebagai manager utama.
 - `ROOM_01_REVIEWER_PROMPT.md` — prompt khusus Roomchat 01 sebagai analis dan auditor.
+
+## Alur Setup
+
+1. Buka `CHATGPT_PROJECT_INSTRUCTIONS.md`.
+2. Copy isi prompt Roomchat 00 ke Add Instructions ChatGPT Project jika project ini digunakan sebagai manager utama.
+3. Gunakan `ROOM_00_MANAGER_PROMPT.md` untuk room manager.
+4. Gunakan `ROOM_01_REVIEWER_PROMPT.md` untuk room reviewer.
+5. Baca `../history/CURRENT_STATUS.md` sebelum lanjut ke batch pengerjaan baru.
 
 ## Fungsi Folder
 
@@ -20,4 +28,4 @@ Folder ini digunakan saat:
 
 ## Catatan Historis
 
-Dokumen di folder ini menggantikan fungsi utama dari file lama `docs/00-project-control/PROJECT_BOOTSTRAP.md` dan `docs/00-project-control/CHATGPT_PROJECT_INSTRUCTION.md` yang telah sepenuhnya dihapus pada proses migrasi Batch 26C.
+Dokumen di folder ini menggantikan fungsi utama dari file lama `docs/00-project-control/PROJECT_BOOTSTRAP.md` dan `docs/00-project-control/CHATGPT_PROJECT_INSTRUCTION.md` yang telah sepenuhnya dihapus pada proses migrasi Batch 26C. Selain itu, file `PROJECT_BOOTSTRAP.md` yang sempat ada di folder ini telah dihapus pada Batch 26H untuk menyederhanakan struktur onboarding.

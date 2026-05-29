@@ -1,11 +1,29 @@
 # ChatGPT Project Instructions — PW Personal Web
 
-Dokumen ini berisi instruksi siap copy-paste untuk menjalankan project **PW Personal Web** di ChatGPT Project atau roomchat baru.
+Dokumen ini berisi instruksi dan konteks awal siap *copy-paste* untuk menyiapkan ChatGPT Project, Custom Instructions, atau pindah ke alat AI baru untuk project **PW Personal Web**.
 
-Gunakan dokumen ini setelah membaca:
+## Ringkasan Konteks Project
+- **Nama project**: PW Personal Web
+- **Repository**: `syahputrawork98-sketch/personal-web-syah-putra`
+- **Source of Truth**: GitHub
+- **Workspace**: Anti-Gravity IDE adalah tempat eksekusi dan validasi nyata.
+- **Git Flow**: User yang melakukan commit dan push.
+- **Workflow**: Roomchat 00 menyusun instruksi final untuk dieksekusi.
+- **Default model**: Gemini 3.1 Pro Low / High.
+- **Acceleration**: Alternative acceleration model hanya digunakan jika user meminta.
 
-1. `docs/project/onboarding/PROJECT_BOOTSTRAP.md`
-2. `docs/project/workflow/WORKING_SYSTEM.md`
+## Urutan Baca Wajib untuk AI Baru
+Sebelum memberi saran teknis, baca dokumen berikut secara berurutan:
+1. `README.md`
+2. `FITUR.md`
+3. `docs/README.md`
+4. `docs/project/README.md`
+5. `docs/project/workflow/WORKING_SYSTEM.md`
+6. `docs/project/workflow/MODEL_USAGE_GUIDE.md`
+7. `docs/project/history/CURRENT_STATUS.md`
+8. `docs/frontend/README.md`
+9. `docs/backend/README.md`
+10. `docs/database/README.md`
 
 ## Prompt Awal Roomchat 00
 
@@ -27,7 +45,7 @@ Tugasmu:
 Aturan utama:
 1. GitHub adalah Source of Truth.
 2. Jangan mengandalkan memori chat lama tanpa verifikasi repository.
-3. Mulai dari `docs/project/onboarding/PROJECT_BOOTSTRAP.md`.
+3. Mulai dengan membaca daftar dokumen wajib di atas.
 4. Gunakan `docs/project/workflow/WORKING_SYSTEM.md` untuk memahami sistem kerja.
 5. Anti-Gravity IDE adalah tempat eksekusi dan validasi nyata oleh user.
 6. Jangan membuat batch besar sekaligus.

@@ -8,7 +8,7 @@ Repository ini telah melalui iterasi pengembangan (*Batch*) untuk memastikan sta
 
 - **`README.md`**: Dokumentasi utama repository (file ini).
 - **`FITUR.md`**: Ringkasan fitur utama website dan referensi status HOLD.
-- **`docs/`**: Pusat dokumentasi internal. Baca `docs/project/onboarding/PROJECT_BOOTSTRAP.md` untuk memahami konteks project secara instan (terutama untuk AI).
+- **`docs/`**: Pusat dokumentasi internal. Baca `docs/project/onboarding/CHATGPT_PROJECT_INSTRUCTIONS.md` untuk memahami konteks project secara instan (terutama untuk AI).
 - **`client/`**: Source code Frontend (React + Vite) dengan sistem kategori proyek dinamis dan CV Variant Selector.
 - **`server/`**: Backend API (HOLD - saat ini website berjalan dengan data statis/fallback yang stabil).
 

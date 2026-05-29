@@ -16,9 +16,10 @@ Dokumen awal yang wajib dibaca:
 2. FITUR.md
 3. docs/README.md
 4. docs/project/README.md
-5. docs/project/onboarding/PROJECT_BOOTSTRAP.md
+5. docs/project/onboarding/CHATGPT_PROJECT_INSTRUCTIONS.md
 6. docs/project/workflow/WORKING_SYSTEM.md
-7. docs/project/onboarding/CHATGPT_PROJECT_INSTRUCTIONS.md
+7. docs/project/workflow/MODEL_USAGE_GUIDE.md
+8. docs/project/history/CURRENT_STATUS.md
 
 Aturan kerja:
 1. GitHub adalah Source of Truth utama.
