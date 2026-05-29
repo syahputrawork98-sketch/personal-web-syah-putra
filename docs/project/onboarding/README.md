@@ -1,7 +1,30 @@
 # Onboarding
 
-Folder ini nantinya akan menampung dokumen untuk memulai ulang project dari akun, roomchat, atau AI tools baru.
+Folder ini berisi dokumen untuk memulai ulang project **PW Personal Web** dari akun, roomchat, AI tools, atau workspace baru.
 
-*Catatan: Untuk sementara, instruksi lama masih ada di:*
-- `docs/00-project-control/PROJECT_BOOTSTRAP.md`
-- `docs/00-project-control/CHATGPT_PROJECT_INSTRUCTION.md`
+Dokumen utama:
+
+- `PROJECT_BOOTSTRAP.md` — pintu masuk konteks project.
+- `CHATGPT_PROJECT_INSTRUCTIONS.md` — instruksi siap copy-paste untuk ChatGPT Project dan eksekutor.
+- `ROOM_00_MANAGER_PROMPT.md` — prompt khusus Roomchat 00 sebagai manager utama.
+- `ROOM_01_REVIEWER_PROMPT.md` — prompt khusus Roomchat 01 sebagai analis dan auditor.
+
+## Fungsi Folder
+
+Folder ini digunakan saat:
+- Membuat ChatGPT Project baru.
+- Membuat roomchat baru.
+- Pindah akun atau tools AI.
+- Memulai ulang project setelah jeda panjang.
+- Memberi konteks awal kepada AI sebelum membahas teknis.
+
+## Catatan Migrasi
+
+Dokumen di folder ini menggantikan fungsi utama dari file lama:
+
+```txt
+docs/00-project-control/PROJECT_BOOTSTRAP.md
+docs/00-project-control/CHATGPT_PROJECT_INSTRUCTION.md
+```
+
+File lama masih dipertahankan sementara selama masa transisi sampai seluruh struktur `docs/project/` stabil.
