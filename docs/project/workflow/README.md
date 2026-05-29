@@ -14,12 +14,6 @@ Folder ini digunakan untuk memahami:
 - Aturan eksekusi agar perubahan tetap kecil dan aman.
 - Aturan review sebelum lanjut ke batch berikutnya.
 
-## Catatan Migrasi
+## Catatan Historis
 
-Dokumen di folder ini menggantikan fungsi utama dari folder lama:
-
-```txt
-docs/00-project-control/SOP_CHATGPT_PROJECT.md
-```
-
-File lama tersebut telah sepenuhnya dihapus pada proses migrasi Batch 26C.
+Dokumen di folder ini menggantikan fungsi utama dari file lama `docs/00-project-control/SOP_CHATGPT_PROJECT.md` yang telah sepenuhnya dihapus pada proses migrasi Batch 26C.

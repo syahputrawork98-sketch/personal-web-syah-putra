@@ -110,12 +110,6 @@ Review harus memeriksa:
 - Apakah referensi path masih benar.
 - Apakah hasil aman untuk dilanjutkan ke batch berikutnya.
 
-## Catatan Migrasi
+## Catatan Historis
 
-Dokumen ini menggantikan fungsi utama dari:
-
-```txt
- docs/00-project-control/SOP_CHATGPT_PROJECT.md
-```
-
-File lama masih dipertahankan sementara selama masa transisi sampai seluruh struktur baru di `docs/project/` dinyatakan stabil.
+Dokumen ini menggantikan fungsi utama dari file lama `docs/00-project-control/SOP_CHATGPT_PROJECT.md` yang telah dihapus sepenuhnya pada proses migrasi Batch 26C.

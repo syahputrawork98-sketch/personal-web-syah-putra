@@ -120,12 +120,6 @@ Batch [NOMOR] — [NAMA BATCH] selesai dieksekusi.
 - ...
 ```
 
-## Catatan
+## Catatan Historis
 
-File ini menggantikan fungsi utama dari:
-
-```txt
-docs/00-project-control/CHATGPT_PROJECT_INSTRUCTION.md
-```
-
-File lama masih dipertahankan sementara selama masa transisi.
+Dokumen ini menggantikan fungsi utama dari file lama `docs/00-project-control/CHATGPT_PROJECT_INSTRUCTION.md` yang telah dihapus sepenuhnya pada Batch 26C.

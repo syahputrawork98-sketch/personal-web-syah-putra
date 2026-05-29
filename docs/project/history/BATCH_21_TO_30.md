@@ -54,7 +54,48 @@ Perubahan Batch 25:
 - Menyiapkan Vercel frontend-only deployment
 
 ## Catatan Batch 26
-*(Placeholder untuk riwayat batch selanjutnya)*
+
+Status: Executed — Documentation Structure Alignment selesai.
+
+Batch 26 terdiri dari beberapa sub-batch:
+
+### Batch 26A — Docs Project Structure Alignment
+- Membuat fondasi struktur `docs/project/`.
+- Membuat subfolder `workflow/`, `history/`, `onboarding/`, dan struktur dokumentasi awal.
+- Menyiapkan arah migrasi agar mengikuti pola KBT Kosuka Bali Trip.
+
+### Batch 26B — Workflow and Onboarding Migration
+- Memigrasikan workflow utama ke `docs/project/workflow/`.
+- Memigrasikan bootstrap dan instruksi roomchat ke `docs/project/onboarding/`.
+- Menegaskan Anti-Gravity IDE sebagai tempat eksekusi dan validasi nyata.
+- Menetapkan Roomchat 00 sebagai manager dan Roomchat 01 sebagai reviewer.
+
+### Batch 26C — Final Docs Migration and Legacy Folder Cleanup
+- Memigrasikan batch history dan status project ke `docs/project/history/`.
+- Memindahkan status HOLD dan deployment notes ke struktur baru.
+- Menghapus folder lama `docs/00-project-control/`, `docs/01-batch-history/`, `docs/02-project-status/`, dan `docs/03-technical-notes/`.
+- Membersihkan referensi path lama.
+
+### Batch 26D — Separate Technical Documentation Structure
+- Memisahkan dokumentasi teknis dari `docs/project/`.
+- Membuat folder setara:
+  - `docs/frontend/`
+  - `docs/backend/`
+  - `docs/database/`
+- Memindahkan `FRONTEND_NOTES.md`, `BACKEND_NOTES.md`, dan `DATABASE_NOTES.md` ke folder teknis masing-masing.
+- Menghapus `docs/project/technical/`.
+
+### Batch 26E — Cleanup Transition Notes and Update Batch History
+- Membersihkan catatan transisi pasca-migrasi.
+- Mengupdate history dokumen agar mencerminkan struktur yang final dan stabil.
+
+Hasil akhir Batch 26:
+- Struktur dokumentasi final menjadi:
+  - `docs/project/` untuk manajemen project, workflow, onboarding, dan history.
+  - `docs/frontend/` untuk dokumentasi frontend.
+  - `docs/backend/` untuk dokumentasi backend.
+  - `docs/database/` untuk dokumentasi database.
+- Dokumentasi lebih clear, portable, dan mudah dibaca oleh AI/tools baru.
 
 ## Catatan Batch 27
 *(Placeholder untuk riwayat batch selanjutnya)*

@@ -69,11 +69,6 @@ Sebelum memberi saran teknis atau instruksi eksekusi, baca dokumen berikut secar
 10. `docs/backend/README.md`
 11. `docs/database/README.md`
 
-Selama masa transisi, beberapa detail lama masih dapat berada di:
-- `docs/00-project-control/`
-- `docs/01-batch-history/`
-- `docs/02-project-status/`
-- `docs/03-technical-notes/`
 
 ## Prompt Awal untuk Roomchat 00
 
@@ -134,15 +129,9 @@ Aturan:
 
 - Jangan menyimpan password, API key, token, credential, atau data sensitif di repository.
 - Jangan membuat perubahan besar tanpa batch yang jelas.
-- Jangan menghapus folder lama sampai migrasi dinyatakan aman.
+
 - Jangan membuat Gemini mengambil keputusan besar sendiri.
 
-## Catatan Migrasi
+## Catatan Historis
 
-Dokumen ini menggantikan fungsi utama dari:
-
-```txt
-docs/00-project-control/PROJECT_BOOTSTRAP.md
-```
-
-File lama tetap dipertahankan sementara selama masa transisi.
+Dokumen ini menggantikan fungsi utama dari file lama `docs/00-project-control/PROJECT_BOOTSTRAP.md` yang telah dihapus sepenuhnya pada proses migrasi Batch 26C.

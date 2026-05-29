@@ -18,13 +18,6 @@ Folder ini digunakan saat:
 - Memulai ulang project setelah jeda panjang.
 - Memberi konteks awal kepada AI sebelum membahas teknis.
 
-## Catatan Migrasi
+## Catatan Historis
 
-Dokumen di folder ini menggantikan fungsi utama dari file lama:
-
-```txt
-docs/00-project-control/PROJECT_BOOTSTRAP.md
-docs/00-project-control/CHATGPT_PROJECT_INSTRUCTION.md
-```
-
-File lama tersebut telah sepenuhnya dihapus pada proses migrasi Batch 26C.
+Dokumen di folder ini menggantikan fungsi utama dari file lama `docs/00-project-control/PROJECT_BOOTSTRAP.md` dan `docs/00-project-control/CHATGPT_PROJECT_INSTRUCTION.md` yang telah sepenuhnya dihapus pada proses migrasi Batch 26C.
