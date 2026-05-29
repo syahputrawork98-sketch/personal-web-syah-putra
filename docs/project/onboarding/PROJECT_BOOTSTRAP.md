@@ -63,11 +63,12 @@ Sebelum memberi saran teknis atau instruksi eksekusi, baca dokumen berikut secar
 4. `docs/project/README.md`
 5. `docs/project/onboarding/PROJECT_BOOTSTRAP.md`
 6. `docs/project/workflow/WORKING_SYSTEM.md`
-7. `docs/project/workflow/README.md`
-8. `docs/project/history/README.md`
-9. `docs/frontend/README.md`
-10. `docs/backend/README.md`
-11. `docs/database/README.md`
+7. `docs/project/workflow/MODEL_USAGE_GUIDE.md`
+8. `docs/project/workflow/README.md`
+9. `docs/project/history/README.md`
+10. `docs/frontend/README.md`
+11. `docs/backend/README.md`
+12. `docs/database/README.md`
 
 
 ## Prompt Awal untuk Roomchat 00

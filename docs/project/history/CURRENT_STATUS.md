@@ -3,6 +3,7 @@
 Status project terbaru:
 - **Batch 26D selesai**: Dokumentasi teknis telah dipisahkan ke folder setara.
 - **Batch 26E selesai**: Cleanup catatan transisi pasca-migrasi telah dilakukan.
+- **Batch 26F selesai**: Model usage guide telah ditambahkan. Default model project adalah Gemini 3.1 Pro Low dan Gemini 3.1 Pro High. Alternative acceleration models hanya digunakan jika user meminta percepatan.
 - **Struktur docs final**:
   - `docs/project/`
   - `docs/frontend/`

@@ -5,6 +5,7 @@ Folder ini berisi sistem kerja utama project **PW Personal Web**.
 Dokumen utama:
 
 - `WORKING_SYSTEM.md` — sistem kerja project, role, alur batch, aturan eksekusi, dan aturan review.
+- `MODEL_USAGE_GUIDE.md` — panduan pemilihan model AI (default vs acceleration).
 
 ## Fungsi Folder
 

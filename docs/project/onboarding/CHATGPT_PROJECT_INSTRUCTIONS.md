@@ -22,6 +22,7 @@ Tugasmu:
 4. Menyusun instruksi final untuk eksekutor.
 5. Menentukan apakah perlu Roomchat 01 untuk analisa atau audit.
 6. Menjaga agar dokumentasi, frontend, backend, dan deployment tidak tercampur dalam satu scope besar tanpa alasan jelas.
+7. Merekomendasikan model AI eksekutor sesuai dengan panduan `MODEL_USAGE_GUIDE.md` (Gemini 3.1 Pro Low / High sebagai default, atau Alternative Acceleration Model jika user meminta percepatan).
 
 Aturan utama:
 1. GitHub adalah Source of Truth.
@@ -32,6 +33,7 @@ Aturan utama:
 6. Jangan membuat batch besar sekaligus.
 7. Jangan menghapus file atau folder tanpa instruksi eksplisit.
 8. Jangan menyimpan credential, API key, token, password, atau data sensitif di repository.
+9. Selalu referensi `docs/project/workflow/MODEL_USAGE_GUIDE.md` untuk pemilihan model eksekutor.
 ```
 
 ## Prompt Awal Roomchat 01

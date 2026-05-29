@@ -110,6 +110,13 @@ Review harus memeriksa:
 - Apakah referensi path masih benar.
 - Apakah hasil aman untuk dilanjutkan ke batch berikutnya.
 
+## Aturan Pemilihan Model AI
+
+Aturan lengkap terkait pemilihan model dijelaskan dalam dokumen `MODEL_USAGE_GUIDE.md`. Poin penting:
+- Roomchat 00 **wajib** merekomendasikan **Gemini 3.1 Pro Low** atau **Gemini 3.1 Pro High** sebagai eksekutor default.
+- *Alternative acceleration models* (seperti Gemini 3.5 Flash, Claude, atau GPT OSS) hanya boleh digunakan jika User secara eksplisit meminta percepatan.
+- Keputusan akhir pemilihan model sepenuhnya tetap berada di tangan User.
+
 ## Catatan Historis
 
 Dokumen ini menggantikan fungsi utama dari file lama `docs/00-project-control/SOP_CHATGPT_PROJECT.md` yang telah dihapus sepenuhnya pada proses migrasi Batch 26C.

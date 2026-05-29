@@ -89,6 +89,12 @@ Batch 26 terdiri dari beberapa sub-batch:
 - Membersihkan catatan transisi pasca-migrasi.
 - Mengupdate history dokumen agar mencerminkan struktur yang final dan stabil.
 
+### Batch 26F — Model Usage Guide
+- Menambahkan panduan pemilihan model AI.
+- Menetapkan Gemini 3.1 Pro Low dan Gemini 3.1 Pro High sebagai default utama.
+- Menetapkan Gemini 3.5 Flash, Claude Sonnet, Claude Opus, dan GPT OSS sebagai alternative acceleration models.
+- Menambahkan aturan pencatatan model jika acceleration mode digunakan.
+
 Hasil akhir Batch 26:
 - Struktur dokumentasi final menjadi:
   - `docs/project/` untuk manajemen project, workflow, onboarding, dan history.
