@@ -10,12 +10,13 @@
 - Alternative acceleration model: hanya jika user meminta percepatan
 
 ## Latest Completed Batch
-- Batch 26H — Simplify Onboarding Structure
+- Batch 26J — Optimize Workflow Batch Rules
 - Status: Completed
 - Hasil utama:
-  - Onboarding disederhanakan menjadi 4 file utama.
-  - PROJECT_BOOTSTRAP.md dihapus.
-  - Struktur onboarding mengikuti pola KBT.
+  - Definisi ukuran batch (Small, Medium, Large) telah ditambahkan.
+  - Aturan scope area ditambahkan agar fokus per batch lebih jelas.
+  - Batch gate ditambahkan sebelum instruksi dieksekusi.
+  - Rekomendasi model telah diselaraskan dengan ukuran batch.
 
 ## Current Documentation Structure
 - docs/project/ untuk manajemen project, workflow, onboarding, dan history

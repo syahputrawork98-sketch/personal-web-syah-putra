@@ -68,16 +68,63 @@ Fungsi Anti-Gravity IDE:
 
 Catatan penting: Anti-Gravity IDE bukan sekadar room chat. Dalam workflow baru, Anti-Gravity IDE diposisikan sebagai workspace utama untuk eksekusi dan validasi project.
 
-### Gemini Anti-Gravity
+### Eksekutor / Gemini Anti-Gravity
 
-Gemini Anti-Gravity dapat digunakan sebagai eksekutor satu kali jika user ingin mempercepat pengerjaan.
+- Model eksekutor utama di Anti-Gravity IDE adalah **Gemini 3.1 Pro Low** atau **Gemini 3.1 Pro High**.
+- Anti-Gravity IDE adalah workspace untuk eksekusi dan validasi, bukan pengambil keputusan.
+- *Alternative acceleration models* hanya digunakan jika user meminta percepatan.
+- User tetap melakukan commit dan push.
 
-Aturan Gemini:
-- Hanya menjalankan instruksi final dari Roomchat 00.
-- Tidak mengambil keputusan besar sendiri.
-- Tidak mengubah file di luar scope.
-- Tidak menjadi checker utama.
-- Setelah selesai, cukup memberi laporan hasil eksekusi.
+## Ukuran Batch
+
+### Small Batch
+- 1 sampai 3 file
+- 1 area kerja saja
+- risiko rendah
+- mudah dicek manual
+- tidak mengubah struktur besar
+- cocok untuk Gemini 3.1 Pro Low
+
+### Medium Batch
+- 4 sampai 8 file
+- 1 sampai 2 area kerja
+- ada relasi antar file
+- risiko sedang
+- cocok untuk Gemini 3.1 Pro High
+
+### Large Batch
+- lebih dari 8 file
+- menyentuh banyak area
+- migrasi struktur besar
+- refactor besar
+- frontend/backend logic
+- deployment penting
+- wajib dipecah menjadi beberapa batch kecil jika memungkinkan
+- jika tidak bisa dipecah, wajib review Roomchat 01 sebelum eksekusi
+
+## Scope Area
+
+Satu batch idealnya hanya menyentuh satu area:
+- docs
+- frontend
+- backend
+- database
+- deployment
+
+Jika satu batch menyentuh lebih dari satu area, Roomchat 00 wajib menjelaskan alasannya dan menentukan apakah perlu Roomchat 01.
+
+## Batch Gate Sebelum Eksekusi
+
+Sebelum instruksi diberikan ke eksekutor, Roomchat 00 wajib memastikan:
+- Tujuan batch jelas
+- Ukuran batch ditentukan
+- Scope area disebutkan
+- File yang boleh dibuat/diubah disebutkan
+- File/folder yang tidak boleh disentuh disebutkan
+- Model rekomendasi ditentukan
+- Perlu Roomchat 01 atau tidak ditentukan
+- Commit message disiapkan
+- Eksekutor dilarang commit dan push
 
 ## Alur Kerja Batch
 

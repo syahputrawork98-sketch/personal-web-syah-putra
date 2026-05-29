@@ -111,6 +111,13 @@ Batch 26 terdiri dari beberapa sub-batch:
 - Menghapus HOLD_ITEMS.md dan DEPLOYMENT_NOTES.md agar history folder lebih sederhana.
 - Menegaskan batch history sebagai arsip, bukan status aktif.
 
+### Batch 26J — Optimize Workflow Batch Rules
+- Menambahkan definisi Small, Medium, dan Large Batch.
+- Menambahkan aturan Scope Area.
+- Menambahkan Batch Gate sebelum eksekusi.
+- Menyelaraskan rekomendasi model dengan ukuran batch.
+- Menegaskan Anti-Gravity IDE sebagai workspace, bukan pengambil keputusan.
+
 Hasil akhir Batch 26:
 - Struktur dokumentasi final menjadi:
   - `docs/project/` untuk manajemen project, workflow, onboarding, dan history.

@@ -14,6 +14,13 @@ Model default utama yang wajib direkomendasikan oleh Roomchat 00 dan digunakan s
 - **Gemini 3.1 Pro Low**
 - **Gemini 3.1 Pro High**
 
+## Model by Batch Size
+
+- Small Batch → Gemini 3.1 Pro Low
+- Medium Batch → Gemini 3.1 Pro High
+- Large Batch → pecah menjadi beberapa batch kecil jika memungkinkan. Jika tidak bisa, gunakan Gemini 3.1 Pro High dan wajib review Roomchat 01.
+- Acceleration Mode → hanya jika user meminta. Tetap perlu review jika scope sedang/besar.
+
 ### Aturan Penggunaan Gemini 3.1 Pro Low
 Gunakan model ini untuk tugas dengan risiko rendah dan *scope* kecil, seperti:
 - Edit dokumentasi ringan

@@ -14,6 +14,10 @@ Folder ini digunakan untuk memahami:
 - Alur kerja batch dari diskusi sampai commit.
 - Aturan eksekusi agar perubahan tetap kecil dan aman.
 - Aturan review sebelum lanjut ke batch berikutnya.
+- Aturan ukuran batch (Small, Medium, Large).
+- Aturan scope area.
+- Aturan batch gate sebelum instruksi dieksekusi.
+- Pemilihan model by batch size.
 
 ## Catatan Historis
 
