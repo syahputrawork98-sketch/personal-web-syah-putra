@@ -4,14 +4,14 @@ Selamat datang di pusat dokumentasi resmi untuk project PW Personal Web. Direkto
 
 ## Struktur Utama Final
 
-Dokumentasi kini dipusatkan di dalam direktori **`project/`** dengan pembagian fungsional:
+Dokumentasi kini dipusatkan ke dalam empat direktori utama:
 
-- **`project/workflow/`**: Sistem kerja, role, SOP, dan aturan penggunaan AI/tools.
-- **`project/history/`**: Riwayat batch, status project, dan catatan perubahan.
-- **`project/onboarding/`**: Prompt awal, bootstrap, instruksi roomchat, dan instruksi saat pindah akun/project.
-- **`project/technical/`**: Catatan teknis (frontend, backend, database, deployment, batasan teknis).
+- **`project/`**: Untuk manajemen project, sistem kerja, onboarding, dan riwayat historis.
+- **`frontend/`**: Untuk catatan teknis frontend (React/Vite).
+- **`backend/`**: Untuk catatan teknis backend (API, server logic).
+- **`database/`**: Untuk catatan teknis database (model, storage).
 
-*(Folder lama seperti 00-project-control, 01-batch-history, 02-project-status, dan 03-technical-notes telah sepenuhnya dihapus dan dimigrasikan ke struktur ini pada Batch 26C).*
+*(Catatan: Dokumentasi teknis dipisahkan dari folder `project/` pada Batch 26D).*
 
 ## Urutan Baca (Mulai Dari Sini)
 
@@ -25,4 +25,6 @@ Untuk memahami project secara komprehensif, silakan ikuti urutan baca berikut:
 6. `docs/project/workflow/WORKING_SYSTEM.md`
 7. `docs/project/history/CURRENT_STATUS.md`
 8. `docs/project/history/BATCH_21_TO_30.md`
-9. `docs/project/technical/README.md`
+9. `docs/frontend/README.md`
+10. `docs/backend/README.md`
+11. `docs/database/README.md`

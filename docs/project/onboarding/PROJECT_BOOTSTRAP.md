@@ -65,7 +65,9 @@ Sebelum memberi saran teknis atau instruksi eksekusi, baca dokumen berikut secar
 6. `docs/project/workflow/WORKING_SYSTEM.md`
 7. `docs/project/workflow/README.md`
 8. `docs/project/history/README.md`
-9. `docs/project/technical/README.md`
+9. `docs/frontend/README.md`
+10. `docs/backend/README.md`
+11. `docs/database/README.md`
 
 Selama masa transisi, beberapa detail lama masih dapat berada di:
 - `docs/00-project-control/`
