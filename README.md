@@ -8,7 +8,7 @@ Repository ini telah melalui iterasi pengembangan (*Batch*) untuk memastikan sta
 
 - **`README.md`**: Dokumentasi utama repository (file ini).
 - **`FITUR.md`**: Ringkasan fitur utama website dan referensi status HOLD.
-- **`docs/`**: Pusat dokumentasi internal. Baca `docs/00-project-control/PROJECT_BOOTSTRAP.md` untuk memahami konteks project secara instan (terutama untuk AI).
+- **`docs/`**: Pusat dokumentasi internal. Baca `docs/project/onboarding/PROJECT_BOOTSTRAP.md` untuk memahami konteks project secara instan (terutama untuk AI).
 - **`client/`**: Source code Frontend (React + Vite) dengan sistem kategori proyek dinamis dan CV Variant Selector.
 - **`server/`**: Backend API (HOLD - saat ini website berjalan dengan data statis/fallback yang stabil).
 
@@ -42,7 +42,7 @@ Deployment awal menggunakan Vercel untuk frontend-only:
 - **Root Directory**: `client`
 - **Build Command**: `npm run build`
 - **Output Directory**: `dist`
-- Catatan detail ada di `docs/02-project-status/DEPLOYMENT_NOTES.md`
+- Catatan detail ada di `docs/project/history/DEPLOYMENT_NOTES.md`
 
 ## 🛠️ Status Pengembangan & Batasan (HOLD)
 

@@ -22,4 +22,4 @@ Dokumen di folder ini menggantikan fungsi utama dari folder lama:
 docs/00-project-control/SOP_CHATGPT_PROJECT.md
 ```
 
-File lama masih dipertahankan sementara selama masa transisi sampai seluruh struktur `docs/project/` stabil.
+File lama tersebut telah sepenuhnya dihapus pada proses migrasi Batch 26C.

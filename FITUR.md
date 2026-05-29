@@ -24,7 +24,7 @@ FITUR.md      # Rangkuman fitur berjalan dan status fungsionalitas
 
 ## 🚩 Status HOLD (Tertahan)
 Daftar fitur, aset, dan lingkungan yang belum aktif atau masih menunggu penyelesaian akhir.
-Selengkapnya dapat dilihat pada: **[docs/02-project-status/HOLD_ITEMS.md](docs/02-project-status/HOLD_ITEMS.md)**
+Selengkapnya dapat dilihat pada: **[docs/project/history/HOLD_ITEMS.md](docs/project/history/HOLD_ITEMS.md)**
 
 1. **CV Final (PDF)**
 2. **Sistem Admin & Auth (Login)**
@@ -33,9 +33,9 @@ Selengkapnya dapat dilihat pada: **[docs/02-project-status/HOLD_ITEMS.md](docs/0
 
 ## Riwayat Pengembangan (Batch History)
 Pencatatan riwayat *batch-by-batch* telah diarsipkan untuk menjaga kebersihan root dokumentasi. Silakan merujuk ke folder sejarah batch berikut:
-- **[Batch 01 - 10](docs/01-batch-history/BATCH_01_10.md)**: Tahap root struktur, ekstraksi data, dan cleanup awal.
-- **[Batch 11 - 20](docs/01-batch-history/BATCH_11_20.md)**: Tahap fitur kompleks (Modal, CV Selector, Credentials), desain responsif, dan Production QA.
-- **[Batch 21 - 30](docs/01-batch-history/BATCH_21_30.md)**: Tahap penyusunan SOP tata kelola, dokumentasi, dan integrasi berkelanjutan.
+- **[Batch 01 - 10](docs/project/history/BATCH_01_TO_10.md)**: Tahap root struktur, ekstraksi data, dan cleanup awal.
+- **[Batch 11 - 20](docs/project/history/BATCH_11_TO_20.md)**: Tahap fitur kompleks (Modal, CV Selector, Credentials), desain responsif, dan Production QA.
+- **[Batch 21 - 30](docs/project/history/BATCH_21_TO_30.md)**: Tahap penyusunan SOP tata kelola, dokumentasi, dan integrasi berkelanjutan.
 
 ---
-**Catatan**: Fokus utama dokumentasi di sini adalah kejelasan fitur yang berjalan. Untuk mengetahui detail instruksi AI atau SOP manajemen, rujuk ke folder `docs/00-project-control/`.
+**Catatan**: Fokus utama dokumentasi di sini adalah kejelasan fitur yang berjalan. Untuk mengetahui detail instruksi AI atau SOP manajemen, rujuk ke folder `docs/project/workflow/`.

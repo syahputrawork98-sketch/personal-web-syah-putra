@@ -27,4 +27,4 @@ docs/00-project-control/PROJECT_BOOTSTRAP.md
 docs/00-project-control/CHATGPT_PROJECT_INSTRUCTION.md
 ```
 
-File lama masih dipertahankan sementara selama masa transisi sampai seluruh struktur `docs/project/` stabil.
+File lama tersebut telah sepenuhnya dihapus pada proses migrasi Batch 26C.

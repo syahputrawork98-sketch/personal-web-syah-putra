@@ -6,6 +6,4 @@ Folder ini nantinya akan menampung:
 - Riwayat batch
 - Status HOLD
 
-*Catatan: Untuk sementara, referensi lama masih ada di:*
-- `docs/01-batch-history/`
-- `docs/02-project-status/`
+*Catatan: Referensi lama dari `docs/01-batch-history/` dan `docs/02-project-status/` telah sepenuhnya dimigrasikan ke sini pada Batch 26C.*
