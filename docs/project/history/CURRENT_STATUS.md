@@ -26,7 +26,7 @@
 - **CV Final**: HOLD. (Batch 28A menyiapkan readiness komponen frontend untuk mengunduh PDF, tetapi file PDF asli belum dimasukkan dan masih menunggu user memberikan file final).
 - **Admin / Login / Auth**: HOLD. Backend belum utuh, UI publik dibuat bersih dari link login demi keamanan.
 - **Domain & Deployment**: HOLD. Lingkungan produksi dan URL kanonikal belum ditetapkan secara final.
-- **Credential / Secret Safety**: HOLD / Perhatian Khusus. Tidak boleh ada API key atau rahasia yang di-commit.
+- **Credential / Secret Safety**: Needs Review (ditemukan indikasi secret pada file `server/.env` lokal, meskipun aman dari commit berkat `.gitignore` yang telah di-guard).
 - **External Project Asset Links**: HOLD. Link Figma, Drive, RAB, 3D model masih menunggu URL aslinya dimasukkan ke data.
 
 ## Deployment Status
