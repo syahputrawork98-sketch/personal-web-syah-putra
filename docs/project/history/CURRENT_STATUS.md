@@ -10,13 +10,11 @@
 - Alternative acceleration model: hanya jika user meminta percepatan
 
 ## Latest Completed Batch
-- Batch 26K — Align Roomchat Prompts and Checkpoint Policy
+- Batch 27B — Vercel SPA Rewrite Config
 - Status: Completed
 - Hasil utama:
-  - Roomchat prompts diselaraskan dengan Batch Gate.
-  - Batch Naming Policy ditambahkan.
-  - History Checkpoint Policy ditambahkan.
-  - `-CP` ditetapkan sebagai kode checkpoint dokumentasi fleksibel.
+  - Batch 27A: Audit kesiapan hosting menunjukkan `npm run build` berhasil. Halaman publik utama aman untuk dicek sebelum hosting.
+  - Batch 27B: Menambahkan konfigurasi rewrite SPA untuk Vercel di `client/vercel.json`.
 
 ## Current Documentation Structure
 - docs/project/ untuk manajemen project, workflow, onboarding, dan history
@@ -33,6 +31,7 @@
 
 ## Deployment Status
 - Target awal: Vercel frontend-only deployment
+- Status Kesiapan: Frontend sudah siap untuk pre-deploy check, tetapi domain final masih HOLD.
 - Root Directory: client
 - Build Command: npm run build
 - Output Directory: dist
