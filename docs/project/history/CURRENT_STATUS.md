@@ -23,7 +23,7 @@
 - docs/database/ untuk dokumentasi database
 
 ## Active HOLD Items
-- **CV Final**: HOLD. File PDF asli masih placeholder. Menunggu user memberikan file final (mungkin beberapa varian).
+- **CV Final**: HOLD. (Batch 28A menyiapkan readiness komponen frontend untuk mengunduh PDF, tetapi file PDF asli belum dimasukkan dan masih menunggu user memberikan file final).
 - **Admin / Login / Auth**: HOLD. Backend belum utuh, UI publik dibuat bersih dari link login demi keamanan.
 - **Domain & Deployment**: HOLD. Lingkungan produksi dan URL kanonikal belum ditetapkan secara final.
 - **Credential / Secret Safety**: HOLD / Perhatian Khusus. Tidak boleh ada API key atau rahasia yang di-commit.

@@ -122,13 +122,27 @@ const CVVariantSelector = ({ isOpen, onClose }) => {
                         <button className="btn btn-primary" style={{ width: '100%', fontSize: '0.85rem' }}>
                           Lihat Wireframe CV
                         </button>
-                        <button 
-                          className="btn btn-secondary" 
-                          disabled={!variant.pdfUrl}
-                          style={{ width: '100%', fontSize: '0.85rem', opacity: variant.pdfUrl ? 1 : 0.5 }}
-                        >
-                          {variant.pdfUrl ? 'Unduh PDF' : 'PDF Belum Tersedia'}
-                        </button>
+                        {variant.pdfUrl ? (
+                          <a 
+                            href={variant.pdfUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-secondary" 
+                            style={{ width: '100%', fontSize: '0.85rem', textAlign: 'center', boxSizing: 'border-box' }}
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            Unduh PDF
+                          </a>
+                        ) : (
+                          <button 
+                            className="btn btn-secondary" 
+                            disabled
+                            style={{ width: '100%', fontSize: '0.85rem', opacity: 0.5 }}
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            PDF Belum Tersedia
+                          </button>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -155,9 +169,20 @@ const CVVariantSelector = ({ isOpen, onClose }) => {
                   <p style={{ fontSize: '0.9rem', opacity: 0.8, maxWidth: '700px', margin: '0 auto 20px' }}>
                     Ini adalah wireframe konsep tata letak CV satu halaman bergaya editorial koran. Versi PDF final akan menggunakan tipografi dan penataan yang lebih presisi untuk dicetak atau dikirim secara digital.
                   </p>
-                  <button className="btn btn-secondary" disabled style={{ opacity: 0.5 }}>
-                    Unduh Versi PDF (Coming Soon)
-                  </button>
+                  {selectedVariant?.pdfUrl ? (
+                    <a 
+                      href={selectedVariant.pdfUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="btn btn-secondary"
+                    >
+                      Unduh Versi PDF
+                    </a>
+                  ) : (
+                    <button className="btn btn-secondary" disabled style={{ opacity: 0.5 }}>
+                      PDF Belum Tersedia
+                    </button>
+                  )}
                 </div>
               </div>
             )}
