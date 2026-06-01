@@ -35,15 +35,15 @@ Sangat berkaitan dengan **F07 Backend API System** dan **F08 Admin Login and Aut
 
 | Area | Endpoint Pattern | Status | Source File | Catatan |
 |---|---|---|---|---|
-| Public | `GET /api/health` | Boleh Audit F07 | `server/src/routes/api.js` | Endpoint sederhana untuk health check. |
-| Public | `GET /api/projects` | Boleh Audit F07 | `server/src/routes/api.js` | Daftar semua proyek portfolio. |
-| Public | `GET /api/projects/:slug` | Boleh Audit F07 | `server/src/routes/api.js` | Detail proyek spesifik. |
-| Public | `GET /api/settings/contact` | Boleh Audit F07 | `server/src/routes/api.js` | Info kontak publik. |
-| Public | `GET /api/settings/hero` | Boleh Audit F07 | `server/src/routes/api.js` | Info hero section. |
-| Public | `GET /api/settings/profile` | Boleh Audit F07 | `server/src/routes/api.js` | Info profil utama. |
-| Public | `GET /api/education` | Boleh Audit F07 | `server/src/routes/api.js` | Data edukasi. |
-| Public | `GET /api/skills` | Boleh Audit F07 | `server/src/routes/api.js` | Data keahlian. |
-| Public | `GET /api/experiences` | Boleh Audit F07 | `server/src/routes/api.js` | Pengalaman kerja. |
-| Public | `GET /api/certifications` | Boleh Audit F07 | `server/src/routes/api.js` | Data sertifikasi/credentials. |
-| Auth | `/api/auth/*` | HOLD (sampai F08) | `server/src/routes/auth.js` | Endpoint autentikasi admin. |
-| Admin | `/api/admin/*` | HOLD (sampai F08/F09) | `server/src/routes/admin.js` | Endpoint proteksi admin (CMS). |
+| Public | `GET /api/health` | Boleh Audit F07 | `server/src/app.js` | Endpoint sederhana untuk health check. |
+| Public | `GET /api/projects` | Boleh Audit F07 | `server/src/routes/public/projects.routes.js` | Daftar semua proyek portfolio. |
+| Public | `GET /api/projects/:slug` | Boleh Audit F07 | `server/src/routes/public/projects.routes.js` | Detail proyek spesifik. |
+| Public | `GET /api/settings/contact` | Boleh Audit F07 | `server/src/routes/settings.routes.js` | Info kontak publik. |
+| Public | `GET /api/settings/hero` | Boleh Audit F07 | `server/src/routes/settings.routes.js` | Info hero section. |
+| Public | `GET /api/settings/profile` | Boleh Audit F07 | `server/src/routes/settings.routes.js` | Info profil utama. |
+| Public | `GET /api/education` | Boleh Audit F07 | `server/src/routes/education.routes.js` | Data edukasi. |
+| Public | `GET /api/skills` | Boleh Audit F07 | `server/src/routes/skills.routes.js` | Data keahlian. |
+| Public | `GET /api/experiences` | Boleh Audit F07 | `server/src/routes/experience.routes.js` | Pengalaman kerja. |
+| Public | `GET /api/certifications` | Boleh Audit F07 | `server/src/routes/certification.routes.js` | Data sertifikasi/credentials. |
+| Auth | `/api/auth/*` | HOLD (sampai F08) | `server/src/routes/auth.routes.js` | Endpoint autentikasi admin. |
+| Admin | `/api/admin/*` | HOLD (sampai F08/F09) | `server/src/routes/admin/*.routes.js` | Endpoint proteksi admin (CMS). |

@@ -34,3 +34,4 @@ Mencakup pembuatan layanan backend (server) yang menyediakan data dinamis melalu
 ## Notes
 - [F07A] Audit struktur server telah dilakukan. Express app, health check, Prisma schema, dan `.env.example` sudah tersedia dan berfungsi. Website publik masih aman menggunakan fallback data.
 - [F07B] API scope sudah didefinisikan. Prioritas aman berikutnya adalah environment example/fetch connection review tanpa membuka auth/admin.
+- [F07B.1] Source file path pada API Scope Map dikoreksi agar sesuai struktur route aktual.
