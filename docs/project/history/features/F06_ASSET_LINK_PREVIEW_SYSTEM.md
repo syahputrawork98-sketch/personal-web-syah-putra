@@ -17,7 +17,7 @@ Mencakup pengelolaan dan integrasi seluruh link referensi yang dibutuhkan proyek
 | Sub-Batch | Name | Status | Purpose | Dependency |
 |---|---|---|---|---|
 | F06A | External Asset URL Inventory | Completed | Pendataan semua link eksternal proyek. | - |
-| F06B | Public Access Verification | Not Started | Memastikan akses publik aset aman. | F06A |
+| F06B | Link Tile Behavior & Empty URL | Completed | Mengeraskan UI link agar aman dari URL kosong/dummy. | F06A |
 | F06C | Link Tile Data Integration | Not Started | Memasukkan URL ke sumber data. | F06B |
 | F06D | Asset Preview QA | Not Started | Uji coba pengalihan tautan. | F06C |
 
@@ -25,13 +25,14 @@ Mencakup pengelolaan dan integrasi seluruh link referensi yang dibutuhkan proyek
 - URL asli belum lengkap atau belum diverifikasi public access. Inventory sudah dibuat, namun final external URLs masih menunggu input user.
 
 ## Next Step
-- F06B — Public Access Verification (catatan: F06B baru bisa dijalankan setelah user menyediakan URL final di inventory).
+- F06C — Public Access Verification (catatan: baru bisa dijalankan setelah user menyediakan URL final).
 
 ## Validation Checklist
 - Klik link dari project modal dan pastikan mendarat pada aset yang benar.
 
 ## Notes
 - [F06A] Inventory URL telah dibuat berdasarkan data projectsFallback.js tanpa mengubah kode.
+- [F06B] Link Tile Behavior and Empty URL Handling selesai. URL kosong, dummy, atau placeholder tidak akan memicu tile aktif. Jika sebuah project tidak punya link sama sekali, UI akan menampilkan state "Aset belum tersedia" yang rapi. URL final asset tetap bisa diisi nanti di source data tanpa mengubah logic komponen lagi.
 
 ## External Asset URL Inventory
 | Project ID | Title | Category | Existing Link Keys | Missing/Needed Final URL | Recommended Source | Status |

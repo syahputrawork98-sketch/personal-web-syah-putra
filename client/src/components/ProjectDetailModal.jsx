@@ -7,6 +7,22 @@ const ProjectDetailModal = ({ isOpen, onClose, project }) => {
   const links = project.links || {};
   const techStack = project.techStack || project.technologies || [];
 
+  const isValidUrl = (url) => {
+    if (!url || typeof url !== 'string') return false;
+    const cleanUrl = url.trim().toLowerCase();
+    if (cleanUrl === '' || 
+        cleanUrl === '#' || 
+        cleanUrl === '-' || 
+        cleanUrl === 'coming soon' || 
+        cleanUrl === 'todo' || 
+        cleanUrl === 'placeholder' ||
+        cleanUrl === 'null' ||
+        cleanUrl === 'undefined') {
+      return false;
+    }
+    return true;
+  };
+
   const linkTiles = [
     { key: 'demo', label: 'Demo / Live', icon: '🌐', url: links.demo || project.demoUrl || project.demo || project.liveUrl },
     { key: 'github', label: 'GitHub', icon: '💻', url: links.github || project.githubUrl || project.github },
@@ -14,7 +30,7 @@ const ProjectDetailModal = ({ isOpen, onClose, project }) => {
     { key: 'drive', label: 'Google Drive', icon: '📂', url: links.drive || links.googleDrive },
     { key: 'rab', label: 'RAB / Estimasi', icon: '📊', url: links.rab },
     { key: 'model', label: 'Model Preview', icon: '🏗️', url: links.model || links.modelPreview },
-  ].filter(tile => tile.url);
+  ].filter(tile => isValidUrl(tile.url));
 
   return (
     <AnimatePresence>
@@ -112,14 +128,14 @@ const ProjectDetailModal = ({ isOpen, onClose, project }) => {
                     </div>
                   )}
 
-                  {linkTiles.length > 0 && (
+                  {linkTiles.length > 0 ? (
                     <div>
                       <h4 className="detail-label" style={{ marginBottom: 'var(--space-4)' }}>Aset & Tautan Terkait</h4>
                       <div className="project-link-tiles-grid">
                         {linkTiles.map(tile => (
                           <a 
                             key={tile.key}
-                            href={tile.url}
+                            href={tile.url.trim()}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="project-link-tile"
@@ -128,6 +144,13 @@ const ProjectDetailModal = ({ isOpen, onClose, project }) => {
                             <span className="project-link-tile-label">{tile.label}</span>
                           </a>
                         ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <div>
+                      <h4 className="detail-label" style={{ marginBottom: 'var(--space-4)' }}>Aset & Tautan Terkait</h4>
+                      <div style={{ padding: 'var(--space-4)', background: 'rgba(var(--primary-color-rgb), 0.03)', borderRadius: 'var(--radius-md)', border: '1px dashed var(--border-color)', textAlign: 'center' }}>
+                        <p style={{ fontSize: '0.85rem', opacity: 0.6, margin: 0, fontStyle: 'italic' }}>Aset belum tersedia</p>
                       </div>
                     </div>
                   )}
