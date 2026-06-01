@@ -17,7 +17,7 @@ Mencakup penyelesaian pipeline live deployment agar web bisa dikunjungi publik d
 ## Sub-Batch Roadmap
 | Sub-Batch | Name | Status | Purpose | Dependency |
 |---|---|---|---|---|
-| F10A | Production Deployment Check | HOLD | Uji deployment staging. | - |
+| F10A | Production Deployment Check | Completed | Uji deployment staging. | - |
 | F10B | Domain Configuration | Not Started | Konfigurasi custom DNS/Domain. | F10A |
 | F10C | Environment Production Review | Not Started | Verifikasi ENV variables aman. | F10B |
 | F10D | Public Release QA | Not Started | Pengujian langsung terhadap domain publik. | F10C |
@@ -27,10 +27,10 @@ Mencakup penyelesaian pipeline live deployment agar web bisa dikunjungi publik d
 - Domain final belum ditentukan.
 
 ## Next Step
-- F10A saat user siap melakukan deployment production pertama.
+- F10B — Domain Configuration after final domain decision
 
 ## Validation Checklist
 - Buka dan refresh custom URL domain pada semua variasi routing, pastikan tak terjadi 404 server error.
 
 ## Notes
-- (Kosong)
+- [F10A] Deployment checklist sudah dibuat. Backend production dan custom domain tetap HOLD menunggu keputusan lebih lanjut.
