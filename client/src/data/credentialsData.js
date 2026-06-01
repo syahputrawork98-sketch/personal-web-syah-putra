@@ -136,7 +136,7 @@ export const credentialsData = [
     featured: false,
     status: "duplicate-review",
     sourceFolder: "03 - Sertifikat Teknik & Manufaktur",
-    summary: "Sertifikat pengembangan diri yang tersimpan di folder Teknik.",
+    summary: "Sertifikat pelatihan pengembangan relasi dan kepemimpinan (terindikasi duplikat dengan folder Pengembangan Diri).",
     ...createUrls("1BBLH25QvvyB1dQv-VMIpFHK4czn1vTrh"),
     skills: ["Leadership", "Communication"]
   },
@@ -214,11 +214,11 @@ export const credentialsData = [
     title: "Sertifikasi PFM (Pemesinan)",
     issuer: "SMK Negeri 1 Cimahi",
     date: "2016",
-    category: "Pengembangan Diri",
+    category: "Teknik & Manufaktur",
     featured: false,
     status: "active",
     sourceFolder: "05 - Sertifikat Pengembangan Diri",
-    summary: "Sertifikat keahlian teknik pemesinan tahap awal dari pendidikan menengah.",
+    summary: "Sertifikat keahlian teknik pemesinan tingkat dasar.",
     ...createUrls("1nYFMPeIJIVPC77mf7w9D5iituygqpzQ0"),
     skills: ["Machining", "Workshop Safety"]
   },
@@ -261,7 +261,7 @@ export const credentialsData = [
     featured: false,
     status: "active",
     sourceFolder: "07 - Dokumen Pendukung & Surat Keterangan",
-    summary: "Sertifikat kelulusan pelatihan dengan kode verifikasi 1909320401-903B6044.",
+    summary: "Sertifikat resmi kelulusan program pelatihan profesional (Kode Verifikasi: 1909320401-903B6044).",
     ...createUrls("1ZU9K9an6K7BzxZqSftKVb6DpEGdDAvk6"),
     skills: ["Training Completion"]
   },

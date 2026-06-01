@@ -17,7 +17,7 @@ Mencakup pengelolaan dan tampilan data sertifikasi/credential. Menunjukkan kuali
 ## Sub-Batch Roadmap
 | Sub-Batch | Name | Status | Purpose | Dependency |
 |---|---|---|---|---|
-| F04A | Credential Data Verification | Not Started | Memverifikasi data sertifikat. | - |
+| F04A | Credential Data Verification | Completed | Memverifikasi data sertifikat. | - |
 | F04B | Certificate Preview QA | Not Started | Tes fitur preview Drive iframe. | - |
 | F04C | Public Credential Safety Review | Not Started | Review kemanan data publik. | - |
 
@@ -25,10 +25,10 @@ Mencakup pengelolaan dan tampilan data sertifikasi/credential. Menunjukkan kuali
 - Sebagian credential masih perlu verifikasi manual oleh user (misalnya memastikan link drive sudah public dan bisa diembed).
 
 ## Next Step
-- F04A — Credential Data Verification.
+- F04B — Certificate Preview QA.
 
 ## Validation Checklist
 - Klik sertifikat dan cek apakah preview muncul dengan benar.
 
 ## Notes
-- (Kosong)
+- [F04A] Data credential telah diverifikasi secara struktur dan konsistensi. Kategori dan status dirapikan, serta narasi diselaraskan.
