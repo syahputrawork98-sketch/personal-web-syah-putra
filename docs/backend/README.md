@@ -31,6 +31,16 @@ Sangat berkaitan dengan **F07 Backend API System** dan **F08 Admin Login and Aut
 ## Catatan Penting
 - Auth tidak boleh dibuka sebelum F07 memiliki arah teknis yang jelas.
 
+## Frontend Backend Connection Notes
+- Frontend membaca API base URL dari `VITE_API_URL`.
+- Default local API adalah `http://localhost:5000`.
+- Server local default berjalan di `PORT=5000`.
+- Client Vite local umumnya berjalan di `http://localhost:5173`.
+- CORS server sudah disiapkan untuk local client.
+- Jika backend mati, frontend tetap aman menggunakan fallback data untuk area yang sudah punya fallback.
+- Backend belum menjadi sumber data utama production.
+- Auth/Admin tetap HOLD.
+
 ## API Scope Map
 
 | Area | Endpoint Pattern | Status | Source File | Catatan |

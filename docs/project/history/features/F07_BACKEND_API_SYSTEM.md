@@ -19,14 +19,14 @@ Mencakup pembuatan layanan backend (server) yang menyediakan data dinamis melalu
 | F07A | Server Structure Audit | Completed | Review kesiapan struktur backend. | - |
 | F07B | API Scope Definition | Completed | Merumuskan endpoint API yang dibutuhkan. | - |
 | F07C | Environment Example Setup | Not Started | Setelan environment `.env.example`. | - |
-| F07D | Frontend Backend Connection Review | Not Started | Review hubungan CORS dan fetch URL. | - |
+| F07D | Frontend Backend Connection Review | Completed | Review hubungan CORS dan fetch URL. | - |
 
 ## HOLD / Blocked Notes
 - Website publik masih stabil memakai fallback data.
 - Backend belum menjadi prioritas aktif. Auth/Admin tetap HOLD.
 
 ## Next Step
-- F07D — Frontend Backend Connection Review
+- F07-CP — Backend API System Checkpoint
 
 ## Validation Checklist
 - Pastikan website publik dapat menerima data secara dinamis tanpa fallback jika API dihidupkan.
@@ -35,3 +35,4 @@ Mencakup pembuatan layanan backend (server) yang menyediakan data dinamis melalu
 - [F07A] Audit struktur server telah dilakukan. Express app, health check, Prisma schema, dan `.env.example` sudah tersedia dan berfungsi. Website publik masih aman menggunakan fallback data.
 - [F07B] API scope sudah didefinisikan. Prioritas aman berikutnya adalah environment example/fetch connection review tanpa membuka auth/admin.
 - [F07B.1] Source file path pada API Scope Map dikoreksi agar sesuai struktur route aktual.
+- [F07D] Frontend-backend connection reviewed. Client uses VITE_API_URL with local fallback, server health check is available, and public site fallback remains safe. Catatan: F07C environment example minimal (klien dan server) sudah tersedia.
