@@ -25,7 +25,7 @@ export const cvVariants = [
     tools: ["Git", "Figma", "VS Code", "Postman", "Vercel"],
     certificates: ["Web Developer Certificate", "React Mastery"],
     status: "Draft",
-    pdfUrl: "", // Coming Soon
+    pdfUrl: "/CV_Syah_Putra_Nugraha.pdf", // Coming Soon
     previewType: "newspaper-editorial"
   },
   {
