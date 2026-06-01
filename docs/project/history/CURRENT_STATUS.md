@@ -23,7 +23,7 @@
 | F07 | Backend API System | server | Partial / Connection Reviewed | Checkpoint F07 selesai. Struktur server, scope API, env example, dan koneksi frontend-backend sudah direview, tetapi backend belum menjadi sumber data utama production. | HOLD / Backend public API implementation only if requested | [F07_BACKEND_API_SYSTEM.md](features/F07_BACKEND_API_SYSTEM.md) |
 | F08 | Admin Login and Auth System | backend/auth | HOLD | Backend belum aktif penuh dan auth belum aman untuk dibuka | F08A — Auth Requirement Definition | [F08_ADMIN_LOGIN_AUTH_SYSTEM.md](features/F08_ADMIN_LOGIN_AUTH_SYSTEM.md) |
 | F09 | Admin Content Management System | frontend/backend | HOLD | Menunggu Backend API System dan Admin Login/Auth System | F09A — Admin CMS Scope Definition | [F09_ADMIN_CONTENT_MANAGEMENT_SYSTEM.md](features/F09_ADMIN_CONTENT_MANAGEMENT_SYSTEM.md) |
-| F10 | Deployment and Domain System | deployment | HOLD / Partial | F10A deployment checklist sudah disiapkan, tetapi domain final dan production release belum selesai. | F10B — Domain Configuration after final domain decision | [F10_DEPLOYMENT_DOMAIN_SYSTEM.md](features/F10_DEPLOYMENT_DOMAIN_SYSTEM.md) |
+| F10 | Deployment and Domain System | deployment | HOLD / Partial | F10A checklist dan F10 checkpoint selesai, tetapi domain final, production environment, dan public release belum dilakukan. | HOLD / Domain final decision required before F10B | [F10_DEPLOYMENT_DOMAIN_SYSTEM.md](features/F10_DEPLOYMENT_DOMAIN_SYSTEM.md) |
 
 ## Deployment Status
 - Target awal: Vercel frontend-only deployment

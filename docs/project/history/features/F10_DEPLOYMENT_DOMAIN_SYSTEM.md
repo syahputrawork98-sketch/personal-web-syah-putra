@@ -21,13 +21,14 @@ Mencakup penyelesaian pipeline live deployment agar web bisa dikunjungi publik d
 | F10B | Domain Configuration | Not Started | Konfigurasi custom DNS/Domain. | F10A |
 | F10C | Environment Production Review | Not Started | Verifikasi ENV variables aman. | F10B |
 | F10D | Public Release QA | Not Started | Pengujian langsung terhadap domain publik. | F10C |
+| F10-CP | Deployment System Checkpoint | Completed | Merangkum kesiapan deployment frontend-only dan menegaskan status domain. | - |
 
 ## HOLD / Blocked Notes
 - Vercel SPA rewrite sudah tersedia.
 - Domain final belum ditentukan.
 
 ## Next Step
-- F10B — Domain Configuration after final domain decision
+- HOLD / Domain final decision required before F10B
 
 ## Validation Checklist
 - Buka dan refresh custom URL domain pada semua variasi routing, pastikan tak terjadi 404 server error.
