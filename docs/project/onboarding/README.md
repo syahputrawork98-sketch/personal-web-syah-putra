@@ -15,7 +15,11 @@ Struktur onboarding ini dirancang sederhana dan mandiri, cukup menggunakan dokum
 2. Copy isi prompt Roomchat 00 ke Add Instructions ChatGPT Project jika project ini digunakan sebagai manager utama.
 3. Gunakan `ROOM_00_MANAGER_PROMPT.md` untuk room manager.
 4. Gunakan `ROOM_01_REVIEWER_PROMPT.md` untuk room reviewer.
-5. Baca `../history/CURRENT_STATUS.md` sebelum lanjut ke batch pengerjaan baru.
+5. Onboarding sekarang memakai **Feature Batch Tracking**:
+   - `../history/CURRENT_STATUS.md` = dashboard aktif.
+   - `../history/FEATURE_HISTORY.md` = index fitur.
+   - `../history/features/FXX_*.md` = detail per fitur.
+6. Roomchat baru harus membaca file fitur terkait sebelum memberi saran teknis.
 
 ## Fungsi Folder
 
@@ -28,4 +32,4 @@ Folder ini digunakan saat:
 
 ## Catatan Historis
 
-Dokumen di folder ini menggantikan fungsi utama dari file lama `docs/00-project-control/PROJECT_BOOTSTRAP.md` dan `docs/00-project-control/CHATGPT_PROJECT_INSTRUCTION.md` yang telah sepenuhnya dihapus pada proses migrasi Batch 26C. Selain itu, file `PROJECT_BOOTSTRAP.md` yang sempat ada di folder ini telah dihapus pada Batch 26H untuk menyederhanakan struktur onboarding.
+Dokumen lama telah dikonsolidasikan ke struktur onboarding saat ini.

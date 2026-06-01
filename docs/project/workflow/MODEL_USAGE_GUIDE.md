@@ -19,25 +19,25 @@ Model default utama yang wajib direkomendasikan oleh Roomchat 00 dan digunakan s
 - Small Batch → Gemini 3.1 Pro Low
 - Medium Batch → Gemini 3.1 Pro High
 - Large Batch → pecah menjadi beberapa batch kecil jika memungkinkan. Jika tidak bisa, gunakan Gemini 3.1 Pro High dan wajib review Roomchat 01.
-- Acceleration Mode → hanya jika user meminta. Tetap perlu review jika scope sedang/besar.
+- Acceleration Mode → Alternative Acceleration Model hanya boleh dipakai jika user eksplisit meminta. Tetap perlu review jika scope sedang/besar.
 
 ### Aturan Penggunaan Gemini 3.1 Pro Low
 Gunakan model ini untuk tugas dengan risiko rendah dan *scope* kecil, seperti:
 - Edit dokumentasi ringan
 - Update `README.md` skala kecil
-- Update riwayat batch (history)
 - Update status project (current status)
 - Perbaikan *typo* atau *wording*
-- Perubahan pada 1 sampai 3 file saja
+- Perubahan patch kecil pada 1 sampai 3 file saja
 
 ### Aturan Penggunaan Gemini 3.1 Pro High
 Gunakan model ini untuk tugas dengan kompleksitas dan risiko menengah hingga tinggi, seperti:
-- Perubahan pada banyak file sekaligus
-- Restrukturisasi dokumentasi skala besar
-- Migrasi file antar-folder
+- Workflow alignment atau reset dokumentasi
+- Perubahan pada banyak file dokumentasi sekaligus
+- Frontend / Backend logic
+- Autentikasi (Auth) dan Deployment
+- Pekerjaan lintas area (frontend/backend/database)
 - Refactor kode
 - Perencanaan arsitektur teknis
-- Pekerjaan yang membutuhkan pemahaman konteks lintas-komponen yang dalam
 
 ## Alternative Acceleration Models
 Model di luar *Primary Models* dianggap sebagai model akselerasi alternatif. Model alternatif yang diperbolehkan di Anti-Gravity IDE meliputi:
@@ -70,9 +70,9 @@ Roomchat 00 bertindak sebagai manajer yang mengatur alur. Tugas utamanya terkait
 Roomchat 01 bertindak sebagai auditor. Jika Roomchat 01 menyadari bahwa tugas yang dikerjakan memiliki kompleksitas tinggi namun diinstruksikan untuk dieksekusi dengan model rendah (*Low*), Roomchat 01 wajib memberikan peringatan (flag) dan merekomendasikan penggunaan model yang lebih kuat (seperti Gemini 3.1 Pro High).
 
 ## Recording Model Usage
-Pencatatan riwayat penggunaan model dilakukan pada file *history batch*.
+Pencatatan riwayat penggunaan model dilakukan pada file fitur terkait di `docs/project/history/features/FXX_*.md`.
 - Untuk penggunaan **Gemini 3.1 Pro Low** dan **Gemini 3.1 Pro High**, pencatatan tidak diwajibkan (bersifat opsional, boleh dicatat untuk batch yang krusial).
-- Jika **Alternative Acceleration Models** digunakan, penggunaan tersebut **wajib dicatat** dalam riwayat batch dengan format berikut:
+- Jika **Alternative Acceleration Models** digunakan, penggunaan tersebut **wajib dicatat** dalam file fitur terkait dengan format berikut:
 
 ```text
 Model used: <model name>

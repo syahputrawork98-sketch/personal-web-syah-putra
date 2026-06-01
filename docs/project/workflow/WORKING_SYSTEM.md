@@ -190,19 +190,19 @@ Batch atau tahapan hanya boleh disebut **Completed** jika:
 Isi aturan:
 - History detail tidak wajib diisi setiap batch kerja.
 - Batch kerja boleh fokus ke eksekusi.
-- CURRENT_STATUS.md wajib diupdate jika ada perubahan besar.
-- Checkpoint dokumentasi dilakukan saat user meminta `Batch [nomor]-CP`.
+- CURRENT_STATUS.md wajib diupdate jika ada perubahan besar status fitur (hanya sebagai dashboard ringkas).
+- Checkpoint dokumentasi dilakukan saat user meminta `Batch FXX-CP`.
 - Checkpoint dapat dilakukan kapan saja sesuai kondisi fokus user.
-- Checkpoint tidak wajib setiap 5 batch atau 10 batch, tetapi bisa dipakai sebagai kebiasaan kerja jika user ingin.
-- Saat checkpoint, rangkum hasil kerja sebelumnya ke dokumentasi yang sesuai.
+- Detail sub-batch, blocker, dependency, dan hasil kerja harus dicatat di file fitur masing-masing di `docs/project/history/features/FXX_*.md`.
+- `FEATURE_HISTORY.md` hanya bertindak sebagai index.
 
-Aturan saat `-CP`:
-- Jika perubahan terjadi di client/frontend, update docs/frontend/.
-- Jika perubahan terjadi di server/backend, update docs/backend/.
-- Jika perubahan terjadi di database/data model, update docs/database/.
-- Jika status project berubah, update docs/project/history/CURRENT_STATUS.md.
-- Jika batch sudah selesai, update file batch history yang sesuai.
-- Jangan menambahkan fitur baru saat checkpoint.
+Aturan saat Dokumentasi Teknis dan Status:
+- Jika perubahan menyentuh frontend/client, update `docs/frontend/README.md` atau dokumentasi frontend terkait bila ada perubahan teknis penting.
+- Jika perubahan menyentuh backend/server, update `docs/backend/README.md` atau dokumentasi backend terkait.
+- Jika perubahan menyentuh database/data model/storage, update `docs/database/README.md` atau dokumentasi database terkait.
+- Jika status fitur berubah, update `docs/project/history/CURRENT_STATUS.md`.
+- Jika roadmap/sub-batch berubah, update file fitur terkait di `docs/project/history/features/`.
+- Jangan menambahkan fitur baru saat checkpoint dokumentasi.
 
 ## Discussion / Pre-Batch Mode
 

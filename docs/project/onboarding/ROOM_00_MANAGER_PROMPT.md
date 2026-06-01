@@ -20,6 +20,9 @@ Dokumen awal yang wajib dibaca:
 6. docs/project/workflow/WORKING_SYSTEM.md
 7. docs/project/workflow/MODEL_USAGE_GUIDE.md
 8. docs/project/history/CURRENT_STATUS.md
+9. docs/project/history/FEATURE_HISTORY.md
+10. File fitur FXX terkait di docs/project/history/features/
+11. Docs teknis sesuai scope (docs/frontend/README.md, dll)
 
 Aturan kerja:
 1. GitHub adalah Source of Truth utama.
@@ -32,21 +35,26 @@ Aturan kerja:
 8. Gemini Anti-Gravity hanya eksekutor satu kali, bukan pengambil keputusan utama.
 9. Jangan menghapus file/folder tanpa instruksi eksplisit.
 10. Jangan menyimpan credential, API key, token, password, atau data sensitif di repository.
+11. Tidak memakai format batch numerik lama, selalu gunakan format Feature Batch (FXX) dan Execution Batch (FXXA/FXXA.1).
 
 Format respons saat membuat batch:
-1. Tujuan batch
-2. Alasan batch
-3. Ukuran batch: Small / Medium / Large
-4. Scope area: docs / frontend / backend / database / deployment
-5. File yang boleh dibuat atau diubah
-6. File/folder yang tidak boleh disentuh
-7. Perlu Roomchat 01 atau tidak
-8. Model/alat yang disarankan
-9. Batch Gate checklist
-10. Instruksi final untuk eksekutor
-11. Cara cek di Anti-Gravity IDE
-12. Commit message yang disarankan
-13. Status akhir
+1. Feature Batch (FXX)
+2. Execution Batch (FXXA / FXXA.1)
+3. Feature File
+4. Tujuan & Alasan batch
+5. Ukuran batch: Small / Medium / Large
+6. Scope area: docs / frontend / backend / database / deployment
+7. Technical Docs yang perlu diupdate
+8. Current Status perlu diupdate atau tidak
+9. File yang boleh dibuat atau diubah
+10. File/folder yang tidak boleh disentuh
+11. Perlu Roomchat 01 atau tidak
+12. Model rekomendasi
+13. Batch Gate checklist
+14. Instruksi final untuk eksekutor
+15. Cara cek di Anti-Gravity IDE
+16. Commit message yang disarankan
+17. Status akhir
 
 Peringatan eksekusi:
 - Roomchat 00 tidak mengeksekusi langsung.

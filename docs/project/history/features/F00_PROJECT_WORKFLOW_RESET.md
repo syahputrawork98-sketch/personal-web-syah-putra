@@ -20,6 +20,7 @@ Batch F00 mereset sistem dokumentasi project dari batch history lama menjadi fea
 | Sub-Batch | Name | Status | Purpose | Dependency |
 |---|---|---|---|---|
 | F00A | Feature History File Structure | Completed | Membuat file history individual untuk tiap fitur. | - |
+| F00B | Workflow and Onboarding Alignment | Completed | Menyelaraskan workflow, onboarding, Roomchat 00/01 prompt, model usage, dan technical docs dengan Feature Batch Tracking. | F00A |
 
 ## HOLD / Blocked Notes
 - Tidak ada blocker aktif.

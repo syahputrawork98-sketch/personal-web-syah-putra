@@ -21,9 +21,9 @@ Sebelum memberi saran teknis, baca dokumen berikut secara berurutan:
 5. `docs/project/workflow/WORKING_SYSTEM.md`
 6. `docs/project/workflow/MODEL_USAGE_GUIDE.md`
 7. `docs/project/history/CURRENT_STATUS.md`
-8. `docs/frontend/README.md`
-9. `docs/backend/README.md`
-10. `docs/database/README.md`
+8. `docs/project/history/FEATURE_HISTORY.md`
+9. file fitur terkait di `docs/project/history/features/FXX_*.md`
+10. docs teknis area terkait, misalnya `docs/frontend/README.md`, `docs/backend/README.md`, atau `docs/database/README.md`
 
 ## Prompt Awal Roomchat 00
 
@@ -53,10 +53,10 @@ Aturan utama:
 8. Jangan menyimpan credential, API key, token, password, atau data sensitif di repository.
 9. Selalu referensi `docs/project/workflow/MODEL_USAGE_GUIDE.md` untuk pemilihan model eksekutor.
 10. Eksekutor tidak boleh commit/push.
-11. Pahami aturan hierarchy: Batch [Nomor] = fitur besar, Batch [Nomor][Huruf] = tahapan, Batch [Nomor][Huruf].[Angka] = patch, Batch [Nomor]-CP = checkpoint.
-12. Roomchat 00 wajib menyebut parent batch dan batch eksekusi jika menggunakan sistem bertingkat.
+11. Pahami aturan hierarchy: Batch FXX = fitur besar, Batch FXXA = tahapan, Batch FXXA.1 = patch, Batch FXX-CP = checkpoint.
+12. Roomchat 00 wajib menyebut Feature Batch, Execution Batch, dan Feature File terkait.
 13. Eksekutor wajib melaporkan status Completed, Partial, Blocked, HOLD, atau Not Started bila relevan. Jika sebagian selesai, beri status Partial/Blocked, jangan bilang "selesai dieksekusi".
-14. History tidak wajib diisi setiap batch kerja. Checkpoint dokumentasi menggunakan kode `-CP`.
+14. History tidak wajib diisi setiap batch kerja. Checkpoint dokumentasi menggunakan kode `Batch FXX-CP` dan dicatat di feature file masing-masing.
 15. Jangan membuat batch ketika user masih dalam mode diskusi/brainstorming.
 16. Tanyakan/nyatakan dulu apakah ini Pre-Batch Analysis atau Batch Execution jika konteks belum jelas.
 17. Roomchat 01 analysis tidak otomatis menjadi dokumen repo.
@@ -107,11 +107,14 @@ Kamu adalah eksekutor satu kali untuk project PW Personal Web.
 Repository:
 syahputrawork98-sketch/personal-web-syah-putra
 
-Batch Parent:
-Batch [NOMOR] — [NAMA BATCH PARENT]
+Feature Batch:
+Batch FXX — [Nama fitur utama]
 
-Batch Eksekusi:
-Batch [NOMOR][HURUF] — [NAMA BATCH EKSEKUSI]
+Execution Batch:
+Batch FXXA / FXXB / FXXA.1 — [Nama tahap/patch]
+
+Feature File:
+docs/project/history/features/FXX_*.md
 
 Status target:
 Completed
@@ -147,13 +150,16 @@ Definition of Done:
 2. [Syarat 2]
 
 Setelah selesai, berikan laporan:
-Batch Parent:
-Batch Eksekusi:
+Feature Batch:
+Execution Batch:
 Status akhir:
 Ringkasan perubahan:
 File yang dibuat:
 File yang diubah:
 File/folder yang sengaja tidak diubah:
+Feature File Updated: (Ya/Tidak)
+Current Status Updated: (Ya/Tidak)
+Technical Docs Updated: (Ya/Tidak)
 Validasi yang dilakukan:
 Catatan risiko:
 Jika Partial/Blocked, jelaskan alasannya:
@@ -163,11 +169,11 @@ Cara cek di Anti-Gravity IDE:
 ## Template Laporan Eksekutor
 
 ```text
-Batch Parent:
-Batch [NOMOR] — [NAMA BATCH PARENT]
+Feature Batch:
+Batch FXX — [Nama fitur utama]
 
-Batch Eksekusi:
-Batch [NOMOR][HURUF] — [NAMA BATCH EKSEKUSI]
+Execution Batch:
+Batch FXXA / FXXB / FXXA.1 — [Nama tahap/patch]
 
 Status akhir:
 Completed / Partial / Blocked
