@@ -17,7 +17,7 @@ Mencakup pembuatan layanan backend (server) yang menyediakan data dinamis melalu
 | Sub-Batch | Name | Status | Purpose | Dependency |
 |---|---|---|---|---|
 | F07A | Server Structure Audit | Completed | Review kesiapan struktur backend. | - |
-| F07B | API Scope Definition | Not Started | Merumuskan endpoint API yang dibutuhkan. | - |
+| F07B | API Scope Definition | Completed | Merumuskan endpoint API yang dibutuhkan. | - |
 | F07C | Environment Example Setup | Not Started | Setelan environment `.env.example`. | - |
 | F07D | Frontend Backend Connection Review | Not Started | Review hubungan CORS dan fetch URL. | - |
 
@@ -26,10 +26,11 @@ Mencakup pembuatan layanan backend (server) yang menyediakan data dinamis melalu
 - Backend belum menjadi prioritas aktif. Auth/Admin tetap HOLD.
 
 ## Next Step
-- F07B — API Scope Definition
+- F07D — Frontend Backend Connection Review
 
 ## Validation Checklist
 - Pastikan website publik dapat menerima data secara dinamis tanpa fallback jika API dihidupkan.
 
 ## Notes
 - [F07A] Audit struktur server telah dilakukan. Express app, health check, Prisma schema, dan `.env.example` sudah tersedia dan berfungsi. Website publik masih aman menggunakan fallback data.
+- [F07B] API scope sudah didefinisikan. Prioritas aman berikutnya adalah environment example/fetch connection review tanpa membuka auth/admin.
