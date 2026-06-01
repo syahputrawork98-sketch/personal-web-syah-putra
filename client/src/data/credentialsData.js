@@ -261,7 +261,7 @@ export const credentialsData = [
     featured: false,
     status: "active",
     sourceFolder: "07 - Dokumen Pendukung & Surat Keterangan",
-    summary: "Sertifikat resmi kelulusan program pelatihan profesional (Kode Verifikasi: 1909320401-903B6044).",
+    summary: "Dokumen kelulusan pelatihan resmi yang dapat diverifikasi melalui dokumen sumber.",
     ...createUrls("1ZU9K9an6K7BzxZqSftKVb6DpEGdDAvk6"),
     skills: ["Training Completion"]
   },
@@ -274,7 +274,7 @@ export const credentialsData = [
     featured: false,
     status: "supporting",
     sourceFolder: "07 - Dokumen Pendukung & Surat Keterangan",
-    summary: "Dokumen pendukung kelulusan pelatihan (1909320401-33B04351).",
+    summary: "Dokumen pendukung kelulusan pelatihan resmi.",
     ...createUrls("1q-QcN_hyQQ3k4RPG1Um50ZZk62oPmaXI"),
     skills: ["Verification Document"]
   },
