@@ -138,7 +138,27 @@ Hasil akhir Batch 26:
 *(Placeholder untuk riwayat batch selanjutnya)*
 
 ## Catatan Batch 28
-*(Placeholder untuk riwayat batch selanjutnya)*
+
+Mulai Batch 28, histori menggunakan format bertingkat (Hierarchy Format) yang terdiri dari: Parent Batch, Parent Goal, Parent Status, Scope Area, Children/Stages, Patch Notes (jika ada), Blocked/HOLD reason (jika ada), dan Definition of Done ringkas (jika diperlukan).
+
+### Batch 28 — Workflow Governance Hardening
+
+**Parent goal**:
+Memperkuat sistem governance batch, patch, status, dan pencatatan histori agar setiap fitur/goal besar punya alur dari awal sampai ending.
+
+**Parent status**:
+In Progress
+
+**Children**:
+- **Batch 28A — Batch Hierarchy and History Format Alignment**
+  - **Status**: Completed
+  - **Scope**: docs/project
+  - **Ringkasan**: Menyelaraskan definisi batch induk, tahapan A/B/C, patch .1/.2, checkpoint -CP, status Partial/Blocked/HOLD, dan format histori bertingkat.
+
+Catatan penting:
+- Batch 27B tetap Completed.
+- Batch 28A bukan checkpoint.
+- Batch 28-CP hanya digunakan nanti jika user meminta checkpoint dokumentasi/status.
 
 ## Catatan Batch 29
 *(Placeholder untuk riwayat batch selanjutnya)*

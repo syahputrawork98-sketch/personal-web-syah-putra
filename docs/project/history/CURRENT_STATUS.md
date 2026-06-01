@@ -16,6 +16,11 @@
   - Batch 27A: Audit kesiapan hosting menunjukkan `npm run build` berhasil. Halaman publik utama aman untuk dicek sebelum hosting.
   - Batch 27B: Menambahkan konfigurasi rewrite SPA untuk Vercel di `client/vercel.json`.
 
+## Active Workflow Status
+- **Active Parent Batch**: Batch 28 — Workflow Governance Hardening
+- **Current Stage**: Batch 28A — Batch Hierarchy and History Format Alignment
+- **Status**: Completed
+
 ## Current Documentation Structure
 - docs/project/ untuk manajemen project, workflow, onboarding, dan history
 - docs/frontend/ untuk dokumentasi frontend
@@ -40,6 +45,7 @@
 - Checklist singkat setelah deploy: Buka semua halaman, refresh pada *direct route*, pastikan tidak ada data sensitif / login publik.
 
 ## Next Recommended Step
+- Setelah Batch 28A selesai dan dicek user, gunakan aturan batch hierarchy baru untuk batch teknis berikutnya.
 - Gunakan CURRENT_STATUS.md sebagai satu-satunya patokan status aktif.
 - Jika ada perubahan tujuan project, update CURRENT_STATUS.md terlebih dahulu.
 - Setelah batch selesai, catat ringkasannya di BATCH_21_TO_30.md atau file batch range berikutnya.

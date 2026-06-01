@@ -129,18 +129,57 @@ Sebelum instruksi diberikan ke eksekutor, Roomchat 00 wajib memastikan:
 ## Batch Naming Policy
 
 Gunakan aturan berikut:
-- `Batch 27` = fase besar project.
-- `Batch 27A`, `27B`, `27C` = batch kerja utama dalam fase tersebut.
-- `Batch 27A.1`, `27A.2` = pecahan kecil dari satu batch kerja.
-- `Batch 27-CP` = checkpoint dokumentasi fleksibel.
+- **Batch [Nomor]** = satu fitur besar, satu goal besar, atau satu fase kerja yang punya ending.
+- **Batch [Nomor][Huruf]** = tahapan pengerjaan dari batch induk.
+- **Batch [Nomor][Huruf].[Angka]** = perubahan kecil, patch kecil, atau pecahan teknis dari satu tahapan.
+- **Batch [Nomor]-CP** = checkpoint dokumentasi/status untuk batch induk, bukan fitur baru dan bukan tahapan kerja.
+
+Contoh:
+- **Batch 28 — Workflow Governance Hardening** = goal besar pembenahan workflow.
+- **Batch 28A — Batch Hierarchy and History Format Alignment** = tahap pertama dari Batch 28.
+- **Batch 28A.1 — Add Batch Hierarchy Policy** = patch kecil di dalam 28A.
+- **Batch 28A.2 — Align History Format** = patch kecil di dalam 28A.
+- **Batch 28-CP — Workflow Documentation Checkpoint** = checkpoint dokumentasi/status, bukan fitur baru.
+
 - `-CP` tidak memiliki turunan seperti `CP2` atau `CP3`.
 - Jika checkpoint dibutuhkan lagi pada fase yang sama, tetap gunakan kode `-CP`, bukan membuat varian baru.
 
-Penjelasan:
-- Huruf A, B, C dipakai untuk pekerjaan utama.
-- Titik `.1`, `.2` dipakai untuk memecah batch kerja yang terlalu besar.
-- `-CP` dipakai hanya untuk checkpoint dokumentasi.
-- `-CP` bukan batch fitur baru.
+## Aturan Status Batch
+
+Setiap batch wajib memiliki status untuk melacak perkembangannya:
+
+- **Completed**: Semua tujuan batch/tahap sudah selesai, file sesuai scope, validasi minimal sudah dilakukan, dan laporan eksekutor lengkap.
+- **In Progress**: Batch induk atau tahapan masih berjalan dan belum mencapai ending.
+- **Partial**: Sebagian pekerjaan selesai, tetapi belum memenuhi definition of done.
+- **Blocked**: Pekerjaan tidak bisa dilanjutkan karena menunggu input, file, akses, keputusan user, atau kendala teknis.
+- **HOLD**: Pekerjaan sengaja ditunda karena belum prioritas, belum waktunya, atau menunggu kondisi tertentu.
+- **Not Started**: Tahapan sudah direncanakan tetapi belum dieksekusi.
+
+## Aturan Parent-Child Status
+
+Status batch induk **tidak otomatis completed** hanya karena salah satu tahap selesai.
+
+Contoh:
+Batch 28 — CV Final Integration
+Status: In Progress
+- 28A: Completed
+- 28B: Completed
+- 28C: Blocked
+- 28D: Not Started
+
+Maka Batch 28 belum completed. Status parent tetap In Progress atau Blocked sampai semua tahapan wajib selesai atau ada keputusan eksplisit untuk menutup/membatalkan tahap tertentu.
+
+## Definition of Done (DoD)
+
+Batch atau tahapan hanya boleh disebut **Completed** jika:
+- Semua tujuan yang tertulis terpenuhi.
+- Semua file yang berubah sesuai daftar file yang diizinkan.
+- Tidak ada perubahan di luar scope.
+- Validasi yang diminta sudah dilakukan.
+- Tidak ada error besar yang disembunyikan.
+- Jika ada bagian yang belum selesai, status harus Partial atau Blocked, bukan Completed.
+- Laporan eksekutor lengkap.
+- Commit/push tetap hanya dilakukan oleh user.
 
 ## History Checkpoint Policy
 

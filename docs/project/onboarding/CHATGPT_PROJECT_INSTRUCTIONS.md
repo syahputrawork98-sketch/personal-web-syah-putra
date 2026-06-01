@@ -53,10 +53,13 @@ Aturan utama:
 8. Jangan menyimpan credential, API key, token, password, atau data sensitif di repository.
 9. Selalu referensi `docs/project/workflow/MODEL_USAGE_GUIDE.md` untuk pemilihan model eksekutor.
 10. Eksekutor tidak boleh commit/push.
-11. History tidak wajib diisi setiap batch kerja. Checkpoint dokumentasi menggunakan kode `-CP`.
-12. Jangan membuat batch ketika user masih dalam mode diskusi/brainstorming.
-13. Tanyakan/nyatakan dulu apakah ini Pre-Batch Analysis atau Batch Execution jika konteks belum jelas.
-14. Roomchat 01 analysis tidak otomatis menjadi dokumen repo.
+11. Pahami aturan hierarchy: Batch [Nomor] = fitur besar, Batch [Nomor][Huruf] = tahapan, Batch [Nomor][Huruf].[Angka] = patch, Batch [Nomor]-CP = checkpoint.
+12. Roomchat 00 wajib menyebut parent batch dan batch eksekusi jika menggunakan sistem bertingkat.
+13. Eksekutor wajib melaporkan status Completed, Partial, Blocked, HOLD, atau Not Started bila relevan. Jika sebagian selesai, beri status Partial/Blocked, jangan bilang "selesai dieksekusi".
+14. History tidak wajib diisi setiap batch kerja. Checkpoint dokumentasi menggunakan kode `-CP`.
+15. Jangan membuat batch ketika user masih dalam mode diskusi/brainstorming.
+16. Tanyakan/nyatakan dulu apakah ini Pre-Batch Analysis atau Batch Execution jika konteks belum jelas.
+17. Roomchat 01 analysis tidak otomatis menjadi dokumen repo.
 ```
 
 ## Prompt Awal Roomchat 01
@@ -104,8 +107,14 @@ Kamu adalah eksekutor satu kali untuk project PW Personal Web.
 Repository:
 syahputrawork98-sketch/personal-web-syah-putra
 
-Batch:
-Batch [NOMOR] — [NAMA BATCH]
+Batch Parent:
+Batch [NOMOR] — [NAMA BATCH PARENT]
+
+Batch Eksekusi:
+Batch [NOMOR][HURUF] — [NAMA BATCH EKSEKUSI]
+
+Status target:
+Completed
 
 Tujuan:
 [Jelaskan tujuan utama batch]
@@ -119,6 +128,10 @@ File yang boleh dibuat/diubah:
 1. [Path file 1]
 2. [Path file 2]
 
+File/folder yang tidak boleh disentuh:
+1. [Path 1]
+2. [Path 2]
+
 Batasan:
 1. Jangan mengubah file di luar scope.
 2. Jangan mengubah logic website jika batch hanya dokumentasi.
@@ -129,19 +142,35 @@ Batasan:
 7. Jangan push.
 8. Commit dan push hanya dilakukan oleh user setelah hasil dicek di Anti-Gravity IDE.
 
+Definition of Done:
+1. [Syarat 1]
+2. [Syarat 2]
+
 Setelah selesai, berikan laporan:
-1. Ringkasan perubahan
-2. File yang dibuat
-3. File yang diubah
-4. File/folder yang sengaja tidak diubah
-5. Catatan risiko
-6. Cara cek di Anti-Gravity IDE
+Batch Parent:
+Batch Eksekusi:
+Status akhir:
+Ringkasan perubahan:
+File yang dibuat:
+File yang diubah:
+File/folder yang sengaja tidak diubah:
+Validasi yang dilakukan:
+Catatan risiko:
+Jika Partial/Blocked, jelaskan alasannya:
+Cara cek di Anti-Gravity IDE:
 ```
 
 ## Template Laporan Eksekutor
 
 ```text
-Batch [NOMOR] — [NAMA BATCH] selesai dieksekusi.
+Batch Parent:
+Batch [NOMOR] — [NAMA BATCH PARENT]
+
+Batch Eksekusi:
+Batch [NOMOR][HURUF] — [NAMA BATCH EKSEKUSI]
+
+Status akhir:
+Completed / Partial / Blocked
 
 1. Ringkasan perubahan:
 - ...
@@ -155,10 +184,16 @@ Batch [NOMOR] — [NAMA BATCH] selesai dieksekusi.
 4. File/folder yang sengaja tidak diubah:
 - ...
 
-5. Catatan risiko:
+5. Validasi yang dilakukan:
 - ...
 
-6. Cara cek di Anti-Gravity IDE:
+6. Catatan risiko:
+- ...
+
+7. Jika Partial/Blocked, jelaskan alasannya:
+- ...
+
+8. Cara cek di Anti-Gravity IDE:
 - ...
 ```
 
