@@ -126,23 +126,24 @@ Sebelum instruksi diberikan ke eksekutor, Roomchat 00 wajib memastikan:
 - Commit message disiapkan
 - Eksekutor dilarang commit dan push
 
-## Batch Naming Policy
+## Feature Batch Tracking Policy
 
-Gunakan aturan berikut:
-- **Batch [Nomor]** = satu fitur besar, satu goal besar, atau satu fase kerja yang punya ending.
-- **Batch [Nomor][Huruf]** = tahapan pengerjaan dari batch induk.
-- **Batch [Nomor][Huruf].[Angka]** = perubahan kecil, patch kecil, atau pecahan teknis dari satu tahapan.
-- **Batch [Nomor]-CP** = checkpoint dokumentasi/status untuk batch induk, bukan fitur baru dan bukan tahapan kerja.
+Sistem history lama (Batch 01 sampai Batch 30) tidak lagi digunakan. Gunakan aturan Feature Batch berikut:
+- **Batch FXX** = Kode batch baru menggunakan format `F` diikuti dua angka (misal F01, F02).
+- **Batch F00** = Merupakan batch transisi (workflow reset) yang memulai sistem ini.
+- **Batch F01 dan seterusnya** = Merupakan feature batch, di mana setiap batch mewakili satu fitur atau satu sistem besar.
+- **Checkpoint Dokumentasi** = Boleh tetap menggunakan suffix `-CP` jika dibutuhkan untuk dokumentasi status (contoh: `Batch F05-CP`).
 
-Contoh:
-- **Batch 28 — Workflow Governance Hardening** = goal besar pembenahan workflow.
-- **Batch 28A — Batch Hierarchy and History Format Alignment** = tahap pertama dari Batch 28.
-- **Batch 28A.1 — Add Batch Hierarchy Policy** = patch kecil di dalam 28A.
-- **Batch 28A.2 — Align History Format** = patch kecil di dalam 28A.
-- **Batch 28-CP — Workflow Documentation Checkpoint** = checkpoint dokumentasi/status, bukan fitur baru.
+Setiap feature batch **wajib** memiliki:
+- **Story**: Latar belakang fitur dan perannya.
+- **Status**: Status pengerjaan fitur.
+- **Reason / HOLD Notes**: Alasan penundaan (jika ada).
+- **Next Step**: Tahapan selanjutnya yang harus dilakukan.
 
-- `-CP` tidak memiliki turunan seperti `CP2` atau `CP3`.
-- Jika checkpoint dibutuhkan lagi pada fase yang sama, tetap gunakan kode `-CP`, bukan membuat varian baru.
+**Aturan Eksekusi Tetap Berlaku:**
+- Roomchat 00 tetap menyusun instruksi final.
+- Eksekutor tetap dilarang melakukan commit dan push.
+- User tetap melakukan commit dan push setelah validasi.
 
 ## Aturan Status Batch
 
@@ -160,14 +161,14 @@ Setiap batch wajib memiliki status untuk melacak perkembangannya:
 Status batch induk **tidak otomatis completed** hanya karena salah satu tahap selesai.
 
 Contoh:
-Batch 28 — CV Final Integration
+Batch F05 — CV Download System
 Status: In Progress
-- 28A: Completed
-- 28B: Completed
-- 28C: Blocked
-- 28D: Not Started
+- F05A: Completed
+- F05B: Completed
+- F05C: Blocked
+- F05D: Not Started
 
-Maka Batch 28 belum completed. Status parent tetap In Progress atau Blocked sampai semua tahapan wajib selesai atau ada keputusan eksplisit untuk menutup/membatalkan tahap tertentu.
+Maka Batch F05 belum completed. Status parent tetap In Progress atau Blocked sampai semua tahapan wajib selesai atau ada keputusan eksplisit untuk menutup/membatalkan tahap tertentu.
 
 ## Definition of Done (DoD)
 

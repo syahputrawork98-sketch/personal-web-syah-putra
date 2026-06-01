@@ -9,49 +9,33 @@
 - Default model eksekutor: Gemini 3.1 Pro Low / High
 - Alternative acceleration model: hanya jika user meminta percepatan
 
-## Latest Completed Batch
-- Batch 27B — Vercel SPA Rewrite Config
-- Status: Completed
-- Hasil utama:
-  - Batch 27A: Audit kesiapan hosting menunjukkan `npm run build` berhasil. Halaman publik utama aman untuk dicek sebelum hosting.
-  - Batch 27B: Menambahkan konfigurasi rewrite SPA untuk Vercel di `client/vercel.json`.
+## Active Feature Tracker
 
-## Active Workflow Status
-- **Active Parent Batch**: Batch 28 — Workflow Governance Hardening
-- **Current Stage**: Batch 28A — Batch Hierarchy and History Format Alignment
-- **Status**: Completed
-
-## Current Documentation Structure
-- docs/project/ untuk manajemen project, workflow, onboarding, dan history
-- docs/frontend/ untuk dokumentasi frontend
-- docs/backend/ untuk dokumentasi backend
-- docs/database/ untuk dokumentasi database
-
-## Active HOLD Items
-- **CV Final**: HOLD. (Batch 28A menyiapkan readiness komponen frontend untuk mengunduh PDF, tetapi file PDF asli belum dimasukkan dan masih menunggu user memberikan file final).
-- **Admin / Login / Auth**: HOLD. Backend belum utuh, UI publik dibuat bersih dari link login demi keamanan.
-- **Domain & Deployment**: HOLD. Lingkungan produksi dan URL kanonikal belum ditetapkan secara final.
-- **Credential / Secret Safety**: Needs Review (ditemukan indikasi secret pada file `server/.env` lokal, meskipun aman dari commit berkat `.gitignore` yang telah di-guard).
-- **External Project Asset Links**: HOLD. Link Figma, Drive, RAB, 3D model masih menunggu URL aslinya dimasukkan ke data.
+| Feature Batch | Feature Name | Area | Status | Reason / HOLD Notes | Next Step |
+|---|---|---|---|---|---|
+| F00 | Project Workflow Reset | docs/project | In Progress | Reset sistem history lama ke feature-based tracking | F01 bila reset selesai |
+| F01 | Public Website Core System | frontend | Stable | Fondasi website publik sudah berjalan | Review hanya jika ada redesign besar |
+| F02 | Profile and Experience Content System | frontend/content | Stable / Needs Content Review | Konten dasar profil, experience, education, dan skill sudah tersedia | Content polish bila diperlukan |
+| F03 | Project Portfolio System | frontend | Stable / Partial | Sistem portfolio, kategori, card, modal, dan link tile sudah berjalan | Asset finalization dikelola di F06 |
+| F04 | Credential and Certificate System | frontend/data | Partial | Sistem sertifikat sudah ada, tetapi sebagian item masih perlu verifikasi manual | F04A — Credential Data Verification |
+| F05 | CV Download System | frontend/assets | HOLD | File PDF CV final belum tersedia | F05A — Add Final CV PDF Assets |
+| F06 | Asset Link and Preview System | frontend/data | HOLD / Partial | URL asli untuk Drive, Figma, RAB, demo, dan 3D preview belum lengkap atau belum diverifikasi public access | F06A — Final External Asset URL Input |
+| F07 | Backend API System | server | HOLD | Website publik masih stabil memakai fallback data, backend belum menjadi prioritas aktif | F07A — Server Structure Audit |
+| F08 | Admin Login and Auth System | backend/auth | HOLD | Backend belum aktif penuh dan auth belum aman untuk dibuka | F08A — Auth Requirement Definition |
+| F09 | Admin Content Management System | frontend/backend | HOLD | Menunggu Backend API System dan Admin Login/Auth System | F09A — Admin CMS Scope Definition |
+| F10 | Deployment and Domain System | deployment | HOLD / Partial | Vercel SPA rewrite sudah tersedia, tetapi domain final dan production release belum selesai | F10A — Production Deployment Check |
 
 ## Deployment Status
 - Target awal: Vercel frontend-only deployment
-- Status Kesiapan: Frontend sudah siap untuk pre-deploy check, tetapi domain final masih HOLD.
+- Status Kesiapan: Frontend sudah siap untuk pre-deploy check, tetapi domain final masih HOLD (F10).
 - Root Directory: client
 - Build Command: npm run build
 - Output Directory: dist
 - Backend/Admin/Auth/Database: HOLD
-- Checklist singkat sebelum deploy: `npm install`, `npm run build`, `git status` bersih.
-- Checklist singkat setelah deploy: Buka semua halaman, refresh pada *direct route*, pastikan tidak ada data sensitif / login publik.
-
-## Next Recommended Step
-- Setelah Batch 28A selesai dan dicek user, gunakan aturan batch hierarchy baru untuk batch teknis berikutnya.
-- Gunakan CURRENT_STATUS.md sebagai satu-satunya patokan status aktif.
-- Jika ada perubahan tujuan project, update CURRENT_STATUS.md terlebih dahulu.
-- Setelah batch selesai, catat ringkasannya di BATCH_21_TO_30.md atau file batch range berikutnya.
 
 ## Safety Rules
 - Jangan menyimpan credential, token, API key, password, atau .env di repository.
 - Jangan mengubah client/server tanpa scope batch yang jelas.
 - Jangan commit/push oleh eksekutor.
 - Commit/push dilakukan oleh user setelah hasil dicek di Anti-Gravity IDE.
+

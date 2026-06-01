@@ -31,11 +31,11 @@ Selengkapnya dapat dilihat pada: **[docs/project/history/CURRENT_STATUS.md](docs
 3. **Konfigurasi Domain & Deployment**
 4. **URL Final untuk Data Aset Proyek Eksternal**
 
-## Riwayat Pengembangan (Batch History)
-Pencatatan riwayat *batch-by-batch* telah diarsipkan untuk menjaga kebersihan root dokumentasi. Silakan merujuk ke folder sejarah batch berikut:
-- **[Batch 01 - 10](docs/project/history/BATCH_01_TO_10.md)**: Tahap root struktur, ekstraksi data, dan cleanup awal.
-- **[Batch 11 - 20](docs/project/history/BATCH_11_TO_20.md)**: Tahap fitur kompleks (Modal, CV Selector, Credentials), desain responsif, dan Production QA.
-- **[Batch 21 - 30](docs/project/history/BATCH_21_TO_30.md)**: Tahap penyusunan SOP tata kelola, dokumentasi, dan integrasi berkelanjutan.
+## Riwayat Pengembangan (Feature Tracking)
+Sistem pencatatan riwayat lama berbasis *batch-by-batch* numerik (Batch 01 - 30) telah digantikan oleh sistem *Feature Batch Tracking*. 
+Silakan merujuk ke dokumen berikut untuk melihat status dan riwayat aktif fitur:
+- **[CURRENT_STATUS.md](docs/project/history/CURRENT_STATUS.md)**: Pusat Feature Tracker aktif.
+- **[FEATURE_HISTORY.md](docs/project/history/FEATURE_HISTORY.md)**: Rangkuman riwayat fitur.
 
 ---
 **Catatan**: Fokus utama dokumentasi di sini adalah kejelasan fitur yang berjalan. Untuk mengetahui detail instruksi AI atau SOP manajemen, rujuk ke folder `docs/project/workflow/`.

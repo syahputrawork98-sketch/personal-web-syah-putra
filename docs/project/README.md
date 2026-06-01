@@ -10,4 +10,4 @@ Strukturnya terdiri dari:
 ## Prinsip Utama
 - **GitHub adalah Source of Truth**: Semua dokumentasi dan source code bersumber dari repositori ini.
 - **Anti-Gravity IDE adalah tempat eksekusi dan validasi nyata**: Segala perubahan langsung diterapkan dan diuji menggunakan Anti-Gravity IDE.
-- **Perubahan project dilakukan bertahap per batch kecil**: Setiap perubahan dicatat dalam bentuk *batch* agar terkontrol dan mudah dilacak.
+- **Perubahan project dilakukan berbasis Feature Batch**: Setiap fitur besar dicatat dalam sistem *Feature Tracker* agar status dan progres terkontrol.

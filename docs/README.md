@@ -24,7 +24,7 @@ Untuk memahami project secara komprehensif, silakan ikuti urutan baca berikut:
 5. `docs/project/onboarding/CHATGPT_PROJECT_INSTRUCTIONS.md`
 6. `docs/project/workflow/WORKING_SYSTEM.md`
 7. `docs/project/history/CURRENT_STATUS.md`
-8. `docs/project/history/BATCH_21_TO_30.md`
+8. `docs/project/history/FEATURE_HISTORY.md`
 9. `docs/frontend/README.md`
 10. `docs/backend/README.md`
 11. `docs/database/README.md`

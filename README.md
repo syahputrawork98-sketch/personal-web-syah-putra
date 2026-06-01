@@ -2,7 +2,7 @@
 
 Selamat datang di repository **Personal Web Syah Putra N**. Website ini dirancang sebagai platform portofolio profesional lintas bidang, mulai dari pengembangan perangkat lunak (IT & Web) hingga desain teknik manufaktur dan estimasi biaya konstruksi (RAB).
 
-## 📂 Struktur Project (Update Batch 22)
+## 📂 Struktur Project
 
 Repository ini telah melalui iterasi pengembangan (*Batch*) untuk memastikan standar kualitas tinggi, estetika premium, dan fungsionalitas yang solid:
 
@@ -12,7 +12,7 @@ Repository ini telah melalui iterasi pengembangan (*Batch*) untuk memastikan sta
 - **`client/`**: Source code Frontend (React + Vite) dengan sistem kategori proyek dinamis dan CV Variant Selector.
 - **`server/`**: Backend API (HOLD - saat ini website berjalan dengan data statis/fallback yang stabil).
 
-## ✨ Fitur Utama (Batch 20)
+## ✨ Fitur Utama
 
 - **Branding Monogram SPN**: Identitas visual yang konsisten dengan nama publik "Syah Putra N".
 - **Multi-Category Portfolio**: Sistem filter proyek untuk IT & Web, Manufaktur & Teknik, Model 3D, serta Bangunan & RAB.
@@ -42,7 +42,7 @@ Deployment awal menggunakan Vercel untuk frontend-only:
 - **Root Directory**: `client`
 - **Build Command**: `npm run build`
 - **Output Directory**: `dist`
-- Catatan detail ada di `docs/project/history/CURRENT_STATUS.md`
+- Catatan detail ada di Feature Tracker F10 pada `docs/project/history/CURRENT_STATUS.md`
 
 ## 🛠️ Status Pengembangan & Batasan (HOLD)
 
