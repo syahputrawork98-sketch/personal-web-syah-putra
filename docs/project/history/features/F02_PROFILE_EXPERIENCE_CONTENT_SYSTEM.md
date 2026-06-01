@@ -16,7 +16,7 @@ Mencakup halaman profil, pengalaman, edukasi, skill, dan narasi personal brandin
 ## Sub-Batch Roadmap
 | Sub-Batch | Name | Status | Purpose | Dependency |
 |---|---|---|---|---|
-| F02A | Profile Content Review | Not Started | Meninjau deskripsi profil. | - |
+| F02A | Profile Content Review | Completed | Meninjau deskripsi profil. | - |
 | F02B | Experience Content Polish | Not Started | Memperbarui pengalaman kerja. | - |
 | F02C | Skill and Education Review | Not Started | Memperbarui list skill dan edukasi. | - |
 
@@ -31,3 +31,4 @@ Mencakup halaman profil, pengalaman, edukasi, skill, dan narasi personal brandin
 
 ## Notes
 - Data bisa langsung diperbarui di source code atau lewat CMS jika kelak tersedia.
+- [F02A] Profil narasi telah diperbarui untuk lebih menonjolkan identitas sebagai Web Developer / Full Stack Developer dengan 8+ tahun pengalaman lintas bidang.

@@ -165,7 +165,7 @@ const About = () => {
           <div className="profile-summary-container">
             <div>
               <h3 style={{ color: 'var(--primary-color)', marginBottom: 'var(--space-4)', fontSize: '1.6rem' }}>
-                {currentProfile.summaryTitle || "Perjalanan Profesional & Transisi"}
+                {currentProfile.summaryTitle || "Ringkasan Profesional"}
               </h3>
               <div 
                 dangerouslySetInnerHTML={{ __html: currentProfile.summary || "Data belum tersedia." }} 
