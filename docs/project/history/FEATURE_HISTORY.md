@@ -1,24 +1,19 @@
 # Feature History — PW Personal Web
 
-Dokumen ini adalah riwayat aktif baru untuk project PW Personal Web. Sistem lama berbasis Batch 01 sampai Batch 30 tidak lagi digunakan sebagai tracking aktif. Mulai dari dokumen ini, riwayat project menggunakan Feature Batch Tracking.
+Dokumen ini adalah index history aktif berbasis fitur. Detail setiap fitur disimpan di folder `features/`.
 
-## Batch F00 — Project Workflow Reset
+## Feature History Index
 
-Status:
-Completed
-
-Story:
-Batch F00 mereset sistem dokumentasi project dari batch history lama menjadi feature-based tracking. Tujuannya agar setiap fitur besar seperti CV Download System, Asset Link System, Backend API System, Admin Login System, dan Deployment System punya status, alasan HOLD, dan next step yang jelas.
-
-Scope:
-- Reset history aktif
-- Buat Feature Tracker
-- Konsolidasi audit/security lama
-- Jadikan CURRENT_STATUS.md sebagai pusat status aktif
-- Hapus dokumen history batch lama dari sistem aktif
-
-Result:
-- Menghapus batch history lama.
-- Membuat format Feature Batch di CURRENT_STATUS.md.
-- Mengupdate README.md, FITUR.md, dan dokumen utama untuk tidak merujuk lagi ke urutan batch lama (Batch 20, 22, 28 dsb).
-- Menyatukan file audit dan security (yang sebelumnya terpisah) secara konseptual ke dalam status di Feature Tracker.
+| Feature Batch | Feature Name | Status | Detail File |
+|---|---|---|---|
+| F00 | Project Workflow Reset | Completed | features/F00_PROJECT_WORKFLOW_RESET.md |
+| F01 | Public Website Core System | Stable | features/F01_PUBLIC_WEBSITE_CORE_SYSTEM.md |
+| F02 | Profile and Experience Content System | Stable / Needs Content Review | features/F02_PROFILE_EXPERIENCE_CONTENT_SYSTEM.md |
+| F03 | Project Portfolio System | Stable / Partial | features/F03_PROJECT_PORTFOLIO_SYSTEM.md |
+| F04 | Credential and Certificate System | Partial | features/F04_CREDENTIAL_CERTIFICATE_SYSTEM.md |
+| F05 | CV Download System | HOLD | features/F05_CV_DOWNLOAD_SYSTEM.md |
+| F06 | Asset Link and Preview System | HOLD / Partial | features/F06_ASSET_LINK_PREVIEW_SYSTEM.md |
+| F07 | Backend API System | HOLD | features/F07_BACKEND_API_SYSTEM.md |
+| F08 | Admin Login and Auth System | HOLD | features/F08_ADMIN_LOGIN_AUTH_SYSTEM.md |
+| F09 | Admin Content Management System | HOLD | features/F09_ADMIN_CONTENT_MANAGEMENT_SYSTEM.md |
+| F10 | Deployment and Domain System | HOLD / Partial | features/F10_DEPLOYMENT_DOMAIN_SYSTEM.md |

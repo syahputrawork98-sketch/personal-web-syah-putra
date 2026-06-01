@@ -129,10 +129,13 @@ Sebelum instruksi diberikan ke eksekutor, Roomchat 00 wajib memastikan:
 ## Feature Batch Tracking Policy
 
 Sistem history lama (Batch 01 sampai Batch 30) tidak lagi digunakan. Gunakan aturan Feature Batch berikut:
-- **Batch FXX** = Kode batch baru menggunakan format `F` diikuti dua angka (misal F01, F02).
-- **Batch F00** = Merupakan batch transisi (workflow reset) yang memulai sistem ini.
-- **Batch F01 dan seterusnya** = Merupakan feature batch, di mana setiap batch mewakili satu fitur atau satu sistem besar.
-- **Checkpoint Dokumentasi** = Boleh tetap menggunakan suffix `-CP` jika dibutuhkan untuk dokumentasi status (contoh: `Batch F05-CP`).
+- **Batch FXX** = Fitur utama (contoh: F05).
+- **Batch FXXA, FXXB** = Tahap dalam fitur utama (contoh: F05A, F05B).
+- **Batch FXXA.1** = Patch kecil dalam sebuah tahap.
+- **Batch FXX-CP** = Checkpoint dokumentasi fitur.
+
+Detail sub-batch dan roadmap fitur dicatat secara lengkap pada file fitur masing-masing di `docs/project/history/features/`.
+File `CURRENT_STATUS.md` hanya berfungsi sebagai dashboard ringkas, bukan tempat detail panjang.
 
 Setiap feature batch **wajib** memiliki:
 - **Story**: Latar belakang fitur dan perannya.

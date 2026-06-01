@@ -3,7 +3,8 @@
 Folder ini berisi dokumen riwayat dan status aktif project menggunakan sistem **Feature Batch Tracking**:
 
 - `CURRENT_STATUS.md` sebagai **pusat status aktif** untuk seluruh fitur (Active Feature Tracker).
-- `FEATURE_HISTORY.md` sebagai **history aktif berbasis fitur**.
+- `FEATURE_HISTORY.md` sebagai **index history aktif berbasis fitur**.
+- `features/` berisi file detail untuk setiap fitur. Setiap fitur utama wajib memiliki file detail sendiri. Sub-batch seperti F05A, F05B, F05A.1 dicatat di dalam file fitur masing-masing.
 - `FEATURE_BATCH_TEMPLATE.md` sebagai template standar untuk feature batch baru.
 
 *Catatan Penting:*

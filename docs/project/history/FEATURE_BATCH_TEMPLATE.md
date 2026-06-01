@@ -1,34 +1,34 @@
 # Batch FXX — Feature Name
 
-Feature:
-[Nama fitur]
+## Feature Summary
+[Penjelasan singkat fitur]
 
-Area:
-frontend / backend / database / deployment / docs
+## Status
+Completed / Stable / Partial / HOLD / Blocked / Not Started
 
-Status:
-Not Started / In Progress / Partial / Blocked / HOLD / Stable / Completed
+## Story
+[Penjelasan mengapa fitur ini ada, perannya dalam project, dan apa yang ingin dicapai]
 
-Story:
-[Jelaskan cerita fitur ini, kenapa fitur dibuat, dan perannya dalam project]
-
-Current State:
+## Current State
 - [Kondisi saat ini]
+- [Apa yang sudah ada]
+- [Apa yang belum ada]
 
-HOLD / Blocked Reason:
-- [Isi jika ada]
+## Sub-Batch Roadmap
+| Sub-Batch | Name | Status | Purpose | Dependency |
+|---|---|---|---|---|
+| FXXA | ... | ... | ... | ... |
+| FXXB | ... | ... | ... | ... |
 
-Next Step:
-- [Tahap berikutnya]
+## HOLD / Blocked Notes
+- [Isi alasan jika status HOLD atau Blocked]
+- [Jika tidak ada, tulis "Tidak ada blocker aktif"]
 
-Allowed Scope:
-- [File/folder yang boleh disentuh]
+## Next Step
+- [Tahap berikutnya yang paling masuk akal]
 
-Not Allowed:
-- [File/folder yang tidak boleh disentuh]
+## Validation Checklist
+- [Cara mengecek fitur ini saat batch terkait dikerjakan]
 
-Definition of Done:
-- [Syarat selesai]
-
-Validation:
-- [Cara cek]
+## Notes
+- [Catatan tambahan jika perlu]
