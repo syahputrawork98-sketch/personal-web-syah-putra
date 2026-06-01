@@ -1,16 +1,22 @@
-export const skillsFallback = {
-  technical: [
-    { name: "React.js", level: "Advanced" },
-    { name: "Node.js", level: "Intermediate" },
-    { name: "Express.js", level: "Intermediate" },
-    { name: "PostgreSQL", level: "Intermediate" },
-    { name: "Prisma", level: "Intermediate" },
-    { name: "JavaScript", level: "Advanced" }
-  ],
-  soft: [
-    { name: "Problem Solving", description: "Analytical approach to complex issues" },
-    { name: "Adaptability", description: "Quick to learn and adjust to new environments" },
-    { name: "Teamwork", description: "Collaborative and effective communicator" },
-    { name: "Analytical Thinking", description: "Data-driven decision making" }
-  ]
-};
+export const skillsFallback = [
+  { name: "HTML5", type: "TECHNICAL", category: "Frontend" },
+  { name: "CSS3", type: "TECHNICAL", category: "Frontend" },
+  { name: "JavaScript", type: "TECHNICAL", category: "Frontend" },
+  { name: "React.js", type: "TECHNICAL", category: "Frontend" },
+  { name: "Node.js", type: "TECHNICAL", category: "Backend" },
+  { name: "Express.js", type: "TECHNICAL", category: "Backend" },
+  { name: "PHP", type: "TECHNICAL", category: "Backend" },
+  { name: "REST API", type: "TECHNICAL", category: "Backend" },
+  { name: "MySQL", type: "TECHNICAL", category: "Database" },
+  { name: "MongoDB", type: "TECHNICAL", category: "Database" },
+  { name: "PostgreSQL", type: "TECHNICAL", category: "Database" },
+  { name: "Git", type: "TECHNICAL", category: "Tools" },
+  { name: "GitHub", type: "TECHNICAL", category: "Tools" },
+  { name: "Vercel", type: "TECHNICAL", category: "Tools" },
+  { name: "Problem Solving", type: "SOFT" },
+  { name: "Analytical Thinking", type: "SOFT" },
+  { name: "Adaptability", type: "SOFT" },
+  { name: "Cross-Functional Communication", type: "SOFT" },
+  { name: "Digital Documentation", type: "SOFT" },
+  { name: "Operational Understanding", type: "SOFT" }
+];
