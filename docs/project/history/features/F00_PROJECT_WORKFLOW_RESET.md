@@ -21,6 +21,7 @@ Batch F00 mereset sistem dokumentasi project dari batch history lama menjadi fea
 |---|---|---|---|---|
 | F00A | Feature History File Structure | Completed | Membuat file history individual untuk tiap fitur. | - |
 | F00B | Workflow and Onboarding Alignment | Completed | Menyelaraskan workflow, onboarding, Roomchat 00/01 prompt, model usage, dan technical docs dengan Feature Batch Tracking. | F00A |
+| F00-CP | Feature Tracker Consistency Checkpoint | Completed | Audit konsistensi naming F00–F10 (F05 dan F06 diselaraskan). | F00B |
 
 ## HOLD / Blocked Notes
 - Tidak ada blocker aktif.
@@ -34,3 +35,4 @@ Batch F00 mereset sistem dokumentasi project dari batch history lama menjadi fea
 
 ## Notes
 - Semua log aktif lama telah dikonsolidasikan di sini.
+- [F00-CP] Audit history F00–F10 telah dilakukan dan hasilnya aman dengan hanya perbaikan minor naming consistency pada F05 dan F06.
