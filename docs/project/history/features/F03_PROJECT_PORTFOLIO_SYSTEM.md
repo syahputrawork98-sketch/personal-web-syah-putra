@@ -4,7 +4,7 @@
 Sistem portfolio, kategori, card, modal, dan link tile.
 
 ## Status
-Stable / Partial
+Stable / Content Reviewed
 
 ## Story
 Mencakup sistem portfolio, kategori proyek, project card, modal detail, dan link tile. Merupakan ruang pamernya karya user.
@@ -19,16 +19,16 @@ Mencakup sistem portfolio, kategori proyek, project card, modal detail, dan link
 |---|---|---|---|---|
 | F03A | Portfolio Structure Review | Stable | Struktur UI portofolio. | - |
 | F03B | Project Detail Modal Review | Stable | Review desain modal detail. | - |
-| F03C | Project Data Polish | Not Started | Memperbarui teks dan informasi project. | - |
+| F03C | Project Data Polish | Completed | Memperbarui teks dan informasi project. | - |
 
 ## HOLD / Blocked Notes
 - Asset finalization masuk ke lingkup F06. Sebagian project data belum komplit sepenuhnya.
 
 ## Next Step
-- Lanjutkan F03C hanya jika data project ingin diperbarui (konten teks).
+- F06A — External Asset URL Inventory.
 
 ## Validation Checklist
 - Cek interaksi modal dan filter kategori.
 
 ## Notes
-- (Kosong)
+- [F03C] Project fallback content (narasi, impact, challenge, solution) telah dipoles untuk menonjolkan identitas Web Developer sambil tetap menghargai nilai lintas disiplin. Aset dan link eksternal final tetap ditangani di F06.
