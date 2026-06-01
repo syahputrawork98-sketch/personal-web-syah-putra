@@ -36,3 +36,4 @@ Mencakup pembuatan layanan backend (server) yang menyediakan data dinamis melalu
 - [F07B] API scope sudah didefinisikan. Prioritas aman berikutnya adalah environment example/fetch connection review tanpa membuka auth/admin.
 - [F07B.1] Source file path pada API Scope Map dikoreksi agar sesuai struktur route aktual.
 - [F07D] Frontend-backend connection reviewed. Client uses VITE_API_URL with local fallback, server health check is available, and public site fallback remains safe. Catatan: F07C environment example minimal (klien dan server) sudah tersedia.
+- [F07D.1] Client env example ditambahkan ke repository agar dokumentasi koneksi frontend-backend lengkap.
