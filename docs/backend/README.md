@@ -30,6 +30,7 @@ Sangat berkaitan dengan **F07 Backend API System** dan **F08 Admin Login and Aut
 
 ## Catatan Penting
 - Auth tidak boleh dibuka sebelum F07 memiliki arah teknis yang jelas.
+- **[F07-CP]** Audit checkpoint awal backend telah selesai. Tahap berikutnya hanya boleh dilanjutkan jika pengguna secara eksplisit meminta implementasi backend public API.
 
 ## Frontend Backend Connection Notes
 - Frontend membaca API base URL dari `VITE_API_URL`.
