@@ -17,19 +17,20 @@ Mencakup dashboard antarmuka admin untuk menambahkan, mengubah, atau menghapus k
 | Sub-Batch | Name | Status | Purpose | Dependency |
 |---|---|---|---|---|
 | F09A | Admin CMS Scope Definition | Completed | Merumuskan batasan entri CMS. | F07, F08 |
-| F09B | Project Management Module | Not Started | Membangun UI edit list project. | F09A |
+| F09B | Project Management Module | Completed | Membangun dan mengaudit UI edit list project (F09B.1). | F09A |
 | F09C | Credential Management Module | Not Started | Membangun UI edit credentials. | F09A |
 | F09D | CV and Asset Link Management Module | Not Started | Membangun UI upload / embed file. | F09A |
 | F09E | Profile/Settings Management Module | Not Started | Mengelola profil dan halaman hero. | F09A |
 
 ## HOLD / Blocked Notes
-- Menunggu penugasan eksplisit untuk pengembangan modul spesifik (F09B dsb). Fokus utama backend telah diletakkan pada penyelesaian otentikasi.
+- Pengembangan difokuskan pada modul parsial berurutan (F09C berikutnya).
 
 ## Next Step
-- Mengerjakan eksekusi kode CMS berdasarkan prioritas (Dimulai dengan F09B Project Management).
+- Mengerjakan F09C (Credential Management Module).
 
 ## Validation Checklist
 - Menambah atau mengedit salah satu field dummy dari panel admin CMS akan mengubah UI publik.
 
 ## Notes
 - [F09A] Scope dokumen perumusan CMS telah dirangkum dalam `docs/backend/ADMIN_CMS_SCOPE.md`. Pengembangan antarmuka pengguna administratif dipecah menjadi bagian-bagian iteratif kecil mulai dari manajemen project hingga konfigurasi halaman profil publik.
+- [F09B.1] QA Audit telah diselesaikan untuk *Project Management Module* dan dikomentasikan ke `docs/backend/PROJECT_MANAGEMENT_CMS_QA.md`. Skenario CRUD di backend aman dari serangan intervensi payload tak berizin.

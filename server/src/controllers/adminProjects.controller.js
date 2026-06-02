@@ -44,7 +44,7 @@ const createProject = async (req, res, next) => {
   const {
     title, slug, shortDescription, description, imageUrl,
     techStack, githubUrl, liveUrl, featured, status, order
-  } = req.body;
+  } = req.body || {};
 
   // Basic Validation
   if (!title || !slug || !shortDescription) {
@@ -110,7 +110,7 @@ const updateProject = async (req, res, next) => {
   const {
     title, slug, shortDescription, description, imageUrl,
     techStack, githubUrl, liveUrl, featured, status, order
-  } = req.body;
+  } = req.body || {};
 
   // Partial Validation
   if (status && !['DRAFT', 'PUBLISHED'].includes(status)) {
