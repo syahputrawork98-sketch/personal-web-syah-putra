@@ -4,6 +4,14 @@ const { JWT_SECRET } = require('../config/env');
 const prisma = require('../lib/prisma');
 
 const login = async (req, res, next) => {
+  // Hardening F08C.2: Pastikan secret tersedia sebelum memproses auth
+  if (!JWT_SECRET) {
+    return res.status(500).json({
+      status: 'error',
+      message: 'Server configuration error: JWT_SECRET is not defined.',
+    });
+  }
+
   const { email, password } = req.body;
 
   if (!email || !password) {
