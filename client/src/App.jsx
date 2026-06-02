@@ -7,8 +7,6 @@ import Projects from './pages/Projects';
 import Experience from './pages/Experience';
 import Contact from './pages/Contact';
 import Credentials from './pages/Credentials';
-import { Navigate } from 'react-router-dom';
-
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminProjects from './pages/admin/AdminProjects';

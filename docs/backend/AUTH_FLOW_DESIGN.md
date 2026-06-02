@@ -67,6 +67,9 @@ Jika seorang tamu (Guest) tanpa otorisasi mencoba memaksa masuk ke rute `/admin`
 - **F07 (Backend API System):** Desain alur ini membutuhkan struktur *Backend* yang matang. Jika server belum aktif (hanya *mocking*), maka otentikasi tak bisa berjalan secara penuh.
 - **F09 (Admin CMS):** Keberhasilan realisasi desain ini merupakan izin prinsip (gerbang pembuka) untuk mulai membangun sistem tata kelola konten pada tahap F09 kelak.
 
+## Catatan F08C.1 (Frontend Guard Audit)
+- Tahap implementasi kode dibagi menjadi F08C.1 (Frontend Auth Guard Audit) dan tahap selanjutnya. Skeleton *frontend guard* sudah ada, diaudit, dan dinyatakan aman, meski validasi *server-side* masih menunggu integrasi backend F08 secara penuh.
+
 ## 14. Checklist untuk F08C (Tahap Selanjutnya)
 - [ ] Buat file `auth.controller.js` dan mendefinisikan `auth.routes.js` di direktori `server`.
 - [ ] Buat lapisan pencegat `authMiddleware.js` di server.
