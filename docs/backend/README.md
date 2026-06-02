@@ -28,6 +28,7 @@ Sangat berkaitan dengan **F07 Backend API System** dan **F08 Admin Login and Aut
 - security notes
 
 ## Validasi Backend Minimal
+- Pastikan database lokal PostgreSQL sudah hidup (lihat panduan di `docs/database/README.md`).
 - `cd server`
 - `npm install`
 - `npm run dev`
