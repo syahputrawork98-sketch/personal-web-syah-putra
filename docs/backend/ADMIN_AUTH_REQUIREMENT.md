@@ -12,7 +12,7 @@ Rute yang memerlukan *route guard* dan *auth middleware*:
 - **Backend**: Semua *endpoint* API di bawah `/api/admin/*` (misalnya pembuatan portofolio baru, pengubahan profil) dan juga rute spesifik `/api/auth/profile` atau endpoint pengelolaan *session*.
 
 ## 4. Strategi Auth yang Direkomendasikan
-Pada tahap awal, sangat disarankan menggunakan sistem **Single Admin Account** dengan pendekatan **Local/Dev-Only** atau integrasi *hardcoded* yang terkontrol lewat environment variables. Sistem tidak memerlukan *multi-user* atau fitur registrasi. Jika diarahkan ke *production*, mekanisme hashing (misalnya menggunakan `bcrypt`) harus digunakan untuk mengenkripsi password dalam database.
+Pada tahap awal, sangat disarankan menggunakan sistem **Single Admin Account** dengan pendekatan **Local/Dev-Only**. **Dilarang keras menyematkan (hardcode) credential di dalam file source code frontend maupun backend.** Semua kredensial administratif wajib dibaca dari *environment variable* atau *secret manager* yang aman. Sistem tidak memerlukan *multi-user* atau fitur registrasi. Jika diarahkan ke *production*, mekanisme hashing (misalnya menggunakan `bcrypt`) harus digunakan untuk mengenkripsi password dalam database.
 
 ## 5. Strategi Session/Token Secara Konseptual
 - Menggunakan standar **JSON Web Token (JWT)** untuk autentikasi *stateless* antara aplikasi React (Frontend) dan Express/Node (Backend).
