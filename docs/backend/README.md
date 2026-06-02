@@ -11,8 +11,9 @@ Dokumen di dalam folder ini harus diupdate ketika backend mulai aktif, API endpo
 
 ## Hubungan dengan Feature Batch
 Sangat berkaitan dengan **F07 Backend API System** dan **F08 Admin Login and Auth System**. Dokumentasi teknis backend ditulis di sini saat fitur tersebut dihidupkan.
-- Lihat [ADMIN_AUTH_REQUIREMENT.md](ADMIN_AUTH_REQUIREMENT.md) untuk persyaratan awal F08A.
-- Lihat [AUTH_FLOW_DESIGN.md](AUTH_FLOW_DESIGN.md) untuk desain alur autentikasi F08B.
+- Lihat [Admin Auth Requirements](ADMIN_AUTH_REQUIREMENT.md) - Definisi spesifikasi dan batasan kebutuhan login (F08).
+- Lihat [Auth Flow Design](AUTH_FLOW_DESIGN.md) - Desain alur autentikasi dan arsitektur otorisasi admin (F08).
+- Lihat [Auth Security QA](AUTH_SECURITY_QA.md) - Laporan jaminan kualitas dan audit keamanan akses *backend/frontend* (F08).
 
 ## Area Backend yang Dicatat
 - server structure
