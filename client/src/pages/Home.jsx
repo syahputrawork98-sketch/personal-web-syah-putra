@@ -7,8 +7,7 @@ import EmptyState from '../components/EmptyState';
 import { services } from '../data/homeData';
 import ServiceCard from '../components/home/ServiceCard';
 import CVVariantSelector from '../components/CVVariantSelector';
-import { heroFallback } from '../fallback/heroFallback';
-import { skillsFallback } from '../fallback/skillsFallback';
+
 import '../styles/home.css';
 
 
@@ -46,13 +45,8 @@ const Home = () => {
           setHeroData(heroResponse); // Fallback for direct object
         }
       } catch (err) {
-        console.warn('Home: Failed to fetch data, using fallback:', err.message);
-        // Use fallback if API fails
-        if (skillsFallback && Array.isArray(skillsFallback)) {
-           const topSkills = skillsFallback.slice(0, 8).map(s => s.name);
-           setHighlightSkills(topSkills);
-        }
-        setHeroData(heroFallback);
+        console.error('Home: Failed to fetch data:', err.message);
+        setError(true);
       } finally {
         setLoading(false);
       }

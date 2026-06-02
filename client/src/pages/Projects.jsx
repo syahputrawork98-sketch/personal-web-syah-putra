@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { getPublicProjects } from '../lib/api';
 import EmptyState from '../components/EmptyState';
 import { useFetch } from '../hooks/useFetch';
-import { projectsFallback } from '../fallback/projectsFallback';
+
 
 
 const projectCategories = [
@@ -24,7 +24,7 @@ const Projects = () => {
 
   const rawProjects = (Array.isArray(data) 
     ? data 
-    : (data?.projects || data?.data?.projects)) || (error ? projectsFallback : []);
+    : (data?.projects || data?.data?.projects)) || [];
 
   // Normalize and Sort
   const projects = rawProjects.map(p => ({

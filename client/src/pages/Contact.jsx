@@ -5,13 +5,13 @@ import { FaLinkedin, FaGithub, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { getPublicContact } from '../lib/api';
 import EmptyState from '../components/EmptyState';
 import { useFetch } from '../hooks/useFetch';
-import { contactFallback } from '../fallback/contactFallback';
+
 import '../styles/contact.css';
 
 
 const Contact = () => {
   const { data, loading, error } = useFetch(getPublicContact);
-  const contactData = data?.contact || data?.data?.contact || (data && !data.success && data.email ? data : null) || (error ? contactFallback : null);
+  const contactData = data?.contact || data?.data?.contact || (data && !data.success && data.email ? data : null) || null;
 
   if (loading) {
     return (

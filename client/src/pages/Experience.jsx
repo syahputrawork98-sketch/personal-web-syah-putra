@@ -5,7 +5,7 @@ import EmptyState from '../components/EmptyState';
 import { useFetch } from '../hooks/useFetch';
 import ExperienceCard from '../components/experience/ExperienceCard';
 import { getExperienceDisplayDate } from '../lib/dateUtils';
-import { experienceFallback } from '../fallback/experienceFallback';
+
 import '../styles/experience.css';
 
 
@@ -13,7 +13,7 @@ const Experience = () => {
   const { data: response, loading, error } = useFetch(getPublicExperiences);
   const experiences = (Array.isArray(response) 
     ? response 
-    : (response?.experiences || response?.data?.experiences)) || (error ? experienceFallback : []);
+    : (response?.experiences || response?.data?.experiences)) || [];
 
 
 

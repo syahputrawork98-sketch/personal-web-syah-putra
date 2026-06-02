@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { credentialsData, credentialCategories } from '../data/credentialsData';
+import { useFetch } from '../hooks/useFetch';
+import { getPublicCertifications } from '../lib/api';
+import { credentialCategories } from '../data/credentialsData';
 import CredentialCard from '../components/credentials/CredentialCard';
 import CredentialModal from '../components/credentials/CredentialModal';
 import EmptyState from '../components/EmptyState';
 import '../styles/credentials.css';
 
 const Credentials = () => {
+  const { data: response, loading, error } = useFetch(getPublicCertifications);
   const [activeCategory, setActiveCategory] = useState("Semua");
   const [selectedCredential, setSelectedCredential] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const rawCredentials = (Array.isArray(response) ? response : (response?.certifications || response?.data?.certifications)) || [];
+
   const filteredCredentials = (activeCategory === "Semua"
-    ? credentialsData
-    : credentialsData.filter(item => item.category === activeCategory)
+    ? rawCredentials
+    : rawCredentials.filter(item => item.category === activeCategory)
   ).sort((a, b) => {
     if (a.featured && !b.featured) return -1;
     if (!a.featured && b.featured) return 1;
@@ -29,6 +34,16 @@ const Credentials = () => {
     setIsModalOpen(false);
     setTimeout(() => setSelectedCredential(null), 300);
   };
+
+  if (loading) {
+    return (
+      <section id="credentials" className="section-padding flex-center">
+        <div className="container">
+          <p style={{ opacity: 0.6, fontSize: '1rem', textAlign: 'center' }}>Memuat data sertifikat...</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="credentials" className="section-padding">

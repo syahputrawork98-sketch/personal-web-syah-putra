@@ -6,10 +6,7 @@ import CredentialsSection from '../components/about/CredentialsSection';
 import TechSkillGroup from '../components/about/TechSkillGroup';
 import ExperienceReframing from '../components/about/ExperienceReframing';
 import EducationCard from '../components/about/EducationCard';
-import { profileFallback } from '../fallback/profileFallback';
-import { educationFallback } from '../fallback/educationFallback';
-import { skillsFallback } from '../fallback/skillsFallback';
-import { contactFallback } from '../fallback/contactFallback';
+
 import '../styles/about.css';
 
 const About = () => {
@@ -69,24 +66,8 @@ const About = () => {
         setEducationData(extractData(educationResp, 'education') || []);
 
       } catch (err) {
-        console.warn('About: Failed to fetch data, using fallbacks:', err.message);
-        
-        // Use fallbacks
-        const skillsArr = skillsFallback || [];
-        const grouped = skillsArr
-            .filter(s => s.type === 'TECHNICAL' || !s.type)
-            .reduce((acc, skill) => {
-              const cat = skill.category || 'Other';
-              if (!acc[cat]) acc[cat] = [];
-              acc[cat].push(skill);
-              return acc;
-            }, {});
-        setTechSkills(grouped);
-        setSoftSkills(skillsArr.filter(s => s.type === 'SOFT').map(s => s.name));
-        
-        setContactData(contactFallback);
-        setProfileData(profileFallback);
-        setEducationData(educationFallback || []);
+        console.error('About: Failed to fetch data:', err.message);
+        setError(true);
       } finally {
         setLoading(false);
       }
