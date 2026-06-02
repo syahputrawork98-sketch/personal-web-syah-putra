@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getAdminCertification, updateCertification } from '../../lib/api';
 import CertificationForm from '../../components/admin/CertificationForm';
+import { removeToken } from '../../lib/auth';
 
 const AdminCertificationEdit = () => {
   const { id } = useParams();
@@ -17,7 +18,11 @@ const AdminCertificationEdit = () => {
         const data = await getAdminCertification(id);
         setCertification(data.certification);
       } catch (err) {
-        setError('Failed to fetch certification: ' + err.message);
+        if (err.message.includes('401') || err.message.toLowerCase().includes('unauthorized')) {
+          removeToken();
+          navigate('/admin/login');
+        } else {
+        }
       } finally {
         setLoading(false);
       }
@@ -32,7 +37,12 @@ const AdminCertificationEdit = () => {
       await updateCertification(id, formData);
       navigate('/admin/certifications');
     } catch (err) {
-      setError(err.message);
+      if (err.message.includes('401') || err.message.toLowerCase().includes('unauthorized')) {
+        removeToken();
+        navigate('/admin/login');
+      } else {
+        setError(err.message);
+      }
       setSaving(false);
     }
   };

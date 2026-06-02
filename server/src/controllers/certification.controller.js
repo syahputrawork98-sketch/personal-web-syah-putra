@@ -91,7 +91,7 @@ const createCertification = async (req, res, next) => {
     title, issuer, type, category, credentialId, credentialUrl, certificateUrl, 
     driveUrl, imageUrl, issuedAt, expiredAt, doesNotExpire, skills, description, 
     featured, status, order 
-  } = req.body;
+  } = req.body || {};
 
   if (!title || !issuer) {
     return res.status(400).json({
@@ -108,7 +108,10 @@ const createCertification = async (req, res, next) => {
         title,
         issuer,
         category: category || 'Other',
+        type: type || 'CERTIFICATE',
         driveUrl,
+        issueDate: issuedAt ? new Date(issuedAt) : null,
+        endDate: expiredAt ? new Date(expiredAt) : null,
         skills: Array.isArray(skills) ? skills : (typeof skills === 'string' ? skills.split(',').map(s => s.trim()).filter(s => s) : []),
         summary: description || '',
         portfolioRelevance: 'Added via CMS',
@@ -131,7 +134,7 @@ const updateCertification = async (req, res, next) => {
     title, issuer, type, category, credentialId, credentialUrl, certificateUrl, 
     driveUrl, imageUrl, issuedAt, expiredAt, doesNotExpire, skills, description, 
     featured, status, order 
-  } = req.body;
+  } = req.body || {};
 
   try {
     const existing = await prisma.credential.findUnique({
@@ -150,8 +153,11 @@ const updateCertification = async (req, res, next) => {
       data: {
         title: title !== undefined ? title : existing.title,
         issuer: issuer !== undefined ? issuer : existing.issuer,
+        type: type !== undefined ? type : existing.type,
         category: category !== undefined ? category : existing.category,
         driveUrl: driveUrl !== undefined ? driveUrl : existing.driveUrl,
+        issueDate: issuedAt !== undefined ? (issuedAt ? new Date(issuedAt) : null) : existing.issueDate,
+        endDate: expiredAt !== undefined ? (expiredAt ? new Date(expiredAt) : null) : existing.endDate,
         skills: skills !== undefined ? (Array.isArray(skills) ? skills : (typeof skills === 'string' ? skills.split(',').map(s => s.trim()).filter(s => s) : [])) : existing.skills,
         summary: description !== undefined ? description : existing.summary,
         featured: featured !== undefined ? (featured === true || featured === 'true') : existing.featured,

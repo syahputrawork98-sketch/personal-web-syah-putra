@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createCertification } from '../../lib/api';
 import CertificationForm from '../../components/admin/CertificationForm';
+import { removeToken } from '../../lib/auth';
 
 const AdminCertificationCreate = () => {
   const [saving, setSaving] = useState(false);
@@ -15,7 +16,12 @@ const AdminCertificationCreate = () => {
       await createCertification(formData);
       navigate('/admin/certifications');
     } catch (err) {
-      setError(err.message);
+      if (err.message.includes('401') || err.message.toLowerCase().includes('unauthorized')) {
+        removeToken();
+        navigate('/admin/login');
+      } else {
+        setError(err.message);
+      }
       setSaving(false);
     }
   };
