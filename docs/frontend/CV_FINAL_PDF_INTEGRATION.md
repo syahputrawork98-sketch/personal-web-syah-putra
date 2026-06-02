@@ -28,8 +28,8 @@ export const cvVariants = [
 ]
 ```
 
-## Catatan Batch 28A
-Pada Batch 28A, komponen *frontend* (`CVVariantSelector.jsx`) **sudah disiapkan (Readiness)** agar tombol unduh akan otomatis berfungsi jika `pdfUrl` terisi. Namun, **file PDF final asli BELUM dimasukkan** pada Batch ini dan masih menunggu file final dari user.
+## Catatan F05
+Pada Batch F05, QA sistem unduh CV telah dilakukan. File *placeholder* sementara telah diletakkan di `client/public/cv/cv-syah-putra-nugraha-web-developer.pdf` dan `pdfUrl` telah diatur untuk varian Web Developer. Tombol untuk varian yang tidak memiliki PDF dipastikan terkunci (*disabled*). File final asli masih menunggu *input* dari user (F05A).
 
 ## Larangan Data Sensitif
 **Penting:** File PDF yang diletakkan di dalam folder publik (atau *hosting* publik lainnya) dapat diunduh oleh siapa saja.

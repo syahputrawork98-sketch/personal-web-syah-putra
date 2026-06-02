@@ -4,7 +4,7 @@
 CV Variant Selector, preview CV, dan download PDF final.
 
 ## Status
-HOLD
+Partial
 
 ## Story
 Mencakup CV Variant Selector, preview CV berbasis Newspaper Wireframe, dan fungsionalitas download PDF final yang disesuaikan dengan role spesifik pengunjung (Web Dev, Manufaktur, dll).
@@ -19,7 +19,7 @@ Mencakup CV Variant Selector, preview CV berbasis Newspaper Wireframe, dan fungs
 |---|---|---|---|---|
 | F05A | Final CV PDF Asset Preparation | HOLD | Persiapan file PDF oleh user. | - |
 | F05B | CV Download Integration / Hardening | Completed | Pemasangan link/file unduhan dan hardening flow. | F05A |
-| F05C | CV Download QA | Not Started | Testing akses unduhan CV. | F05B |
+| F05C | CV Download QA | Completed | Testing akses unduhan CV. | F05B |
 
 ## HOLD / Blocked Notes
 - PDF CV final belum tersedia.
@@ -32,3 +32,4 @@ Mencakup CV Variant Selector, preview CV berbasis Newspaper Wireframe, dan fungs
 
 ## Notes
 - [F05B] CV Download Flow Hardening selesai. UI download sudah dicegah agar tidak menghasilkan href kosong jika pdfUrl tidak tersedia. File PDF 'CV_Syah_Putra_Nugraha.pdf' berhasil diintegrasikan pada varian Web Developer. Varian lain tetap menggunakan tombol disabled "PDF Belum Tersedia".
+- [F05C] QA selesai. File placeholder dipindah ke `public/cv/cv-syah-putra-nugraha-web-developer.pdf` untuk kerapian. Sistem *disable button* untuk file yang tidak ada sudah terverifikasi aman. Build frontend berhasil dijalankan.
