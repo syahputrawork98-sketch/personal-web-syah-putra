@@ -120,7 +120,7 @@ const AdminProfileSettings = () => {
             name="resumeUrl"
             value={formData.resumeUrl}
             onChange={handleChange}
-            placeholder="e.g. /CV_Syah_Putra_Nugraha.pdf"
+            placeholder="e.g. /cv/cv-syah-putra-nugraha-web-developer.pdf"
             style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
           />
         </div>

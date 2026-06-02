@@ -17,6 +17,7 @@ Sangat berkaitan dengan **F07 Backend API System** dan **F08 Admin Login and Aut
 - [Admin CMS Scope](ADMIN_CMS_SCOPE.md) - Perumusan ruang lingkup pembangunan modul CMS (F09).
 - [Project Management CMS QA](PROJECT_MANAGEMENT_CMS_QA.md) - Laporan audit validasi *Project Management Module* (F09B.1).
 - [Credential Management CMS QA](CREDENTIAL_MANAGEMENT_CMS_QA.md) - Laporan audit validasi *Credential Management Module* (F09C.1).
+- [CV and Asset Link Management CMS QA](CV_ASSET_LINK_CMS_QA.md) - Laporan audit tautan aset dan konfigurasi CV (F09D.1).
 
 ## Area Backend yang Dicatat
 - server structure

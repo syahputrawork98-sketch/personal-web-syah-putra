@@ -28,8 +28,9 @@ export const cvVariants = [
 ]
 ```
 
-## Catatan F05
+## Catatan F05 dan F09D
 Pada Batch F05, QA sistem unduh CV telah dilakukan. File *placeholder* sementara telah diletakkan di `client/public/cv/cv-syah-putra-nugraha-web-developer.pdf` dan `pdfUrl` telah diatur untuk varian Web Developer. Tombol untuk varian yang tidak memiliki PDF dipastikan terkunci (*disabled*). File final asli masih menunggu *input* dari user (F05A).
+Pengaturan `resumeUrl` secara dinamis (untuk link CV *default*) kelak dikelola di *Admin CMS* pada bagian **CV and Asset Link Management Module (F09D)**. Modul F09D ini hanya bersifat *link management* dan bukan *upload system*.
 
 ## Larangan Data Sensitif
 **Penting:** File PDF yang diletakkan di dalam folder publik (atau *hosting* publik lainnya) dapat diunduh oleh siapa saja.

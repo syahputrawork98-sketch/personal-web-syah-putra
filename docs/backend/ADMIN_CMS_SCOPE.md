@@ -15,7 +15,7 @@ F09 sebelumnya berstatus **HOLD**, menunggu penyelesaian kerangka kerja dari F07
 ## 4. Modul CMS yang Direncanakan
 - **Project Management Module:** Modul untuk pembuatan, pengeditan, dan penghapusan entri portofolio proyek.
 - **Credential / Certification Management Module:** Modul pengelolaan detail sertifikat kompetensi profesional.
-- **CV and Asset Link Management Module:** Modul pemutakhiran tautan dokumen CV publik, media hosting eksternal.
+- **CV and Asset Link Management Module:** Modul pemutakhiran referensi tautan dokumen CV publik dan media hosting eksternal. (Catatan: Ini adalah sistem referensi tautan, bukan upload/storage system).
 - **Profile / Settings Management Module:** Modul untuk mengatur konten utama (Hero Section, Biografi, Education, Skills).
 
 ## 5. Prioritas Modul Pertama

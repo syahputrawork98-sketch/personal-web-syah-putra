@@ -49,7 +49,7 @@ export const cvVariants = [
     tools: ["SolidWorks", "AutoCAD", "MoldFlow", "KeyShot"],
     certificates: ["CSWA/CSWP SolidWorks", "Technical Drafting Cert"],
     status: "Draft",
-    pdfUrl: "", // Coming Soon
+    pdfUrl: "", // Dibiarkan kosong agar tombol download tetap disabled sampai PDF final tersedia
     previewType: "newspaper-editorial"
   },
   {
@@ -73,7 +73,7 @@ export const cvVariants = [
     tools: ["Excel (Advanced)", "AutoCAD", "SketchUp", "SAP2000"],
     certificates: ["Estimator Professional Cert", "Civil Engineering Foundation"],
     status: "Draft",
-    pdfUrl: "", // Coming Soon
+    pdfUrl: "", // Dibiarkan kosong agar tombol download tetap disabled sampai PDF final tersedia
     previewType: "newspaper-editorial"
   }
 ];
