@@ -14,6 +14,7 @@ Sangat berkaitan dengan **F07 Backend API System** dan **F08 Admin Login and Aut
 - Lihat [Admin Auth Requirements](ADMIN_AUTH_REQUIREMENT.md) - Definisi spesifikasi dan batasan kebutuhan login (F08).
 - Lihat [Auth Flow Design](AUTH_FLOW_DESIGN.md) - Desain alur autentikasi dan arsitektur otorisasi admin (F08).
 - Lihat [Auth Security QA](AUTH_SECURITY_QA.md) - Laporan jaminan kualitas dan audit keamanan akses *backend/frontend* (F08).
+- [Admin CMS Scope](ADMIN_CMS_SCOPE.md) - Perumusan ruang lingkup pembangunan modul CMS (F09).
 
 ## Area Backend yang Dicatat
 - server structure
