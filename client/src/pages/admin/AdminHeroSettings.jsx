@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getAdminHero, updateAdminHero } from '../../lib/api';
+import { removeToken } from '../../lib/auth';
 
 const AdminHeroSettings = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ const AdminHeroSettings = () => {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +29,12 @@ const AdminHeroSettings = () => {
           });
         }
       } catch (err) {
-        setError('Failed to load hero settings: ' + err.message);
+        if (err.message.includes('401') || err.message.toLowerCase().includes('unauthorized')) {
+          removeToken();
+          navigate('/admin/login');
+        } else {
+          setError('Failed to load hero settings: ' + err.message);
+        }
       } finally {
         setLoading(false);
       }
@@ -55,7 +62,12 @@ const AdminHeroSettings = () => {
       setSuccess('Hero settings updated successfully');
       setTimeout(() => setSuccess(''), 3000);
     } catch (err) {
-      setError('Failed to save settings: ' + err.message);
+      if (err.message.includes('401') || err.message.toLowerCase().includes('unauthorized')) {
+        removeToken();
+        navigate('/admin/login');
+      } else {
+        setError('Failed to save settings: ' + err.message);
+      }
     } finally {
       setSaving(false);
     }
@@ -146,7 +158,7 @@ const AdminHeroSettings = () => {
             name="resumeUrl"
             value={formData.resumeUrl}
             onChange={handleChange}
-            placeholder="e.g. /CV_Syah_Putra_Nugraha.pdf"
+            placeholder="e.g. /cv/cv-syah-putra-nugraha-web-developer.pdf"
             style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
           />
         </div>

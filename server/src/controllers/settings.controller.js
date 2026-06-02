@@ -32,7 +32,7 @@ const getAdminContact = async (req, res, next) => {
 };
 
 const updateContact = async (req, res, next) => {
-  const { email, phone, whatsapp, github, linkedin, instagram, location } = req.body;
+  const { email, phone, whatsapp, github, linkedin, instagram, location } = req.body || {};
 
   try {
     const contactData = {

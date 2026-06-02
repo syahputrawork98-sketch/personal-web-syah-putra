@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getAdminProfile, updateAdminProfile } from '../../lib/api';
+import { removeToken } from '../../lib/auth';
 
 const AdminProfileSettings = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ const AdminProfileSettings = () => {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +30,12 @@ const AdminProfileSettings = () => {
           });
         }
       } catch (err) {
-        setError('Failed to load profile settings: ' + err.message);
+        if (err.message.includes('401') || err.message.toLowerCase().includes('unauthorized')) {
+          removeToken();
+          navigate('/admin/login');
+        } else {
+          setError('Failed to load profile settings: ' + err.message);
+        }
       } finally {
         setLoading(false);
       }
@@ -52,7 +59,12 @@ const AdminProfileSettings = () => {
       setSuccess('Profile settings updated successfully');
       setTimeout(() => setSuccess(''), 3000);
     } catch (err) {
-      setError('Failed to save settings: ' + err.message);
+      if (err.message.includes('401') || err.message.toLowerCase().includes('unauthorized')) {
+        removeToken();
+        navigate('/admin/login');
+      } else {
+        setError('Failed to save settings: ' + err.message);
+      }
     } finally {
       setSaving(false);
     }
