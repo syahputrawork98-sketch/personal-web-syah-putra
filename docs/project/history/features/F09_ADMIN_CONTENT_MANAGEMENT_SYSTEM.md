@@ -4,14 +4,14 @@
 Dashboard admin untuk mengelola project, credential, CV, dan link aset.
 
 ## Status
-Partial / Scope Defined
+Completed
 
 ## Story
 Mencakup dashboard antarmuka admin untuk menambahkan, mengubah, atau menghapus konten (CMS lokal). Hal ini memastikan user mudah memelihara websitenya.
 
 ## Current State
-- UI panel CMS belum dibangun.
-- Akses ke backend masih ditahan.
+- UI panel CMS sudah dibangun dan berstatus logic Completed.
+- Akses ke backend production menunggu kesiapan environment (F10).
 
 ## Sub-Batch Roadmap
 | Sub-Batch | Name | Status | Purpose | Dependency |

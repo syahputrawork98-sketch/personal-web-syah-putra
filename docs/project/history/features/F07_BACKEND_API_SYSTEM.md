@@ -46,7 +46,7 @@ Mencakup pembuatan layanan backend (server) yang menyediakan data dinamis melalu
 - [F07B.1] Source file path pada API Scope Map dikoreksi agar sesuai struktur route aktual.
 - [F07D] Frontend-backend connection reviewed. Client uses VITE_API_URL with local fallback, server health check is available, and public site fallback remains safe. Catatan: F07C environment example minimal (klien dan server) sudah tersedia.
 - [F07D.1] Client env example ditambahkan ke repository agar dokumentasi koneksi frontend-backend lengkap.
-- [F07-CP] Checkpoint selesai. Audit awal backend sudah lengkap untuk struktur, scope API, source path, env example, dan koneksi frontend-backend. Backend tetap belum menjadi sumber data utama production. Auth/Admin tetap HOLD.
+- [F07-CP] Checkpoint selesai. Audit awal backend sudah lengkap untuk struktur, scope API, source path, env example, dan koneksi frontend-backend. Backend tetap belum menjadi sumber data utama production. Auth/Admin memiliki status logic Completed.
 - [F07E] Public Database Activation selesai. Website publik sudah sepenuhnya mengandalkan endpoint API `/api/...` dan Prisma/PostgreSQL. File-file fallback data (`fallback/`) tidak lagi digunakan saat runtime gagal, sehingga UI memunculkan error state yang jujur jika database tidak bisa diakses.
 - [F07F] Database Seed Validation berhasil setelah PostgreSQL bisa dijalankan di iterasi ini. Status: Completed.
 - [F07G] Local PostgreSQL Setup Guide selesai.

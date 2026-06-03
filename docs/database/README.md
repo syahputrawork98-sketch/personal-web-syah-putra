@@ -4,7 +4,7 @@
 Folder ini berisi dokumentasi teknis untuk model data, skema database, dan rencana penyimpanan jangka panjang.
 
 ## Status Database Saat Ini
-Partial / Activated (Batch F07E/F07G). Database sudah menjadi sumber utama website publik, namun perlu dijalankan di lokal untuk lingkungan development.
+Development database runtime verified; production managed database pending (Batch F07E/F07G). Database sudah menjadi sumber utama website publik secara fungsionalitas logic, namun perlu dijalankan di lokal menggunakan Docker untuk lingkungan development sebelum dipindah ke managed provider.
 
 ## Kapan Update Dokumen Ini
 Dokumen ini harus diupdate jika terjadi perubahan pada data model, skema database, atau migrasi data saat backend mulai hidup.

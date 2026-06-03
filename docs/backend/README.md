@@ -4,7 +4,7 @@
 Folder ini berisi dokumentasi teknis khusus untuk backend, termasuk API, server logic, struktur server, dan koneksi frontend-backend.
 
 ## Status Backend Saat Ini
-Partial / Structure Audited (Sesuai dengan **F07 Backend API System**). Saat ini web berjalan aman menggunakan fallback data. Endpoint admin/auth tidak boleh digunakan untuk production sebelum F08 dibuka.
+Completed / Runtime Verified (Sesuai dengan **F07 Backend API System**). Saat ini web berjalan aman menggunakan fallback data lokal jika backend tidak dijalankan. Endpoint admin/auth memiliki status logic Completed, namun production exposure belum dibuka sampai deployment/security production siap.
 
 ## Kapan Update Dokumen Ini
 Dokumen di dalam folder ini harus diupdate ketika backend mulai aktif, API endpoint baru dibuat, atau saat mengatur variabel lingkungan.
@@ -49,7 +49,7 @@ Sangat berkaitan dengan **F07 Backend API System** dan **F08 Admin Login and Aut
 - CORS server sudah disiapkan untuk local client.
 - Jika backend mati, frontend tetap aman menggunakan fallback data untuk area yang sudah punya fallback.
 - Backend belum menjadi sumber data utama production.
-- Auth/Admin tetap HOLD.
+- Auth/Admin: production exposure belum dibuka sampai deployment/security production siap.
 
 ## Production Deployment Strategy
 1. **Hosting:** Gunakan PaaS seperti Render, Railway, Fly.io, atau VPS karena Express.js bersifat stateful dan tidak cocok dideploy murni sebagai serverless function di Vercel tanpa konfigurasi khusus.
@@ -71,5 +71,5 @@ Sangat berkaitan dengan **F07 Backend API System** dan **F08 Admin Login and Aut
 | Public | `GET /api/skills` | Boleh Audit F07 | `server/src/routes/skills.routes.js` | Data keahlian. |
 | Public | `GET /api/experiences` | Boleh Audit F07 | `server/src/routes/experience.routes.js` | Pengalaman kerja. |
 | Public | `GET /api/certifications` | Boleh Audit F07 | `server/src/routes/certification.routes.js` | Data sertifikasi/credentials. |
-| Auth | `/api/auth/*` | HOLD (sampai F08) | `server/src/routes/auth.routes.js` | Endpoint autentikasi admin. |
-| Admin | `/api/admin/*` | HOLD (sampai F08/F09) | `server/src/routes/admin/*.routes.js` | Endpoint proteksi admin (CMS). |
+| Auth | `/api/auth/*` | Completed (Not Exposed) | `server/src/routes/auth.routes.js` | Endpoint autentikasi admin. |
+| Admin | `/api/admin/*` | Completed (Not Exposed) | `server/src/routes/admin/*.routes.js` | Endpoint proteksi admin (CMS). |

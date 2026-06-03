@@ -10,7 +10,7 @@ Completed
 Mencakup portal masuk administratif, melindungi halaman panel kontrol menggunakan autentikasi yang aman. Fitur ini menjaga integritas data web pribadi agar hanya pemilik yang bisa mengubah data.
 
 ## Current State
-- Auth flow di backend masih skeleton.
+- Auth flow di backend sudah berstatus logic Completed.
 - UI Publik bebas dari rute /login (disembunyikan dari publik).
 
 ## Sub-Batch Roadmap

@@ -19,8 +19,9 @@ Mencakup penyelesaian pipeline live deployment agar web bisa dikunjungi publik d
 |---|---|---|---|---|
 | F10A | Production Deployment Check | Completed | Uji deployment staging. | - |
 | F10B | Production Environment Review | Completed | Review kesiapan production: Hosting, DB, CORS, ENV. | F10A |
-| F10C | Environment Production Review | Not Started | Verifikasi ENV variables aman. | F10B |
-| F10D | Public Release QA | Not Started | Pengujian langsung terhadap domain publik. | F10C |
+| F10C | Project Status Terminology Alignment | Completed | Menyelaraskan status terminology project docs (HOLD vs Completed/Runtime Verified). | F10B |
+| F10D | Environment Production Review | Not Started | Verifikasi ENV variables aman. | F10C |
+| F10E | Public Release QA | Not Started | Pengujian langsung terhadap domain publik. | F10D |
 | F10-CP | Deployment System Checkpoint | Completed | Merangkum kesiapan deployment frontend-only dan menegaskan status domain. | - |
 
 ## HOLD / Blocked Notes
@@ -28,7 +29,7 @@ Mencakup penyelesaian pipeline live deployment agar web bisa dikunjungi publik d
 - Domain final belum ditentukan.
 
 ## Next Step
-- HOLD / Domain final decision required before F10C (Custom Domain) and F10D (Public Release).
+- HOLD / Domain final decision required before F10D (Custom Domain) and F10E (Public Release).
 - Siapkan managed database (Supabase/Neon/Render).
 - Siapkan Backend VPS/PaaS (Render/Railway).
 - Siapkan Frontend Vercel (Production URL).
@@ -45,3 +46,4 @@ Mencakup penyelesaian pipeline live deployment agar web bisa dikunjungi publik d
   4. **CORS:** Backend `CLIENT_URL` harus diisi dengan domain production Vercel.
   5. **Prisma & Seed:** Migrasi di production gunakan `npx prisma migrate deploy`. **PERINGATAN:** `npm run seed` menggunakan `deleteMany` sehingga sangat berbahaya jika dijalankan ulang di production yang sudah terisi data CMS. Harus dihindari, atau jalankan hanya 1 kali saat initial deployment.
   6. **Auth/CMS:** Admin/Auth logic sudah aman, namun password seed default (`password123` atau `qwerty123`) wajib diganti segera setelah deploy.
+- [F10C] Project Status Terminology Alignment selesai. Mengganti semua kata 'HOLD' untuk backend, database, admin, dan auth menjadi 'Completed / Runtime Verified' dan memastikan 'HOLD' murni hanya ditujukan untuk urusan production deployment dan domain.

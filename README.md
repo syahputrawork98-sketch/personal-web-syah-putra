@@ -10,7 +10,7 @@ Repository ini telah melalui iterasi pengembangan (*Batch*) untuk memastikan sta
 - **`FITUR.md`**: Ringkasan fitur utama website dan referensi status HOLD.
 - **`docs/`**: Pusat dokumentasi internal. Baca `docs/project/onboarding/CHATGPT_PROJECT_INSTRUCTIONS.md` untuk memahami konteks project secara instan (terutama untuk AI).
 - **`client/`**: Source code Frontend (React + Vite) dengan sistem kategori proyek dinamis dan CV Variant Selector.
-- **`server/`**: Backend API (HOLD - saat ini website berjalan dengan data statis/fallback yang stabil).
+- **`server/`**: Backend API (Completed / Runtime Verified - saat ini website bisa berjalan dengan backend atau data fallback lokal).
 
 ## ✨ Fitur Utama
 
@@ -44,12 +44,12 @@ Deployment awal menggunakan Vercel untuk frontend-only:
 - **Output Directory**: `dist`
 - Catatan detail ada di Feature Tracker F10 pada `docs/project/history/CURRENT_STATUS.md`
 
-## 🛠️ Status Pengembangan & Batasan (HOLD)
+## 🛠️ Status Pengembangan & Batasan Khusus
 
 - **PDF CV Final**: File PDF CV asli masih dalam tahap finalisasi tata letak (Status: *Coming Soon* di UI).
-- **Login & Auth**: Sistem Admin tetap **HOLD** untuk menjaga keamanan publik. Tidak ada tombol login publik di situs ini.
+- **Login & Auth**: Completed logic; production exposure pending F10 security/deployment readiness.
 - **Project Assets**: Link eksternal (Figma/Drive/RAB) hanya muncul jika URL asli telah tersedia di data model.
-- **Deployment**: Menunggu konfirmasi lingkungan produksi (Status: *Local-Ready*).
+- **Deployment**: HOLD / Partial until domain, hosting, production env, and public release are finalized.
 
 ---
 &copy; 2026 Syah Putra N. Dibangun dengan Presisi.

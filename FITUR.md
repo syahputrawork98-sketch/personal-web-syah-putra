@@ -8,7 +8,7 @@ Project saat ini berada pada tahap kestabilan website publik (frontend). Riwayat
 ## Target Struktur Repository
 ```txt
 client/       # Source code frontend utama (React + Vite)
-server/       # Source code backend (Saat ini HOLD/Skeleton)
+server/       # Source code backend (Completed / Runtime Verified)
 docs/         # Pusat dokumentasi resmi project, panduan, dan technical notes
 README.md     # Ringkasan utama project
 FITUR.md      # Rangkuman fitur berjalan dan status fungsionalitas
@@ -22,14 +22,15 @@ FITUR.md      # Rangkuman fitur berjalan dan status fungsionalitas
 - **Branding Monogram SPN**: Identitas visual seragam pada komponen navigasi publik.
 - **Data Fallback System**: Ketahanan layanan dengan data statis lokal jika akses server backend tidak tersedia.
 
-## 🚩 Status HOLD (Tertahan)
-Daftar fitur, aset, dan lingkungan yang belum aktif atau masih menunggu penyelesaian akhir.
+## 🚩 Status Deployment & Batasan Produksi
+Daftar fitur, aset, dan lingkungan yang masih belum diekspos ke publik atau menunggu penyelesaian akhir.
 Selengkapnya dapat dilihat pada: **[docs/project/history/CURRENT_STATUS.md](docs/project/history/CURRENT_STATUS.md)**
 
-1. **CV Final (PDF)**
-2. **Sistem Admin & Auth (Login)**
-3. **Konfigurasi Domain & Deployment**
-4. **URL Final untuk Data Aset Proyek Eksternal**
+1. **CV Final (PDF)**: Belum tersedia.
+2. **Sistem Admin & Auth (CMS)**: Completed logic; production exposure pending F10 deployment readiness.
+3. **Database**: Development database runtime verified; production managed database pending.
+4. **Konfigurasi Domain & Deployment**: HOLD / Partial until domain, hosting, production env, and public release are finalized.
+5. **URL Final untuk Data Aset Proyek Eksternal**: Menunggu input.
 
 ## Riwayat Pengembangan (Feature Tracking)
 Sistem pencatatan riwayat lama berbasis *batch-by-batch* numerik (Batch 01 - 30) telah digantikan oleh sistem *Feature Batch Tracking*. 

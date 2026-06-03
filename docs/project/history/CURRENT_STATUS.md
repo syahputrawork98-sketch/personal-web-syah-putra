@@ -31,7 +31,7 @@
 - Root Directory: client
 - Build Command: npm run build
 - Output Directory: dist
-- Backend/Admin/Auth/Database: HOLD
+- Backend/Admin/Auth/Database: Completed logic; production exposure pending F10 deployment readiness.
 
 ## Safety Rules
 - Jangan menyimpan credential, token, API key, password, atau .env di repository.
