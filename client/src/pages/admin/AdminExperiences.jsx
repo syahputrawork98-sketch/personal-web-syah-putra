@@ -130,8 +130,8 @@ const AdminExperiences = () => {
 
       <ConfirmModal 
         isOpen={deleteModal.isOpen}
-        title="Delete Experience"
-        message={`Are you sure you want to delete "${deleteModal.title}"? This action cannot be undone.`}
+        title="Hapus Experience"
+        message={`Yakin ingin menghapus "${deleteModal.title}"? Tindakan ini tidak bisa dibatalkan.`}
         onConfirm={handleConfirmDelete}
         onCancel={handleCancelDelete}
         isDeleting={isDeleting}

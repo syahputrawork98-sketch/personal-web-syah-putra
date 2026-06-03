@@ -20,15 +20,17 @@ const ConfirmModal = ({ isOpen, title, message, onConfirm, onCancel, isDeleting 
       <div className="card" style={{
         backgroundColor: 'var(--card-bg)',
         width: '100%',
-        maxWidth: '360px',
-        padding: '20px',
+        height: 'fit-content',
+        maxWidth: '320px',
+        margin: 0,
+        padding: '16px 18px',
         borderRadius: '12px',
         boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
       }}>
-        <h2 style={{ 
-          marginTop: 0, 
-          marginBottom: '12px', 
-          fontSize: '1.05rem',
+        <h2 style={{
+          marginTop: 0,
+          marginBottom: '8px',
+          fontSize: '1rem',
           color: 'var(--text-color)',
           display: 'flex',
           alignItems: 'center',
@@ -36,42 +38,42 @@ const ConfirmModal = ({ isOpen, title, message, onConfirm, onCancel, isDeleting 
         }}>
           <span style={{ color: '#dc2626' }}>⚠️</span> {title}
         </h2>
-        <p style={{ 
-          marginBottom: '20px', 
-          color: 'var(--text-color)', 
+        <p style={{
+          marginBottom: '16px',
+          color: 'var(--text-color)',
           opacity: 0.8,
           lineHeight: 1.4,
-          fontSize: '0.9rem'
+          fontSize: '0.85rem'
         }}>
           {message}
         </p>
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'flex-end', 
-          gap: 'var(--space-3)' 
+        <div style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          gap: 'var(--space-3)'
         }}>
-          <button 
-            onClick={onCancel} 
+          <button
+            onClick={onCancel}
             disabled={isDeleting}
             className="btn btn-secondary"
-            style={{ padding: '6px 12px', fontSize: '0.85rem' }}
+            style={{ padding: '6px 12px', fontSize: '0.8rem' }}
           >
-            Cancel
+            Batal
           </button>
-          <button 
-            onClick={onConfirm} 
+          <button
+            onClick={onConfirm}
             disabled={isDeleting}
             className="btn btn-primary"
-            style={{ 
+            style={{
               padding: '6px 12px',
-              fontSize: '0.85rem',
+              fontSize: '0.8rem',
               backgroundColor: '#dc2626',
               borderColor: '#dc2626',
               opacity: isDeleting ? 0.7 : 1,
               cursor: isDeleting ? 'not-allowed' : 'pointer'
             }}
           >
-            {isDeleting ? 'Deleting...' : 'Delete'}
+            {isDeleting ? 'Menghapus...' : 'Hapus'}
           </button>
         </div>
       </div>
