@@ -28,6 +28,8 @@ const AdminCvBuilder = () => {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(null);
   const [successMsg, setSuccessMsg] = useState('');
+  
+  const [skillSearchQuery, setSkillSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchAllData = async () => {
@@ -64,7 +66,14 @@ const AdminCvBuilder = () => {
         });
 
         if (configRes) {
-          setCvConfig(configRes);
+          // Ensure mandatory sections are enabled
+          const ensuredSections = configRes.sections.map(s => {
+            if (s.id === 'experience' || s.id === 'education') {
+              return { ...s, enabled: true };
+            }
+            return s;
+          });
+          setCvConfig({ ...configRes, sections: ensuredSections });
         }
 
       } catch (err) {
@@ -94,22 +103,18 @@ const AdminCvBuilder = () => {
   const moveSection = (index, direction) => {
     const newSections = [...cvConfig.sections];
     if (direction === 'up' && index > 0) {
-      // Swap order values
       const tempOrder = newSections[index].order;
       newSections[index].order = newSections[index - 1].order;
       newSections[index - 1].order = tempOrder;
       
-      // Swap array positions
       const temp = newSections[index];
       newSections[index] = newSections[index - 1];
       newSections[index - 1] = temp;
     } else if (direction === 'down' && index < newSections.length - 1) {
-      // Swap order values
       const tempOrder = newSections[index].order;
       newSections[index].order = newSections[index + 1].order;
       newSections[index + 1].order = tempOrder;
       
-      // Swap array positions
       const temp = newSections[index];
       newSections[index] = newSections[index + 1];
       newSections[index + 1] = temp;
@@ -119,6 +124,8 @@ const AdminCvBuilder = () => {
 
   const toggleSection = (index) => {
     const newSections = [...cvConfig.sections];
+    // Prevent toggling mandatory sections
+    if (newSections[index].id === 'experience' || newSections[index].id === 'education') return;
     newSections[index].enabled = !newSections[index].enabled;
     setCvConfig({ ...cvConfig, sections: newSections });
   };
@@ -138,10 +145,8 @@ const AdminCvBuilder = () => {
 
   if (loading || !cvConfig) return <div style={{ padding: 'var(--space-8)', textAlign: 'center' }}>Loading CV Data...</div>;
 
-  // Ensure sections are sorted by order for UI
   const sortedSections = [...cvConfig.sections].sort((a, b) => a.order - b.order);
 
-  // Helper to get data array for a section id
   const getDataForSection = (id) => {
     if (id === 'experience') return data.experience;
     if (id === 'education') return data.education;
@@ -151,7 +156,6 @@ const AdminCvBuilder = () => {
     return [];
   };
 
-  // Helper to render section title nicely
   const formatSectionTitle = (id) => {
     return id.charAt(0).toUpperCase() + id.slice(1);
   };
@@ -161,7 +165,7 @@ const AdminCvBuilder = () => {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div>
           <h1 style={{ margin: '0 0 var(--space-2) 0' }}>CV Builder</h1>
-          <p style={{ margin: 0, opacity: 0.7 }}>Atur konfigurasi CV Anda (urutan dan item terpilih) sebelum dicetak.</p>
+          <p style={{ margin: 0, opacity: 0.7 }}>Atur dan sesuaikan isi CV Anda agar ATS-friendly sebelum dicetak.</p>
         </div>
         <button 
           onClick={handleSaveConfig} 
@@ -178,124 +182,256 @@ const AdminCvBuilder = () => {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-8)', alignItems: 'start' }}>
         
         {/* Left Panel: Config */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)', minWidth: 0 }}>
+          
           <div className="card" style={{ padding: 'var(--space-4)' }}>
-            <h3 style={{ margin: '0 0 var(--space-4) 0' }}>Professional Summary</h3>
+            <h3 style={{ margin: '0 0 var(--space-4) 0' }}>Manual CV Identity</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+              <div>
+                <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>CV Display Name</label>
+                <input 
+                  type="text" 
+                  value={cvConfig.displayName || ''} 
+                  onChange={(e) => setCvConfig({...cvConfig, displayName: e.target.value})} 
+                  placeholder={data.profile?.name || 'Your Name'} 
+                  className="form-input" 
+                  style={{ width: '100%', boxSizing: 'border-box' }} 
+                />
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>Professional Title</label>
+                <input 
+                  type="text" 
+                  value={cvConfig.professionalTitle || ''} 
+                  onChange={(e) => setCvConfig({...cvConfig, professionalTitle: e.target.value})} 
+                  placeholder={data.profile?.title || 'e.g. Full Stack Developer'} 
+                  className="form-input" 
+                  style={{ width: '100%', boxSizing: 'border-box' }} 
+                />
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>Target Role (Optional)</label>
+                <input 
+                  type="text" 
+                  value={cvConfig.targetRole || ''} 
+                  onChange={(e) => setCvConfig({...cvConfig, targetRole: e.target.value})} 
+                  placeholder="e.g. Senior Frontend Engineer" 
+                  className="form-input" 
+                  style={{ width: '100%', boxSizing: 'border-box' }} 
+                />
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>Optional Links (LinkedIn, GitHub, Portfolio)</label>
+                <input 
+                  type="text" 
+                  value={cvConfig.links || ''} 
+                  onChange={(e) => setCvConfig({...cvConfig, links: e.target.value})} 
+                  placeholder="e.g. github.com/username | linkedin.com/in/username" 
+                  className="form-input" 
+                  style={{ width: '100%', boxSizing: 'border-box' }} 
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="card" style={{ padding: 'var(--space-4)' }}>
+            <h3 style={{ margin: '0 0 var(--space-4) 0' }}>Manual Professional Summary</h3>
             <textarea 
               value={cvConfig.summary || ''}
               onChange={(e) => setCvConfig({ ...cvConfig, summary: e.target.value })}
-              placeholder="Write a brief professional summary to show at the top of your CV..."
-              style={{ width: '100%', minHeight: '80px', padding: 'var(--space-2)', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)', fontFamily: 'inherit' }}
+              placeholder="Write a brief professional summary..."
+              style={{ width: '100%', minHeight: '100px', padding: 'var(--space-2)', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)', fontFamily: 'inherit', boxSizing: 'border-box' }}
             />
           </div>
 
-          <h3 style={{ margin: 'var(--space-4) 0 0 0' }}>Section Ordering & Filtering</h3>
-          <p style={{ margin: '0 0 var(--space-4) 0', fontSize: '0.85rem', opacity: 0.7 }}>
-            Centang bagian yang ingin ditampilkan. Jika Anda tidak memilih item satupun dalam sebuah section, maka <b>semua item</b> akan ditampilkan secara default.
-          </p>
+          <div className="card" style={{ padding: 'var(--space-4)' }}>
+            <h3 style={{ margin: '0 0 var(--space-2) 0' }}>Database Sections & Ordering</h3>
+            <p style={{ margin: '0 0 var(--space-4) 0', fontSize: '0.85rem', opacity: 0.7 }}>
+              Experience dan Education selalu aktif secara default. Pilih item yang ingin ditampilkan, atau biarkan kosong untuk menampilkan semua data.
+            </p>
 
-          {sortedSections.map((section, index) => {
-            const isProfile = section.id === 'profile';
-            const sectionData = getDataForSection(section.id);
-            const actualIndexInConfig = cvConfig.sections.findIndex(s => s.id === section.id);
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+              {sortedSections.map((section, index) => {
+                const isProfile = section.id === 'profile';
+                if (isProfile) return null; // Handled by Manual Identity
 
-            return (
-              <div key={section.id} className="card" style={{ padding: 'var(--space-4)', opacity: section.enabled ? 1 : 0.6 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: isProfile ? 0 : 'var(--space-3)' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
-                    <input 
-                      type="checkbox" 
-                      checked={section.enabled}
-                      onChange={() => toggleSection(actualIndexInConfig)}
-                      style={{ cursor: 'pointer', width: '18px', height: '18px' }}
-                    />
-                    <h4 style={{ margin: 0 }}>{formatSectionTitle(section.id)}</h4>
-                  </div>
-                  <div style={{ display: 'flex', gap: '4px' }}>
-                    <button 
-                      onClick={() => moveSection(actualIndexInConfig, 'up')}
-                      disabled={index === 0}
-                      className="btn btn-secondary"
-                      style={{ padding: '4px 8px', fontSize: '0.75rem' }}
-                    >
-                      ↑
-                    </button>
-                    <button 
-                      onClick={() => moveSection(actualIndexInConfig, 'down')}
-                      disabled={index === sortedSections.length - 1}
-                      className="btn btn-secondary"
-                      style={{ padding: '4px 8px', fontSize: '0.75rem' }}
-                    >
-                      ↓
-                    </button>
-                  </div>
-                </div>
+                const sectionData = getDataForSection(section.id);
+                const actualIndexInConfig = cvConfig.sections.findIndex(s => s.id === section.id);
+                const isMandatory = section.id === 'experience' || section.id === 'education';
 
-                {/* Sub-items for non-profile sections */}
-                {!isProfile && section.enabled && sectionData.length > 0 && (
-                  <div style={{ marginTop: 'var(--space-3)', paddingLeft: '32px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    {sectionData.map(item => {
-                      const isSelected = section.selectedIds?.includes(item.id);
-                      let itemLabel = item.title || item.name || item.role || item.degree || 'Item';
-                      if (item.company) itemLabel += ` at ${item.company}`;
-                      if (item.school) itemLabel += ` at ${item.school}`;
-                      
-                      return (
-                        <label key={item.id} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', cursor: 'pointer' }}>
-                          <input 
-                            type="checkbox" 
-                            checked={isSelected}
-                            onChange={() => toggleItemSelection(actualIndexInConfig, item.id)}
-                          />
-                          {itemLabel}
-                        </label>
-                      );
-                    })}
+                return (
+                  <div key={section.id} style={{ border: '1px solid var(--border-color)', borderRadius: '6px', padding: 'var(--space-3)', opacity: section.enabled ? 1 : 0.6 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
+                        <input 
+                          type="checkbox" 
+                          checked={section.enabled}
+                          onChange={() => {
+                            if (!isMandatory) toggleSection(actualIndexInConfig);
+                          }}
+                          disabled={isMandatory}
+                          style={{ cursor: isMandatory ? 'not-allowed' : 'pointer', width: '16px', height: '16px' }}
+                        />
+                        <h4 style={{ margin: 0, textTransform: 'capitalize' }}>
+                          {formatSectionTitle(section.id)} 
+                          {isMandatory && <span style={{ fontSize: '0.75rem', opacity: 0.6, marginLeft: '6px', fontWeight: 'normal' }}>(Required)</span>}
+                        </h4>
+                      </div>
+                      <div style={{ display: 'flex', gap: '4px' }}>
+                        <button 
+                          onClick={() => moveSection(actualIndexInConfig, 'up')}
+                          disabled={index === 0 || (index === 1 && sortedSections[0].id === 'profile')}
+                          className="btn btn-secondary"
+                          style={{ padding: '2px 6px', fontSize: '0.75rem', minWidth: 'auto' }}
+                        >
+                          ↑
+                        </button>
+                        <button 
+                          onClick={() => moveSection(actualIndexInConfig, 'down')}
+                          disabled={index === sortedSections.length - 1}
+                          className="btn btn-secondary"
+                          style={{ padding: '2px 6px', fontSize: '0.75rem', minWidth: 'auto' }}
+                        >
+                          ↓
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Skill Selector Area */}
+                    {section.id === 'skills' && section.enabled && (
+                      <div style={{ marginTop: 'var(--space-3)', paddingTop: 'var(--space-3)', borderTop: '1px dashed var(--border-color)' }}>
+                        <input 
+                          type="text" 
+                          placeholder="Search and add skills..."
+                          value={skillSearchQuery}
+                          onChange={(e) => setSkillSearchQuery(e.target.value)}
+                          className="form-input"
+                          style={{ width: '100%', marginBottom: '12px', boxSizing: 'border-box' }}
+                        />
+                        {skillSearchQuery && (
+                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '12px', padding: '8px', backgroundColor: 'var(--bg-color)', borderRadius: '4px' }}>
+                            {sectionData.filter(s => s.name.toLowerCase().includes(skillSearchQuery.toLowerCase()) && !section.selectedIds?.includes(s.id)).slice(0, 10).map(item => (
+                              <button
+                                key={item.id}
+                                onClick={() => {
+                                  toggleItemSelection(actualIndexInConfig, item.id);
+                                  setSkillSearchQuery('');
+                                }}
+                                style={{ padding: '4px 10px', fontSize: '0.8rem', borderRadius: '16px', border: '1px solid var(--primary-color)', background: 'transparent', color: 'var(--primary-color)', cursor: 'pointer' }}
+                              >
+                                + {item.name}
+                              </button>
+                            ))}
+                            {sectionData.filter(s => s.name.toLowerCase().includes(skillSearchQuery.toLowerCase()) && !section.selectedIds?.includes(s.id)).length === 0 && (
+                              <span style={{ fontSize: '0.8rem', opacity: 0.6 }}>No skills found.</span>
+                            )}
+                          </div>
+                        )}
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                          {(section.selectedIds || []).map(id => {
+                            const skillItem = sectionData.find(s => s.id === id);
+                            if (!skillItem) return null;
+                            return (
+                              <div key={id} style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '4px 10px', fontSize: '0.8rem', borderRadius: '16px', backgroundColor: 'var(--primary-color)', color: 'white' }}>
+                                <span>{skillItem.name}</span>
+                                <span style={{ cursor: 'pointer', fontWeight: 'bold' }} onClick={() => toggleItemSelection(actualIndexInConfig, id)}>×</span>
+                              </div>
+                            );
+                          })}
+                          {(section.selectedIds?.length === 0) && (
+                            <span style={{ fontSize: '0.8rem', opacity: 0.6, fontStyle: 'italic' }}>No skills selected (will display all by default).</span>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Other Sub-items */}
+                    {section.id !== 'skills' && section.enabled && sectionData.length > 0 && (
+                      <div style={{ marginTop: 'var(--space-3)', paddingLeft: '28px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                        {sectionData.map(item => {
+                          const isSelected = section.selectedIds?.includes(item.id);
+                          let itemLabel = item.title || item.name || item.role || item.degree || 'Item';
+                          if (item.company) itemLabel += ` at ${item.company}`;
+                          if (item.school) itemLabel += ` at ${item.school}`;
+                          
+                          return (
+                            <label key={item.id} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '0.85rem', cursor: 'pointer' }}>
+                              <input 
+                                type="checkbox" 
+                                checked={isSelected}
+                                onChange={() => toggleItemSelection(actualIndexInConfig, item.id)}
+                                style={{ marginTop: '2px' }}
+                              />
+                              <span style={{ lineHeight: 1.4 }}>{itemLabel}</span>
+                            </label>
+                          );
+                        })}
+                      </div>
+                    )}
+                    {section.id !== 'skills' && section.enabled && sectionData.length === 0 && (
+                      <div style={{ marginTop: 'var(--space-3)', paddingLeft: '28px', fontSize: '0.85rem', opacity: 0.6 }}>
+                        No items available in database.
+                      </div>
+                    )}
                   </div>
-                )}
-                {!isProfile && section.enabled && sectionData.length === 0 && (
-                  <div style={{ marginTop: 'var(--space-3)', paddingLeft: '32px', fontSize: '0.85rem', opacity: 0.6 }}>
-                    No items available in database.
-                  </div>
-                )}
-              </div>
-            );
-          })}
+                );
+              })}
+            </div>
+          </div>
         </div>
 
-        {/* Right Panel: A4 Preview Skeleton */}
+        {/* Right Panel: ATS Preview */}
         <div style={{ 
-          backgroundColor: 'white', 
+          backgroundColor: '#fff', 
           width: '100%', 
           maxWidth: '210mm',
           aspectRatio: '210 / 297',
-          padding: '15mm',
+          padding: '20mm',
           boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-          color: 'black',
-          fontFamily: '"Times New Roman", Times, serif',
+          color: '#000',
+          fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
           overflowY: 'auto',
-          boxSizing: 'border-box'
+          boxSizing: 'border-box',
+          lineHeight: 1.5
         }}>
-          {sortedSections.filter(s => s.enabled).map(section => {
-            if (section.id === 'profile') {
-              return (
-                <div key="profile" style={{ textAlign: 'center', marginBottom: '8mm', borderBottom: '2px solid black', paddingBottom: '4mm' }}>
-                  <h1 style={{ margin: 0, fontSize: '24pt', fontWeight: 'bold' }}>{data.profile?.name || 'YOUR NAME'}</h1>
-                  <div style={{ fontSize: '12pt', opacity: 0.8, marginTop: '2mm', textTransform: 'uppercase' }}>{data.profile?.title || 'Professional Title'}</div>
-                  <div style={{ fontSize: '9pt', marginTop: '3mm' }}>
-                    {data.contact?.email || 'email@example.com'} • {data.contact?.phone || '+62 000-0000-0000'} • {data.contact?.location || 'Location, Country'}
-                  </div>
-                  {cvConfig.summary && (
-                    <div style={{ marginTop: '4mm', fontSize: '10pt', textAlign: 'justify', lineHeight: 1.5 }}>
-                      {cvConfig.summary}
-                    </div>
-                  )}
-                </div>
-              );
-            }
+          {/* Header Section */}
+          <div style={{ textAlign: 'center', marginBottom: '8mm' }}>
+            <h1 style={{ margin: '0 0 2mm 0', fontSize: '22pt', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
+              {cvConfig.displayName || data.profile?.name || 'YOUR NAME'}
+            </h1>
+            <div style={{ fontSize: '12pt', marginBottom: '3mm', fontWeight: 'bold', color: '#333' }}>
+              {cvConfig.professionalTitle || data.profile?.title || 'Professional Title'} 
+              {cvConfig.targetRole && ` | ${cvConfig.targetRole}`}
+            </div>
+            <div style={{ fontSize: '10pt', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px', color: '#444' }}>
+              <span>{data.contact?.email || 'email@example.com'}</span>
+              <span>•</span>
+              <span>{data.contact?.phone || '+62 000-0000-0000'}</span>
+              <span>•</span>
+              <span>{data.contact?.location || 'Location, Country'}</span>
+              {cvConfig.links && (
+                <>
+                  <span>•</span>
+                  <span>{cvConfig.links}</span>
+                </>
+              )}
+            </div>
+          </div>
 
+          {cvConfig.summary && (
+            <div style={{ marginBottom: '6mm' }}>
+              <h2 style={{ fontSize: '13pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1.5px solid #000', margin: '0 0 3mm 0', paddingBottom: '1mm', letterSpacing: '0.5px' }}>
+                Professional Summary
+              </h2>
+              <div style={{ fontSize: '10pt', textAlign: 'justify', whiteSpace: 'pre-line' }}>
+                {cvConfig.summary}
+              </div>
+            </div>
+          )}
+
+          {/* Dynamic Sections */}
+          {sortedSections.filter(s => s.enabled && s.id !== 'profile').map(section => {
             const rawData = getDataForSection(section.id);
-            // If selectedIds is empty, show all. Otherwise filter.
             const displayData = (section.selectedIds && section.selectedIds.length > 0) 
               ? rawData.filter(item => section.selectedIds.includes(item.id))
               : rawData;
@@ -304,45 +440,45 @@ const AdminCvBuilder = () => {
 
             return (
               <div key={section.id} style={{ marginBottom: '6mm' }}>
-                <h2 style={{ fontSize: '13pt', margin: '0 0 3mm 0', borderBottom: '1px solid #ccc', textTransform: 'uppercase', paddingBottom: '1mm' }}>
+                <h2 style={{ fontSize: '13pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1.5px solid #000', margin: '0 0 3mm 0', paddingBottom: '1mm', letterSpacing: '0.5px' }}>
                   {formatSectionTitle(section.id)}
                 </h2>
                 
                 {section.id === 'experience' && displayData.map(exp => (
-                  <div key={exp.id} style={{ marginBottom: '3mm' }}>
+                  <div key={exp.id} style={{ marginBottom: '4mm' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '11pt' }}>
                       <span>{exp.role}</span>
                       <span>{exp.period}</span>
                     </div>
-                    <div style={{ fontSize: '10pt', fontStyle: 'italic' }}>{exp.company}</div>
-                    {exp.description && <p style={{ fontSize: '9pt', margin: '1mm 0 0 0', lineHeight: 1.4 }}>{exp.description}</p>}
+                    <div style={{ fontSize: '10pt', fontStyle: 'italic', marginBottom: '1mm' }}>{exp.company}</div>
+                    {exp.description && <p style={{ fontSize: '10pt', margin: '0', whiteSpace: 'pre-line' }}>{exp.description}</p>}
                   </div>
                 ))}
 
                 {section.id === 'education' && displayData.map(edu => (
-                  <div key={edu.id} style={{ marginBottom: '3mm' }}>
+                  <div key={edu.id} style={{ marginBottom: '4mm' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '11pt' }}>
                       <span>{edu.school}</span>
                       <span>{edu.period}</span>
                     </div>
-                    <div style={{ fontSize: '10pt' }}>{edu.degree}</div>
-                    {edu.description && <p style={{ fontSize: '9pt', margin: '1mm 0 0 0', lineHeight: 1.4 }}>{edu.description}</p>}
+                    <div style={{ fontSize: '10pt', marginBottom: '1mm' }}>{edu.degree}</div>
+                    {edu.description && <p style={{ fontSize: '10pt', margin: '0', whiteSpace: 'pre-line' }}>{edu.description}</p>}
                   </div>
                 ))}
 
                 {section.id === 'skills' && (
-                  <div style={{ fontSize: '10pt', lineHeight: 1.5 }}>
-                    {displayData.map(s => s.name).join(' • ')}
+                  <div style={{ fontSize: '10pt' }}>
+                    {displayData.map(s => s.name).join(', ')}
                   </div>
                 )}
 
                 {section.id === 'projects' && displayData.map(proj => (
-                  <div key={proj.id} style={{ marginBottom: '3mm' }}>
+                  <div key={proj.id} style={{ marginBottom: '4mm' }}>
                     <div style={{ fontWeight: 'bold', fontSize: '11pt' }}>
                       {proj.title}
                     </div>
-                    <div style={{ fontSize: '9pt', fontStyle: 'italic', opacity: 0.8 }}>{proj.category}</div>
-                    {proj.description && <p style={{ fontSize: '9pt', margin: '1mm 0 0 0', lineHeight: 1.4 }}>{proj.description}</p>}
+                    <div style={{ fontSize: '10pt', fontStyle: 'italic', marginBottom: '1mm', color: '#555' }}>{proj.category}</div>
+                    {proj.description && <p style={{ fontSize: '10pt', margin: '0', whiteSpace: 'pre-line' }}>{proj.description}</p>}
                   </div>
                 ))}
                 

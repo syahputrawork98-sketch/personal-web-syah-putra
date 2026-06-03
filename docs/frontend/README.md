@@ -35,6 +35,7 @@ Admin Panel CMS telah berstatus *fully-mapped* dan mematuhi pilar CRUD:
 
 ## CV Builder & Public Download (Batch F11)
 - **Admin CMS UI (`/admin/cv-builder`)**: Satu-satunya tempat penyusunan konfigurasi CV, pemilihan seksi (*checkbox*), serta pengurutan data. Juga bertindak sebagai pratinjau (*preview*) kanvas A4 sebelum dicetak ke PDF oleh Admin. Tidak terekspos ke publik.
+  - **F11E.1 UX Updates**: Struktur input dibagi menjadi Manual CV Identity (nama, posisi, kontak) dan Database Sections. Pengaturan skill tidak lagi menggunakan list checkbox panjang, melainkan sistem *search & chip selector* untuk menghemat ruang. Experience dan Education diatur wajib (mandatory/default aktif).
 - **Public UI (CV Download - F05)**: Domain publik murni dan pasif. Publik **tidak** memiliki antarmuka pembuatan/konfigurasi CV apa pun. Pengunjung sekadar disuguhi satu tombol "Download CV" yang memicu pengunduhan berkas PDF final yang alamat URL-nya sudah disediakan oleh server.
 
 ## Validasi Frontend Minimal
