@@ -40,6 +40,7 @@ const CertificationForm = ({ initialData, onSubmit, saving }) => {
 
   return (
     <form onSubmit={handleSubmit} className="card" style={{ padding: 'var(--space-6)', display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+      <h3 style={{ fontSize: '1.1rem', margin: '0 0 var(--space-2) 0', borderBottom: '1px solid var(--border-color)', paddingBottom: 'var(--space-2)', color: 'var(--primary-color)' }}>Basic Info</h3>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)' }}>
         <div className="form-group">
           <label style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Certification Title*</label>
@@ -99,6 +100,7 @@ const CertificationForm = ({ initialData, onSubmit, saving }) => {
         </div>
       </div>
 
+      <h3 style={{ fontSize: '1.1rem', margin: 'var(--space-2) 0', borderBottom: '1px solid var(--border-color)', paddingBottom: 'var(--space-2)', color: 'var(--primary-color)' }}>Certificate & Drive Links</h3>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)' }}>
         <div className="form-group">
           <label style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Credential ID</label>
@@ -158,6 +160,7 @@ const CertificationForm = ({ initialData, onSubmit, saving }) => {
         </div>
       </div>
 
+      <h3 style={{ fontSize: '1.1rem', margin: 'var(--space-2) 0', borderBottom: '1px solid var(--border-color)', paddingBottom: 'var(--space-2)', color: 'var(--primary-color)' }}>Metadata & Skills</h3>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 'var(--space-4)', alignItems: 'end' }}>
         <div className="form-group">
           <label style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Issued Date</label>
@@ -203,6 +206,7 @@ const CertificationForm = ({ initialData, onSubmit, saving }) => {
         />
       </div>
 
+      <h3 style={{ fontSize: '1.1rem', margin: 'var(--space-2) 0', borderBottom: '1px solid var(--border-color)', paddingBottom: 'var(--space-2)', color: 'var(--primary-color)' }}>Visibility & Status</h3>
       <div className="form-group" style={{ display: 'flex', gap: 'var(--space-6)', marginTop: 'var(--space-2)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
           <input 

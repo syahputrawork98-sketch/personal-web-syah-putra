@@ -26,6 +26,7 @@ Mencakup dashboard antarmuka admin untuk menambahkan, mengubah, atau menghapus k
 | F09H | Admin Login Dev Helper and Credential UI Field Sync | Completed | Penambahan helper login development dan perbaikan pemetaan field pada UI Admin Certification. | F09G |
 | F09I | Admin Settings Crash Fix and Settings Structure Review | Completed | Perbaikan missing React hooks di halaman Settings dan review pemisahan struktur Settings admin. | F09E |
 | F09J | Admin Layout Sidebar Topbar and Settings Grouping | Completed | Refaktor layout AdminPanel dengan struktur sidebar-topbar dan grouping Settings. | F09I |
+| F09K | Admin UI Polish and Credential Actions Fix | Completed | Merapikan admin UI layout (Dashboard) dan memperbaiki mapping tombol action View Credential (View Drive/View File). | F09J |
 
 ## HOLD / Blocked Notes
 - Seluruh prioritas modul parsial F09 telah terpenuhi.
@@ -47,3 +48,4 @@ Mencakup dashboard antarmuka admin untuk menambahkan, mengubah, atau menghapus k
 - [F09H] Menambahkan tombol _Use Local Dev Login_ di halaman Admin Login untuk memudahkan fase testing/development tanpa harus mengingat password hash. Mapping kolom di Admin Certifications (`issuedAt` menjadi `issueDate`) sudah diperbaiki agar tidak *undefined*.
 - [F09I] Memperbaiki error browser *crash* akibat *missing React hook imports* (`useState` is not defined) pada komponen `AdminHeroSettings.jsx` dan `AdminProfileSettings.jsx`. Struktur *Settings* (Hero, Profile, Contact) dievaluasi tetap terisolasi dan maping komponen dipastikan rapi tanpa pencampuran fungsi.
 - [F09J] Merombak struktur UI `AdminLayout.jsx` dari *top-heavy nav* menjadi struktur *Sidebar* + *Topbar*. Navigasi dipisahkan menjadi modul utama (Projects, Credentials, dsb.) dan modul *Settings* (*dropdown* khusus untuk Hero, Profile, Contact, dan Account). Navigasi Logout dan View Site dipindahkan ke bagian atas (Topbar).
+- [F09K] Menyempurnakan Sidebar dengan menu _Dashboard_ (merujuk ke index admin), menambah heading kategori navigasi (Main & Configuration), dan memperbaiki tombol aksi (Action View/Edit/Delete) di `AdminCertifications.jsx` (memisahkan label _View Drive_ dan _View File_ agar tidak ambigu). Form `CertificationForm.jsx` juga diberi *section headers* (Basic Info, Links, Metadata, Visibility) untuk pengalaman UX admin yang lebih rapi.

@@ -44,13 +44,16 @@ const AdminLayout = () => {
         </div>
         
         <nav style={{ padding: 'var(--space-4)', flex: 1, overflowY: 'auto' }}>
+          <div style={{ marginBottom: 'var(--space-2)', fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-color)', opacity: 0.5, fontWeight: 'bold', paddingLeft: '16px' }}>Main</div>
+          <Link to="/admin" style={linkStyle(isActive('/admin') && location.pathname === '/admin')}>Dashboard</Link>
           <Link to="/admin/projects" style={linkStyle(isActive('/admin/projects'))}>Projects</Link>
           <Link to="/admin/certifications" style={linkStyle(isActive('/admin/certifications'))}>Credentials</Link>
           <Link to="/admin/skills" style={linkStyle(isActive('/admin/skills'))}>Skills</Link>
           <Link to="/admin/experience" style={linkStyle(isActive('/admin/experience'))}>Experience</Link>
           <Link to="/admin/education" style={linkStyle(isActive('/admin/education'))}>Education</Link>
           
-          <div style={{ marginTop: 'var(--space-4)' }}>
+          <div style={{ marginTop: 'var(--space-6)' }}>
+            <div style={{ marginBottom: 'var(--space-2)', fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-color)', opacity: 0.5, fontWeight: 'bold', paddingLeft: '16px' }}>Configuration</div>
             <button 
               onClick={() => setSettingsOpen(!settingsOpen)}
               style={{

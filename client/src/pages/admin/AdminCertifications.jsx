@@ -153,9 +153,11 @@ const AdminCertifications = () => {
                   <td style={{ padding: '12px' }}>
                     <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
                       <Link to={`/admin/certifications/${cert.id}/edit`} className="btn btn-secondary" style={{ padding: '6px 10px', fontSize: '0.8rem' }}>Edit</Link>
-                      {(cert.certificateUrl || cert.driveUrl) && (
-                        <a href={cert.certificateUrl || cert.driveUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ padding: '6px 10px', fontSize: '0.8rem' }}>View</a>
-                      )}
+                      {cert.driveUrl ? (
+                        <a href={cert.driveUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ padding: '6px 10px', fontSize: '0.8rem' }}>View Drive</a>
+                      ) : cert.certificateUrl ? (
+                        <a href={cert.certificateUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ padding: '6px 10px', fontSize: '0.8rem' }}>View File</a>
+                      ) : null}
                       <button 
                         onClick={() => handleDelete(cert.id, cert.title)} 
                         className="btn btn-secondary" 
