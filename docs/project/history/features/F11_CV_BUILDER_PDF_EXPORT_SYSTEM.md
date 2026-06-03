@@ -91,10 +91,10 @@ Untuk menopang transaksi arsitektural ini (tanpa perlu dieksekusi sekarang), ran
 | F11E.2 | Unified Database Item Selector UX | Completed | Menerapkan pola search + chip selector untuk semua seksi (Experience, Education, Projects, Credentials) menggantikan checklist panjang. | F11E.1 |
 | F11E.3 | ATS Print Layout and Browser PDF Export | Completed | Mengaktifkan tombol Print PDF berbasis browser (`window.print()`) dan menambahkan CSS `@media print` murni. | F11E.2 |
 | F11E.4 | ATS Print QA Polish and Final Layout Guard | Completed | Melakukan QA spacing layout, menambah helper note UX di admin, dan mengamankan print CSS `page-break-inside`. | F11E.3 |
-| F11F | Public Download Integration (F05 Sync) | HOLD | Menambatkan tombol "Download CV" publik ke URL statis file PDF final. | F11E.4 |
+| F11F | Public Download Integration (F05 Sync) | Partial / Blocked | Menambatkan tombol "Download CV" publik ke URL statis file PDF final. Menunggu user meletakkan file ATS final di direktori `public/cv`. | F11E.4 |
 
 ## HOLD / Blocked Notes
-- Melangkah ke F11F di batch eksekusi berikutnya untuk menyambungkan final CV PDF ke Public Download (F05 Sync). Backend upload PDF otomatis diskip karena ekspor ditangani oleh *browser native print* secara mandiri.
+- [F11F] Menunggu user menyediakan file cetakan akhir `cv-syah-putra-nugraha-ats.pdf` hasil *browser print* untuk diletakkan di `client/public/cv/`. Saat ini, *public download* di `Home.jsx` masih menggunakan file lama (`cv-syah-putra-nugraha-web-developer.pdf`) sebagai fallback sementara.
 
 ## Eksekusi Log
 - [F11B] Berhasil membuat skeleton `/admin/cv-builder` dengan grid layout kiri-kanan. Data config Profile, Contact, Experience, Education, Skills, Projects, dan Credentials tersambung mulus dari Prisma DB via *existing endpoints* di `lib/api.js`. Live preview kanan mensimulasikan kertas A4 murni dengan CSS Proporsional yang siap untuk pencetakan (tanpa PDF Export backend). Belum ada mekanisme simpan urutan (masih statis).
@@ -104,3 +104,4 @@ Untuk menopang transaksi arsitektural ini (tanpa perlu dieksekusi sekarang), ran
 - [F11E.2] Menerapkan *Unified Database Item Selector*. Sistem seleksi item *search + chip* (yang sebelumnya hanya ada di Skills) kini diterapkan ke semua *Database Sections* (Projects, Experience, Education, dan Credentials). Checklist panjang sudah tidak digunakan, menghemat banyak ruang visual dan mempermudah kurasi CV yang presisi.
 - [F11E.3] Ekspor PDF berbasis browser. Tombol "Print / Save as PDF" telah ditambah yang memanggil `window.print()`. File styling khusus `cv-print.css` disuntikkan. Layout diset ke A4 Portrait murni, elemen-elemen admin disembunyikan total, dan menggunakan proteksi `page-break-inside: avoid` pada seluruh item untuk memastikan tidak ada pemisahan aneh saat render cetak. Backend upload masih disisihkan.
 - [F11E.4] Finalisasi QA Layout Print ATS. Helper UX ditambahkan di admin UI ("ATS Tip: pilih item relevan..."). Mengecek kepadatan spacing, konsistensi font A4, serta ketahanan `break-inside: avoid`. Blok statis F11E (Backend PDF upload) resmi diterminasi dan diarahkan ke workflow browser-print murni. Next: F11F.
+- [F11F] Integrasi statis Public Download. Modul CV Builder (F11) telah selaras desain arsitekturnya dengan modul Download (F05) tanpa campur tangan sinkronisasi database/API. Tombol di-setting untuk sementara menggunakan PDF fallback. File final PDF `cv-syah-putra-nugraha-ats.pdf` belum ada, proses integrasi penuh Blocked.

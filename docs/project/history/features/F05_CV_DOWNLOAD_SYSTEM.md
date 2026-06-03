@@ -23,7 +23,7 @@ Mencakup CV Variant Selector, preview CV berbasis Newspaper Wireframe, dan fungs
 | F05D | Public Single Download Flow Simplification | Completed | Penyederhanaan flow public menjadi single download dan penghapusan modal pilihan varian. | F05C |
 
 ## HOLD / Blocked Notes
-- (F05A) PDF CV final belum sepenuhnya tersedia.
+- (F05A) PDF CV final (ATS version hasil browser print F11) belum sepenuhnya tersedia di direktori `public/cv`. Sistem fallback ke PDF lama sedang berjalan.
 
 ## Next Step
 - Mengelola data CV Variant Selector di area Admin/CV Builder di batch selanjutnya.
