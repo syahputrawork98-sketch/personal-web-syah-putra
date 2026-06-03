@@ -39,6 +39,20 @@ const AdminLogin = () => {
           )}
 
           <form onSubmit={handleSubmit}>
+            <div style={{ marginBottom: 'var(--space-4)', padding: 'var(--space-3)', backgroundColor: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '4px', fontSize: '0.85rem' }}>
+              <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#166534' }}>Development Login Helper</p>
+              <p style={{ margin: '0 0 4px 0', color: '#15803d' }}>Local dev email: <code>admin@example.com</code></p>
+              <p style={{ margin: '0 0 8px 0', color: '#15803d' }}>Local dev password: <code>qwerty123</code></p>
+              <p style={{ margin: '0 0 8px 0', fontSize: '0.75rem', color: '#166534', opacity: 0.8 }}>*Catatan: password di Prisma Studio tampil sebagai hash.</p>
+              <button 
+                type="button" 
+                onClick={() => { setEmail('admin@example.com'); setPassword('qwerty123'); }}
+                style={{ background: '#16a34a', color: 'white', border: 'none', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem' }}
+              >
+                Use Local Dev Login
+              </button>
+            </div>
+
             <div style={{ marginBottom: 'var(--space-4)' }}>
               <label style={{ display: 'block', marginBottom: 'var(--space-2)', fontSize: '0.9rem' }}>Email</label>
               <input 

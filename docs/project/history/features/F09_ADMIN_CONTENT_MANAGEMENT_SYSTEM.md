@@ -23,6 +23,7 @@ Mencakup dashboard antarmuka admin untuk menambahkan, mengubah, atau menghapus k
 | F09E | Profile/Settings Management Module | Completed | Mengaudit dan menyinkronkan UI profile dan settings (F09E.1). | F09A |
 | F09F | Project CRUD Runtime Verification and Public Sync | Completed | Verifikasi runtime end-to-end CRUD Project admin terhadap API dan sync halaman publik. | F09B |
 | F09G | Credential CRUD Readiness and User Validation Checklist | Completed | Audit struktur CRUD Credential/Certification dan penyiapan checklist validasi manual. | F09C |
+| F09H | Admin Login Dev Helper and Credential UI Field Sync | Completed | Penambahan helper login development dan perbaikan pemetaan field pada UI Admin Certification. | F09G |
 
 ## HOLD / Blocked Notes
 - Seluruh prioritas modul parsial F09 telah terpenuhi.
@@ -41,3 +42,4 @@ Mencakup dashboard antarmuka admin untuk menambahkan, mengubah, atau menghapus k
 - [F09E.1] QA Audit telah diselesaikan untuk *Profile and Settings Management Module* dan terdokumentasi dalam `docs/backend/PROFILE_SETTINGS_CMS_QA.md`. Penanganan autentikasi 401 dan proteksi payload di lapisan *controller* telah diselaraskan.
 - [F09F] Verifikasi runtime untuk operasi CRUD Project telah dilakukan (Create, Read, Update DRAFT/PUBLISHED, Delete). Data tersimpan dengan benar di PostgreSQL dan tersinkronisasi instan dengan endpoint publik `/api/projects`. Tidak ditemukan bug pada logic flow ini.
 - [F09G] Audit struktur CRUD Credential/Certification telah diselesaikan. Route, controller, dan antarmuka client sudah dipetakan dan dikonfirmasi ketersediaannya (Create, Read, Update, Delete). Endpoint admin terproteksi, public endpoint read-only. Checklist validasi manual telah disiapkan untuk user.
+- [F09H] Menambahkan tombol _Use Local Dev Login_ di halaman Admin Login untuk memudahkan fase testing/development tanpa harus mengingat password hash. Mapping kolom di Admin Certifications (`issuedAt` menjadi `issueDate`) sudah diperbaiki agar tidak *undefined*.

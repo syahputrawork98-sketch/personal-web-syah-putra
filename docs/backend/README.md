@@ -41,6 +41,7 @@ Sangat berkaitan dengan **F07 Backend API System** dan **F08 Admin Login and Aut
 ## Catatan Penting
 - Auth tidak boleh dibuka sebelum F07 memiliki arah teknis yang jelas.
 - **[F07-CP]** Audit checkpoint awal backend telah selesai. Tahap berikutnya hanya boleh dilanjutkan jika pengguna secara eksplisit meminta implementasi backend public API.
+- Local dev credentials: Saat menjalankan aplikasi lokal, admin dapat masuk dengan email `admin@example.com` dan password `qwerty123`. Catatan: password di database Prisma Studio di-*hash* untuk keamanan.
 
 ## Frontend Backend Connection Notes
 - Frontend membaca API base URL dari `VITE_API_URL`.

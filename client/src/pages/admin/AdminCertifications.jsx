@@ -130,7 +130,7 @@ const AdminCertifications = () => {
                     <div style={{ fontSize: '0.75rem', opacity: 0.6 }}>{cert.category || '-'}</div>
                   </td>
                   <td style={{ padding: '12px', fontSize: '0.85rem' }}>
-                    {cert.issuedAt ? new Date(cert.issuedAt).toLocaleDateString() : '-'}
+                    {cert.issueDate ? new Date(cert.issueDate).toLocaleDateString() : '-'}
                   </td>
                   <td style={{ padding: '12px' }}>
                     {cert.featured && (
