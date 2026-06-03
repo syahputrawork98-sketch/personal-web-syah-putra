@@ -4,7 +4,7 @@
 Sistem pembuat CV (Curriculum Vitae) dinamis berbasis data dari database. Admin dapat memilih, mengurutkan, dan menampilkan profil, pengalaman, pendidikan, proyek, skill, dan kredensial menjadi format halaman A4, lalu mengekspornya menjadi dokumen PDF.
 
 ## Status
-Partial (F11B Completed)
+Completed
 
 ## Story
 User ingin data portofolio yang sudah terstruktur rapi di database (projects, skills, experience, dll) dapat dimanfaatkan ulang menjadi CV terstandarisasi tanpa harus mengetik ulang di software desain (Word/Canva). CV harus bisa dikonfigurasi urutannya dan diekspor ke PDF dengan tampilan profesional.
@@ -91,10 +91,11 @@ Untuk menopang transaksi arsitektural ini (tanpa perlu dieksekusi sekarang), ran
 | F11E.2 | Unified Database Item Selector UX | Completed | Menerapkan pola search + chip selector untuk semua seksi (Experience, Education, Projects, Credentials) menggantikan checklist panjang. | F11E.1 |
 | F11E.3 | ATS Print Layout and Browser PDF Export | Completed | Mengaktifkan tombol Print PDF berbasis browser (`window.print()`) dan menambahkan CSS `@media print` murni. | F11E.2 |
 | F11E.4 | ATS Print QA Polish and Final Layout Guard | Completed | Melakukan QA spacing layout, menambah helper note UX di admin, dan mengamankan print CSS `page-break-inside`. | F11E.3 |
-| F11F | Public Download Integration (F05 Sync) | Partial / Blocked | Menambatkan tombol "Download CV" publik ke URL statis file PDF final. Menunggu user meletakkan file ATS final di direktori `public/cv`. | F11E.4 |
+| F11F | Public Download Integration (F05 Sync) | Completed | Menambatkan tombol "Download CV" publik ke URL statis file PDF final. Menunggu user meletakkan file ATS final di direktori `public/cv`. | F11E.4 |
+| F11F.1 | Final ATS PDF Handoff Activation | Completed | Mengaktifkan tombol Download CV publik menggunakan file final `cv-syah-putra-nugraha-ats.pdf`. | F11F |
 
 ## HOLD / Blocked Notes
-- [F11F] Menunggu user menyediakan file cetakan akhir `cv-syah-putra-nugraha-ats.pdf` hasil *browser print* untuk diletakkan di `client/public/cv/`. Saat ini, *public download* di `Home.jsx` masih menggunakan file lama (`cv-syah-putra-nugraha-web-developer.pdf`) sebagai fallback sementara.
+- (Tidak ada hambatan. Modul ini dinyatakan *Completed*.)
 
 ## Eksekusi Log
 - [F11B] Berhasil membuat skeleton `/admin/cv-builder` dengan grid layout kiri-kanan. Data config Profile, Contact, Experience, Education, Skills, Projects, dan Credentials tersambung mulus dari Prisma DB via *existing endpoints* di `lib/api.js`. Live preview kanan mensimulasikan kertas A4 murni dengan CSS Proporsional yang siap untuk pencetakan (tanpa PDF Export backend). Belum ada mekanisme simpan urutan (masih statis).
@@ -105,3 +106,4 @@ Untuk menopang transaksi arsitektural ini (tanpa perlu dieksekusi sekarang), ran
 - [F11E.3] Ekspor PDF berbasis browser. Tombol "Print / Save as PDF" telah ditambah yang memanggil `window.print()`. File styling khusus `cv-print.css` disuntikkan. Layout diset ke A4 Portrait murni, elemen-elemen admin disembunyikan total, dan menggunakan proteksi `page-break-inside: avoid` pada seluruh item untuk memastikan tidak ada pemisahan aneh saat render cetak. Backend upload masih disisihkan.
 - [F11E.4] Finalisasi QA Layout Print ATS. Helper UX ditambahkan di admin UI ("ATS Tip: pilih item relevan..."). Mengecek kepadatan spacing, konsistensi font A4, serta ketahanan `break-inside: avoid`. Blok statis F11E (Backend PDF upload) resmi diterminasi dan diarahkan ke workflow browser-print murni. Next: F11F.
 - [F11F] Integrasi statis Public Download. Modul CV Builder (F11) telah selaras desain arsitekturnya dengan modul Download (F05) tanpa campur tangan sinkronisasi database/API. Tombol di-setting untuk sementara menggunakan PDF fallback. File final PDF `cv-syah-putra-nugraha-ats.pdf` belum ada, proses integrasi penuh Blocked.
+- [F11F.1] Pengaktifan final PDF Handoff. Tombol Download CV di public Home diubah agar mengarah langsung ke `cv-syah-putra-nugraha-ats.pdf` yang sudah dipastikan diletakkan oleh user di `/client/public/cv/`. Batch F11 ini secara resmi mencapai status *Completed* penuh.

@@ -152,7 +152,7 @@ const Home = () => {
           )}
           {currentHero.secondaryCtaLabel && (
             <a 
-              href="/cv/cv-syah-putra-nugraha-web-developer.pdf"
+              href="/cv/cv-syah-putra-nugraha-ats.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-secondary"

@@ -17,13 +17,13 @@ Mencakup CV Variant Selector, preview CV berbasis Newspaper Wireframe, dan fungs
 ## Sub-Batch Roadmap
 | Sub-Batch | Name | Status | Purpose | Dependency |
 |---|---|---|---|---|
-| F05A | Final CV PDF Asset Preparation | HOLD | Persiapan file PDF oleh user. | - |
+| F05A | Final CV PDF Asset Preparation | Completed | Persiapan file PDF oleh user. | - |
 | F05B | CV Download Integration / Hardening | Completed | Pemasangan link/file unduhan dan hardening flow. | F05A |
 | F05C | CV Download QA | Completed | Testing akses unduhan CV. | F05B |
 | F05D | Public Single Download Flow Simplification | Completed | Penyederhanaan flow public menjadi single download dan penghapusan modal pilihan varian. | F05C |
 
 ## HOLD / Blocked Notes
-- (F05A) PDF CV final (ATS version hasil browser print F11) belum sepenuhnya tersedia di direktori `public/cv`. Sistem fallback ke PDF lama sedang berjalan.
+- (Tidak ada hambatan. F05 dinyatakan selesai).
 
 ## Next Step
 - Mengelola data CV Variant Selector di area Admin/CV Builder di batch selanjutnya.
