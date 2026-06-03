@@ -11,7 +11,8 @@ const AdminContact = () => {
     github: '',
     linkedin: '',
     instagram: '',
-    location: ''
+    location: '',
+    website: ''
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -130,6 +131,16 @@ const AdminContact = () => {
 
         <h3 style={{ fontSize: '1rem', marginTop: 'var(--space-4)', opacity: 0.7 }}>Social Media Links</h3>
         
+        <div className="form-group">
+          <label style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Website / Portfolio URL</label>
+          <input 
+            name="website"
+            value={formData.website}
+            onChange={handleChange}
+            style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
+          />
+        </div>
+
         <div className="form-group">
           <label style={{ display: 'block', marginBottom: 'var(--space-2)' }}>GitHub URL</label>
           <input 

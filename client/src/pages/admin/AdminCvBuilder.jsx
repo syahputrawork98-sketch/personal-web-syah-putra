@@ -403,17 +403,21 @@ const AdminCvBuilder = () => {
               {cvConfig.targetRole && ` | ${cvConfig.targetRole}`}
             </div>
             <div style={{ fontSize: '9pt', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '6px', color: '#444' }}>
-              <span>{data.contact?.email || 'email@example.com'}</span>
-              <span>•</span>
-              <span>{data.contact?.phone || '+62 000-0000-0000'}</span>
-              <span>•</span>
-              <span>{data.contact?.location || 'Location, Country'}</span>
-              {cvConfig.links && (
-                <>
-                  <span>•</span>
-                  <span>{cvConfig.links}</span>
-                </>
-              )}
+              {[
+                data.contact?.email,
+                data.contact?.phone,
+                data.contact?.location,
+                data.contact?.linkedin,
+                data.contact?.github,
+                data.contact?.website,
+                data.contact?.instagram,
+                cvConfig.links
+              ].filter(Boolean).map((item, i, arr) => (
+                <React.Fragment key={i}>
+                  <span>{item.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</span>
+                  {i < arr.length - 1 && <span>•</span>}
+                </React.Fragment>
+              ))}
             </div>
           </div>
 
@@ -445,22 +449,22 @@ const AdminCvBuilder = () => {
                 
                 {section.id === 'experience' && displayData.map(exp => (
                   <div key={exp.id} className="cv-print-item" style={{ marginBottom: '3mm' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '10pt' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', fontWeight: 'bold', fontSize: '10pt' }}>
                       <span>{exp.role}</span>
-                      <span>{exp.period}</span>
+                      {exp.period && <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#333', whiteSpace: 'nowrap', marginLeft: '8px' }}>{exp.period}</span>}
                     </div>
-                    <div style={{ fontSize: '9pt', fontStyle: 'italic', marginBottom: '0.5mm', color: '#333' }}>{exp.company}</div>
+                    <div style={{ fontSize: '9pt', fontStyle: 'italic', marginBottom: '1mm', color: '#333' }}>{exp.company}</div>
                     {exp.description && <p style={{ fontSize: '9pt', margin: '0', whiteSpace: 'pre-line' }}>{exp.description}</p>}
                   </div>
                 ))}
 
                 {section.id === 'education' && displayData.map(edu => (
                   <div key={edu.id} className="cv-print-item" style={{ marginBottom: '3mm' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '10pt' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', fontWeight: 'bold', fontSize: '10pt' }}>
                       <span>{edu.school}</span>
-                      <span>{edu.period}</span>
+                      {edu.period && <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#333', whiteSpace: 'nowrap', marginLeft: '8px' }}>{edu.period}</span>}
                     </div>
-                    <div style={{ fontSize: '9pt', marginBottom: '0.5mm', color: '#333' }}>{edu.degree}</div>
+                    <div style={{ fontSize: '9pt', marginBottom: '1mm', color: '#333' }}>{edu.degree}</div>
                     {edu.description && <p style={{ fontSize: '9pt', margin: '0', whiteSpace: 'pre-line' }}>{edu.description}</p>}
                   </div>
                 ))}

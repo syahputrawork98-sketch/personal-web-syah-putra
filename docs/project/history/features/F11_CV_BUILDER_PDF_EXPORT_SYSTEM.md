@@ -94,6 +94,7 @@ Untuk menopang transaksi arsitektural ini (tanpa perlu dieksekusi sekarang), ran
 | F11F | Public Download Integration (F05 Sync) | Completed | Menambatkan tombol "Download CV" publik ke URL statis file PDF final. Menunggu user meletakkan file ATS final di direktori `public/cv`. | F11E.4 |
 | F11F.1 | Final ATS PDF Handoff Activation | Completed | Mengaktifkan tombol Download CV publik menggunakan file final `cv-syah-putra-nugraha-ats.pdf`. | F11F |
 | F11G | ATS Preview Typography and Compact Layout Polish | Completed | Merapikan tipografi dan kepadatan layout (compact ATS spacing) di area `cv-print-area`. | F11F.1 |
+| F11G.1 | Contact-Sourced CV Links and Compact Experience Date Polish | Completed | Mengambil link (Website, LinkedIn, GitHub, Instagram) otomatis dari setelan Contact, menambahkan field Website di AdminContact, dan merapikan layout penanggalan Experience/Education. | F11G |
 
 ## HOLD / Blocked Notes
 - (Tidak ada hambatan. Modul ini dinyatakan *Completed*.)
@@ -109,3 +110,4 @@ Untuk menopang transaksi arsitektural ini (tanpa perlu dieksekusi sekarang), ran
 - [F11F] Integrasi statis Public Download. Modul CV Builder (F11) telah selaras desain arsitekturnya dengan modul Download (F05) tanpa campur tangan sinkronisasi database/API. Tombol di-setting untuk sementara menggunakan PDF fallback. File final PDF `cv-syah-putra-nugraha-ats.pdf` belum ada, proses integrasi penuh Blocked.
 - [F11F.1] Pengaktifan final PDF Handoff. Tombol Download CV di public Home diubah agar mengarah langsung ke `cv-syah-putra-nugraha-ats.pdf` yang sudah dipastikan diletakkan oleh user di `/client/public/cv/`. Batch F11 ini secara resmi mencapai status *Completed* penuh.
 - [F11G] *Patch Polish*: Menyesuaikan ukuran font (18pt untuk Header, 10pt-9pt untuk konten) dan margin di container `cv-print-area` agar layout menjadi padat (*compact*), tidak tampak seperti UI web besar, namun menyerupai dokumen CV ATS sungguhan. Line height juga diperketat ke 1.35.
+- [F11G.1] Menambahkan field *Website* ke *Contact Settings*. Header CV Builder sekarang cerdas mengambil deretan link sosial dan portofolio (Email, Phone, LinkedIn, GitHub, Website, Instagram) langsung dari setelan kontak (`data.contact`) lalu menatanya ke dalam teks murni berpemisah (separator) secara ATS-friendly. Form link manual CV diubah posisinya sekadar menjadi *fallback*. Format tanggal *Experience/Education* juga dipertajam agar tidak merusak baris atau meninggalkan ruang kosong.

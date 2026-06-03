@@ -32,7 +32,7 @@ const getAdminContact = async (req, res, next) => {
 };
 
 const updateContact = async (req, res, next) => {
-  const { email, phone, whatsapp, github, linkedin, instagram, location } = req.body || {};
+  const { email, phone, whatsapp, github, linkedin, instagram, location, website } = req.body || {};
 
   try {
     const contactData = {
@@ -43,6 +43,7 @@ const updateContact = async (req, res, next) => {
       linkedin: linkedin || '',
       instagram: instagram || '',
       location: location || '',
+      website: website || '',
     };
 
     const setting = await prisma.siteSetting.upsert({
