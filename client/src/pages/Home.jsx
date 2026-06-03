@@ -6,7 +6,6 @@ import { getPublicSkills, getPublicHero } from '../lib/api';
 import EmptyState from '../components/EmptyState';
 import { services } from '../data/homeData';
 import ServiceCard from '../components/home/ServiceCard';
-import CVVariantSelector from '../components/CVVariantSelector';
 
 import '../styles/home.css';
 
@@ -17,7 +16,6 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
 
   const [error, setError] = useState(false);
-  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -153,21 +151,18 @@ const Home = () => {
             <Link to="/projects" className="btn btn-primary">{currentHero.primaryCtaLabel}</Link>
           )}
           {currentHero.secondaryCtaLabel && (
-            <button 
-              onClick={() => setIsCVModalOpen(true)} 
+            <a 
+              href="/cv/cv-syah-putra-nugraha-web-developer.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn btn-secondary"
             >
               {currentHero.secondaryCtaLabel}
-            </button>
+            </a>
           )}
           <Link to="/contact" className="btn btn-secondary">Hubungi Saya</Link>
         </motion.div>
       </motion.div>
-
-      <CVVariantSelector 
-        isOpen={isCVModalOpen} 
-        onClose={() => setIsCVModalOpen(false)} 
-      />
     </section>
   );
 };
