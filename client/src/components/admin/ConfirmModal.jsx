@@ -20,24 +20,28 @@ const ConfirmModal = ({ isOpen, title, message, onConfirm, onCancel, isDeleting 
       <div className="card" style={{
         backgroundColor: 'var(--card-bg)',
         width: '100%',
-        maxWidth: '400px',
-        padding: 'var(--space-6)',
-        borderRadius: '8px',
+        maxWidth: '360px',
+        padding: '20px',
+        borderRadius: '12px',
         boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
       }}>
         <h2 style={{ 
           marginTop: 0, 
-          marginBottom: 'var(--space-4)', 
-          fontSize: '1.25rem',
-          color: 'var(--text-color)'
+          marginBottom: '12px', 
+          fontSize: '1.05rem',
+          color: 'var(--text-color)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '6px'
         }}>
-          {title}
+          <span style={{ color: '#dc2626' }}>⚠️</span> {title}
         </h2>
         <p style={{ 
-          marginBottom: 'var(--space-6)', 
+          marginBottom: '20px', 
           color: 'var(--text-color)', 
           opacity: 0.8,
-          lineHeight: 1.5
+          lineHeight: 1.4,
+          fontSize: '0.9rem'
         }}>
           {message}
         </p>
@@ -50,7 +54,7 @@ const ConfirmModal = ({ isOpen, title, message, onConfirm, onCancel, isDeleting 
             onClick={onCancel} 
             disabled={isDeleting}
             className="btn btn-secondary"
-            style={{ padding: '8px 16px' }}
+            style={{ padding: '6px 12px', fontSize: '0.85rem' }}
           >
             Cancel
           </button>
@@ -59,7 +63,8 @@ const ConfirmModal = ({ isOpen, title, message, onConfirm, onCancel, isDeleting 
             disabled={isDeleting}
             className="btn btn-primary"
             style={{ 
-              padding: '8px 16px',
+              padding: '6px 12px',
+              fontSize: '0.85rem',
               backgroundColor: '#dc2626',
               borderColor: '#dc2626',
               opacity: isDeleting ? 0.7 : 1,
