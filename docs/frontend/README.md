@@ -33,6 +33,10 @@ Admin Panel CMS telah berstatus *fully-mapped* dan mematuhi pilar CRUD:
 3. Fitur pelaporan sukses (warna hijau) maupun gagal (warna merah) terintegrasi pada layar tabel tanpa mengganggu posisi _scroll_. 
 4. Semua operasi _delete_ dikendalikan oleh *state* `isDeleting` guna menonaktifkan tombol selama _loading_ komunikasi ke server.
 
+## CV Builder & Public Download (Batch F11)
+- **Admin CMS UI (`/admin/cv-builder`)**: Satu-satunya tempat penyusunan konfigurasi CV, pemilihan seksi (*checkbox*), serta pengurutan data. Juga bertindak sebagai pratinjau (*preview*) kanvas A4 sebelum dicetak ke PDF oleh Admin. Tidak terekspos ke publik.
+- **Public UI (CV Download - F05)**: Domain publik murni dan pasif. Publik **tidak** memiliki antarmuka pembuatan/konfigurasi CV apa pun. Pengunjung sekadar disuguhi satu tombol "Download CV" yang memicu pengunduhan berkas PDF final yang alamat URL-nya sudah disediakan oleh server.
+
 ## Validasi Frontend Minimal
 - `npm run dev` bila perlu mengecek hasil di browser.
 - `npm run build` bila menyentuh build atau client logic.

@@ -11,7 +11,12 @@ User ingin data portofolio yang sudah terstruktur rapi di database (projects, sk
 
 ## Kelayakan (Feasibility Analysis)
 **Status Kelayakan: LAYAK (FEASIBLE)**
-Fitur ini sangat layak dibangun pada arsitektur monorepo saat ini. Mengingat *Single Source of Truth* sudah tersentralisasi di PostgreSQL melalui Prisma, kita hanya perlu membangun antarmuka penyusun (builder) di React dan memanfaatkan CSS `@media print` untuk ekspor PDF tanpa menambah beban dependensi berat di backend.
+Fitur ini sangat layak dibangun pada arsitektur monorepo saat ini. Pembangun (Builder) CV murni menjadi domain fungsionalitas Admin CMS.
+
+### Arsitektur Peran Terpisah (Separation of Concerns)
+1. **Admin UI (`/admin/cv-builder`)**: Tempat admin mengatur tata letak, data yang disertakan (checkbox), dan urutan komponen (up/down). Tidak ada CV yang di-*generate* di Public Client.
+2. **Backend/Server (`server/src`)**: Berfungsi penuh sebagai penyimpan tata ruang (JSON Config) di tabel Settings dan bertugas menyimpan/mengonfirmasi berkas final PDF yang diserahkan Admin.
+3. **Public Client (`/`)**: Hanya dan semata-mata menampilkan tombol "Download CV" yang mengarah kepada URL dari PDF final yang telah di-*generate* (F05). Tidak ada logika perangkaian CV di sisi awam.
 
 ### Data Source Map
 Data yang **SUDAH SIAP** dipakai dari API:
@@ -38,30 +43,56 @@ Agar implementasi aman dan tidak berat, MVP akan menggunakan pendekatan form kon
 - **Alasan**: *Zero-dependency*. Tidak perlu menginstal pustaka backend raksasa seperti Puppeteer, dan tidak membebani server Node.js. Browser modern sudah memiliki mesin render PDF (*Save as PDF*) yang sangat akurat jika kita membekalinya dengan aturan CSS `page-break-inside: avoid` dan `@page { size: A4; margin: 0; }`.
 
 ### 3. Rencana Penyimpanan (Database/Config)
-- **Tanpa Mengubah Schema**: Mengingat pantangan mengubah `schema.prisma`, preferensi terbaik adalah memanfaatkan sistem `SiteSetting` yang sudah ada (tabel `Setting` dengan `key` - `value`).
-- Kita bisa membuat satu record ber-key `CV_CONFIG` yang berisi JSON string. JSON ini merepresentasikan ID data terpilih dan urutannya.
+- **Konfigurasi (JSON Contract)**: Mengingat pantangan mengubah `schema.prisma`, preferensi terbaik adalah memanfaatkan tabel `Setting` (key-value) yang sudah ada. Kita akan menyuntikkan entri ber-key `CV_BUILDER_CONFIG` berisi *stringified* JSON yang memetakan preferensi seksi mana saja yang dihidupkan, prioritas urutan, dan pengait spesifik *item*.
+- **Penyimpanan Berkas Fisik (PDF)**: Dokumen final akan direkam di direktori statis (misal `public/uploads/cv`) atau fasilitas penyimpanan eksternal (Cloudinary/S3). Alamat URL-nya akan dibenamkan di setelan khusus (misal `activeCvUrl`) agar F05 langsung memanen URL ini.
 
-### 4. Hubungan dengan F05 (CV Download System)
-- **F05** adalah sistem unduhan *file statis* untuk konsumsi publik.
-- **F11** adalah *internal tool* (CMS Admin) untuk men-generate file PDF tersebut.
-- **Alur Kerja**: Admin mengatur susunan CV di F11 (CV Builder), mencetaknya menjadi file PDF (*Save as PDF*), lalu mengunggah/meletakkan file PDF tersebut ke direktori statis untuk disajikan oleh F05. Tidak ada konflik, justru saling melengkapi.
+#### Contoh JSON Contract (`CV_BUILDER_CONFIG`)
+```json
+{
+  "template": "classic-a4",
+  "sections": [
+    { "id": "profile", "enabled": true, "order": 1 },
+    { "id": "experience", "enabled": true, "order": 2, "selectedIds": [] },
+    { "id": "education", "enabled": true, "order": 3, "selectedIds": [] },
+    { "id": "skills", "enabled": true, "order": 4, "selectedIds": [] },
+    { "id": "projects", "enabled": true, "order": 5, "selectedIds": [] },
+    { "id": "credentials", "enabled": false, "order": 6, "selectedIds": [] }
+  ],
+  "summary": "",
+  "activeCvUrl": "/uploads/cv/final-cv.pdf",
+  "updatedAt": "2026-06-03T00:00:00.000Z"
+}
+```
+
+### 4. Rencana Endpoint Backend (Contract)
+Untuk menopang transaksi arsitektural ini (tanpa perlu dieksekusi sekarang), rancangan *endpoint* yang kelak dilibatkan adalah:
+- **`GET /api/admin/cv-builder/config`** : Menggali formasi `CV_BUILDER_CONFIG` milik Admin.
+- **`PUT /api/admin/cv-builder/config`** : Menyimpan susunan formasi `CV_BUILDER_CONFIG`.
+- **`POST /api/admin/cv-builder/generate`** : Mengelola unggahan PDF murni hasil perakitan `window.print()` Admin (atau delegasi pembuatan via *server* jika diperlukan).
+- **`GET /api/cv/active`** : *Endpoint* publik mutlak yang dituju Client F05 untuk mengunduh berkas fisik yang URL-nya tersemat pada config.
+
+### 5. Hubungan dengan F05 (CV Download System)
+- **F11 (CV Builder CMS)** menyiapkan dan menunjuk letak URL PDF terakhir yang direstui oleh Admin.
+- **F05 (Public Client Download)** sekadar "mengetuk" `/api/cv/active` lalu memicu antarmuka `download` browser bagi si Pengunjung Web tanpa memikirkan kerumitan perangkaian data.
 
 ## Risiko Teknis
 1. **CSS Pagination (Page Breaks)**: Teks yang terpotong di antara dua halaman A4 saat di-print. Mitigasi: Penggunaan CSS `break-inside: avoid` pada setiap kontainer item (experience/project).
 2. **Keterbatasan Ruang A4**: Jika admin memilih terlalu banyak project, CV akan melebar hingga 3-4 halaman.
 3. **Inkonsistensi Render Browser**: Chrome, Firefox, dan Safari memiliki *print engine* berbeda. Mitigasi: Standarisasi menggunakan layout flex/grid modern dengan unit absolut (mm/cm/pt, bukan persentase).
 
-## Sub-Batch Roadmap
+## Sub-Batch Roadmap (Revised)
 | Sub-Batch | Name | Status | Purpose | Dependency |
 |---|---|---|---|---|
 | F11A | CV Builder Feasibility and Scope Design | Completed | Analisis awal, desain UI, dan penentuan limitasi MVP. | - |
-| F11B | CV Builder UI Skeleton & Data Fetching | Completed | Membuat *layout* dasar kiri-kanan (Config vs Preview) dan menyedot semua data dari API. | F11A |
-| F11C | CV Config State & Ordering Control | HOLD | Membangun *logic* Checkbox (Show/Hide) dan tombol Up/Down (tanpa drag-and-drop). | F11B |
-| F11D | A4 Print CSS & Client-side Export | HOLD | Memoles tampilan *preview* dan menyuntikkan aturan `@media print` & *Page Break*. | F11C |
-| F11E | Save Config to DB (JSON Site Settings) | HOLD | Menyimpan *state* susunan CV ke database melalui *endpoint settings* yang sudah ada. | F11D |
+| F11B | CV Builder UI Skeleton & Data Fetching | Completed | Membuat *layout* dasar kiri-kanan (Config vs Preview) dan menyedot data dari API. | F11A |
+| F11C | CV Builder Server Contract & Architecture | Completed | Revisi arsitektur peran client-server, merancang skema penyimpanan JSON, dan memetakan *endpoints*. | F11B |
+| F11D | CV Config State & Database Saving | HOLD | Membangun *logic* Checkbox/Sorting di Admin UI dan menyambungkannya ke `/api/admin/cv-builder/config`. | F11C |
+| F11E | PDF Generation & Export Workflow | HOLD | Menyuntikkan CSS `@media print` dan mengirim hasil cetakan final ke backend `/api/admin/cv-builder/generate`. | F11D |
+| F11F | Public Download Integration (F05 Sync) | HOLD | Menambatkan tombol "Download CV" publik ke *endpoint* `/api/cv/active` untuk meraih *file* terakhir. | F11E |
 
 ## HOLD / Blocked Notes
-- Melangkah ke F11C di batch eksekusi berikutnya.
+- Melangkah ke F11D di batch eksekusi berikutnya.
 
 ## Eksekusi Log
 - [F11B] Berhasil membuat skeleton `/admin/cv-builder` dengan grid layout kiri-kanan. Data config Profile, Contact, Experience, Education, Skills, Projects, dan Credentials tersambung mulus dari Prisma DB via *existing endpoints* di `lib/api.js`. Live preview kanan mensimulasikan kertas A4 murni dengan CSS Proporsional yang siap untuk pencetakan (tanpa PDF Export backend). Belum ada mekanisme simpan urutan (masih statis).
+- [F11C] Meluruskan arsitektur aplikasi agar pembangunan dan susunan CV strictly dilakukan di wilayah Admin/Backend, dan domain Publik hanya bertugas menerima *file* statis yang sudah dipoles. Menyepakati bentuk *JSON Contract*, tata cara penyimpanan (`Setting` model), serta menyelaraskan F11 dengan modul CV unduhan di F05.

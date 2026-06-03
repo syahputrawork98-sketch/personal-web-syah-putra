@@ -74,4 +74,6 @@ Sangat berkaitan dengan **F07 Backend API System** dan **F08 Admin Login and Aut
 | Public | `GET /api/experiences` | Boleh Audit F07 | `server/src/routes/experience.routes.js` | Pengalaman kerja. |
 | Public | `GET /api/certifications` | Boleh Audit F07 | `server/src/routes/certification.routes.js` | Data sertifikasi/credentials. |
 | Auth | `/api/auth/*` | Completed (Not Exposed) | `server/src/routes/auth.routes.js` | Endpoint autentikasi admin. |
+| Admin | `/api/admin/cv-builder/*` | F11 Config Contract | `server/src/routes/admin/cv-builder.routes.js` | Endpoint tata letak & JSON Config CV Builder. |
 | Admin | `/api/admin/*` | Completed (Not Exposed) | `server/src/routes/admin/*.routes.js` | Endpoint proteksi admin (CMS). |
+| Public | `GET /api/cv/active` | F11 Config Contract | `server/src/routes/cv.routes.js` | Menyajikan URL berkas statis PDF CV final. |
