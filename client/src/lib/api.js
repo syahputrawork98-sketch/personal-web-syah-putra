@@ -174,3 +174,7 @@ export const getAdminCertification = (id) => fetcher(`/api/admin/certifications/
 export const createCertification = (data) => fetcher('/api/admin/certifications', { method: 'POST', body: JSON.stringify(data) });
 export const updateCertification = (id, data) => fetcher(`/api/admin/certifications/${id}`, { method: 'PUT', body: JSON.stringify(data) });
 export const deleteCertification = (id) => fetcher(`/api/admin/certifications/${id}`, { method: 'DELETE' });
+
+// Admin CV Builder
+export const getCvBuilderConfig = () => fetcher('/api/admin/cv-builder/config');
+export const updateCvBuilderConfig = (data) => fetcher('/api/admin/cv-builder/config', { method: 'PUT', body: JSON.stringify(data) });

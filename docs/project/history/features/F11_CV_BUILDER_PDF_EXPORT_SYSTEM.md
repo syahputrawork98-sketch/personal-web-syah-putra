@@ -86,13 +86,14 @@ Untuk menopang transaksi arsitektural ini (tanpa perlu dieksekusi sekarang), ran
 | F11A | CV Builder Feasibility and Scope Design | Completed | Analisis awal, desain UI, dan penentuan limitasi MVP. | - |
 | F11B | CV Builder UI Skeleton & Data Fetching | Completed | Membuat *layout* dasar kiri-kanan (Config vs Preview) dan menyedot data dari API. | F11A |
 | F11C | CV Builder Server Contract & Architecture | Completed | Revisi arsitektur peran client-server, merancang skema penyimpanan JSON, dan memetakan *endpoints*. | F11B |
-| F11D | CV Config State & Database Saving | HOLD | Membangun *logic* Checkbox/Sorting di Admin UI dan menyambungkannya ke `/api/admin/cv-builder/config`. | F11C |
+| F11D | CV Config State & Database Saving | Completed | Membangun *logic* Checkbox/Sorting di Admin UI dan menyambungkannya ke `/api/admin/cv-builder/config` (JSON db save). | F11C |
 | F11E | PDF Generation & Export Workflow | HOLD | Menyuntikkan CSS `@media print` dan mengirim hasil cetakan final ke backend `/api/admin/cv-builder/generate`. | F11D |
 | F11F | Public Download Integration (F05 Sync) | HOLD | Menambatkan tombol "Download CV" publik ke *endpoint* `/api/cv/active` untuk meraih *file* terakhir. | F11E |
 
 ## HOLD / Blocked Notes
-- Melangkah ke F11D di batch eksekusi berikutnya.
+- Melangkah ke F11E di batch eksekusi berikutnya.
 
 ## Eksekusi Log
 - [F11B] Berhasil membuat skeleton `/admin/cv-builder` dengan grid layout kiri-kanan. Data config Profile, Contact, Experience, Education, Skills, Projects, dan Credentials tersambung mulus dari Prisma DB via *existing endpoints* di `lib/api.js`. Live preview kanan mensimulasikan kertas A4 murni dengan CSS Proporsional yang siap untuk pencetakan (tanpa PDF Export backend). Belum ada mekanisme simpan urutan (masih statis).
 - [F11C] Meluruskan arsitektur aplikasi agar pembangunan dan susunan CV strictly dilakukan di wilayah Admin/Backend, dan domain Publik hanya bertugas menerima *file* statis yang sudah dipoles. Menyepakati bentuk *JSON Contract*, tata cara penyimpanan (`Setting` model), serta menyelaraskan F11 dengan modul CV unduhan di F05.
+- [F11D] Mengimplementasikan _state management_ untuk CV Builder. Admin kini bisa melakukan centang _show/hide_, menata urutan dengan tombol *Up/Down*, memfilter item tertentu (contoh: hanya memunculkan 2 proyek unggulan), dan menyimpan `CV_BUILDER_CONFIG` dalam wujud JSON ke tabel `Setting` via rute `/api/admin/cv-builder/config`. Pratinjau A4 sudah bereaksi secara *real-time* terhadap modifikasi State UI.

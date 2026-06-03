@@ -27,6 +27,7 @@ const certificationRoutes = require('./routes/certification.routes');
 const adminCertificationRoutes = require('./routes/admin/certification.routes');
 const educationRoutes = require('./routes/education.routes');
 const adminEducationRoutes = require('./routes/admin/education.routes');
+const adminCvBuilderRoutes = require('./routes/admin/cv-builder.routes');
 
 // Health Check
 app.get('/api/health', (req, res) => {
@@ -48,6 +49,7 @@ app.use('/api/certifications', certificationRoutes);
 app.use('/api/admin/certifications', adminCertificationRoutes);
 app.use('/api/education', educationRoutes);
 app.use('/api/admin/education', adminEducationRoutes);
+app.use('/api/admin/cv-builder', adminCvBuilderRoutes);
 
 
 // Global Error Handler
