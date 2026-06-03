@@ -36,13 +36,13 @@ Repository ini telah melalui iterasi pengembangan (*Batch*) untuk memastikan sta
    npm run build
    ```
 
-## 🌐 Deployment Preview ke Vercel
+## 🌐 Production Deployment Architecture
 
-Deployment awal menggunakan Vercel untuk frontend-only:
-- **Root Directory**: `client`
-- **Build Command**: `npm run build`
-- **Output Directory**: `dist`
-- Catatan detail ada di Feature Tracker F10 pada `docs/project/history/CURRENT_STATUS.md`
+Arsitektur deployment final (Batch F10E) merekomendasikan:
+- **Frontend (Vercel)**: Root directory `client/`, build command `npm run build`, output `dist`.
+- **Backend (Render / Railway)**: Menggunakan instance *Web Service* Node.js.
+- **Database (Neon / Supabase)**: Menggunakan managed PostgreSQL.
+- Catatan detail *environment variables* dan setup ada di Tracker F10 pada `docs/project/history/features/F10_DEPLOYMENT_DOMAIN_SYSTEM.md`.
 
 ## 🛠️ Status Pengembangan & Batasan Khusus
 

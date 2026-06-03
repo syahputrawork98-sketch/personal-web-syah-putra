@@ -52,7 +52,7 @@ Sangat berkaitan dengan **F07 Backend API System** dan **F08 Admin Login and Aut
 - Auth/Admin: production exposure belum dibuka sampai deployment/security production siap.
 
 ## Production Deployment Strategy
-1. **Hosting:** Gunakan PaaS seperti Render, Railway, Fly.io, atau VPS karena Express.js bersifat stateful dan tidak cocok dideploy murni sebagai serverless function di Vercel tanpa konfigurasi khusus.
+1. **Hosting:** Direkomendasikan menggunakan PaaS seperti Render (Free Tier tapi dengan sleep mode) atau Railway (Murah tanpa sleep) karena Express.js bersifat stateful dan tidak cocok dideploy murni sebagai serverless function di Vercel. VPS juga bisa dipakai namun butuh manajemen server mandiri.
 2. **Environment Variables:** Wajib mengkonfigurasi `DATABASE_URL`, `JWT_SECRET`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, dan `CLIENT_URL` di server production.
 3. **CORS:** Variabel `CLIENT_URL` wajib berisi domain spesifik frontend production (misal `https://syahputrawork.com`) agar endpoint terlindungi dengan aman.
 4. **Auth Warning:** Password default admin dari seed wajib segera diganti setelah server production aktif.

@@ -21,7 +21,8 @@ Mencakup penyelesaian pipeline live deployment agar web bisa dikunjungi publik d
 | F10B | Production Environment Review | Completed | Review kesiapan production: Hosting, DB, CORS, ENV. | F10A |
 | F10C | Project Status Terminology Alignment | Completed | Menyelaraskan status terminology project docs (HOLD vs Completed/Runtime Verified). | F10B |
 | F10D | Production Environment Variables Checklist | Completed | Verifikasi dan checklist ENV variables aman untuk production. | F10C |
-| F10E | Public Release QA | Not Started | Pengujian langsung terhadap domain publik. | F10D |
+| F10E | Production Hosting Platform Decision | Completed | Keputusan dan rekomendasi final platform hosting. | F10D |
+| F10F | Public Release QA | Not Started | Pengujian langsung terhadap domain publik (Deployment riil). | F10E |
 | F10-CP | Deployment System Checkpoint | Completed | Merangkum kesiapan deployment frontend-only dan menegaskan status domain. | - |
 
 ## HOLD / Blocked Notes
@@ -29,7 +30,7 @@ Mencakup penyelesaian pipeline live deployment agar web bisa dikunjungi publik d
 - Domain final belum ditentukan.
 
 ## Next Step
-- HOLD / Domain final decision required before F10D (Custom Domain) and F10E (Public Release).
+- HOLD / Domain final decision required before F10F (Custom Domain & Public Release).
 - Siapkan managed database (Supabase/Neon/Render).
 - Siapkan Backend VPS/PaaS (Render/Railway).
 - Siapkan Frontend Vercel (Production URL).
@@ -61,6 +62,27 @@ Berikut adalah daftar variabel lingkungan (ENV) yang dibutuhkan untuk melakukan 
 - **Prisma Migrate:** Gunakan perintah `npx prisma migrate deploy` di server backend saat build/start. Jangan menggunakan `migrate dev` di production.
 - **Seed Production:** Script `npm run seed` menggunakan fungsi `deleteMany()` untuk me-reset tabel. Jalankan ini **HANYA SATU KALI** saat inisialisasi server baru. Jangan pernah menjalankannya ulang jika website sudah hidup dan Anda sudah menambah konten nyata via CMS, karena akan menghapus seluruh data production Anda!
 
+## Production Hosting Platform Recommendation
+
+Berdasarkan struktur monorepo (`client/` React-Vite dan `server/` Express-Prisma) serta pertimbangan biaya untuk *personal web*, berikut adalah rekomendasi final untuk arsitektur hosting:
+
+### 1. Frontend: Vercel
+- **Alasan:** Vercel adalah standar industri untuk Vite/React SPA. Sangat cepat, memiliki integrasi GitHub yang *seamless*, dan *free tier*-nya sangat longgar untuk personal web. File `vercel.json` untuk *rewrite* rute SPA juga sudah teruji di project ini.
+- **Alternatif:** Netlify (fungsinya setara, namun Vercel lebih direkomendasikan karena sudah di-setup `vercel.json`).
+- **Risiko Biaya:** Gratis (Free Hobby Tier).
+
+### 2. Backend: Render (Free Tier) atau Railway (Berbayar Murah)
+- **Alasan Render:** Menyediakan *Web Service* gratis yang cocok untuk Node.js/Express.js.
+- **Risiko Render:** Pada *free tier*, server akan tertidur (*sleep*) setelah 15 menit tidak ada request. Saat ada request masuk lagi, butuh waktu ~30-50 detik untuk bangun (*cold start*), membuat website terasa lambat pada load pertama.
+- **Alasan Railway:** Jika ingin backend selalu *standby* (tanpa *sleep*) tanpa ribet mengelola VPS. Harga sangat murah (bayar sesuai pemakaian, biasanya sekitar $2-$5/bulan untuk web kecil).
+- **Alternatif VPS:** DigitalOcean/Linode sangat murah ($4-$5/bulan) dan selalu hidup, namun mengharuskan Anda mengatur Linux, Nginx, SSL, PM2, dan firewall secara manual yang mana terlalu kompleks untuk pemula.
+- **Rekomendasi Final:** **Render** (jika mentolerir *cold start* lambat demi gratis) atau **Railway** (jika ingin cepat dan siap bayar murah).
+
+### 3. Database: Supabase atau Neon
+- **Alasan Supabase:** Memberikan 500MB *managed PostgreSQL* secara gratis. Sangat stabil. Risikonya, database akan *pause* jika tidak ada aktivitas selama 1 minggu, dan harus di-resume manual lewat *dashboard*.
+- **Alasan Neon:** *Serverless Postgres* modern. Sangat cepat untuk koneksi Prisma, memiliki *free tier* yang memadai (0.5 GiB storage), dan mendukung *scale-to-zero*.
+- **Rekomendasi Final:** **Neon** (lebih direkomendasikan untuk kombinasi Prisma serverless/cold-start backend) atau **Supabase**.
+
 ## Notes
 - [F10A] Deployment checklist sudah dibuat. Backend production dan custom domain tetap HOLD menunggu keputusan lebih lanjut.
 - [F10B] Production Environment Review selesai. Hasil review:
@@ -72,3 +94,4 @@ Berikut adalah daftar variabel lingkungan (ENV) yang dibutuhkan untuk melakukan 
   6. **Auth/CMS:** Admin/Auth logic sudah aman, namun password seed default (`password123` atau `qwerty123`) wajib diganti segera setelah deploy.
 - [F10C] Project Status Terminology Alignment selesai. Mengganti semua kata 'HOLD' untuk backend, database, admin, dan auth menjadi 'Completed / Runtime Verified' dan memastikan 'HOLD' murni hanya ditujukan untuk urusan production deployment dan domain.
 - [F10D] Production Environment Variables Checklist selesai. Panduan env backend dan frontend sudah didokumentasikan, dan peringatan mitigasi seed production ditekankan untuk mencegah hilangnya data di masa depan.
+- [F10E] Production Hosting Platform Decision selesai. Rekomendasi final adalah Vercel (Frontend), Render/Railway (Backend), dan Neon/Supabase (Database PostgreSQL). Keputusan ini menyeimbangkan antara performa, kemudahan, dan biaya untuk konteks personal web.
