@@ -165,6 +165,9 @@ const AdminCvBuilder = () => {
         <div>
           <h1 style={{ margin: '0 0 var(--space-2) 0' }}>CV Builder</h1>
           <p style={{ margin: 0, opacity: 0.7 }}>Atur dan sesuaikan isi CV Anda agar ATS-friendly sebelum dicetak.</p>
+          <div style={{ marginTop: '8px', padding: '8px 12px', backgroundColor: 'var(--bg-color)', borderLeft: '4px solid var(--primary-color)', fontSize: '0.85rem', borderRadius: '4px' }}>
+            <strong>💡 ATS Tip:</strong> Pilih item paling relevan agar CV tetap compact 1–2 halaman.
+          </div>
         </div>
         <div style={{ display: 'flex', gap: 'var(--space-3)' }}>
           <button 
