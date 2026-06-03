@@ -5,7 +5,8 @@ import {
   getAdminExperiences, 
   getAdminEducation, 
   getAdminCertifications,
-  getSettings
+  getAdminProfile,
+  getAdminContact
 } from '../../lib/api';
 
 const AdminCvBuilder = () => {
@@ -31,21 +32,21 @@ const AdminCvBuilder = () => {
           expRes, 
           eduRes, 
           certRes,
-          settingsRes
+          profileRes,
+          contactRes
         ] = await Promise.all([
           getAdminProjects(),
           getAdminSkills(),
           getAdminExperiences(),
           getAdminEducation(),
           getAdminCertifications(),
-          getSettings()
+          getAdminProfile(),
+          getAdminContact()
         ]);
 
-        const settings = settingsRes.settings || {};
-        
         setData({
-          profile: settings.profile,
-          contact: settings.contact,
+          profile: profileRes.profile || {},
+          contact: contactRes.contact || {},
           projects: projectsRes.projects || [],
           skills: skillsRes.skills || [],
           experience: expRes.experiences || [],
