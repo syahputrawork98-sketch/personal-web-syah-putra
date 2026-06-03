@@ -86,8 +86,8 @@ const AdminEducation = () => {
     }
   };
 
-  const handleDelete = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this education?')) return;
+  const handleDelete = async (id, school, degree) => {
+    if (!window.confirm(`Are you sure you want to delete education: ${degree} at ${school}?`)) return;
     try {
       await deleteAdminEducation(id);
       setMessage({ type: 'success', text: 'Education deleted successfully' });
@@ -237,7 +237,7 @@ const AdminEducation = () => {
                     Edit
                   </button>
                   <button 
-                    onClick={() => handleDelete(item.id)} 
+                    onClick={() => handleDelete(item.id, item.school, item.degree)} 
                     className="btn btn-secondary" 
                     style={{ padding: '4px 8px', fontSize: '0.8rem', color: '#dc2626' }}
                   >
