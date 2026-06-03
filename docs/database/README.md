@@ -44,5 +44,10 @@ Kami telah menyediakan opsi menggunakan Docker Compose agar lebih mudah.
 - Tidak boleh menyimpan data sensitif.
 - Selalu pastikan database lokal hidup (`docker-compose ps`) sebelum menjalankan `npm run dev`.
 
+## Production Deployment Strategy
+1. **Managed Database:** Sangat direkomendasikan untuk menggunakan managed PostgreSQL service (misal Supabase, Neon, Railway) di production untuk memastikan keamanan, backup otomatis, dan stabilitas server. Docker lokal hanya untuk environment development.
+2. **Migrasi:** Di production, gunakan `npx prisma migrate deploy` alih-alih `dev` untuk menerapkan skema tanpa menghapus data interaktif.
+3. **Peringatan Seed Production:** Script `npm run seed` menggunakan operasi `deleteMany` pada banyak tabel. **JANGAN** jalankan script seed ini di production setelah web hidup dan berisi data baru dari CMS, karena hal tersebut akan menghapus data production. Jika diperlukan, jalankan hanya sekali di awal deployment.
+
 ## Catatan Penting
 - Database tidak boleh dikerjakan bersamaan dengan frontend UI besar tanpa scope yang jelas.
