@@ -28,9 +28,10 @@ Admin Panel CMS telah berstatus *fully-mapped* dan mematuhi pilar CRUD:
 - **Settings (Hero, Profile, Contact, Account)**: Read (GET param global) & Update bekerja baik, tak ada Delete. Form UI validasinya sudah tertangani dengan aman dan menyokong *public interface*.
 
 **Safe Delete UX & Feedback Plan**:
-1. Seluruh _delete action_ sekarang memakai `window.confirm` dengan konfirmasi spesifik berbasis nama item (cth. nama proyek atau sekolah).
-2. Sukses maupun gagal diisyaratkan oleh peringatan (misal, _alert_ atau baris notifikasi lokal) dan *table auto-refresh*.
-3. Rencana ke depan: Migrasi seluruh _alert/confirm_ asli _browser_ ke dalam `ConfirmModal` UI *Component* (*F09N*).
+1. Seluruh _delete action_ kini menggunakan komponen `ConfirmModal.jsx` berbasis React, meninggalkan fungsionalitas kaku dari bawaan browser (`window.confirm`).
+2. Setiap konfirmasi menyertakan properti nama spesifik dari baris data yang hendak dihapus untuk menghindari salah klik.
+3. Fitur pelaporan sukses (warna hijau) maupun gagal (warna merah) terintegrasi pada layar tabel tanpa mengganggu posisi _scroll_. 
+4. Semua operasi _delete_ dikendalikan oleh *state* `isDeleting` guna menonaktifkan tombol selama _loading_ komunikasi ke server.
 
 ## Validasi Frontend Minimal
 - `npm run dev` bila perlu mengecek hasil di browser.

@@ -5,6 +5,7 @@ import {
   updateAdminEducation, 
   deleteAdminEducation 
 } from '../../lib/api';
+import ConfirmModal from '../../components/admin/ConfirmModal';
 
 const AdminEducation = () => {
   const [education, setEducation] = useState([]);
@@ -19,6 +20,8 @@ const AdminEducation = () => {
     isActive: true
   });
   const [message, setMessage] = useState({ type: '', text: '' });
+  const [deleteModal, setDeleteModal] = useState({ isOpen: false, id: null, title: '' });
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const fetchEducation = async () => {
     try {
@@ -86,15 +89,28 @@ const AdminEducation = () => {
     }
   };
 
-  const handleDelete = async (id, school, degree) => {
-    if (!window.confirm(`Are you sure you want to delete education: ${degree} at ${school}?`)) return;
+  const handleDeleteClick = (id, school, degree) => {
+    setDeleteModal({ isOpen: true, id, title: `${degree} at ${school}` });
+  };
+
+  const handleConfirmDelete = async () => {
+    setIsDeleting(true);
+    setMessage({ type: '', text: '' });
     try {
-      await deleteAdminEducation(id);
-      setMessage({ type: 'success', text: 'Education deleted successfully' });
+      await deleteAdminEducation(deleteModal.id);
+      setMessage({ type: 'success', text: `Education "${deleteModal.title}" deleted successfully` });
+      setDeleteModal({ isOpen: false, id: null, title: '' });
       fetchEducation();
     } catch (err) {
       setMessage({ type: 'error', text: 'Delete failed: ' + err.message });
+      setDeleteModal({ isOpen: false, id: null, title: '' });
+    } finally {
+      setIsDeleting(false);
     }
+  };
+
+  const handleCancelDelete = () => {
+    setDeleteModal({ isOpen: false, id: null, title: '' });
   };
 
   if (loading) return <div className="container">Loading...</div>;
@@ -237,7 +253,7 @@ const AdminEducation = () => {
                     Edit
                   </button>
                   <button 
-                    onClick={() => handleDelete(item.id, item.school, item.degree)} 
+                    onClick={() => handleDeleteClick(item.id, item.school, item.degree)} 
                     className="btn btn-secondary" 
                     style={{ padding: '4px 8px', fontSize: '0.8rem', color: '#dc2626' }}
                   >
@@ -254,6 +270,15 @@ const AdminEducation = () => {
           </tbody>
         </table>
       </div>
+
+      <ConfirmModal 
+        isOpen={deleteModal.isOpen}
+        title="Delete Education"
+        message={`Are you sure you want to delete "${deleteModal.title}"? This action cannot be undone.`}
+        onConfirm={handleConfirmDelete}
+        onCancel={handleCancelDelete}
+        isDeleting={isDeleting}
+      />
     </div>
   );
 };

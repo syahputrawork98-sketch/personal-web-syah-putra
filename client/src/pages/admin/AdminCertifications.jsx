@@ -2,12 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAdminCertifications, deleteCertification } from '../../lib/api';
 import { removeToken } from '../../lib/auth';
+import ConfirmModal from '../../components/admin/ConfirmModal';
 
 const AdminCertifications = () => {
   const [certifications, setCertifications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
   const [activeTab, setActiveTab] = useState('ALL');
+  const [deleteModal, setDeleteModal] = useState({ isOpen: false, id: null, title: '' });
+  const [isDeleting, setIsDeleting] = useState(false);
   const navigate = useNavigate();
 
   const tabs = [
@@ -58,15 +62,29 @@ const AdminCertifications = () => {
     fetchCertifications(activeTab);
   }, [activeTab]);
 
-  const handleDelete = async (id, title) => {
-    if (window.confirm(`Are you sure you want to delete "${title}"?`)) {
-      try {
-        await deleteCertification(id);
-        fetchCertifications(activeTab);
-      } catch (err) {
-        alert('Failed to delete: ' + err.message);
-      }
+  const handleDeleteClick = (id, title) => {
+    setDeleteModal({ isOpen: true, id, title });
+  };
+
+  const handleConfirmDelete = async () => {
+    setIsDeleting(true);
+    setError('');
+    setSuccessMsg('');
+    try {
+      await deleteCertification(deleteModal.id);
+      setSuccessMsg(`Certification "${deleteModal.title}" deleted successfully.`);
+      setDeleteModal({ isOpen: false, id: null, title: '' });
+      fetchCertifications(activeTab);
+    } catch (err) {
+      setError('Failed to delete: ' + err.message);
+      setDeleteModal({ isOpen: false, id: null, title: '' });
+    } finally {
+      setIsDeleting(false);
     }
+  };
+
+  const handleCancelDelete = () => {
+    setDeleteModal({ isOpen: false, id: null, title: '' });
   };
 
   return (
@@ -99,7 +117,8 @@ const AdminCertifications = () => {
         ))}
       </div>
 
-      {error && <div style={{ color: 'red', marginBottom: 'var(--space-4)' }}>{error}</div>}
+      {error && <div style={{ color: '#dc2626', backgroundColor: '#fee2e2', padding: 'var(--space-4)', borderRadius: '4px', marginBottom: 'var(--space-4)' }}>{error}</div>}
+      {successMsg && <div style={{ color: '#166534', backgroundColor: '#dcfce7', padding: 'var(--space-4)', borderRadius: '4px', marginBottom: 'var(--space-4)' }}>{successMsg}</div>}
 
       <div className="card" style={{ overflowX: 'auto' }}>
         {loading ? (
@@ -159,7 +178,7 @@ const AdminCertifications = () => {
                         <a href={cert.certificateUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ padding: '6px 10px', fontSize: '0.8rem' }}>View File</a>
                       ) : null}
                       <button 
-                        onClick={() => handleDelete(cert.id, cert.title)} 
+                        onClick={() => handleDeleteClick(cert.id, cert.title)} 
                         className="btn btn-secondary" 
                         style={{ padding: '6px 10px', fontSize: '0.8rem', color: '#dc2626' }}
                       >
@@ -180,6 +199,15 @@ const AdminCertifications = () => {
           </table>
         )}
       </div>
+
+      <ConfirmModal 
+        isOpen={deleteModal.isOpen}
+        title="Delete Credential"
+        message={`Are you sure you want to delete "${deleteModal.title}"? This action cannot be undone.`}
+        onConfirm={handleConfirmDelete}
+        onCancel={handleCancelDelete}
+        isDeleting={isDeleting}
+      />
     </div>
   );
 };

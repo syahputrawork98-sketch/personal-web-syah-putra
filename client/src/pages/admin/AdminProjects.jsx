@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAdminProjects, deleteProject } from '../../lib/api';
 import { removeToken } from '../../lib/auth';
+import ConfirmModal from '../../components/admin/ConfirmModal';
 
 const AdminProjects = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
+  const [deleteModal, setDeleteModal] = useState({ isOpen: false, id: null, title: '' });
+  const [isDeleting, setIsDeleting] = useState(false);
   const navigate = useNavigate();
 
   const fetchProjects = async () => {
@@ -31,15 +35,29 @@ const AdminProjects = () => {
     fetchProjects();
   }, []);
 
-  const handleDelete = async (id, title) => {
-    if (window.confirm(`Are you sure you want to delete project: "${title}"?`)) {
-      try {
-        await deleteProject(id);
-        fetchProjects(); // Refresh list
-      } catch (err) {
-        alert(err.message || 'Failed to delete project');
-      }
+  const handleDeleteClick = (id, title) => {
+    setDeleteModal({ isOpen: true, id, title });
+  };
+
+  const handleConfirmDelete = async () => {
+    setIsDeleting(true);
+    setError('');
+    setSuccessMsg('');
+    try {
+      await deleteProject(deleteModal.id);
+      setSuccessMsg(`Project "${deleteModal.title}" deleted successfully.`);
+      setDeleteModal({ isOpen: false, id: null, title: '' });
+      fetchProjects();
+    } catch (err) {
+      setError(err.message || 'Failed to delete project');
+      setDeleteModal({ isOpen: false, id: null, title: '' });
+    } finally {
+      setIsDeleting(false);
     }
+  };
+
+  const handleCancelDelete = () => {
+    setDeleteModal({ isOpen: false, id: null, title: '' });
   };
 
   if (loading) return <div style={{ textAlign: 'center', padding: 'var(--space-8)' }}>Loading projects...</div>;
@@ -56,6 +74,12 @@ const AdminProjects = () => {
       {error && (
         <div style={{ backgroundColor: '#fee2e2', color: '#dc2626', padding: 'var(--space-4)', borderRadius: '4px', marginBottom: 'var(--space-6)' }}>
           {error}
+        </div>
+      )}
+      
+      {successMsg && (
+        <div style={{ backgroundColor: '#dcfce7', color: '#166534', padding: 'var(--space-4)', borderRadius: '4px', marginBottom: 'var(--space-6)' }}>
+          {successMsg}
         </div>
       )}
 
@@ -106,7 +130,7 @@ const AdminProjects = () => {
                         Edit
                       </Link>
                       <button 
-                        onClick={() => handleDelete(project.id, project.title)}
+                        onClick={() => handleDeleteClick(project.id, project.title)}
                         className="btn btn-secondary" 
                         style={{ padding: '4px 8px', fontSize: '0.75rem', color: '#dc2626' }}
                       >
@@ -120,6 +144,15 @@ const AdminProjects = () => {
           </tbody>
         </table>
       </div>
+
+      <ConfirmModal 
+        isOpen={deleteModal.isOpen}
+        title="Delete Project"
+        message={`Are you sure you want to delete "${deleteModal.title}"? This action cannot be undone.`}
+        onConfirm={handleConfirmDelete}
+        onCancel={handleCancelDelete}
+        isDeleting={isDeleting}
+      />
     </div>
   );
 };

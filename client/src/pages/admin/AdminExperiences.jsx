@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAdminExperiences, deleteExperience } from '../../lib/api';
 import { removeToken } from '../../lib/auth';
+import ConfirmModal from '../../components/admin/ConfirmModal';
 
 const AdminExperiences = () => {
   const [experiences, setExperiences] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
+  const [deleteModal, setDeleteModal] = useState({ isOpen: false, id: null, title: '' });
+  const [isDeleting, setIsDeleting] = useState(false);
   const navigate = useNavigate();
 
   const fetchExperiences = async () => {
@@ -29,15 +33,29 @@ const AdminExperiences = () => {
     fetchExperiences();
   }, []);
 
-  const handleDelete = async (id, role, company) => {
-    if (window.confirm(`Are you sure you want to delete "${role}" at "${company}"?`)) {
-      try {
-        await deleteExperience(id);
-        fetchExperiences();
-      } catch (err) {
-        alert('Failed to delete: ' + err.message);
-      }
+  const handleDeleteClick = (id, role, company) => {
+    setDeleteModal({ isOpen: true, id, title: `${role} at ${company}` });
+  };
+
+  const handleConfirmDelete = async () => {
+    setIsDeleting(true);
+    setError('');
+    setSuccessMsg('');
+    try {
+      await deleteExperience(deleteModal.id);
+      setSuccessMsg(`Experience "${deleteModal.title}" deleted successfully.`);
+      setDeleteModal({ isOpen: false, id: null, title: '' });
+      fetchExperiences();
+    } catch (err) {
+      setError('Failed to delete: ' + err.message);
+      setDeleteModal({ isOpen: false, id: null, title: '' });
+    } finally {
+      setIsDeleting(false);
     }
+  };
+
+  const handleCancelDelete = () => {
+    setDeleteModal({ isOpen: false, id: null, title: '' });
   };
 
   if (loading) return <div style={{ textAlign: 'center', padding: 'var(--space-8)' }}>Loading experiences...</div>;
@@ -49,7 +67,8 @@ const AdminExperiences = () => {
         <Link to="/admin/experience/new" className="btn btn-primary">Add New Experience</Link>
       </div>
 
-      {error && <div style={{ color: 'red', marginBottom: 'var(--space-4)' }}>{error}</div>}
+      {error && <div style={{ color: '#dc2626', backgroundColor: '#fee2e2', padding: 'var(--space-4)', borderRadius: '4px', marginBottom: 'var(--space-4)' }}>{error}</div>}
+      {successMsg && <div style={{ color: '#166534', backgroundColor: '#dcfce7', padding: 'var(--space-4)', borderRadius: '4px', marginBottom: 'var(--space-4)' }}>{successMsg}</div>}
 
       <div className="card" style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
@@ -90,7 +109,7 @@ const AdminExperiences = () => {
                   <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
                     <Link to={`/admin/experience/${exp.id}/edit`} className="btn btn-secondary" style={{ padding: '6px 10px', fontSize: '0.8rem' }}>Edit</Link>
                     <button 
-                      onClick={() => handleDelete(exp.id, exp.role, exp.company)} 
+                      onClick={() => handleDeleteClick(exp.id, exp.role, exp.company)} 
                       className="btn btn-secondary" 
                       style={{ padding: '6px 10px', fontSize: '0.8rem', color: '#dc2626' }}
                     >
@@ -108,6 +127,15 @@ const AdminExperiences = () => {
           </tbody>
         </table>
       </div>
+
+      <ConfirmModal 
+        isOpen={deleteModal.isOpen}
+        title="Delete Experience"
+        message={`Are you sure you want to delete "${deleteModal.title}"? This action cannot be undone.`}
+        onConfirm={handleConfirmDelete}
+        onCancel={handleCancelDelete}
+        isDeleting={isDeleting}
+      />
     </div>
   );
 };
