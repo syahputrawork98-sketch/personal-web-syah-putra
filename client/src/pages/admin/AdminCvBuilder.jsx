@@ -377,22 +377,21 @@ const AdminCvBuilder = () => {
         </div>
 
         {/* Right Panel: ATS Preview */}
-        <div 
-          id="cv-print-area"
-          style={{ 
-          backgroundColor: '#fff', 
-          width: '100%', 
-          maxWidth: '210mm',
-          aspectRatio: '210 / 297',
-          padding: '20mm',
-          boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-          color: '#000',
-          fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-          overflowY: 'auto',
-          boxSizing: 'border-box',
-          boxSizing: 'border-box',
-          lineHeight: 1.35
-        }}>
+        <div style={{ display: 'flex', justifyContent: 'center', width: '100%', overflowX: 'auto', paddingBottom: '20px' }}>
+          <div style={{ transform: 'scale(0.85)', transformOrigin: 'top center', marginBottom: '-40mm', width: '210mm' }}>
+            <div 
+              id="cv-print-area"
+              style={{ 
+              backgroundColor: '#fff', 
+              width: '100%', 
+              minHeight: '297mm',
+              padding: '14mm 20mm',
+              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+              color: '#000',
+              fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+              boxSizing: 'border-box',
+              lineHeight: 1.35
+            }}>
           {/* Header Section */}
           <div style={{ textAlign: 'center', marginBottom: '6mm' }}>
             <h1 style={{ margin: '0 0 1mm 0', fontSize: '18pt', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
@@ -497,6 +496,8 @@ const AdminCvBuilder = () => {
               </div>
             );
           })}
+            </div>
+          </div>
         </div>
       </div>
     </div>

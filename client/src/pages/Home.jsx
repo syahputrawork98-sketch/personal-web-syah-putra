@@ -151,12 +151,7 @@ const Home = () => {
             <Link to="/projects" className="btn btn-primary">{currentHero.primaryCtaLabel}</Link>
           )}
           {currentHero.secondaryCtaLabel && (
-            <a 
-              href="/cv/cv-syah-putra-nugraha-ats.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-secondary"
-            >
+            <a href="/cv/syahputra-n-ats-cv.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
               {currentHero.secondaryCtaLabel}
             </a>
           )}

@@ -16,13 +16,14 @@
     top: 0 !important;
     width: 210mm !important; 
     margin: 0 !important;
-    padding: 20mm !important; /* 2cm margin */
+    padding: 14mm 20mm !important; 
     background-color: white !important;
     color: black !important;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     box-shadow: none !important;
     border: none !important;
     overflow: visible !important;
+    transform: none !important;
   }
 
   /* Setup A4 Page */
