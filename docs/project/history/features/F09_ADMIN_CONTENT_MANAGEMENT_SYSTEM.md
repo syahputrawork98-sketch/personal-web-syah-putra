@@ -21,6 +21,7 @@ Mencakup dashboard antarmuka admin untuk menambahkan, mengubah, atau menghapus k
 | F09C | Credential Management Module | Completed | Membangun dan mengaudit UI edit credentials (F09C.1). | F09A |
 | F09D | CV and Asset Link Management Module | Completed | Mengaudit dan menyinkronkan jalur CV dan tautan aset (F09D.1). | F09A |
 | F09E | Profile/Settings Management Module | Completed | Mengaudit dan menyinkronkan UI profile dan settings (F09E.1). | F09A |
+| F09F | Project CRUD Runtime Verification and Public Sync | Completed | Verifikasi runtime end-to-end CRUD Project admin terhadap API dan sync halaman publik. | F09B |
 
 ## HOLD / Blocked Notes
 - Seluruh prioritas modul parsial F09 telah terpenuhi.
@@ -37,3 +38,4 @@ Mencakup dashboard antarmuka admin untuk menambahkan, mengubah, atau menghapus k
 - [F09C.1] QA Audit diselesaikan untuk *Credential Management Module* dan dimuat dalam `docs/backend/CREDENTIAL_MANAGEMENT_CMS_QA.md`. Relasi data frontend-backend serta perlindungan *unauthorized catch block* sudah ditambal.
 - [F09D.1] QA Audit dan sinkronisasi tautan aset diselesaikan untuk *CV and Asset Link Management Module* dan dimuat di `docs/backend/CV_ASSET_LINK_CMS_QA.md`. Memastikan integritas path CV statis dengan field form Admin, tanpa perombakan sistem upload.
 - [F09E.1] QA Audit telah diselesaikan untuk *Profile and Settings Management Module* dan terdokumentasi dalam `docs/backend/PROFILE_SETTINGS_CMS_QA.md`. Penanganan autentikasi 401 dan proteksi payload di lapisan *controller* telah diselaraskan.
+- [F09F] Verifikasi runtime untuk operasi CRUD Project telah dilakukan (Create, Read, Update DRAFT/PUBLISHED, Delete). Data tersimpan dengan benar di PostgreSQL dan tersinkronisasi instan dengan endpoint publik `/api/projects`. Tidak ditemukan bug pada logic flow ini.
