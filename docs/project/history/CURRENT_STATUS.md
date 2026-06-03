@@ -23,7 +23,7 @@
 | F07 | Backend API System | server | Completed | Seluruh siklus F07 telah divaidasi (F07A-F07H). Docker, Prisma, Backend, dan koneksi Frontend terverifikasi secara runtime. | Lanjutkan ke fitur selanjutnya / deploy | [F07_BACKEND_API_SYSTEM.md](features/F07_BACKEND_API_SYSTEM.md) |
 | F08 | Admin Login and Auth System | backend/auth | Completed | Rangkaian skeleton *backend/frontend* auth sudah diverifikasi penuh melalui Basic Security QA dan dinyatakan aman (*logic siap*). | (Selesai, lanjutkan ke F09) | [F08_ADMIN_LOGIN_AUTH_SYSTEM.md](features/F08_ADMIN_LOGIN_AUTH_SYSTEM.md) |
 | F09 | Admin Content Management System | frontend/backend | Completed | Modul CMS telah diselesaikan audit fungsionalitas dan perlindungan autentikasinya untuk Project, Credential, Asset Link, dan Settings Module. | (Selesai, lanjutkan ke F10) | [F09_ADMIN_CONTENT_MANAGEMENT_SYSTEM.md](features/F09_ADMIN_CONTENT_MANAGEMENT_SYSTEM.md) |
-| F10 | Deployment and Domain System | deployment | HOLD / Partial | F10A dan F10B selesai, kebutuhan environment production sudah dipetakan. Menunggu keputusan final domain dan live deployment. | HOLD / Domain final decision required before F10C | [F10_DEPLOYMENT_DOMAIN_SYSTEM.md](features/F10_DEPLOYMENT_DOMAIN_SYSTEM.md) |
+| F10 | Deployment and Domain System | deployment | HOLD / Partial | F10A - F10D selesai, kebutuhan environment production dan checklist variabel sudah dipetakan. Menunggu keputusan final domain dan live deployment. | HOLD / Domain final decision required before F10E | [F10_DEPLOYMENT_DOMAIN_SYSTEM.md](features/F10_DEPLOYMENT_DOMAIN_SYSTEM.md) |
 
 ## Deployment Status
 - Target awal: Vercel frontend-only deployment
