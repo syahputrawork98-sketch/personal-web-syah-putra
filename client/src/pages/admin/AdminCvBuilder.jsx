@@ -29,7 +29,7 @@ const AdminCvBuilder = () => {
   const [error, setError] = useState(null);
   const [successMsg, setSuccessMsg] = useState('');
   
-  const [skillSearchQuery, setSkillSearchQuery] = useState('');
+  const [searchQueries, setSearchQueries] = useState({});
 
   useEffect(() => {
     const fetchAllData = async () => {
@@ -66,7 +66,6 @@ const AdminCvBuilder = () => {
         });
 
         if (configRes) {
-          // Ensure mandatory sections are enabled
           const ensuredSections = configRes.sections.map(s => {
             if (s.id === 'experience' || s.id === 'education') {
               return { ...s, enabled: true };
@@ -124,7 +123,6 @@ const AdminCvBuilder = () => {
 
   const toggleSection = (index) => {
     const newSections = [...cvConfig.sections];
-    // Prevent toggling mandatory sections
     if (newSections[index].id === 'experience' || newSections[index].id === 'education') return;
     newSections[index].enabled = !newSections[index].enabled;
     setCvConfig({ ...cvConfig, sections: newSections });
@@ -297,80 +295,66 @@ const AdminCvBuilder = () => {
                       </div>
                     </div>
 
-                    {/* Skill Selector Area */}
-                    {section.id === 'skills' && section.enabled && (
+                    {/* Unified Selector Area */}
+                    {section.enabled && (
                       <div style={{ marginTop: 'var(--space-3)', paddingTop: 'var(--space-3)', borderTop: '1px dashed var(--border-color)' }}>
                         <input 
                           type="text" 
-                          placeholder="Search and add skills..."
-                          value={skillSearchQuery}
-                          onChange={(e) => setSkillSearchQuery(e.target.value)}
+                          placeholder={`Search and select ${section.id}...`}
+                          value={searchQueries[section.id] || ''}
+                          onChange={(e) => setSearchQueries({...searchQueries, [section.id]: e.target.value})}
                           className="form-input"
                           style={{ width: '100%', marginBottom: '12px', boxSizing: 'border-box' }}
                         />
-                        {skillSearchQuery && (
+                        {searchQueries[section.id] && (
                           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '12px', padding: '8px', backgroundColor: 'var(--bg-color)', borderRadius: '4px' }}>
-                            {sectionData.filter(s => s.name.toLowerCase().includes(skillSearchQuery.toLowerCase()) && !section.selectedIds?.includes(s.id)).slice(0, 10).map(item => (
-                              <button
-                                key={item.id}
-                                onClick={() => {
-                                  toggleItemSelection(actualIndexInConfig, item.id);
-                                  setSkillSearchQuery('');
-                                }}
-                                style={{ padding: '4px 10px', fontSize: '0.8rem', borderRadius: '16px', border: '1px solid var(--primary-color)', background: 'transparent', color: 'var(--primary-color)', cursor: 'pointer' }}
-                              >
-                                + {item.name}
-                              </button>
-                            ))}
-                            {sectionData.filter(s => s.name.toLowerCase().includes(skillSearchQuery.toLowerCase()) && !section.selectedIds?.includes(s.id)).length === 0 && (
-                              <span style={{ fontSize: '0.8rem', opacity: 0.6 }}>No skills found.</span>
+                            {sectionData.filter(s => {
+                               const label = s.name || s.title || s.role || s.degree || '';
+                               return label.toLowerCase().includes((searchQueries[section.id] || '').toLowerCase()) && !section.selectedIds?.includes(s.id);
+                            }).slice(0, 10).map(item => {
+                              let itemLabel = item.name || item.title || item.role || item.degree || 'Item';
+                              if (item.company) itemLabel += ` at ${item.company}`;
+                              if (item.school) itemLabel += ` at ${item.school}`;
+                              return (
+                                <button
+                                  key={item.id}
+                                  onClick={() => {
+                                    toggleItemSelection(actualIndexInConfig, item.id);
+                                    setSearchQueries({...searchQueries, [section.id]: ''});
+                                  }}
+                                  style={{ padding: '4px 10px', fontSize: '0.8rem', borderRadius: '16px', border: '1px solid var(--primary-color)', background: 'transparent', color: 'var(--primary-color)', cursor: 'pointer', textAlign: 'left' }}
+                                >
+                                  + {itemLabel}
+                                </button>
+                              );
+                            })}
+                            {sectionData.filter(s => {
+                               const label = s.name || s.title || s.role || s.degree || '';
+                               return label.toLowerCase().includes((searchQueries[section.id] || '').toLowerCase()) && !section.selectedIds?.includes(s.id);
+                            }).length === 0 && (
+                              <span style={{ fontSize: '0.8rem', opacity: 0.6 }}>No items found.</span>
                             )}
                           </div>
                         )}
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                           {(section.selectedIds || []).map(id => {
-                            const skillItem = sectionData.find(s => s.id === id);
-                            if (!skillItem) return null;
+                            const item = sectionData.find(s => s.id === id);
+                            if (!item) return null;
+                            let itemLabel = item.name || item.title || item.role || item.degree || 'Item';
+                            
                             return (
                               <div key={id} style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '4px 10px', fontSize: '0.8rem', borderRadius: '16px', backgroundColor: 'var(--primary-color)', color: 'white' }}>
-                                <span>{skillItem.name}</span>
+                                <span>{itemLabel}</span>
                                 <span style={{ cursor: 'pointer', fontWeight: 'bold' }} onClick={() => toggleItemSelection(actualIndexInConfig, id)}>×</span>
                               </div>
                             );
                           })}
                           {(section.selectedIds?.length === 0) && (
-                            <span style={{ fontSize: '0.8rem', opacity: 0.6, fontStyle: 'italic' }}>No skills selected (will display all by default).</span>
+                            <span style={{ fontSize: '0.8rem', opacity: 0.6, fontStyle: 'italic' }}>
+                              No specific items selected (all items will be shown by default).
+                            </span>
                           )}
                         </div>
-                      </div>
-                    )}
-
-                    {/* Other Sub-items */}
-                    {section.id !== 'skills' && section.enabled && sectionData.length > 0 && (
-                      <div style={{ marginTop: 'var(--space-3)', paddingLeft: '28px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                        {sectionData.map(item => {
-                          const isSelected = section.selectedIds?.includes(item.id);
-                          let itemLabel = item.title || item.name || item.role || item.degree || 'Item';
-                          if (item.company) itemLabel += ` at ${item.company}`;
-                          if (item.school) itemLabel += ` at ${item.school}`;
-                          
-                          return (
-                            <label key={item.id} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '0.85rem', cursor: 'pointer' }}>
-                              <input 
-                                type="checkbox" 
-                                checked={isSelected}
-                                onChange={() => toggleItemSelection(actualIndexInConfig, item.id)}
-                                style={{ marginTop: '2px' }}
-                              />
-                              <span style={{ lineHeight: 1.4 }}>{itemLabel}</span>
-                            </label>
-                          );
-                        })}
-                      </div>
-                    )}
-                    {section.id !== 'skills' && section.enabled && sectionData.length === 0 && (
-                      <div style={{ marginTop: 'var(--space-3)', paddingLeft: '28px', fontSize: '0.85rem', opacity: 0.6 }}>
-                        No items available in database.
                       </div>
                     )}
                   </div>
