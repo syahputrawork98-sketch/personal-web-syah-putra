@@ -89,8 +89,8 @@ Untuk menopang transaksi arsitektural ini (tanpa perlu dieksekusi sekarang), ran
 | F11D | CV Config State & Database Saving | Completed | Membangun *logic* Checkbox/Sorting di Admin UI dan menyambungkannya ke `/api/admin/cv-builder/config` (JSON db save). | F11C |
 | F11E.1 | CV Builder Input UX and ATS Layout Cleanup | Completed | Merapikan UI/UX form input (Manual Identity, Skill Chip Selector) dan membersihkan layout ATS preview agar lebih rapi. | F11D |
 | F11E.2 | Unified Database Item Selector UX | Completed | Menerapkan pola search + chip selector untuk semua seksi (Experience, Education, Projects, Credentials) menggantikan checklist panjang. | F11E.1 |
-| F11E | PDF Generation & Export Workflow | HOLD | Menyuntikkan CSS `@media print` dan mengirim hasil cetakan final ke backend `/api/admin/cv-builder/generate`. | F11E.2 |
-| F11F | Public Download Integration (F05 Sync) | HOLD | Menambatkan tombol "Download CV" publik ke *endpoint* `/api/cv/active` untuk meraih *file* terakhir. | F11E |
+| F11E.3 | ATS Print Layout and Browser PDF Export | Completed | Mengaktifkan tombol Print PDF berbasis browser (`window.print()`) dan menambahkan CSS `@media print` murni. | F11E.2 |
+| F11F | Public Download Integration (F05 Sync) | HOLD | Menambatkan tombol "Download CV" publik ke *endpoint* `/api/cv/active` untuk meraih *file* terakhir. | F11E.3 |
 
 ## HOLD / Blocked Notes
 - Melangkah ke F11E di batch eksekusi berikutnya.
@@ -101,3 +101,4 @@ Untuk menopang transaksi arsitektural ini (tanpa perlu dieksekusi sekarang), ran
 - [F11D] Mengimplementasikan _state management_ untuk CV Builder. Admin kini bisa melakukan centang _show/hide_, menata urutan dengan tombol *Up/Down*, memfilter item tertentu (contoh: hanya memunculkan 2 proyek unggulan), dan menyimpan `CV_BUILDER_CONFIG` dalam wujud JSON ke tabel `Setting` via rute `/api/admin/cv-builder/config`. Pratinjau A4 sudah bereaksi secara *real-time* terhadap modifikasi State UI.
 - [F11E.1] Merapikan UX CV Builder. Form dibagi menjadi Manual CV Identity (displayName, professionalTitle, targetRole, links) dan Database Sections. Skill selector diubah menjadi pencarian dengan chip selection agar tidak memakan ruang dengan list panjang. Experience dan Education diatur default aktif (mandatory). Layout A4 Preview dibersihkan menjadi lebih formal dan ATS-friendly (penggunaan sans-serif bersih, heading standar, dan struktur yang mudah dibaca).
 - [F11E.2] Menerapkan *Unified Database Item Selector*. Sistem seleksi item *search + chip* (yang sebelumnya hanya ada di Skills) kini diterapkan ke semua *Database Sections* (Projects, Experience, Education, dan Credentials). Checklist panjang sudah tidak digunakan, menghemat banyak ruang visual dan mempermudah kurasi CV yang presisi.
+- [F11E.3] Ekspor PDF berbasis browser. Tombol "Print / Save as PDF" telah ditambah yang memanggil `window.print()`. File styling khusus `cv-print.css` disuntikkan. Layout diset ke A4 Portrait murni, elemen-elemen admin disembunyikan total, dan menggunakan proteksi `page-break-inside: avoid` pada seluruh item untuk memastikan tidak ada pemisahan aneh saat render cetak. Backend upload masih disisihkan.

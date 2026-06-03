@@ -1,0 +1,39 @@
+@media print {
+  /* Hide all non-printable elements */
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* Make the CV preview and its children visible */
+  #cv-print-area, #cv-print-area * {
+    visibility: visible !important;
+  }
+
+  /* Reset layout constraints for print */
+  #cv-print-area {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 210mm !important; 
+    margin: 0 !important;
+    padding: 20mm !important; /* 2cm margin */
+    background-color: white !important;
+    color: black !important;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    box-shadow: none !important;
+    border: none !important;
+    overflow: visible !important;
+  }
+
+  /* Setup A4 Page */
+  @page {
+    size: A4 portrait;
+    margin: 0; 
+  }
+
+  /* Ensure items don't break across pages */
+  .cv-print-item {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}

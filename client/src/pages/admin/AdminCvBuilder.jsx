@@ -10,6 +10,7 @@ import {
   getCvBuilderConfig,
   updateCvBuilderConfig
 } from '../../lib/api';
+import '../../styles/cv-print.css';
 
 const AdminCvBuilder = () => {
   const [data, setData] = useState({
@@ -165,13 +166,21 @@ const AdminCvBuilder = () => {
           <h1 style={{ margin: '0 0 var(--space-2) 0' }}>CV Builder</h1>
           <p style={{ margin: 0, opacity: 0.7 }}>Atur dan sesuaikan isi CV Anda agar ATS-friendly sebelum dicetak.</p>
         </div>
-        <button 
-          onClick={handleSaveConfig} 
-          disabled={saving}
-          className="btn btn-primary"
-        >
-          {saving ? 'Saving...' : 'Save Config'}
-        </button>
+        <div style={{ display: 'flex', gap: 'var(--space-3)' }}>
+          <button 
+            onClick={() => window.print()} 
+            className="btn btn-secondary"
+          >
+            Print / Save as PDF
+          </button>
+          <button 
+            onClick={handleSaveConfig} 
+            disabled={saving}
+            className="btn btn-primary"
+          >
+            {saving ? 'Saving...' : 'Save Config'}
+          </button>
+        </div>
       </div>
 
       {error && <div style={{ backgroundColor: '#fee2e2', color: '#dc2626', padding: 'var(--space-4)', borderRadius: '4px' }}>{error}</div>}
@@ -365,7 +374,9 @@ const AdminCvBuilder = () => {
         </div>
 
         {/* Right Panel: ATS Preview */}
-        <div style={{ 
+        <div 
+          id="cv-print-area"
+          style={{ 
           backgroundColor: '#fff', 
           width: '100%', 
           maxWidth: '210mm',
@@ -429,7 +440,7 @@ const AdminCvBuilder = () => {
                 </h2>
                 
                 {section.id === 'experience' && displayData.map(exp => (
-                  <div key={exp.id} style={{ marginBottom: '4mm' }}>
+                  <div key={exp.id} className="cv-print-item" style={{ marginBottom: '4mm' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '11pt' }}>
                       <span>{exp.role}</span>
                       <span>{exp.period}</span>
@@ -440,7 +451,7 @@ const AdminCvBuilder = () => {
                 ))}
 
                 {section.id === 'education' && displayData.map(edu => (
-                  <div key={edu.id} style={{ marginBottom: '4mm' }}>
+                  <div key={edu.id} className="cv-print-item" style={{ marginBottom: '4mm' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '11pt' }}>
                       <span>{edu.school}</span>
                       <span>{edu.period}</span>
@@ -457,7 +468,7 @@ const AdminCvBuilder = () => {
                 )}
 
                 {section.id === 'projects' && displayData.map(proj => (
-                  <div key={proj.id} style={{ marginBottom: '4mm' }}>
+                  <div key={proj.id} className="cv-print-item" style={{ marginBottom: '4mm' }}>
                     <div style={{ fontWeight: 'bold', fontSize: '11pt' }}>
                       {proj.title}
                     </div>
@@ -467,7 +478,7 @@ const AdminCvBuilder = () => {
                 ))}
                 
                 {section.id === 'credentials' && displayData.map(cert => (
-                  <div key={cert.id} style={{ marginBottom: '3mm' }}>
+                  <div key={cert.id} className="cv-print-item" style={{ marginBottom: '3mm' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '11pt' }}>
                       <span>{cert.title}</span>
                       <span>{cert.issuedDate ? new Date(cert.issuedDate).getFullYear() : ''}</span>
