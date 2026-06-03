@@ -4,7 +4,7 @@
 Sistem pembuat CV (Curriculum Vitae) dinamis berbasis data dari database. Admin dapat memilih, mengurutkan, dan menampilkan profil, pengalaman, pendidikan, proyek, skill, dan kredensial menjadi format halaman A4, lalu mengekspornya menjadi dokumen PDF.
 
 ## Status
-Partial (F11A Completed)
+Partial (F11B Completed)
 
 ## Story
 User ingin data portofolio yang sudah terstruktur rapi di database (projects, skills, experience, dll) dapat dimanfaatkan ulang menjadi CV terstandarisasi tanpa harus mengetik ulang di software desain (Word/Canva). CV harus bisa dikonfigurasi urutannya dan diekspor ke PDF dengan tampilan profesional.
@@ -55,10 +55,13 @@ Agar implementasi aman dan tidak berat, MVP akan menggunakan pendekatan form kon
 | Sub-Batch | Name | Status | Purpose | Dependency |
 |---|---|---|---|---|
 | F11A | CV Builder Feasibility and Scope Design | Completed | Analisis awal, desain UI, dan penentuan limitasi MVP. | - |
-| F11B | CV Builder UI Skeleton & Data Fetching | HOLD | Membuat *layout* dasar kiri-kanan (Config vs Preview) dan menyedot semua data dari API. | F11A |
+| F11B | CV Builder UI Skeleton & Data Fetching | Completed | Membuat *layout* dasar kiri-kanan (Config vs Preview) dan menyedot semua data dari API. | F11A |
 | F11C | CV Config State & Ordering Control | HOLD | Membangun *logic* Checkbox (Show/Hide) dan tombol Up/Down (tanpa drag-and-drop). | F11B |
 | F11D | A4 Print CSS & Client-side Export | HOLD | Memoles tampilan *preview* dan menyuntikkan aturan `@media print` & *Page Break*. | F11C |
 | F11E | Save Config to DB (JSON Site Settings) | HOLD | Menyimpan *state* susunan CV ke database melalui *endpoint settings* yang sudah ada. | F11D |
 
 ## HOLD / Blocked Notes
-- Melangkah ke F11B di batch eksekusi berikutnya.
+- Melangkah ke F11C di batch eksekusi berikutnya.
+
+## Eksekusi Log
+- [F11B] Berhasil membuat skeleton `/admin/cv-builder` dengan grid layout kiri-kanan. Data config Profile, Contact, Experience, Education, Skills, Projects, dan Credentials tersambung mulus dari Prisma DB via *existing endpoints* di `lib/api.js`. Live preview kanan mensimulasikan kertas A4 murni dengan CSS Proporsional yang siap untuk pencetakan (tanpa PDF Export backend). Belum ada mekanisme simpan urutan (masih statis).

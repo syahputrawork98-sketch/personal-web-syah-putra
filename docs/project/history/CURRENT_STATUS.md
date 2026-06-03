@@ -24,7 +24,7 @@
 | F08 | Admin Login and Auth System | backend/auth | Completed | Rangkaian skeleton *backend/frontend* auth sudah diverifikasi penuh melalui Basic Security QA dan dinyatakan aman (*logic siap*). | (Selesai, lanjutkan ke F09) | [F08_ADMIN_LOGIN_AUTH_SYSTEM.md](features/F08_ADMIN_LOGIN_AUTH_SYSTEM.md) |
 | F09 | Admin Content Management System | frontend/backend | Completed | Modul CMS telah diselesaikan audit fungsionalitas dan perlindungan autentikasinya untuk Project, Credential, Asset Link, dan Settings Module. | (Selesai, lanjutkan ke F10) | [F09_ADMIN_CONTENT_MANAGEMENT_SYSTEM.md](features/F09_ADMIN_CONTENT_MANAGEMENT_SYSTEM.md) |
 | F10 | Deployment and Domain System | deployment | HOLD / Partial | F10A - F10E selesai, rekomendasi platform production (Vercel, Render/Railway, Neon) sudah final. Menunggu keputusan final domain dan eksekusi deployment riil. | HOLD / Domain final decision required before F10F | [F10_DEPLOYMENT_DOMAIN_SYSTEM.md](features/F10_DEPLOYMENT_DOMAIN_SYSTEM.md) |
-| F11 | CV Builder and PDF Export System | frontend/admin | Partial | Perencanaan arsitektur dan UI CV Builder telah selesai (F11A). Menunggu pengembangan UI Skeleton. | F11B — CV Builder UI Skeleton | [F11_CV_BUILDER_PDF_EXPORT_SYSTEM.md](features/F11_CV_BUILDER_PDF_EXPORT_SYSTEM.md) |
+| F11 | CV Builder and PDF Export System | frontend/admin | Partial | Halaman CV Builder Skeleton dan sinkronisasi API data (F11B) telah rampung. Belum ada logic Checkbox Show/Hide dan sorting urutan. | F11C — CV Config State & Ordering | [F11_CV_BUILDER_PDF_EXPORT_SYSTEM.md](features/F11_CV_BUILDER_PDF_EXPORT_SYSTEM.md) |
 
 ## Deployment Status
 - Target awal: Vercel frontend-only deployment

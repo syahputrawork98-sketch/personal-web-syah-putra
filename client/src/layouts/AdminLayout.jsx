@@ -51,6 +51,7 @@ const AdminLayout = () => {
           <Link to="/admin/skills" style={linkStyle(isActive('/admin/skills'))}>Skills</Link>
           <Link to="/admin/experience" style={linkStyle(isActive('/admin/experience'))}>Experience</Link>
           <Link to="/admin/education" style={linkStyle(isActive('/admin/education'))}>Education</Link>
+          <Link to="/admin/cv-builder" style={linkStyle(isActive('/admin/cv-builder'))}>CV Builder</Link>
           
           <div style={{ marginTop: 'var(--space-6)' }}>
             <div style={{ marginBottom: 'var(--space-2)', fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-color)', opacity: 0.5, fontWeight: 'bold', paddingLeft: '16px' }}>Configuration</div>
