@@ -20,7 +20,7 @@ const DEFAULT_CONFIG = {
 
 exports.getConfig = async (req, res) => {
   try {
-    const setting = await prisma.setting.findUnique({
+    const setting = await prisma.siteSetting.findUnique({
       where: { key: CONFIG_KEY }
     });
 
@@ -54,7 +54,7 @@ exports.updateConfig = async (req, res) => {
     };
     const jsonString = JSON.stringify(newConfig);
 
-    await prisma.setting.upsert({
+    await prisma.siteSetting.upsert({
       where: { key: CONFIG_KEY },
       update: { value: jsonString },
       create: { key: CONFIG_KEY, value: jsonString }
