@@ -18,6 +18,7 @@ FITUR.md      # Rangkuman fitur berjalan dan status fungsionalitas
 - **Multi-Category Portfolio**: Sistem filter dinamis proyek lintas bidang (IT & Web, Manufaktur & Teknik, Model 3D, Bangunan & RAB).
 - **Project Detail Modal**: Overlay interaktif untuk detail komprehensif proyek dengan sistem Link Tiles cerdas.
 - **CV Variant Selector**: Fasilitas unduh/pratinjau CV yang ditargetkan untuk bidang keahlian spesifik beserta Newspaper Wireframe preview.
+- **CV Builder (CMS)**: Alat pembuat CV A4 dinamis terintegrasi di dalam panel admin (*Perencanaan selesai, menanti pengembangan UI*).
 - **Credentials Manager**: Integrasi sertifikat dan dokumen lisensi dengan fitur Google Drive Preview langsung di dalam halaman.
 - **Branding Monogram SPN**: Identitas visual seragam pada komponen navigasi publik.
 - **Data Fallback System**: Ketahanan layanan dengan data statis lokal jika akses server backend tidak tersedia.

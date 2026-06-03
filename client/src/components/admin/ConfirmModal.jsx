@@ -6,16 +6,16 @@ const ConfirmModal = ({ isOpen, title, message, onConfirm, onCancel, isDeleting 
   return (
     <div style={{
       position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
+      inset: 0,
       backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      zIndex: 1000,
-      padding: 'var(--space-4)'
+      display: 'grid',
+      placeItems: 'center',
+      zIndex: 9999,
+      padding: 'var(--space-4)',
+      minHeight: '100dvh',
+      width: '100vw',
+      boxSizing: 'border-box',
+      transform: 'translateZ(0)'
     }}>
       <div className="card" style={{
         backgroundColor: 'var(--card-bg)',
