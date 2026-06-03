@@ -93,6 +93,7 @@ Untuk menopang transaksi arsitektural ini (tanpa perlu dieksekusi sekarang), ran
 | F11E.4 | ATS Print QA Polish and Final Layout Guard | Completed | Melakukan QA spacing layout, menambah helper note UX di admin, dan mengamankan print CSS `page-break-inside`. | F11E.3 |
 | F11F | Public Download Integration (F05 Sync) | Completed | Menambatkan tombol "Download CV" publik ke URL statis file PDF final. Menunggu user meletakkan file ATS final di direktori `public/cv`. | F11E.4 |
 | F11F.1 | Final ATS PDF Handoff Activation | Completed | Mengaktifkan tombol Download CV publik menggunakan file final `cv-syah-putra-nugraha-ats.pdf`. | F11F |
+| F11G | ATS Preview Typography and Compact Layout Polish | Completed | Merapikan tipografi dan kepadatan layout (compact ATS spacing) di area `cv-print-area`. | F11F.1 |
 
 ## HOLD / Blocked Notes
 - (Tidak ada hambatan. Modul ini dinyatakan *Completed*.)
@@ -107,3 +108,4 @@ Untuk menopang transaksi arsitektural ini (tanpa perlu dieksekusi sekarang), ran
 - [F11E.4] Finalisasi QA Layout Print ATS. Helper UX ditambahkan di admin UI ("ATS Tip: pilih item relevan..."). Mengecek kepadatan spacing, konsistensi font A4, serta ketahanan `break-inside: avoid`. Blok statis F11E (Backend PDF upload) resmi diterminasi dan diarahkan ke workflow browser-print murni. Next: F11F.
 - [F11F] Integrasi statis Public Download. Modul CV Builder (F11) telah selaras desain arsitekturnya dengan modul Download (F05) tanpa campur tangan sinkronisasi database/API. Tombol di-setting untuk sementara menggunakan PDF fallback. File final PDF `cv-syah-putra-nugraha-ats.pdf` belum ada, proses integrasi penuh Blocked.
 - [F11F.1] Pengaktifan final PDF Handoff. Tombol Download CV di public Home diubah agar mengarah langsung ke `cv-syah-putra-nugraha-ats.pdf` yang sudah dipastikan diletakkan oleh user di `/client/public/cv/`. Batch F11 ini secara resmi mencapai status *Completed* penuh.
+- [F11G] *Patch Polish*: Menyesuaikan ukuran font (18pt untuk Header, 10pt-9pt untuk konten) dan margin di container `cv-print-area` agar layout menjadi padat (*compact*), tidak tampak seperti UI web besar, namun menyerupai dokumen CV ATS sungguhan. Line height juga diperketat ke 1.35.

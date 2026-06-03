@@ -390,18 +390,19 @@ const AdminCvBuilder = () => {
           fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
           overflowY: 'auto',
           boxSizing: 'border-box',
-          lineHeight: 1.5
+          boxSizing: 'border-box',
+          lineHeight: 1.35
         }}>
           {/* Header Section */}
-          <div style={{ textAlign: 'center', marginBottom: '8mm' }}>
-            <h1 style={{ margin: '0 0 2mm 0', fontSize: '22pt', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '6mm' }}>
+            <h1 style={{ margin: '0 0 1mm 0', fontSize: '18pt', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
               {cvConfig.displayName || data.profile?.name || 'YOUR NAME'}
             </h1>
-            <div style={{ fontSize: '12pt', marginBottom: '3mm', fontWeight: 'bold', color: '#333' }}>
+            <div style={{ fontSize: '10pt', marginBottom: '2mm', fontWeight: 'bold', color: '#333' }}>
               {cvConfig.professionalTitle || data.profile?.title || 'Professional Title'} 
               {cvConfig.targetRole && ` | ${cvConfig.targetRole}`}
             </div>
-            <div style={{ fontSize: '10pt', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px', color: '#444' }}>
+            <div style={{ fontSize: '9pt', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '6px', color: '#444' }}>
               <span>{data.contact?.email || 'email@example.com'}</span>
               <span>•</span>
               <span>{data.contact?.phone || '+62 000-0000-0000'}</span>
@@ -417,11 +418,11 @@ const AdminCvBuilder = () => {
           </div>
 
           {cvConfig.summary && (
-            <div style={{ marginBottom: '6mm' }}>
-              <h2 style={{ fontSize: '13pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1.5px solid #000', margin: '0 0 3mm 0', paddingBottom: '1mm', letterSpacing: '0.5px' }}>
+            <div style={{ marginBottom: '4mm' }}>
+              <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #000', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
                 Professional Summary
               </h2>
-              <div style={{ fontSize: '10pt', textAlign: 'justify', whiteSpace: 'pre-line' }}>
+              <div style={{ fontSize: '9pt', textAlign: 'justify', whiteSpace: 'pre-line' }}>
                 {cvConfig.summary}
               </div>
             </div>
@@ -437,56 +438,56 @@ const AdminCvBuilder = () => {
             if (displayData.length === 0) return null;
 
             return (
-              <div key={section.id} style={{ marginBottom: '6mm' }}>
-                <h2 style={{ fontSize: '13pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1.5px solid #000', margin: '0 0 3mm 0', paddingBottom: '1mm', letterSpacing: '0.5px' }}>
+              <div key={section.id} style={{ marginBottom: '4mm' }}>
+                <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #000', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
                   {formatSectionTitle(section.id)}
                 </h2>
                 
                 {section.id === 'experience' && displayData.map(exp => (
-                  <div key={exp.id} className="cv-print-item" style={{ marginBottom: '4mm' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '11pt' }}>
+                  <div key={exp.id} className="cv-print-item" style={{ marginBottom: '3mm' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '10pt' }}>
                       <span>{exp.role}</span>
                       <span>{exp.period}</span>
                     </div>
-                    <div style={{ fontSize: '10pt', fontStyle: 'italic', marginBottom: '1mm' }}>{exp.company}</div>
-                    {exp.description && <p style={{ fontSize: '10pt', margin: '0', whiteSpace: 'pre-line' }}>{exp.description}</p>}
+                    <div style={{ fontSize: '9pt', fontStyle: 'italic', marginBottom: '0.5mm', color: '#333' }}>{exp.company}</div>
+                    {exp.description && <p style={{ fontSize: '9pt', margin: '0', whiteSpace: 'pre-line' }}>{exp.description}</p>}
                   </div>
                 ))}
 
                 {section.id === 'education' && displayData.map(edu => (
-                  <div key={edu.id} className="cv-print-item" style={{ marginBottom: '4mm' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '11pt' }}>
+                  <div key={edu.id} className="cv-print-item" style={{ marginBottom: '3mm' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '10pt' }}>
                       <span>{edu.school}</span>
                       <span>{edu.period}</span>
                     </div>
-                    <div style={{ fontSize: '10pt', marginBottom: '1mm' }}>{edu.degree}</div>
-                    {edu.description && <p style={{ fontSize: '10pt', margin: '0', whiteSpace: 'pre-line' }}>{edu.description}</p>}
+                    <div style={{ fontSize: '9pt', marginBottom: '0.5mm', color: '#333' }}>{edu.degree}</div>
+                    {edu.description && <p style={{ fontSize: '9pt', margin: '0', whiteSpace: 'pre-line' }}>{edu.description}</p>}
                   </div>
                 ))}
 
                 {section.id === 'skills' && (
-                  <div style={{ fontSize: '10pt' }}>
+                  <div style={{ fontSize: '9pt' }}>
                     {displayData.map(s => s.name).join(', ')}
                   </div>
                 )}
 
                 {section.id === 'projects' && displayData.map(proj => (
-                  <div key={proj.id} className="cv-print-item" style={{ marginBottom: '4mm' }}>
-                    <div style={{ fontWeight: 'bold', fontSize: '11pt' }}>
+                  <div key={proj.id} className="cv-print-item" style={{ marginBottom: '3mm' }}>
+                    <div style={{ fontWeight: 'bold', fontSize: '10pt' }}>
                       {proj.title}
                     </div>
-                    <div style={{ fontSize: '10pt', fontStyle: 'italic', marginBottom: '1mm', color: '#555' }}>{proj.category}</div>
-                    {proj.description && <p style={{ fontSize: '10pt', margin: '0', whiteSpace: 'pre-line' }}>{proj.description}</p>}
+                    <div style={{ fontSize: '9pt', fontStyle: 'italic', marginBottom: '0.5mm', color: '#444' }}>{proj.category}</div>
+                    {proj.description && <p style={{ fontSize: '9pt', margin: '0', whiteSpace: 'pre-line' }}>{proj.description}</p>}
                   </div>
                 ))}
                 
                 {section.id === 'credentials' && displayData.map(cert => (
-                  <div key={cert.id} className="cv-print-item" style={{ marginBottom: '3mm' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '11pt' }}>
+                  <div key={cert.id} className="cv-print-item" style={{ marginBottom: '2mm' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '10pt' }}>
                       <span>{cert.title}</span>
                       <span>{cert.issuedDate ? new Date(cert.issuedDate).getFullYear() : ''}</span>
                     </div>
-                    <div style={{ fontSize: '10pt' }}>{cert.issuer}</div>
+                    <div style={{ fontSize: '9pt', color: '#333' }}>{cert.issuer}</div>
                   </div>
                 ))}
               </div>
