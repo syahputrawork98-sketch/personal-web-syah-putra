@@ -9,6 +9,7 @@ import Contact from './pages/Contact';
 import Credentials from './pages/Credentials';
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
+import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminProjects from './pages/admin/AdminProjects';
 import AdminProjectCreate from './pages/admin/AdminProjectCreate';
 import AdminProjectEdit from './pages/admin/AdminProjectEdit';
@@ -54,7 +55,7 @@ function App() {
             </ProtectedRoute>
           }
         >
-          <Route index element={<AdminProjects />} />
+          <Route index element={<AdminDashboard />} />
           <Route path="projects" element={<AdminProjects />} />
           <Route path="projects/new" element={<AdminProjectCreate />} />
           <Route path="projects/:id/edit" element={<AdminProjectEdit />} />
