@@ -120,7 +120,7 @@ const AdminCertifications = () => {
             <tbody>
               {certifications.map((cert) => (
                 <tr key={cert.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
-                  <td style={{ padding: '12px' }}>{cert.order}</td>
+                  <td style={{ padding: '12px' }}>{cert.displayPriority}</td>
                   <td style={{ padding: '12px' }}>
                     <div style={{ fontWeight: 'bold' }}>{cert.title}</div>
                     <div style={{ fontSize: '0.85rem', opacity: 0.7 }}>{cert.issuer}</div>

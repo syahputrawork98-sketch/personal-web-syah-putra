@@ -19,6 +19,7 @@ Sangat berkaitan dengan **F07 Backend API System** dan **F08 Admin Login and Aut
 - [Credential Management CMS QA](CREDENTIAL_MANAGEMENT_CMS_QA.md) - Laporan audit validasi *Credential Management Module* (F09C.1).
 - [CV and Asset Link Management CMS QA](CV_ASSET_LINK_CMS_QA.md) - Laporan audit tautan aset dan konfigurasi CV (F09D.1).
 - [Profile and Settings Management CMS QA](PROFILE_SETTINGS_CMS_QA.md) - Laporan audit validasi konfigurasi hero, profile, dan contact (F09E.1).
+- Pengecekan Kesiapan *Credential Management* (F09G) telah diaudit. Checklist pengujian manual tersedia di laporan eksekusi, dengan alur CRUD Credential tersambung dan endpoint API tervalidasi strukturnya.
 
 ## Area Backend yang Dicatat
 - server structure
