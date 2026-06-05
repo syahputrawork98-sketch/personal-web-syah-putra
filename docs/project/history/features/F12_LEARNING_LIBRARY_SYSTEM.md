@@ -104,3 +104,4 @@ Pada F12D, data statis di dalam file `client/src/pages/Learn.jsx` akan diganti d
 - **Batch F12C.2**: Pembuatan Admin UI (List, Create, Edit) untuk entitas Learning Library beserta helper API dan integrasi routing frontend.
 - **Batch F12C.3**: Pelaksanaan QA pada operasi Create, Read, Update, Delete UI Admin Learning Library. Seluruh fungsionalitas dan integrasi tipe data divalidasi dengan lancar.
 - **Batch F12D**: Integrasi dinamis public page `/learn` dengan backend `/api/learning`, mempertahankan `staticLearningItems` sebagai *fallback* luring yang aman bila API utama terkendala.
+- **Batch F12-CP**: Checkpoint dokumentasi setelah F12 selesai; README disinkronkan dengan status Learning Library Completed dan catatan CV final diperbarui.

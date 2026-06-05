@@ -20,6 +20,7 @@ Repository ini telah melalui iterasi pengembangan (*Batch*) untuk memastikan sta
 - **CV Variant Selector**: Memungkinkan pengunjung memilih versi CV yang relevan (Web Dev, Manufaktur, atau Sipil/RAB).
 - **Newspaper CV Wireframe**: Pratinjau konsep CV bergaya editorial koran yang unik.
 - **Credentials Manager**: Integrasi pratinjau sertifikat profesional melalui Google Drive.
+- **Learning Library**: Arsip pembelajaran teknis yang terhubung dengan Admin CMS dan API dinamis untuk menampilkan progres belajar, catatan, dan repository latihan.
 - **High Performance & A11y**: Dioptimasi untuk kecepatan akses dan aksesibilitas dasar (aria-labels).
 
 ## 🚀 Cara Menjalankan Lokal
@@ -46,7 +47,7 @@ Arsitektur deployment final (Batch F10E) merekomendasikan:
 
 ## 🛠️ Status Pengembangan & Batasan Khusus
 
-- **PDF CV Final**: File PDF CV asli masih dalam tahap finalisasi tata letak (Status: *Coming Soon* di UI).
+- **PDF CV Final**: Public download sudah mengarah ke file PDF ATS statis final; perubahan berikutnya dikelola melalui F11/CV Builder jika dibutuhkan.
 - **Login & Auth**: Completed logic; production exposure pending F10 security/deployment readiness.
 - **Project Assets**: Link eksternal (Figma/Drive/RAB) hanya muncul jika URL asli telah tersedia di data model.
 - **Deployment**: HOLD / Partial until domain, hosting, production env, and public release are finalized.
