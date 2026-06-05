@@ -4,7 +4,7 @@
 Sistem modular untuk menampilkan arsip, catatan, dan repository praktik pembelajaran secara publik dengan dukungan manajemen dari Admin CMS nantinya.
 
 ## Status
-**In Progress**
+**Completed**
 
 ## Story
 Sebagai seorang developer yang terus berkembang, saya membutuhkan satu wadah untuk mendokumentasikan progres pembelajaran saya, modul-modul yang sedang dipelajari, dan repository praktik (seperti React, Node.js, dsb.) secara terstruktur di dalam website personal.
@@ -15,7 +15,7 @@ Sebagai seorang developer yang terus berkembang, saya membutuhkan satu wadah unt
 - **F12C.1 — Database and Backend API Foundation** — Completed
 - **F12C.2 — Learning Library Admin UI** — Completed
 - **F12C.3 — Admin CRUD QA and Polish** — Completed
-- **F12D — Public Dynamic Integration** — Not Started
+- **F12D — Public Dynamic Integration** — Completed
 
 ## 1. Admin CMS Goal
 Admin CMS nantinya digunakan untuk mengelola item Learning Library secara dinamis tanpa perlu melakukan edit kode manual atau hardcode di komponen React.
@@ -103,3 +103,4 @@ Pada F12D, data statis di dalam file `client/src/pages/Learn.jsx` akan diganti d
 - **Batch F12C.1.1**: memperbaiki import middleware admin route Learning Library agar memakai requireAdmin existing.
 - **Batch F12C.2**: Pembuatan Admin UI (List, Create, Edit) untuk entitas Learning Library beserta helper API dan integrasi routing frontend.
 - **Batch F12C.3**: Pelaksanaan QA pada operasi Create, Read, Update, Delete UI Admin Learning Library. Seluruh fungsionalitas dan integrasi tipe data divalidasi dengan lancar.
+- **Batch F12D**: Integrasi dinamis public page `/learn` dengan backend `/api/learning`, mempertahankan `staticLearningItems` sebagai *fallback* luring yang aman bila API utama terkendala.

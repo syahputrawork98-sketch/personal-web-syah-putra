@@ -45,6 +45,7 @@ export const getPublicSkills = (type) => {
   return fetcher(url);
 };
 export const getPublicExperiences = () => fetcher('/api/experiences');
+export const getPublicLearningItems = () => fetcher('/api/learning');
 
 // Auth
 export const loginAdmin = (email, password) => 

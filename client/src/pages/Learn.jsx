@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import EmptyState from '../components/EmptyState';
+import { getPublicLearningItems } from '../lib/api';
 
 const learningCategories = [
   "All",
@@ -77,10 +78,54 @@ const staticLearningItems = [
 
 const Learn = () => {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [learningItems, setLearningItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [usingFallback, setUsingFallback] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const data = await getPublicLearningItems();
+        if (data && data.learningItems) {
+          setLearningItems(data.learningItems);
+          setUsingFallback(false);
+        } else {
+          setLearningItems([]);
+        }
+      } catch (err) {
+        console.error("Failed to fetch learning items:", err);
+        setLearningItems(staticLearningItems);
+        setUsingFallback(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const formatStatus = (status) => {
+    if (!status) return 'Unknown';
+    switch (status) {
+      case 'PLANNED': return 'Planned';
+      case 'LEARNING': return 'Learning';
+      case 'IN_PROGRESS': return 'In Progress';
+      case 'COMPLETED': return 'Completed';
+      case 'ARCHIVED': return 'Archived';
+      default: return status;
+    }
+  };
+
+  const getStatusColor = (status) => {
+    const formatted = formatStatus(status);
+    if (formatted === 'Completed') return '#10b981';
+    if (formatted === 'Planned' || formatted === 'Archived') return '#9ca3af';
+    return '#f59e0b';
+  };
 
   const filteredItems = activeCategory === "All"
-    ? staticLearningItems
-    : staticLearningItems.filter(item => item.category === activeCategory);
+    ? learningItems
+    : learningItems.filter(item => item.category === activeCategory);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -114,6 +159,11 @@ const Learn = () => {
           <p style={{ maxWidth: '650px', margin: '0 auto', opacity: 0.8, fontSize: '1.1rem', lineHeight: 1.6 }}>
             A curated archive of my learning progress, technical notes, and practice repositories.
           </p>
+          {usingFallback && (
+            <p style={{ fontSize: '0.85rem', color: '#f59e0b', marginTop: '1rem' }}>
+              Note: Currently displaying offline fallback data.
+            </p>
+          )}
         </motion.div>
 
         {/* Category Tabs */}
@@ -130,7 +180,11 @@ const Learn = () => {
         </div>
 
         {/* Grid */}
-        {filteredItems.length > 0 ? (
+        {loading ? (
+          <div style={{ padding: 'var(--space-12) 0', textAlign: 'center', opacity: 0.7 }}>
+            Loading learning items...
+          </div>
+        ) : filteredItems.length > 0 ? (
           <motion.div 
             style={{ 
               display: 'grid', 
@@ -141,59 +195,77 @@ const Learn = () => {
             initial="hidden"
             animate="visible"
           >
-            {filteredItems.map((item) => (
-              <motion.div 
-                key={item.id} 
-                className="card" 
-                variants={cardVariants}
-                style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: 'var(--space-6)' }}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--space-3)' }}>
-                  <span style={{ fontSize: '0.75rem', fontWeight: 600, padding: '4px 8px', borderRadius: '4px', backgroundColor: 'var(--primary-color)', color: 'white', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                    {item.category}
-                  </span>
-                  <span style={{ fontSize: '0.8rem', opacity: 0.7, fontWeight: 500, display: 'flex', alignItems: 'center', gap: '4px' }}>
-                    <span style={{ 
-                      width: '8px', 
-                      height: '8px', 
-                      borderRadius: '50%', 
-                      backgroundColor: item.status === 'Completed' ? '#10b981' : item.status === 'Planned' ? '#9ca3af' : '#f59e0b' 
-                    }}></span>
-                    {item.status}
-                  </span>
-                </div>
-                
-                <h3 style={{ margin: '0 0 var(--space-2) 0', fontSize: '1.25rem', lineHeight: 1.4 }}>{item.title}</h3>
-                
-                <div style={{ fontSize: '0.85rem', opacity: 0.8, marginBottom: 'var(--space-4)', fontWeight: 500 }}>
-                  Level: {item.level}
-                </div>
-                
-                <p style={{ opacity: 0.8, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: 'var(--space-6)', flexGrow: 1 }}>
-                  {item.description}
-                </p>
-
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: 'var(--space-6)' }}>
-                  {item.topics.map(topic => (
-                    <span key={topic} style={{ fontSize: '0.75rem', padding: '4px 10px', backgroundColor: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '16px', opacity: 0.8 }}>
-                      {topic}
+            {filteredItems.map((item) => {
+              const itemTopics = Array.isArray(item.topics) ? item.topics : [];
+              const hasRepo = item.repoUrl && item.repoUrl !== '#';
+              
+              return (
+                <motion.div 
+                  key={item.id} 
+                  className="card" 
+                  variants={cardVariants}
+                  style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: 'var(--space-6)' }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--space-3)' }}>
+                    <span style={{ fontSize: '0.75rem', fontWeight: 600, padding: '4px 8px', borderRadius: '4px', backgroundColor: 'var(--primary-color)', color: 'white', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                      {item.category}
                     </span>
-                  ))}
-                </div>
+                    <span style={{ fontSize: '0.8rem', opacity: 0.7, fontWeight: 500, display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <span style={{ 
+                        width: '8px', 
+                        height: '8px', 
+                        borderRadius: '50%', 
+                        backgroundColor: getStatusColor(item.status)
+                      }}></span>
+                      {formatStatus(item.status)}
+                    </span>
+                  </div>
+                  
+                  <h3 style={{ margin: '0 0 var(--space-2) 0', fontSize: '1.25rem', lineHeight: 1.4 }}>{item.title}</h3>
+                  
+                  <div style={{ fontSize: '0.85rem', opacity: 0.8, marginBottom: 'var(--space-4)', fontWeight: 500 }}>
+                    Level: {item.level || '-'}
+                  </div>
+                  
+                  <p style={{ opacity: 0.8, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: 'var(--space-6)', flexGrow: 1 }}>
+                    {item.description}
+                  </p>
 
-                <div style={{ marginTop: 'auto' }}>
-                  <a 
-                    href={item.repoUrl !== '#' ? item.repoUrl : undefined} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className={`btn ${item.repoUrl === '#' ? 'btn-secondary' : 'btn-primary'}`}
-                    style={{ width: '100%', textAlign: 'center', pointerEvents: item.repoUrl === '#' ? 'none' : 'auto', opacity: item.repoUrl === '#' ? 0.6 : 1 }}
-                  >
-                    {item.repoUrl === '#' ? 'Repository Coming Soon' : 'View Repository'}
-                  </a>
-                </div>
-              </motion.div>
-            ))}
+                  {itemTopics.length > 0 && (
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: 'var(--space-6)' }}>
+                      {itemTopics.map(topic => (
+                        <span key={topic} style={{ fontSize: '0.75rem', padding: '4px 10px', backgroundColor: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '16px', opacity: 0.8 }}>
+                          {topic}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <a 
+                      href={hasRepo ? item.repoUrl : undefined} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className={`btn ${!hasRepo ? 'btn-secondary' : 'btn-primary'}`}
+                      style={{ width: '100%', textAlign: 'center', pointerEvents: !hasRepo ? 'none' : 'auto', opacity: !hasRepo ? 0.6 : 1 }}
+                    >
+                      {!hasRepo ? 'Repository Coming Soon' : 'View Repository'}
+                    </a>
+                    {item.notesUrl && (
+                      <a 
+                        href={item.notesUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="btn btn-secondary"
+                        style={{ width: '100%', textAlign: 'center' }}
+                      >
+                        View Notes
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
         ) : (
           <div style={{ padding: 'var(--space-12) 0' }}>

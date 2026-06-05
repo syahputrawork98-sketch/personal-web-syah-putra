@@ -22,7 +22,7 @@ FITUR.md      # Rangkuman fitur berjalan dan status fungsionalitas
 - **Credentials Manager**: Integrasi sertifikat dan dokumen lisensi dengan fitur Google Drive Preview langsung di dalam halaman.
 - **Branding Monogram SPN**: Identitas visual seragam pada komponen navigasi publik.
 - **Data Fallback System**: Ketahanan layanan dengan data statis lokal jika akses server backend tidak tersedia.
-- **Learning Library**: Arsip pembelajaran terstruktur untuk mencatat progres studi dan repositori latihan teknis (Fase awal: Public Static Page; Admin CMS pada tahap berikutnya).
+- **Learning Library**: Arsip pembelajaran terstruktur untuk mencatat progres studi dan repositori latihan teknis. Didukung oleh integrasi API dinamis dan pengelola konten via Admin CMS.
 
 ## 🚩 Status Deployment & Batasan Produksi
 Daftar fitur, aset, dan lingkungan yang masih belum diekspos ke publik atau menunggu penyelesaian akhir.
