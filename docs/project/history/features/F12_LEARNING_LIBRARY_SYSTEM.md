@@ -12,7 +12,9 @@ Sebagai seorang developer yang terus berkembang, saya membutuhkan satu wadah unt
 ## Sub-Batch Roadmap
 - **F12A — Learning Library Static Public Page** — Completed
 - **F12B — Learning Library Admin CMS Planning** — Completed
-- **F12C — Learning Library Admin CMS** — Not Started
+- **F12C.1 — Database and Backend API Foundation** — Completed
+- **F12C.2 — Learning Library Admin UI** — Not Started
+- **F12C.3 — Admin CRUD QA and Polish** — Not Started
 - **F12D — Public Dynamic Integration** — Not Started
 
 ## 1. Admin CMS Goal
@@ -97,3 +99,4 @@ Pada F12D, data statis di dalam file `client/src/pages/Learn.jsx` akan diganti d
 ## Execution Log
 - **Batch F12A**: Pembuatan route `/learn`, public page `Learning Library` dengan data statis, filter kategori, tab navbar publik, dan inisialisasi dokumen tracking fitur.
 - **Batch F12B**: Penyelesaian planning data model, admin routes, API contract, dan public dynamic integration plan tanpa mengubah source code.
+- **Batch F12C.1**: Penambahan model Prisma LearningItem, enum LearningStatus, pembuatan CRUD backend controller (public/admin), pendaftaran router, dan migrasi database awal.
