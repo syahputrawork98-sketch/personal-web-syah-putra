@@ -100,3 +100,4 @@ Pada F12D, data statis di dalam file `client/src/pages/Learn.jsx` akan diganti d
 - **Batch F12A**: Pembuatan route `/learn`, public page `Learning Library` dengan data statis, filter kategori, tab navbar publik, dan inisialisasi dokumen tracking fitur.
 - **Batch F12B**: Penyelesaian planning data model, admin routes, API contract, dan public dynamic integration plan tanpa mengubah source code.
 - **Batch F12C.1**: Penambahan model Prisma LearningItem, enum LearningStatus, pembuatan CRUD backend controller (public/admin), pendaftaran router, dan migrasi database awal.
+- **Batch F12C.1.1**: memperbaiki import middleware admin route Learning Library agar memakai requireAdmin existing.
