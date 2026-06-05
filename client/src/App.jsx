@@ -29,6 +29,9 @@ import AdminCertificationCreate from './pages/admin/AdminCertificationCreate';
 import AdminCertificationEdit from './pages/admin/AdminCertificationEdit';
 import AdminEducation from './pages/admin/AdminEducation';
 import AdminCvBuilder from './pages/admin/AdminCvBuilder';
+import AdminLearning from './pages/admin/AdminLearning';
+import AdminLearningCreate from './pages/admin/AdminLearningCreate';
+import AdminLearningEdit from './pages/admin/AdminLearningEdit';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 
 import AdminLayout from './layouts/AdminLayout';
@@ -77,6 +80,9 @@ function App() {
           <Route path="certifications/:id/edit" element={<AdminCertificationEdit />} />
           <Route path="education" element={<AdminEducation />} />
           <Route path="cv-builder" element={<AdminCvBuilder />} />
+          <Route path="learning" element={<AdminLearning />} />
+          <Route path="learning/new" element={<AdminLearningCreate />} />
+          <Route path="learning/:id/edit" element={<AdminLearningEdit />} />
         </Route>
 
 

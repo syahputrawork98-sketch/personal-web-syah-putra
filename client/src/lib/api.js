@@ -178,3 +178,10 @@ export const deleteCertification = (id) => fetcher(`/api/admin/certifications/${
 // Admin CV Builder
 export const getCvBuilderConfig = () => fetcher('/api/admin/cv-builder/config');
 export const updateCvBuilderConfig = (data) => fetcher('/api/admin/cv-builder/config', { method: 'PUT', body: JSON.stringify(data) });
+
+// Admin Learning Library
+export const getAdminLearningItems = () => fetcher('/api/admin/learning');
+export const getAdminLearningItem = (id) => fetcher(`/api/admin/learning/${id}`);
+export const createLearningItem = (data) => fetcher('/api/admin/learning', { method: 'POST', body: JSON.stringify(data) });
+export const updateLearningItem = (id, data) => fetcher(`/api/admin/learning/${id}`, { method: 'PUT', body: JSON.stringify(data) });
+export const deleteLearningItem = (id) => fetcher(`/api/admin/learning/${id}`, { method: 'DELETE' });

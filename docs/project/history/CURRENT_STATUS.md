@@ -25,7 +25,7 @@
 | F09 | Admin Content Management System | frontend/backend | Completed | Modul CMS telah diselesaikan audit fungsionalitas dan perlindungan autentikasinya untuk Project, Credential, Asset Link, dan Settings Module. | (Selesai, lanjutkan ke F10) | [F09_ADMIN_CONTENT_MANAGEMENT_SYSTEM.md](features/F09_ADMIN_CONTENT_MANAGEMENT_SYSTEM.md) |
 | F10 | Deployment and Domain System | deployment | HOLD / Partial | F10A - F10E selesai, rekomendasi platform production (Vercel, Render/Railway, Neon) sudah final. Menunggu keputusan final domain dan eksekusi deployment riil. | HOLD / Domain final decision required before F10F | [F10_DEPLOYMENT_DOMAIN_SYSTEM.md](features/F10_DEPLOYMENT_DOMAIN_SYSTEM.md) |
 | F11 | CV Builder and PDF Export System | frontend/admin | Completed | Logika *State Management* dan Cetak PDF mandiri (Browser) selesai. PDF statis telah disinkronisasikan ke Public Download. | Lanjutkan ke fitur selanjutnya / deploy | [F11_CV_BUILDER_PDF_EXPORT_SYSTEM.md](features/F11_CV_BUILDER_PDF_EXPORT_SYSTEM.md) |
-| F12 | Learning Library System | frontend | In Progress | F12A (Public Static Page) sudah selesai. Integrasi CMS & Database belum. | F12C.2 — Learning Library Admin UI | [F12_LEARNING_LIBRARY_SYSTEM.md](features/F12_LEARNING_LIBRARY_SYSTEM.md) |
+| F12 | Learning Library System | frontend | In Progress | F12A (Public Static Page) sudah selesai. Integrasi CMS & Database belum. | F12C.3 — Admin CRUD QA and Polish | [F12_LEARNING_LIBRARY_SYSTEM.md](features/F12_LEARNING_LIBRARY_SYSTEM.md) |
 
 ## Deployment Status
 - Target awal: Vercel frontend-only deployment
