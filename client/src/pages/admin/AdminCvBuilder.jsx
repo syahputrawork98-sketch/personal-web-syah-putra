@@ -159,6 +159,16 @@ const AdminCvBuilder = () => {
     return id.charAt(0).toUpperCase() + id.slice(1);
   };
 
+  const contactLinks = [
+    data.contact?.email,
+    data.contact?.phone,
+    data.contact?.location,
+    data.contact?.linkedin,
+    data.contact?.github,
+    data.contact?.website,
+    data.contact?.instagram
+  ].filter(Boolean);
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: 'var(--space-6)' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
@@ -230,19 +240,8 @@ const AdminCvBuilder = () => {
                   style={{ width: '100%', boxSizing: 'border-box' }} 
                 />
               </div>
-              <div>
-                <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>Optional Links (LinkedIn, GitHub, Portfolio)</label>
-                <input 
-                  type="text" 
-                  value={cvConfig.links || ''} 
-                  onChange={(e) => setCvConfig({...cvConfig, links: e.target.value})} 
-                  placeholder="e.g. github.com/username | linkedin.com/in/username" 
-                  className="form-input" 
-                  style={{ width: '100%', boxSizing: 'border-box' }} 
-                />
               </div>
             </div>
-          </div>
 
           <div className="card" style={{ padding: 'var(--space-4)' }}>
             <h3 style={{ margin: '0 0 var(--space-4) 0' }}>Manual Professional Summary</h3>
@@ -402,16 +401,7 @@ const AdminCvBuilder = () => {
               {cvConfig.targetRole && ` | ${cvConfig.targetRole}`}
             </div>
             <div style={{ fontSize: '9pt', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '6px', color: '#444' }}>
-              {[
-                data.contact?.email,
-                data.contact?.phone,
-                data.contact?.location,
-                data.contact?.linkedin,
-                data.contact?.github,
-                data.contact?.website,
-                data.contact?.instagram,
-                cvConfig.links
-              ].filter(Boolean).map((item, i, arr) => (
+              {contactLinks.map((item, i, arr) => (
                 <React.Fragment key={i}>
                   <span>{item.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</span>
                   {i < arr.length - 1 && <span>•</span>}
