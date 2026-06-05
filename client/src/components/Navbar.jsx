@@ -32,6 +32,7 @@ const Navbar = ({ theme, toggleTheme }) => {
     { path: '/experience', label: 'Pengalaman' },
     { path: '/credentials', label: 'Sertifikat' },
     { path: '/projects', label: 'Proyek' },
+    { path: '/learn', label: 'Learn' },
     { path: '/contact', label: 'Kontak' },
   ];
 

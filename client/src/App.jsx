@@ -4,6 +4,7 @@ import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
 import About from './pages/About';
 import Projects from './pages/Projects';
+import Learn from './pages/Learn';
 import Experience from './pages/Experience';
 import Contact from './pages/Contact';
 import Credentials from './pages/Credentials';
@@ -40,6 +41,7 @@ function App() {
         <Route path="/" element={<MainLayout><Home /></MainLayout>} />
         <Route path="/about" element={<MainLayout><About /></MainLayout>} />
         <Route path="/projects" element={<MainLayout><Projects /></MainLayout>} />
+        <Route path="/learn" element={<MainLayout><Learn /></MainLayout>} />
         <Route path="/experience" element={<MainLayout><Experience /></MainLayout>} />
         <Route path="/contact" element={<MainLayout><Contact /></MainLayout>} />
         <Route path="/credentials" element={<MainLayout><Credentials /></MainLayout>} />
