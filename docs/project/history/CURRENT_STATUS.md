@@ -23,17 +23,18 @@
 | F07 | Backend API System | server | Completed | Seluruh siklus F07 telah divalidasi (F07A-F07H). Docker, Prisma, Backend, dan koneksi Frontend terverifikasi secara runtime. | Lanjutkan ke fitur selanjutnya / deploy | [F07_BACKEND_API_SYSTEM.md](features/F07_BACKEND_API_SYSTEM.md) |
 | F08 | Admin Login and Auth System | backend/auth | Completed | Rangkaian skeleton *backend/frontend* auth sudah diverifikasi penuh melalui Basic Security QA dan dinyatakan aman (*logic siap*). | (Selesai, lanjutkan ke F09) | [F08_ADMIN_LOGIN_AUTH_SYSTEM.md](features/F08_ADMIN_LOGIN_AUTH_SYSTEM.md) |
 | F09 | Admin Content Management System | frontend/backend | Completed | Modul CMS telah diselesaikan audit fungsionalitas dan perlindungan autentikasinya untuk Project, Credential, Asset Link, dan Settings Module. | (Selesai, lanjutkan ke F10) | [F09_ADMIN_CONTENT_MANAGEMENT_SYSTEM.md](features/F09_ADMIN_CONTENT_MANAGEMENT_SYSTEM.md) |
-| F10 | Deployment and Domain System | deployment | HOLD / Partial | F10A - F10E selesai, rekomendasi platform production (Vercel, Render/Railway, Neon) sudah final. Menunggu keputusan final domain dan eksekusi deployment riil. | HOLD / Domain final decision required before F10F | [F10_DEPLOYMENT_DOMAIN_SYSTEM.md](features/F10_DEPLOYMENT_DOMAIN_SYSTEM.md) |
+| F10 | Deployment and Domain System | deployment | In Progress | F10A selesai (Audit kesiapan & checklist siap). Menunggu perbaikan blocker hardcoded URL di AdminAuthContext.jsx sebelum rilis live. | F10B — Fix Blocker & Backend Setup | [F10_DEPLOYMENT_DOMAIN_SYSTEM.md](features/F10_DEPLOYMENT_DOMAIN_SYSTEM.md) |
 | F11 | CV Builder and PDF Export System | frontend/admin | Completed | Logika *State Management* dan Cetak PDF mandiri (Browser) selesai. PDF statis telah disinkronisasikan ke Public Download. | Lanjutkan ke fitur selanjutnya / deploy | [F11_CV_BUILDER_PDF_EXPORT_SYSTEM.md](features/F11_CV_BUILDER_PDF_EXPORT_SYSTEM.md) |
 | F12 | Learning Library System | frontend | Completed | Learning Library public page, admin CMS, backend API, and dynamic public integration completed. | Lanjutkan ke fitur berikutnya / deploy | [F12_LEARNING_LIBRARY_SYSTEM.md](features/F12_LEARNING_LIBRARY_SYSTEM.md) |
 
 ## Deployment Status
-- Target awal: Vercel frontend-only deployment
-- Status Kesiapan: Frontend sudah siap untuk pre-deploy check, tetapi domain final masih HOLD (F10).
-- Root Directory: client
-- Build Command: npm run build
-- Output Directory: dist
-- Backend/Admin/Auth/Database: Completed logic; production exposure pending F10 deployment readiness.
+- Target: Vercel (Frontend), Railway (Backend), Neon PostgreSQL (Database)
+- Status Kesiapan: Audit F10A selesai, checklist & konfigurasi siap. Deployment riil tertahan blocker hardcoded localhost URL di `AdminAuthContext.jsx`.
+- Frontend Root Directory: client (Build Command: `npm run build`, Output: `dist`)
+- Backend Root Directory: server (Start Command: `node src/server.js`)
+- Database: Neon Managed PostgreSQL (ORM: Prisma)
+- API Endpoint Integration: Tertunda perbaikan blocker `AdminAuthContext.jsx` pada F10B.
+
 
 ## Safety Rules
 - Jangan menyimpan credential, token, API key, password, atau .env di repository.

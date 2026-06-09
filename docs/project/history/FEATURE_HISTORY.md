@@ -16,6 +16,6 @@ Dokumen ini adalah index history aktif berbasis fitur. Detail setiap fitur disim
 | F07 | Backend API System | Completed | features/F07_BACKEND_API_SYSTEM.md |
 | F08 | Admin Login and Auth System | Completed | features/F08_ADMIN_LOGIN_AUTH_SYSTEM.md |
 | F09 | Admin Content Management System | Completed | features/F09_ADMIN_CONTENT_MANAGEMENT_SYSTEM.md |
-| F10 | Deployment and Domain System | HOLD / Partial | features/F10_DEPLOYMENT_DOMAIN_SYSTEM.md |
+| F10 | Deployment and Domain System | In Progress | features/F10_DEPLOYMENT_DOMAIN_SYSTEM.md |
 | F11 | CV Builder and PDF Export System | Completed | features/F11_CV_BUILDER_PDF_EXPORT_SYSTEM.md |
 | F12 | Learning Library System | Completed | features/F12_LEARNING_LIBRARY_SYSTEM.md |
