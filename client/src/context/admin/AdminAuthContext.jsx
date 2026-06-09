@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 const AdminAuthContext = createContext();
 
 export const useAdminAuth = () => useContext(AdminAuthContext);
@@ -21,7 +23,7 @@ export const AdminAuthProvider = ({ children }) => {
 
   const fetchProfile = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/auth/profile');
+      const res = await axios.get(`${API_URL}/api/auth/profile`);
       setUser(res.data);
     } catch (err) {
       logout();
@@ -31,7 +33,7 @@ export const AdminAuthProvider = ({ children }) => {
   };
 
   const login = async (username, password) => {
-    const res = await axios.post('http://localhost:5000/api/auth/login', { username, password });
+    const res = await axios.post(`${API_URL}/api/auth/login`, { username, password });
     const { token, user } = res.data;
     localStorage.setItem('adminToken', token);
     setToken(token);

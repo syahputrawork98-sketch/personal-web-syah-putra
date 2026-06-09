@@ -4,7 +4,7 @@
 Deployment Vercel, domain final, production environment, route refresh, dan public release checklist.
 
 ## Status
-In Progress (F10A Completed)
+In Progress (F10B Completed)
 
 ## Story
 Mencakup penyelesaian pipeline live deployment agar web bisa dikunjungi publik dengan stabil dan menggunakan domain name aslinya.
@@ -12,7 +12,8 @@ Mencakup penyelesaian pipeline live deployment agar web bisa dikunjungi publik d
 ## Current State
 - `vercel.json` rewrite untuk rute SPA telah teruji.
 - Audit kesiapan deployment (F10A) telah diselesaikan.
-- Ditemukan blocker kritis: hardcoded localhost URL pada `AdminAuthContext.jsx`.
+- Blocker kritis hardcoded URL di `AdminAuthContext.jsx` sudah diperbaiki (F10B).
+- Build frontend telah diverifikasi sukses secara lokal.
 - Database target: Neon PostgreSQL.
 - Server target: Railway.
 - Client target: Vercel.
@@ -21,19 +22,19 @@ Mencakup penyelesaian pipeline live deployment agar web bisa dikunjungi publik d
 | Sub-Batch | Name | Status | Purpose | Dependency |
 |---|---|---|---|---|
 | F10A | Deployment Readiness Audit & Configuration Preparation | Completed | Audit kesiapan environment, database, server, client, dan penyusunan deployment checklist. | - |
-| F10B | Fix Blocker & Backend Setup | Not Started | Perbaiki hardcoded URL di AdminAuthContext, setup database Neon, deploy backend ke Railway, dan jalankan Prisma migration. | F10A |
-| F10C | Frontend Deployment | Not Started | Deploy frontend ke Vercel dan integrasikan dengan backend production. | F10B |
-| F10D | Custom Domain & Public Release QA | Not Started | Integrasi custom domain dan QA rilis publik secara end-to-end. | F10C |
+| F10B | Production Environment Fix & Deployment Preparation | Completed | Perbaiki hardcoded URL di AdminAuthContext.jsx, bersihkan referensi localhost, audit API helper, dan validasi build frontend. | F10A |
+| F10C | Backend & Database Setup | Not Started | Setup Neon Database, deploy backend ke Railway, dan jalankan Prisma migration. | F10B |
+| F10D | Frontend Deployment & Integration | Not Started | Deploy frontend ke Vercel dan hubungkan dengan backend production. | F10C |
+| F10E | Custom Domain & Public Release QA | Not Started | Integrasi custom domain dan QA rilis publik secara end-to-end. | F10D |
 
 ## HOLD / Blocked Notes
 - Domain final belum diputuskan secara resmi oleh user, namun infrastruktur hosting sudah disepakati (Vercel + Railway + Neon).
-- Deployment riil diblokir oleh hardcoded URL di `AdminAuthContext.jsx` yang harus diperbaiki pada langkah berikutnya.
+- Blocker hardcoded localhost pada frontend telah dibersihkan sepenuhnya, sehingga sistem siap untuk dideploy.
 
 ## Next Step
-- Perbaiki blocker hardcoded localhost URL di `AdminAuthContext.jsx`.
 - Setup managed database di Neon PostgreSQL dan ambil `DATABASE_URL`.
-- Deploy backend ke Railway dan jalankan migrasi Prisma (`npx prisma migrate deploy`).
-- Deploy frontend ke Vercel.
+- Deploy backend ke Railway, konfigurasikan env variables, dan jalankan migrasi Prisma (`npx prisma migrate deploy`).
+- Deploy frontend ke Vercel dan konfigurasi env variable `VITE_API_URL`.
 
 ## Validation Checklist
 - Buka dan refresh custom URL domain pada semua variasi routing, pastikan tak terjadi 404 server error.
