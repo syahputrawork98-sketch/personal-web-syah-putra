@@ -7,7 +7,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: [CLIENT_URL, 'http://localhost:5174', 'http://localhost:5175'],
+  origin: [CLIENT_URL, 'http://localhost:5174', 'http://localhost:5175', 'https://syahputran.vercel.app'],
   credentials: true,
 }));
 app.use(express.json());
