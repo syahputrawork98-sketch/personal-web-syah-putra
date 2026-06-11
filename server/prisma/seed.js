@@ -29,7 +29,7 @@ async function main() {
 
   // 2. Setup Default Site Settings (Hero, Profile, Contact)
   console.log('⚙️ Setting up Site Settings...');
-  
+
   const settings = [
     {
       key: 'hero',
@@ -83,7 +83,7 @@ async function main() {
         location: 'Cimahi, Jawa Barat',
         github: 'https://github.com/syahputrawork98-sketch',
         linkedin: 'https://www.linkedin.com/in/syah-putra-nugraha-292424131/',
-        instagram: 'https://instagram.com/syah_putra_n',
+        instagram: 'https://instagram.com/hallofsyah',
         description: 'Saya terbuka untuk peluang kerja, freelance project, kolaborasi, atau diskusi pengembangan website dan sistem digital. Bila Anda membutuhkan website, dashboard, aplikasi monitoring, atau sistem internal yang lebih rapi dan efisien, saya siap membantu membangun solusinya.',
         title: 'Mari Bekerja Sama'
       }
