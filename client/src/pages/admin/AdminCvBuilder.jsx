@@ -168,7 +168,7 @@ const AdminCvBuilder = () => {
   ].filter(Boolean);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: 'var(--space-6)' }}>
+    <div className="cv-builder-container">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div>
           <h1 style={{ margin: '0 0 var(--space-2) 0' }}>CV Builder</h1>
@@ -197,7 +197,7 @@ const AdminCvBuilder = () => {
       {error && <div style={{ backgroundColor: '#fee2e2', color: '#dc2626', padding: 'var(--space-4)', borderRadius: '4px' }}>{error}</div>}
       {successMsg && <div style={{ backgroundColor: '#dcfce7', color: '#166534', padding: 'var(--space-4)', borderRadius: '4px' }}>{successMsg}</div>}
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-8)', alignItems: 'start' }}>
+      <div className="cv-builder-grid">
         
         {/* Left Panel: Config */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)', minWidth: 0 }}>
@@ -374,8 +374,8 @@ const AdminCvBuilder = () => {
         </div>
 
         {/* Right Panel: ATS Preview */}
-        <div style={{ display: 'flex', justifyContent: 'center', width: '100%', overflowX: 'auto', paddingBottom: '20px' }}>
-          <div style={{ transform: 'scale(0.85)', transformOrigin: 'top center', marginBottom: '-510mm', width: '210mm' }}>
+        <div className="cv-preview-outer-wrapper">
+          <div className="cv-scale-wrapper">
             <div id="cv-print-area" className="cv-preview-container">
               
               {/* Page 1 */}

@@ -1,6 +1,35 @@
 /* CV Builder Print & Screen Preview Stylesheet */
 
 /* Screen Styling (Default) */
+.cv-builder-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: var(--space-6);
+}
+
+.cv-builder-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.cv-preview-outer-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 20px;
+}
+
+.cv-scale-wrapper {
+  transform: scale(0.85);
+  transform-origin: top center;
+  margin-bottom: -510mm;
+  width: 210mm;
+}
+
 .cv-preview-container {
   background-color: #f1f5f9; /* Slate gray background like a document editor */
   padding: 30px 10px;
@@ -44,6 +73,20 @@
 
 /* Print Overrides */
 @media print {
+  /* Force all parent containers of #cv-print-area to display as blocks and span full page width */
+  html, body, #root, #root > div, main, .cv-builder-container, .cv-builder-grid {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    float: none !important;
+    position: static !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
   /* Hide all non-printable elements */
   body * {
     visibility: hidden !important;
@@ -52,6 +95,20 @@
   /* Make only the CV print area and its contents visible */
   #cv-print-area, #cv-print-area * {
     visibility: visible !important;
+  }
+
+  .cv-preview-outer-wrapper {
+    display: block !important;
+    width: 100% !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  
+  .cv-scale-wrapper {
+    transform: none !important;
+    margin: 0 !important;
+    width: 100% !important;
+    height: auto !important;
   }
 
   .cv-preview-container {
