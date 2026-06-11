@@ -81,12 +81,12 @@ const SkillForm = ({ initialData, onSubmit, saving }) => {
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)' }}>
         <div className="form-group">
-          <label style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Icon Name (CSS class or Emoji)</label>
+          <label style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Icon Link / URL (Opsional)</label>
           <input 
             name="icon"
             value={formData.icon}
             onChange={handleChange}
-            placeholder="e.g. fab fa-react"
+            placeholder="e.g. https://.../logo.png"
             style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
           />
         </div>

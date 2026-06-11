@@ -25,7 +25,11 @@ const TechSkillGroup = ({ category, skills }) => {
               borderRadius: 'var(--radius-full)'
             }}
           >
-            {getSkillIcon(skill.name)}
+            {skill.icon && skill.icon.startsWith('http') ? (
+              <img src={skill.icon} alt={skill.name} style={{ width: '16px', height: '16px', objectFit: 'contain' }} />
+            ) : (
+              getSkillIcon(skill.name)
+            )}
             <span>{skill.name}</span>
           </span>
         ))}
