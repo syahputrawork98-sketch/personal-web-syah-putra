@@ -220,27 +220,25 @@ const About = () => {
                 )}
 
                 {/* Download CV Action */}
-                {currentProfile.resumeUrl && (
-                  <a 
-                    href={currentProfile.resumeUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="btn btn-primary"
-                    style={{ 
-                      width: '100%', 
-                      fontSize: '0.88rem', 
-                      padding: '10px', 
-                      marginTop: 'var(--space-2)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '8px',
-                      boxSizing: 'border-box'
-                    }}
-                  >
-                    📄 Unduh CV / Resume
-                  </a>
-                )}
+                <a 
+                  href="/cv/cv-syah-putra-nugraha-web-developer.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn btn-primary"
+                  style={{ 
+                    width: '100%', 
+                    fontSize: '0.88rem', 
+                    padding: '10px', 
+                    marginTop: 'var(--space-2)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    boxSizing: 'border-box'
+                  }}
+                >
+                  📄 Unduh CV / Resume
+                </a>
               </div>
             )}
           </div>

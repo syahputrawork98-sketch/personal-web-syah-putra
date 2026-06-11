@@ -11,30 +11,40 @@
 
   /* Reset layout constraints for print */
   #cv-print-area {
-    position: absolute !important;
-    left: 0 !important;
-    top: 0 !important;
-    width: 210mm !important; 
+    position: static !important;
+    width: 100% !important;
     margin: 0 !important;
-    padding: 14mm 20mm !important; 
+    padding: 0 !important;
     background-color: white !important;
     color: black !important;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-family: Arial, Helvetica, sans-serif !important;
     box-shadow: none !important;
     border: none !important;
     overflow: visible !important;
     transform: none !important;
   }
 
-  /* Setup A4 Page */
+  /* Setup A4 Page with standard margins for all pages */
   @page {
     size: A4 portrait;
-    margin: 0; 
+    margin: 15mm 15mm; 
   }
 
-  /* Ensure items don't break across pages */
+  /* Ensure sections and items don't break awkwardly across pages */
+  .cv-print-section {
+    page-break-inside: auto;
+    break-inside: auto;
+  }
+
   .cv-print-item {
     page-break-inside: avoid;
     break-inside: avoid;
+    margin-bottom: 3.5mm !important;
+  }
+
+  /* Make links look clean and remove underline/color for prints */
+  a {
+    color: black !important;
+    text-decoration: none !important;
   }
 }
