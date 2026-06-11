@@ -24,9 +24,48 @@ const CredentialCard = ({ credential, onClick }) => {
             )}
           </div>
         </div>
-        <h3 className="credential-title">{credential.title}</h3>
-        <p className="credential-issuer">{credential.issuer}</p>
-        <p className="credential-date">{credential.date}</p>
+        
+        <h3 className="credential-title" style={{ marginBottom: 'var(--space-4)', minHeight: '3rem' }}>{credential.title}</h3>
+        
+        <div 
+          style={{ 
+            width: '100%', 
+            height: '160px', 
+            marginBottom: 'var(--space-4)', 
+            borderRadius: '8px',
+            overflow: 'hidden',
+            backgroundColor: 'var(--surface-color)',
+            border: '1px solid var(--border-color)',
+            position: 'relative'
+          }}
+        >
+          {credential.thumbnailUrl ? (
+            <img 
+              src={credential.thumbnailUrl} 
+              alt={credential.title}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              onError={(e) => {
+                // Fallback to placeholder if Google Drive thumbnail blocks or fails
+                e.target.onerror = null; 
+                e.target.src = 'https://placehold.co/600x400/1e293b/334155?text=Sertifikat';
+              }}
+            />
+          ) : (
+            <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0.5 }}>
+              <span>Thumbnail tidak tersedia</span>
+            </div>
+          )}
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', marginBottom: 'var(--space-4)', opacity: 0.8, fontSize: '0.9rem' }}>
+          <span className="credential-issuer">{credential.issuer}</span>
+          {credential.date && (
+            <>
+              <span style={{ fontSize: '0.6rem' }}>•</span>
+              <span className="credential-date">{credential.date}</span>
+            </>
+          )}
+        </div>
         
         <div className="credential-skills">
           {credential.skills.slice(0, 3).map((skill, idx) => (

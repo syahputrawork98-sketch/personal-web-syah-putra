@@ -15,16 +15,17 @@ const Credentials = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const getGoogleDriveUrls = (driveUrl) => {
-    if (!driveUrl) return { previewUrl: '', viewUrl: '' };
+    if (!driveUrl) return { previewUrl: '', viewUrl: '', thumbnailUrl: '' };
     const match = driveUrl.match(/\/d\/([a-zA-Z0-9_-]+)/);
     if (match && match[1]) {
       const fileId = match[1];
       return {
         previewUrl: `https://drive.google.com/file/d/${fileId}/preview`,
-        viewUrl: `https://drive.google.com/file/d/${fileId}/view`
+        viewUrl: `https://drive.google.com/file/d/${fileId}/view`,
+        thumbnailUrl: `https://drive.google.com/thumbnail?id=${fileId}&sz=w600`
       };
     }
-    return { previewUrl: '', viewUrl: driveUrl };
+    return { previewUrl: '', viewUrl: driveUrl, thumbnailUrl: '' };
   };
 
   const rawCredentials = ((Array.isArray(response) ? response : (response?.certifications || response?.data?.certifications)) || []).map(item => {
@@ -33,7 +34,8 @@ const Credentials = () => {
       ...item,
       date: item.originalIssueDate || (item.issueDate ? new Date(item.issueDate).getFullYear().toString() : ''),
       previewUrl: item.previewUrl || driveUrls.previewUrl,
-      viewUrl: item.viewUrl || driveUrls.viewUrl
+      viewUrl: item.viewUrl || driveUrls.viewUrl,
+      thumbnailUrl: item.imageUrl || driveUrls.thumbnailUrl || 'https://placehold.co/600x400/1e293b/334155?text=Sertifikat'
     };
   });
 
