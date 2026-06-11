@@ -82,7 +82,7 @@ async function main() {
         email: 'syah.putrawork98@gmail.com',
         location: 'Cimahi, Jawa Barat',
         github: 'https://github.com/syahputrawork98-sketch',
-        linkedin: 'https://linkedin.com/in/syahputranugraha',
+        linkedin: 'https://www.linkedin.com/in/syah-putra-nugraha-292424131/',
         instagram: 'https://instagram.com/syah_putra_n',
         description: 'Saya terbuka untuk peluang kerja, freelance project, kolaborasi, atau diskusi pengembangan website dan sistem digital. Bila Anda membutuhkan website, dashboard, aplikasi monitoring, atau sistem internal yang lebih rapi dan efisien, saya siap membantu membangun solusinya.',
         title: 'Mari Bekerja Sama'
