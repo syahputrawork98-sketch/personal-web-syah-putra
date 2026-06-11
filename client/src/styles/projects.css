@@ -257,6 +257,24 @@
   border-color: var(--primary-color);
 }
 
+/* Modal Link Row Items */
+.modal-link-item {
+  transition: all var(--transition-fast) !important;
+}
+
+.modal-link-item:hover {
+  border-color: var(--primary-color) !important;
+  background: rgba(var(--primary-color-rgb), 0.08) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px -6px rgba(var(--primary-color-rgb), 0.2);
+}
+
+.modal-link-item:hover .modal-link-arrow {
+  transform: translateX(4px);
+  opacity: 1 !important;
+  color: var(--primary-color);
+}
+
 .project-link-tiles-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -311,6 +329,11 @@
 }
 
 @media (max-width: 768px) {
+  .project-modal-grid-container {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-6) !important;
+  }
+
   .project-modal-grid {
     grid-template-columns: 1fr !important;
   }

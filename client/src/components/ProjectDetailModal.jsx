@@ -38,14 +38,16 @@ const ProjectDetailModal = ({ isOpen, onClose, project }) => {
         <div className="project-modal-overlay" onClick={onClose}>
           <motion.div 
             className="project-modal-content"
-            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            initial={{ opacity: 0, scale: 0.95, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 30 }}
+            exit={{ opacity: 0, scale: 0.95, y: 30 }}
             onClick={(e) => e.stopPropagation()}
             style={{
               backgroundColor: 'var(--bg-color)',
               color: 'var(--text-primary)',
-              border: '1px solid var(--border-color)'
+              border: '1px solid var(--border-color)',
+              borderRadius: 'var(--radius-xl)',
+              overflowY: 'auto'
             }}
           >
             <button 
@@ -56,129 +58,223 @@ const ProjectDetailModal = ({ isOpen, onClose, project }) => {
               &times;
             </button>
 
-            {/* Header Image */}
-            <div style={{ width: '100%', height: '350px', overflow: 'hidden', position: 'relative' }}>
-              <img 
-                src={project.imageUrl || 'https://via.placeholder.com/1200x600?text=Project+Detail'} 
-                alt={project.title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
+            {/* Header Banner */}
+            <div style={{ width: '100%', height: '280px', overflow: 'hidden', position: 'relative', background: 'linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.12) 0%, rgba(129, 140, 248, 0.12) 100%)' }}>
+              {project.imageUrl && !project.imageUrl.includes('placeholder') ? (
+                <img 
+                  src={project.imageUrl} 
+                  alt={project.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              ) : (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', width: '100%' }}>
+                  <span style={{ fontSize: '4.5rem', filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.15))' }}>
+                    {project.category === 'IT & Web' ? '💻' : project.category === 'Model Mesin 3D' ? '🏗️' : '⚙️'}
+                  </span>
+                </div>
+              )}
               <div style={{ 
                 position: 'absolute', 
                 bottom: 0, left: 0, right: 0, 
-                height: '50%', 
+                height: '60%', 
                 background: 'linear-gradient(to top, var(--bg-color), transparent)',
                 zIndex: 1
               }} />
             </div>
 
-            <div style={{ padding: 'var(--space-10)', marginTop: '-var(--space-12)', position: 'relative', zIndex: 2 }}>
-              <div style={{ marginBottom: 'var(--space-8)' }}>
-                <span className="category-badge" style={{ marginBottom: 'var(--space-3)', display: 'inline-block' }}>
+            <div style={{ padding: '0 var(--space-8) var(--space-8)', marginTop: '-var(--space-10)', position: 'relative', zIndex: 2 }}>
+              {/* Title Section */}
+              <div style={{ marginBottom: 'var(--space-6)' }}>
+                <span className="category-badge" style={{ 
+                  marginBottom: 'var(--space-3)', 
+                  display: 'inline-block',
+                  background: 'rgba(var(--primary-color-rgb), 0.1)',
+                  color: 'var(--primary-color)',
+                  border: '1px solid rgba(var(--primary-color-rgb), 0.2)',
+                  padding: '4px 12px',
+                  borderRadius: 'var(--radius-full)',
+                  fontSize: '0.7rem',
+                  fontWeight: '800',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.8px'
+                }}>
                   {project.category}
                 </span>
-                <h2 style={{ fontSize: '2.5rem', marginBottom: 'var(--space-2)', fontWeight: 800 }}>{project.title}</h2>
-                <p style={{ fontSize: '1.25rem', opacity: 0.9, color: 'var(--primary-color)', fontWeight: 700, letterSpacing: '0.5px' }}>
-                  {project.subtitle || project.shortDescription}
-                </p>
+                <div style={{ 
+                  fontSize: '2.25rem', 
+                  fontWeight: 800, 
+                  color: 'var(--text-primary)', 
+                  marginBottom: 'var(--space-2)',
+                  lineHeight: 1.2,
+                  fontFamily: 'var(--font-heading)'
+                }}>
+                  {project.title}
+                </div>
+                {project.subtitle && (
+                  <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', fontWeight: 500, margin: 0 }}>
+                    {project.subtitle}
+                  </p>
+                )}
               </div>
 
-              <div className="project-modal-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-10)' }}>
-                {/* Left Column: Info */}
-                <div>
-                  <div style={{ marginBottom: 'var(--space-8)' }}>
-                    <h4 className="detail-label">Ringkasan Proyek</h4>
-                    <p style={{ lineHeight: 1.8, opacity: 0.9, fontSize: '1.05rem' }}>
+              {/* Main Content Layout Grid */}
+              <div className="project-modal-grid-container" style={{ display: 'grid', gridTemplateColumns: '1.6fr 1fr', gap: 'var(--space-8)' }}>
+                
+                {/* Left Column: Summary & Features & Challenges */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
+                  <div>
+                    <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1.5px', color: 'var(--primary-color)', marginBottom: 'var(--space-3)', fontWeight: 700 }}>
+                      Ringkasan Proyek
+                    </h4>
+                    <p style={{ lineHeight: 1.75, opacity: 0.95, fontSize: '1rem', color: 'var(--text-primary)', margin: 0 }}>
                       {project.description || 'Detail deskripsi proyek belum tersedia.'}
                     </p>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-6)', marginBottom: 'var(--space-8)' }}>
+                  {project.features && project.features.length > 0 && (
                     <div>
-                      <h4 className="detail-label">Peran</h4>
-                      <p style={{ fontSize: '1rem', fontWeight: 600 }}>{project.role || 'Contributor'}</p>
+                      <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1.5px', color: 'var(--primary-color)', marginBottom: 'var(--space-3)', fontWeight: 700 }}>
+                        Fitur Utama
+                      </h4>
+                      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 'var(--space-2)' }}>
+                        {project.features.map((feature, i) => (
+                          <li key={i} style={{ fontSize: '0.95rem', display: 'flex', alignItems: 'flex-start', gap: '10px', lineHeight: 1.5, color: 'var(--text-primary)' }}>
+                            <span style={{ color: 'var(--primary-color)', fontWeight: 'bold' }}>✓</span>
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    <div>
-                      <h4 className="detail-label">Status</h4>
-                      <p style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--primary-color)' }}>{project.status || 'Completed'}</p>
-                    </div>
-                  </div>
+                  )}
 
-                  <div>
-                    <h4 className="detail-label">Teknologi & Tools</h4>
-                    <div className="tech-badges">
-                      {techStack.map((tech, i) => (
-                        <span key={i} className="tech-badge" style={{ fontSize: '0.75rem', padding: '4px 12px' }}>{tech}</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right Column: Challenges & Links */}
-                <div>
                   {(project.challenge || project.solution) && (
-                    <div style={{ padding: 'var(--space-6)', background: 'rgba(var(--primary-color-rgb), 0.03)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-color)', marginBottom: 'var(--space-8)' }}>
+                    <div style={{ 
+                      padding: 'var(--space-5)', 
+                      background: 'rgba(var(--primary-color-rgb), 0.03)', 
+                      borderRadius: 'var(--radius-lg)', 
+                      border: '1px solid var(--border-color)', 
+                      display: 'flex', 
+                      flexDirection: 'column', 
+                      gap: 'var(--space-4)' 
+                    }}>
                       {project.challenge && (
-                        <div style={{ marginBottom: 'var(--space-6)' }}>
-                          <h4 className="detail-label">Tantangan</h4>
-                          <p style={{ fontSize: '0.95rem', lineHeight: 1.7, opacity: 0.85 }}>{project.challenge}</p>
+                        <div>
+                          <h5 style={{ fontSize: '0.85rem', fontWeight: 700, margin: '0 0 var(--space-1)', color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Tantangan</h5>
+                          <p style={{ fontSize: '0.9rem', lineHeight: 1.6, opacity: 0.85, margin: 0, color: 'var(--text-primary)' }}>{project.challenge}</p>
                         </div>
                       )}
                       {project.solution && (
                         <div>
-                          <h4 className="detail-label">Solusi</h4>
-                          <p style={{ fontSize: '0.95rem', lineHeight: 1.7, opacity: 0.85 }}>{project.solution}</p>
+                          <h5 style={{ fontSize: '0.85rem', fontWeight: 700, margin: '0 0 var(--space-1)', color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Solusi</h5>
+                          <p style={{ fontSize: '0.9rem', lineHeight: 1.6, opacity: 0.85, margin: 0, color: 'var(--text-primary)' }}>{project.solution}</p>
                         </div>
                       )}
                     </div>
                   )}
+                </div>
 
-                  {linkTiles.length > 0 ? (
-                    <div>
-                      <h4 className="detail-label" style={{ marginBottom: 'var(--space-4)' }}>Aset & Tautan Terkait</h4>
-                      <div className="project-link-tiles-grid">
+                {/* Right Column: Meta Details, Tech, Links */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
+                  
+                  {/* Metadata Card */}
+                  <div style={{ background: 'var(--surface-color)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-5)', backdropFilter: 'var(--glass-blur)' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+                      <div>
+                        <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--text-secondary)', display: 'block', marginBottom: '2px' }}>Peran</span>
+                        <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)' }}>{project.role || 'Contributor'}</span>
+                      </div>
+                      <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: 'var(--space-3)' }}>
+                        <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--text-secondary)', display: 'block', marginBottom: '2px' }}>Status</span>
+                        <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--primary-color)' }}>{project.status || 'Completed'}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Tech stack */}
+                  <div>
+                    <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1.5px', color: 'var(--text-secondary)', marginBottom: 'var(--space-3)', fontWeight: 700 }}>
+                      Teknologi & Tools
+                    </h4>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                      {techStack.map((tech, i) => (
+                        <span key={i} className="tech-badge" style={{ fontSize: '0.72rem', padding: '4px 10px', borderRadius: 'var(--radius-sm)', margin: 0 }}>
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Related Links */}
+                  <div>
+                    <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1.5px', color: 'var(--text-secondary)', marginBottom: 'var(--space-3)', fontWeight: 700 }}>
+                      Tautan & Aset
+                    </h4>
+                    {linkTiles.length > 0 ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                         {linkTiles.map(tile => (
                           <a 
                             key={tile.key}
                             href={tile.url.trim()}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="project-link-tile"
+                            className="modal-link-item"
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              padding: '12px 16px',
+                              background: 'var(--surface-color)',
+                              border: '1px solid var(--border-color)',
+                              borderRadius: 'var(--radius-md)',
+                              textDecoration: 'none',
+                              color: 'var(--text-primary)',
+                              gap: '12px'
+                            }}
                           >
-                            <span className="project-link-tile-icon">{tile.icon}</span>
-                            <span className="project-link-tile-label">{tile.label}</span>
+                            <span style={{ fontSize: '1.25rem' }}>{tile.icon}</span>
+                            <span style={{ fontSize: '0.88rem', fontWeight: 600, flex: 1 }}>{tile.label}</span>
+                            <span className="modal-link-arrow" style={{ transition: 'transform 0.2s ease', opacity: 0.6 }}>→</span>
                           </a>
                         ))}
                       </div>
-                    </div>
-                  ) : (
-                    <div>
-                      <h4 className="detail-label" style={{ marginBottom: 'var(--space-4)' }}>Aset & Tautan Terkait</h4>
-                      <div style={{ padding: 'var(--space-4)', background: 'rgba(var(--primary-color-rgb), 0.03)', borderRadius: 'var(--radius-md)', border: '1px dashed var(--border-color)', textAlign: 'center' }}>
-                        <p style={{ fontSize: '0.85rem', opacity: 0.6, margin: 0, fontStyle: 'italic' }}>Aset belum tersedia</p>
+                    ) : (
+                      <div style={{ padding: 'var(--space-4)', background: 'var(--surface-color)', borderRadius: 'var(--radius-md)', border: '1px dashed var(--border-color)', textAlign: 'center' }}>
+                        <p style={{ fontSize: '0.85rem', opacity: 0.6, margin: 0, fontStyle: 'italic', color: 'var(--text-secondary)' }}>Tautan belum tersedia</p>
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
+
                 </div>
+
               </div>
 
-              {project.features && project.features.length > 0 && (
-                <div style={{ marginTop: 'var(--space-10)', paddingTop: 'var(--space-8)', borderTop: '1px solid var(--border-color)' }}>
-                  <h4 className="detail-label" style={{ marginBottom: 'var(--space-6)' }}>Fitur Utama Proyek</h4>
-                  <ul style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 'var(--space-4)', paddingLeft: '1.2rem' }}>
-                    {project.features.map((feature, i) => (
-                      <li key={i} style={{ fontSize: '0.95rem', opacity: 0.85, lineHeight: 1.6 }}>{feature}</li>
-                    ))}
-                  </ul>
+              {/* Project Impact Callout */}
+              {project.impact && (
+                <div style={{ 
+                  marginTop: 'var(--space-8)', 
+                  padding: 'var(--space-5)', 
+                  background: 'rgba(var(--primary-color-rgb), 0.04)', 
+                  borderRadius: 'var(--radius-lg)', 
+                  border: '1px solid rgba(var(--primary-color-rgb), 0.15)',
+                  textAlign: 'center' 
+                }}>
+                  <h4 style={{ 
+                    fontSize: '0.8rem', 
+                    textTransform: 'uppercase', 
+                    letterSpacing: '1.5px', 
+                    color: 'var(--primary-color)', 
+                    marginBottom: 'var(--space-2)', 
+                    fontWeight: 700, 
+                    display: 'flex', 
+                    justifyContent: 'center', 
+                    alignItems: 'center', 
+                    gap: '6px' 
+                  }}>
+                    ✨ Dampak & Hasil
+                  </h4>
+                  <p style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)', margin: 0 }}>{project.impact}</p>
                 </div>
               )}
 
-              {project.impact && (
-                <div style={{ marginTop: 'var(--space-8)', padding: 'var(--space-6)', background: 'rgba(var(--primary-color-rgb), 0.05)', borderRadius: 'var(--radius-lg)', textAlign: 'center' }}>
-                  <h4 className="detail-label" style={{ justifyContent: 'center' }}>Dampak & Hasil</h4>
-                  <p style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)' }}>{project.impact}</p>
-                </div>
-              )}
             </div>
           </motion.div>
         </div>
