@@ -42,6 +42,11 @@ const ProjectDetailModal = ({ isOpen, onClose, project }) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 30 }}
             onClick={(e) => e.stopPropagation()}
+            style={{
+              backgroundColor: 'var(--bg-color)',
+              color: 'var(--text-primary)',
+              border: '1px solid var(--border-color)'
+            }}
           >
             <button 
               className="project-modal-close"
@@ -62,7 +67,7 @@ const ProjectDetailModal = ({ isOpen, onClose, project }) => {
                 position: 'absolute', 
                 bottom: 0, left: 0, right: 0, 
                 height: '50%', 
-                background: 'linear-gradient(to top, var(--background-color), transparent)',
+                background: 'linear-gradient(to top, var(--bg-color), transparent)',
                 zIndex: 1
               }} />
             </div>

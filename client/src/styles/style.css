@@ -9,6 +9,7 @@
   --bg-color: #0F172A;
   --surface-color: rgba(30, 41, 59, 0.7);
   --primary-color: #38BDF8;
+  --primary-color-rgb: 56, 189, 248;
   --secondary-color: #94A3B8;
   --text-primary: #F1F5F9;
   --text-secondary: #94A3B8;
@@ -47,6 +48,7 @@
   --bg-color: #F8FAFC;
   --surface-color: rgba(255, 255, 255, 0.7);
   --primary-color: #0284C7;
+  --primary-color-rgb: 2, 132, 199;
   --secondary-color: #475569;
   --text-primary: #0F172A;
   --text-secondary: #475569;

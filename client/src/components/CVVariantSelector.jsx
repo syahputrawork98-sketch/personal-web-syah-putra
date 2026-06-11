@@ -40,7 +40,7 @@ const CVVariantSelector = ({ isOpen, onClose }) => {
             style={{
               maxWidth: showPreview ? '1000px' : '900px',
               width: '100%',
-              backgroundColor: 'var(--background-color)',
+              backgroundColor: 'var(--bg-color)',
               borderRadius: 'var(--radius-xl)',
               boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
               maxHeight: '90vh',
