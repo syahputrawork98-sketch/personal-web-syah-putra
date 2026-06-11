@@ -70,7 +70,7 @@ async function main() {
             description: 'Terbiasa bekerja dengan tim IT, operasional, manajemen, vendor, mandor, kontraktor, HR, dan klien.'
           }
         ],
-        avatarUrl: 'https://placehold.co/400x400/000000/FFFFFF/png?text=SP',
+        avatarUrl: 'https://res.cloudinary.com/dlgr9xicg/image/upload/v1781203798/Pas_foto_1_ggq9nf.png',
         resumeUrl: '#',
         birthPlace: 'Cimahi',
         birthDate: '29 Mei 1998'
