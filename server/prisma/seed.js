@@ -71,7 +71,9 @@ async function main() {
           }
         ],
         avatarUrl: 'https://placehold.co/400x400/000000/FFFFFF/png?text=SP',
-        resumeUrl: '#'
+        resumeUrl: '#',
+        birthPlace: 'Cimahi',
+        birthDate: '29 Mei 1998'
       }
     },
     {

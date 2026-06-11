@@ -154,12 +154,33 @@ const About = () => {
               />
             </div>
             {currentProfile.avatarUrl && (
-              <div className="card profile-image-card">
-                <img 
-                  src={currentProfile.avatarUrl} 
-                  alt="Profile Avatar" 
-                  style={{ width: '100%', height: 'auto', display: 'block', maxHeight: '300px', objectFit: 'cover' }} 
-                />
+              <div className="card profile-image-card" style={{ padding: 'var(--space-4)', display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+                <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
+                  <img 
+                    src={currentProfile.avatarUrl} 
+                    alt="Profile Avatar" 
+                    style={{ width: '100%', height: 'auto', display: 'block', maxHeight: '300px', objectFit: 'cover' }} 
+                  />
+                </div>
+                {(currentProfile.birthPlace || currentProfile.birthDate) && (
+                  <div style={{ 
+                    paddingTop: 'var(--space-3)', 
+                    borderTop: '1px solid var(--border-color)', 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    gap: 'var(--space-2)',
+                    fontSize: '0.88rem'
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ opacity: 0.6, fontWeight: 500 }}>Tempat Lahir</span>
+                      <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{currentProfile.birthPlace}</span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ opacity: 0.6, fontWeight: 500 }}>Tanggal Lahir</span>
+                      <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{currentProfile.birthDate}</span>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </div>

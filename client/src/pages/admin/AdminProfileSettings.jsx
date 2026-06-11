@@ -9,7 +9,9 @@ const AdminProfileSettings = () => {
     summaryTitle: '',
     summary: '',
     avatarUrl: '',
-    resumeUrl: ''
+    resumeUrl: '',
+    birthPlace: '',
+    birthDate: ''
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -27,7 +29,9 @@ const AdminProfileSettings = () => {
             summaryTitle: data.profile.summaryTitle || '',
             summary: data.profile.summary || '',
             avatarUrl: data.profile.avatarUrl || '',
-            resumeUrl: data.profile.resumeUrl || ''
+            resumeUrl: data.profile.resumeUrl || '',
+            birthPlace: data.profile.birthPlace || '',
+            birthDate: data.profile.birthDate || ''
           });
         }
       } catch (err) {
@@ -125,6 +129,29 @@ const AdminProfileSettings = () => {
             placeholder="e.g. https://example.com/avatar.jpg"
             style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
           />
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)' }}>
+          <div className="form-group">
+            <label style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Tempat Lahir</label>
+            <input 
+              name="birthPlace"
+              value={formData.birthPlace}
+              onChange={handleChange}
+              placeholder="e.g. Cimahi"
+              style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
+            />
+          </div>
+          <div className="form-group">
+            <label style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Tanggal Lahir</label>
+            <input 
+              name="birthDate"
+              value={formData.birthDate}
+              onChange={handleChange}
+              placeholder="e.g. 29 Mei 1998"
+              style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
+            />
+          </div>
         </div>
 
         <div className="form-group">
