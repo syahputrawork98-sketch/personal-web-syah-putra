@@ -238,59 +238,118 @@ async function main() {
   for (const exp of experiences) {
     await prisma.experience.create({ data: exp });
   }
-  console.log('✅ Experi  // 5. Setup Projects
-  const projectCount = await prisma.project.count();
-  if (projectCount === 0) {
-    const projects = [
-      {
-        title: 'Construction Project Monitoring Application',
-        slug: 'construction-project-monitoring',
-        shortDescription: 'Aplikasi web untuk membantu monitoring progres pembangunan rumah, dokumentasi proyek, dan laporan harian.',
-        description: 'Aplikasi web untuk membantu monitoring progres pembangunan rumah, dokumentasi proyek, dan laporan harian. Sistem ini dirancang agar proses pelaporan dari lapangan lebih cepat, terstruktur, dan mudah dipantau oleh tim manajemen.\n\n**Fitur utama:**\n- Dashboard progres\n- Laporan harian digital\n- Upload dokumentasi foto\n- Monitoring pekerjaan\n- Manajemen logistik\n\n**Impact:**\nMembantu meningkatkan efisiensi pelaporan proyek hingga sekitar 35%.',
-        techStack: ['React.js', 'Node.js', 'Express.js', 'MongoDB'],
-        status: 'PUBLISHED',
-        featured: true,
-        order: 1,
-      },
-      {
-        title: 'Event Organizer Showcase Website',
-        slug: 'event-organizer-showcase',
-        shortDescription: 'Website promosi untuk layanan event organizer dan catering.',
-        description: 'Website promosi untuk layanan event organizer dan catering. Website ini menampilkan katalog layanan, portofolio acara, serta jalur inquiry/pemesanan agar calon klien lebih mudah memahami layanan yang ditawarkan.\n\n**Fitur utama:**\n- Portfolio gallery\n- Katalog layanan\n- Inquiry service\n- Responsive mobile design\n\n**Impact:**\nMeningkatkan kepercayaan calon klien dan memperluas jangkauan digital bisnis.',
-        techStack: ['React.js', 'Node.js', 'Express.js', 'MySQL'],
-        status: 'PUBLISHED',
-        featured: true,
-        order: 2,
-      },
-      {
-        title: 'Internal Recruitment Application',
-        slug: 'internal-recruitment-application',
-        shortDescription: 'Sistem internal untuk membantu HR mengelola data pelamar, status seleksi, dan monitoring proses rekrutmen.',
-        description: 'Sistem internal untuk membantu HR mengelola data pelamar, status seleksi, dan monitoring proses rekrutmen. Aplikasi ini dibuat untuk menggantikan proses manual yang rawan kesalahan dan memakan waktu.\n\n**Fitur utama:**\n- Database pelamar\n- Filter status\n- Dashboard HR\n- Export data\n\n**Impact:**\nMempercepat proses rekrutmen dan mengurangi kesalahan administrasi data.',
-        techStack: ['PHP', 'MySQL', 'HTML', 'CSS'],
-        status: 'PUBLISHED',
-        featured: false,
-        order: 3,
-      },
-      {
-        title: 'Company Profile Website',
-        slug: 'company-profile-website',
-        shortDescription: 'Website company profile untuk menampilkan profil usaha, layanan, galeri destinasi, dan informasi kontak.',
-        description: 'Website company profile untuk menampilkan profil usaha, layanan, galeri destinasi, dan informasi kontak. Website ini membantu perusahaan memiliki pusat informasi digital yang lebih mudah diakses calon pelanggan.\n\n**Fitur utama:**\n- Informasi destinasi\n- Galeri foto\n- Google Maps integration\n- Kontak cepat\n\n**Impact:**\nMembantu memperkuat kehadiran digital perusahaan.',
-        techStack: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
-        status: 'PUBLISHED',
-        featured: false,
-        order: 4,
-      }
-    ];
+  console.log('✅ Experiences seeded.');
 
-    for (const project of projects) {
-      await prisma.project.create({ data: project });
+  // 5. Setup Projects
+  const projects = [
+    {
+      title: 'Construction Project Monitoring Application',
+      slug: 'construction-project-monitoring',
+      shortDescription: 'Aplikasi web untuk membantu monitoring progres pembangunan rumah, dokumentasi proyek, dan laporan harian.',
+      description: 'Aplikasi web untuk membantu monitoring progres pembangunan rumah, dokumentasi proyek, dan laporan harian. Sistem ini dirancang agar proses pelaporan dari lapangan lebih cepat, terstruktur, dan mudah dipantau oleh tim manajemen.\n\n**Fitur utama:**\n- Dashboard progres\n- Laporan harian digital\n- Upload dokumentasi foto\n- Monitoring pekerjaan\n- Manajemen logistik\n\n**Impact:**\nMembantu meningkatkan efisiensi pelaporan proyek hingga sekitar 35%.',
+      techStack: ['React.js', 'Node.js', 'Express.js', 'MongoDB'],
+      status: 'PUBLISHED',
+      featured: true,
+      order: 1,
+    },
+    {
+      title: 'Event Organizer Showcase Website',
+      slug: 'event-organizer-showcase',
+      shortDescription: 'Website promosi untuk layanan event organizer dan catering.',
+      description: 'Website promosi untuk layanan event organizer dan catering. Website ini menampilkan katalog layanan, portofolio acara, serta jalur inquiry/pemesanan agar calon klien lebih mudah memahami layanan yang ditawarkan.\n\n**Fitur utama:**\n- Portfolio gallery\n- Katalog layanan\n- Inquiry service\n- Responsive mobile design\n\n**Impact:**\nMeningkatkan kepercayaan calon klien dan memperluas jangkauan digital bisnis.',
+      techStack: ['React.js', 'Node.js', 'Express.js', 'MySQL'],
+      status: 'PUBLISHED',
+      featured: true,
+      order: 2,
+    },
+    {
+      title: 'Internal Recruitment Application',
+      slug: 'internal-recruitment-application',
+      shortDescription: 'Sistem internal untuk membantu HR mengelola data pelamar, status seleksi, dan monitoring proses rekrutmen.',
+      description: 'Sistem internal untuk membantu HR mengelola data pelamar, status seleksi, dan monitoring proses rekrutmen. Aplikasi ini dibuat untuk menggantikan proses manual yang rawan kesalahan dan memakan waktu.\n\n**Fitur utama:**\n- Database pelamar\n- Filter status\n- Dashboard HR\n- Export data\n\n**Impact:**\nMempercepat proses rekrutmen dan mengurangi kesalahan administrasi data.',
+      techStack: ['PHP', 'MySQL', 'HTML', 'CSS'],
+      status: 'PUBLISHED',
+      featured: false,
+      order: 3,
+    },
+    {
+      title: 'Company Profile Website',
+      slug: 'company-profile-website',
+      shortDescription: 'Website company profile untuk menampilkan profil usaha, layanan, galeri destinasi, dan informasi kontak.',
+      description: 'Website company profile untuk menampilkan profil usaha, layanan, galeri destinasi, dan informasi kontak. Website ini membantu perusahaan memiliki pusat informasi digital yang lebih mudah diakses calon pelanggan.\n\n**Fitur utama:**\n- Informasi destinasi\n- Galeri foto\n- Google Maps integration\n- Kontak cepat\n\n**Impact:**\nMembantu memperkuat kehadiran digital perusahaan.',
+      techStack: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
+      status: 'PUBLISHED',
+      featured: false,
+      order: 4,
+    },
+    {
+      title: 'Kosuka Bali Trip Website',
+      slug: 'kbt-kosuka-bali-trip',
+      shortDescription: 'Website promosi layanan tour & travel Bali untuk pemesanan paket wisata secara kustom.',
+      description: 'Website e-commerce pariwisata yang menawarkan katalog tur kustom, pemesanan online, dan integrasi dengan media sosial untuk memudahkan pelancong merencanakan liburan mereka di Bali.\n\n**Fitur utama:**\n- Katalog destinasi wisata Bali\n- Sistem pemesanan tur kustom\n- Galeri destinasi interaktif\n- Fitur kontak WhatsApp cepat',
+      techStack: ['TypeScript', 'React.js', 'Vite', 'TailwindCSS'],
+      status: 'PUBLISHED',
+      featured: true,
+      order: 5,
+    },
+    {
+      title: "Tien's Catering & Event Organizer Showcase",
+      slug: 'tc-tiens-catering',
+      shortDescription: 'Platform showcase layanan catering kuliner dan event organizer digital.',
+      description: 'Aplikasi web portofolio catering kuliner yang menyajikan paket menu hidangan, manajemen event, kalkulator porsi makanan, dan form reservasi booking acara secara online.\n\n**Fitur utama:**\n- Menu catalog slider\n- Porsi food calculator\n- Inquiry booking reservation\n- Integrasi Google Maps lokasi kitchen',
+      techStack: ['Svelte', 'SvelteKit', 'TailwindCSS', 'JavaScript'],
+      status: 'PUBLISHED',
+      featured: true,
+      order: 6,
+    },
+    {
+      title: 'RumahKu Konstruksi Portal',
+      slug: 'rkk-rumahku-konstruksi',
+      shortDescription: 'Platform monitoring progres pembangunan konstruksi perumahan.',
+      description: 'Platform web untuk tracking real-time status pembangunan rumah tinggal, mempermudah manajemen logistik proyek konstruksi, dokumentasi harian, dan kolaborasi antara mandor lapangan dengan klien pemilik proyek.\n\n**Fitur utama:**\n- Progress timeline monitoring\n- Manajemen stock logistik semen/bata\n- Harian worklog checklist\n- Upload foto harian proyek',
+      techStack: ['JavaScript', 'React.js', 'Node.js', 'Express.js', 'MongoDB'],
+      status: 'PUBLISHED',
+      featured: true,
+      order: 7,
+    },
+    {
+      title: 'Siap Aqiqah Digital Platform',
+      slug: 'sa-siap-aqiqah',
+      shortDescription: 'Aplikasi pemesanan hewan kurban dan paket aqiqah digital.',
+      description: 'Platform e-commerce lokal untuk pemesanan hewan qurban & paket aqiqah instan, dilengkapi dengan tracking proses penyembelihan secara syariah, pencetakan sertifikat aqiqah, dan dokumentasi video.\n\n**Fitur utama:**\n- Pemilihan hewan aqiqah\n- Invoice generator\n- Tracking dokumentasi video aqiqah\n- Custom sertifikat PDF download',
+      techStack: ['JavaScript', 'React.js', 'Node.js', 'Express.js', 'MySQL'],
+      status: 'PUBLISHED',
+      featured: false,
+      order: 8,
+    },
+    {
+      title: 'Manajemen Toko Bangunan (MTB) Dashboard',
+      slug: 'mtb-manajemen-toko-bangunan',
+      shortDescription: 'Aplikasi point of sale (POS) & inventori toko bangunan terintegrasi.',
+      description: 'Dashboard admin internal untuk manajemen toko bahan bangunan skala menengah. Mengelola master data produk, status stok, transaksi kasir POS, dan pelaporan keuangan bulanan.\n\n**Fitur utama:**\n- POS kasir penjualan barang\n- Stock alert batas minimum material\n- Laporan laba rugi otomatis\n- Print struk transaksi belanja',
+      techStack: ['JavaScript', 'React.js', 'Node.js', 'Express.js', 'PostgreSQL'],
+      status: 'PUBLISHED',
+      featured: false,
+      order: 9,
+    },
+    {
+      title: 'Iwan Noval Portfolio Website',
+      slug: 'personal-web-iwan-noval',
+      shortDescription: 'Website profil profesional dan landing page untuk portfolio personal.',
+      description: 'Desain portofolio modern yang menampilkan perjalanan karir, pencapaian proyek, list keahlian, dan formulir kontak interaktif.\n\n**Fitur utama:**\n- Dark/light mode theme toggle\n- Timeline karir & edukasi\n- Kontak formulir direct email\n- SEO-optimized metadata',
+      techStack: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
+      status: 'DRAFT',
+      featured: false,
+      order: 10,
     }
-    console.log('✅ Projects seeded.');
-  } else {
-    console.log('ℹ️ Projects already exist in database. Skipping project seeding.');
-  }� Projects seeded.');
+  ];
+
+  await prisma.project.deleteMany({});
+  for (const project of projects) {
+    await prisma.project.create({ data: project });
+  }
+  console.log('✅ Projects seeded.');
+
 
   // 6. Setup Credentials & Certifications (Migrated from draft)
   console.log('📜 Seeding Credentials & Certifications...');
@@ -409,80 +468,236 @@ async function main() {
   try {
     const defaultLearningItems = [
       {
-        title: "JavaScript Fundamentals",
-        slug: "javascript-fundamentals",
-        category: "Programming Languages",
+        title: "PostgreSQL Knowledge Base",
+        slug: "postgresql-knowledge-base",
+        category: "Database & Data",
         status: "IN_PROGRESS",
-        level: "Beginner to Intermediate",
-        topics: ["ES6", "DOM", "Array Methods", "Async JavaScript"],
-        repoUrl: "#",
-        description: "Deep dive into core JavaScript concepts to build a strong foundation for modern web development.",
+        level: "Intermediate",
+        topics: ["Database Schema", "SQL Queries", "Indexing", "Optimization"],
+        repoUrl: "https://github.com/syahputrawork98-sketch/PostgreSQL-Knowledge-Base",
+        description: "PostgreSQL Knowledge Base adalah perpustakaan belajar terstruktur yang dirancang sebagai panduan mendalam tentang PostgreSQL.",
         orderIndex: 1,
-        isPublished: true,
-        featured: true
-      },
-      {
-        title: "TypeScript Fundamentals",
-        slug: "typescript-fundamentals",
-        category: "Programming Languages",
-        status: "LEARNING",
-        level: "Beginner",
-        topics: ["Types", "Interfaces", "Generics", "React TypeScript"],
-        repoUrl: "#",
-        description: "Introduction to statically typed JavaScript with TypeScript to improve code quality and developer experience.",
-        orderIndex: 2,
         isPublished: true,
         featured: false
       },
       {
-        title: "React Practice",
-        slug: "react-practice",
-        category: "Frontend",
+        title: "JavaScript Knowledge Base",
+        slug: "javascript-knowledge-base",
+        category: "Programming Languages",
         status: "IN_PROGRESS",
-        level: "Beginner to Intermediate",
-        topics: ["Components", "Props", "State", "Hooks", "Routing"],
-        repoUrl: "#",
-        description: "Practical exercises and mini-projects to master React ecosystem and component-driven UI development.",
-        orderIndex: 3,
+        level: "Intermediate",
+        topics: ["ES6+", "Event Loop", "Asynchronous JS", "DOM Manipulation"],
+        repoUrl: "https://github.com/syahputrawork98-sketch/JavaScript-Knowledge-Base",
+        description: "Pusat pembelajaran JavaScript end-to-end: dari implementasi dasar, pemahaman mekanisme runtime, sampai latihan terstruktur untuk stabil di kasus nyata.",
+        orderIndex: 2,
         isPublished: true,
         featured: true
       },
       {
-        title: "Node.js API Basics",
-        slug: "node-js-api-basics",
-        category: "Backend",
-        status: "PLANNED",
-        level: "Beginner",
-        topics: ["Express", "REST API", "Middleware", "Auth Basics"],
-        repoUrl: "#",
-        description: "Learning server-side JavaScript using Node.js and Express to build robust RESTful APIs.",
+        title: "GitHub Knowledge Base",
+        slug: "github-knowledge-base",
+        category: "Tools & Workflow",
+        status: "IN_PROGRESS",
+        level: "Beginner to Intermediate",
+        topics: ["GitHub Actions", "Branching Strategy", "PR Workflows", "Releases"],
+        repoUrl: "https://github.com/syahputrawork98-sketch/GitHub-Knowledge-Base",
+        description: "Referensi teknis untuk manajemen kode kolaboratif menggunakan Git dan GitHub, membahas branching strategy dan Pull Request workflow.",
+        orderIndex: 3,
+        isPublished: true,
+        featured: false
+      },
+      {
+        title: "TypeScript Knowledge Base",
+        slug: "typescript-knowledge-base",
+        category: "Programming Languages",
+        status: "IN_PROGRESS",
+        level: "Intermediate",
+        topics: ["Statically Typed", "Interfaces", "Generics", "Type Guarding"],
+        repoUrl: "https://github.com/syahputrawork98-sketch/TypeScript-Knowledge-Base",
+        description: "Basis pengetahuan terstruktur tentang TypeScript yang membahas konsep dasar, sistem tipe, prinsip desain, dan ekosistemnya secara lengkap.",
         orderIndex: 4,
         isPublished: true,
         featured: false
       },
       {
-        title: "PostgreSQL & Prisma Notes",
-        slug: "postgresql-prisma-notes",
-        category: "Database & Data",
-        status: "PLANNED",
-        level: "Beginner",
-        topics: ["Schema", "Relations", "Migration", "Seed Data"],
-        repoUrl: "#",
-        description: "Relational database concepts and modern ORM practices using PostgreSQL and Prisma.",
+        title: "Python Knowledge Base",
+        slug: "python-knowledge-base",
+        category: "Programming Languages",
+        status: "LEARNING",
+        level: "Beginner to Intermediate",
+        topics: ["OOP Python", "Data Science Basics", "Decorators", "Scripting"],
+        repoUrl: "https://github.com/syahputrawork98-sketch/Python-Knowledge-Base",
+        description: "Python Knowledge Universe adalah repositori pembelajaran yang dirancang sebagai peta pengetahuan Python yang terstruktur, mulai dari konsep dasar hingga bidang spesialisasi.",
         orderIndex: 5,
         isPublished: true,
         featured: false
       },
       {
-        title: "Git & GitHub Workflow",
-        slug: "git-github-workflow",
+        title: "Rust Knowledge Base",
+        slug: "rust-knowledge-base",
+        category: "Programming Languages",
+        status: "LEARNING",
+        level: "Intermediate",
+        topics: ["Ownership & Borrowing", "Lifetimes", "Pattern Matching", "Cargo Tools"],
+        repoUrl: "https://github.com/syahputrawork98-sketch/Rust-Knowledge-Base",
+        description: "Repositori yang bertindak sebagai perpustakaan pembelajaran untuk Core Language Rust (seperti Ownership, Borrowing, Lifetimes, dan Concurrency).",
+        orderIndex: 6,
+        isPublished: true,
+        featured: false
+      },
+      {
+        title: "Golang Knowledge Base",
+        slug: "golang-knowledge-base",
+        category: "Programming Languages",
+        status: "LEARNING",
+        level: "Beginner to Intermediate",
+        topics: ["Goroutines", "Channels", "Go Modules", "REST API Design"],
+        repoUrl: "https://github.com/syahputrawork98-sketch/Golang-Knowledge-Base",
+        description: "Kompilasi catatan belajar pemrograman bahasa Go (Golang) mencakup goroutine, channel, standard library, serta REST API design.",
+        orderIndex: 7,
+        isPublished: true,
+        featured: false
+      },
+      {
+        title: "Cursor SOP",
+        slug: "cursor-sop",
         category: "Tools & Workflow",
         status: "IN_PROGRESS",
+        level: "Intermediate to Advanced",
+        topics: ["Cursor Rules", "AI Prompts", "Agentic Workflows", "System Instructions"],
+        repoUrl: "https://github.com/syahputrawork98-sketch/Cursor-SOP",
+        description: "Panduan operasional standar (SOP) untuk bekerja secara produktif menggunakan AI Editor Cursor dengan teknik Agentic Governance.",
+        orderIndex: 8,
+        isPublished: true,
+        featured: true
+      },
+      {
+        title: "Learning Matrix Blueprint",
+        slug: "learning-matrix-blueprint",
+        category: "Tools & Workflow",
+        status: "IN_PROGRESS",
+        level: "Advanced",
+        topics: ["Knowledge Mapping", "Blueprint Architectures", "Curriculum Design", "Self-Learning Path"],
+        repoUrl: "https://github.com/syahputrawork98-sketch/learning-matrix-blueprint",
+        description: "learning-matrix-blueprint adalah repository blueprint utama untuk seluruh ekosistem pembelajaran di workspace ini, dirancang sebagai arsitektur pengetahuan yang dinamis.",
+        orderIndex: 9,
+        isPublished: true,
+        featured: true
+      },
+      {
+        title: "Git & GitHub Knowledge Base",
+        slug: "git-github-knowledge-base",
+        category: "Tools & Workflow",
+        status: "IN_PROGRESS",
+        level: "Intermediate to Advanced",
+        topics: ["Git Internals", "Merge vs Rebase", "Submodules", "Security Best Practices"],
+        repoUrl: "https://github.com/syahputrawork98-sketch/Git-GitHub-Knowledge-Base",
+        description: "Repositori pusat pengetahuan Git & GitHub, dirancang sebagai referensi teknis tingkat tinggi (Senior Engineer) yang membedah kontrol versi dari filosofi sejarah hingga tingkat lanjut.",
+        orderIndex: 10,
+        isPublished: true,
+        featured: false
+      },
+      {
+        title: "Design Patterns Library",
+        slug: "design-patterns-library",
+        category: "Frontend",
+        status: "LEARNING",
+        level: "Intermediate",
+        topics: ["Creational Patterns", "Structural Patterns", "Behavioral Patterns", "Solid Principles"],
+        repoUrl: "https://github.com/syahputrawork98-sketch/Design-Patterns-Library",
+        description: "Kumpulan implementasi pola desain perangkat lunak (Design Patterns) dalam arsitektur modern TypeScript dan web development.",
+        orderIndex: 11,
+        isPublished: true,
+        featured: false
+      },
+      {
+        title: "AI Visual Communication",
+        slug: "ai-visual-communication",
+        category: "Frontend",
+        status: "LEARNING",
         level: "Beginner to Intermediate",
-        topics: ["Git Commit", "Branching", "Pull Request", "Documentation"],
-        repoUrl: "#",
-        description: "Version control best practices, collaborative workflows, and repository management.",
-        orderIndex: 6,
+        topics: ["Generative UI", "Visual Design Assets", "Prompts Engineering", "Figma AI Integration"],
+        repoUrl: "https://github.com/syahputrawork98-sketch/AI-Visual-Communication",
+        description: "Catatan pembelajaran dan penerapan teknologi kecerdasan buatan (AI) untuk komunikasi visual dan antarmuka web interaktif.",
+        orderIndex: 12,
+        isPublished: true,
+        featured: false
+      },
+      {
+        title: "Golang Frontend WASM Hub",
+        slug: "golang-frontend-wasm-hub",
+        category: "Frontend",
+        status: "LEARNING",
+        level: "Intermediate",
+        topics: ["WebAssembly", "Go WASM Compilation", "DOM Interaction", "JS-Go Interop"],
+        repoUrl: "https://github.com/syahputrawork98-sketch/Golang-Frontend-WASM-Hub",
+        description: "Hub eksplorasi implementasi WebAssembly (WASM) menggunakan bahasa pemrograman Go untuk meningkatkan performa interaksi frontend.",
+        orderIndex: 13,
+        isPublished: true,
+        featured: false
+      },
+      {
+        title: "Browser Runtime Knowledge Base",
+        slug: "browser-runtime-knowledge-base",
+        category: "Frontend",
+        status: "IN_PROGRESS",
+        level: "Intermediate to Advanced",
+        topics: ["V8 Engine", "Event Loop", "Render Pipeline", "DOM & CSSOM Tree"],
+        repoUrl: "https://github.com/syahputrawork98-sketch/Browser-Runtime-Knowledge-Base",
+        description: "Eksplorasi mendalam mekanisme browser runtime, render pipeline, reflow, repaint, V8 Engine, dan manajemen memori browser.",
+        orderIndex: 14,
+        isPublished: true,
+        featured: true
+      },
+      {
+        title: "Server Runtime Knowledge Base",
+        slug: "server-runtime-knowledge-base",
+        category: "Backend",
+        status: "LEARNING",
+        level: "Intermediate",
+        topics: ["NodeJS Architecture", "libuv Event Loop", "Worker Threads", "Streams & Buffer"],
+        repoUrl: "https://github.com/syahputrawork98-sketch/Server-Runtime-Knowledge-Base",
+        description: "Basis pengetahuan server runtime (Node.js, Deno, Bun) membahas arsitektur threading, libuv, asynchronous I/O, dan manajemen cluster.",
+        orderIndex: 15,
+        isPublished: true,
+        featured: false
+      },
+      {
+        title: "JavaScript & TS Frontend Hub",
+        slug: "javascript-ts-frontend-hub",
+        category: "Frontend",
+        status: "IN_PROGRESS",
+        level: "Intermediate",
+        topics: ["Component Design", "State Management", "Hydration", "Micro Frontends"],
+        repoUrl: "https://github.com/syahputrawork98-sketch/JavaScript-TS-Frontend-Hub",
+        description: "Hub pusat eksperimen dan proyek-proyek mini berbasis JavaScript dan TypeScript untuk penguasaan arsitektur frontend tingkat lanjut.",
+        orderIndex: 16,
+        isPublished: true,
+        featured: false
+      },
+      {
+        title: "Python UI Automation Hub",
+        slug: "python-ui-automation-hub",
+        category: "Tools & Workflow",
+        status: "LEARNING",
+        level: "Intermediate",
+        topics: ["Playwright", "Selenium Webdriver", "Web Scraping", "E2E Testing"],
+        repoUrl: "https://github.com/syahputrawork98-sketch/Python-UI-Automation-Hub",
+        description: "Eksperimen otomasi antarmuka pengguna (UI Automation) menggunakan script Python dengan tools seperti Selenium, Playwright, dan PyAutoGUI.",
+        orderIndex: 17,
+        isPublished: true,
+        featured: false
+      },
+      {
+        title: "Rust WASM UI Lab",
+        slug: "rust-wasm-ui-lab",
+        category: "Frontend",
+        status: "LEARNING",
+        level: "Intermediate to Advanced",
+        topics: ["wasm-bindgen", "Rust UI Rendering", "Memory Safety", "Performance Testing"],
+        repoUrl: "https://github.com/syahputrawork98-sketch/Rust-WASM-UI-Lab",
+        description: "Lab eksperimen compile Rust ke WebAssembly untuk membuat antarmuka UI dengan performa tinggi.",
+        orderIndex: 18,
         isPublished: true,
         featured: false
       }
@@ -496,6 +711,7 @@ async function main() {
   } catch (err) {
     console.error('⚠️ Warning: Failed to seed learning items:', err.message);
   }
+
 
   console.log('🏁 Seeding finished successfully.');
 }
