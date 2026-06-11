@@ -156,24 +156,39 @@ async function main() {
     {
       role: 'Freelance Full Stack Web Developer',
       company: 'Self-employed / Mandiri',
-      startDate: new Date('2025-01-01'),
+      startDate: new Date('2025-07-01'),
       isCurrent: true,
-      description: 'Mengembangkan website dan aplikasi web untuk UMKM, bisnis lokal, serta kebutuhan operasional. Berfokus pada pembuatan frontend, backend, database, REST API, authentication, dashboard admin, responsive design, deployment, dan maintenance aplikasi.',
+      type: 'Freelance',
+      description: 'Mengembangkan website dan aplikasi web end-to-end untuk UMKM, bisnis lokal, serta kebutuhan operasional secara mandiri. Berfokus pada arsitektur modern, optimasi performa, integrasi REST API, dan responsivitas antarmuka.',
       highlights: [
-        'Membangun aplikasi berbasis React.js dan Node.js.',
-        'Membuat REST API, sistem login berbasis JWT, dan dashboard admin.',
-        'Mengembangkan website company profile, katalog layanan, dan aplikasi monitoring.',
-        'Melakukan deployment dan maintenance aplikasi.'
+        'Kosuka Bali Trip (Apr 2026 - Sekarang): Membangun web pariwisata e-commerce dengan katalog tur kustom dan integrasi WhatsApp (React, Vite, Tailwind).',
+        'Tien\'s Catering Showcase (Feb 2026 - Mar 2026): Mengembangkan aplikasi portofolio katering kuliner, kalkulator porsi makanan, dan reservasi online (Svelte, SvelteKit).',
+        'Manajemen Toko Bangunan / MTB (Jan 2026): Membuat sistem POS kasir, stock alert, dan struk transaksi (React, Node.js, PostgreSQL).',
+        'RumahKu Konstruksi Portal (Okt 2025 - Des 2025): Membuat platform pelacakan progres konstruksi & manajemen logistik material (React, Node.js, MongoDB).',
+        'Siap Aqiqah / Sikah (Jul 2025 - Sep 2025): Membangun e-commerce pemesanan hewan qurban digital dengan tracking pemotongan syariah (React, Express, MySQL).'
       ],
       order: 1,
       status: 'PUBLISHED'
     },
     {
-      role: 'Field General Staff — Project Digitalization',
+      role: 'Freelance Quantity Surveyor & Cost Estimator',
+      company: 'Self-employed / Mandiri',
+      startDate: new Date('2025-01-01'),
+      endDate: new Date('2025-06-30'),
+      isCurrent: false,
+      type: 'Freelance',
+      description: '',
+      highlights: [],
+      order: 2,
+      status: 'PUBLISHED'
+    },
+    {
+      role: 'Field General Staff – Project Digitalization',
       company: 'PT Sedayu Jaya Konstruksi',
       startDate: new Date('2022-08-01'),
       endDate: new Date('2024-12-31'),
       isCurrent: false,
+      type: 'Formal',
       description: 'Mendukung administrasi dan koordinasi proyek lapangan pada proyek OK Building Dustira Hospital. Berperan dalam penyusunan laporan proyek, dokumentasi, RAB/RAP, invoice, laporan material, dan koordinasi dengan tim lapangan serta kontraktor utama.',
       highlights: [
         'Mendigitalisasi laporan proyek harian, mingguan, dan bulanan.',
@@ -181,23 +196,24 @@ async function main() {
         'Berkoordinasi dengan mandor, vendor, tim lapangan, dan main contractor.',
         'Membantu proses kerja proyek menjadi lebih rapi dan mudah dipantau.'
       ],
-      order: 2,
+      order: 3,
       status: 'PUBLISHED'
     },
     {
-      role: 'Personal Assistant & General Staff — Digital Documentation',
+      role: 'Personal Assistant & General Staff – Digital Documentation',
       company: 'PT Erusatria Grup',
       startDate: new Date('2020-03-01'),
       endDate: new Date('2022-07-31'),
       isCurrent: false,
+      type: 'Formal',
       description: 'Menangani administrasi proyek, logistik, stok material, jadwal, dokumen, notulen, dan pelaporan. Membantu merapikan sistem pengarsipan serta laporan logistik berbasis digital.',
       highlights: [
-        'Mengelola data stok material dan laporan gudang.',
+        'Mengelola data stok material and laporan gudang.',
         'Membuat pengajuan barang, RAP, dan dokumen pendukung proyek.',
         'Mengembangkan sistem laporan digital sederhana berbasis spreadsheet.',
         'Membantu meningkatkan efisiensi dokumentasi sekitar 25%.'
       ],
-      order: 3,
+      order: 4,
       status: 'PUBLISHED'
     },
     {
@@ -206,6 +222,7 @@ async function main() {
       startDate: new Date('2018-10-01'),
       endDate: new Date('2019-12-31'),
       isCurrent: false,
+      type: 'Formal',
       description: 'Mendukung administrasi umum, fasilitas, aset, dokumentasi, kebutuhan IT ringan, serta promosi digital melalui website company profile.',
       highlights: [
         'Membuat website company profile untuk promosi digital.',
@@ -213,7 +230,7 @@ async function main() {
         'Mendukung kebutuhan IT internal dan perangkat komputer.',
         'Berkoordinasi dengan pihak internal, eksternal, dan vendor.'
       ],
-      order: 4,
+      order: 5,
       status: 'PUBLISHED'
     },
     {
@@ -222,6 +239,7 @@ async function main() {
       startDate: new Date('2016-11-01'),
       endDate: new Date('2017-12-31'),
       isCurrent: false,
+      type: 'Formal',
       description: 'Mengelola perangkat IT pabrik, server, jaringan, CCTV, data karyawan, serta membantu digitalisasi proses HR melalui aplikasi rekrutmen internal.',
       highlights: [
         'Mengelola server, jaringan, CCTV, dan perangkat IT pabrik.',
@@ -229,7 +247,7 @@ async function main() {
         'Mengembangkan aplikasi rekrutmen internal berbasis PHP dan MySQL.',
         'Membuat database karyawan dan dashboard admin sederhana.'
       ],
-      order: 5,
+      order: 6,
       status: 'PUBLISHED'
     }
   ];
@@ -239,6 +257,7 @@ async function main() {
     await prisma.experience.create({ data: exp });
   }
   console.log('✅ Experiences seeded.');
+
 
   // 5. Setup Projects
   const projects = [
