@@ -6,8 +6,11 @@ const errorHandler = require('./middleware/errorHandler');
 const app = express();
 
 // Middleware
+const allowedOrigins = CLIENT_URL ? CLIENT_URL.split(',').map(url => url.trim()) : [];
+const origins = [...new Set([...allowedOrigins, 'http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175', 'https://syahputran.vercel.app'])];
+
 app.use(cors({
-  origin: [CLIENT_URL, 'http://localhost:5174', 'http://localhost:5175', 'https://syahputran.vercel.app'],
+  origin: origins,
   credentials: true,
 }));
 app.use(express.json());

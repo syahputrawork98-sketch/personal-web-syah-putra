@@ -123,11 +123,11 @@ const AdminLearningCreate = () => {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)', marginBottom: 'var(--space-4)' }}>
           <div>
             <label style={labelStyle}>Repository URL</label>
-            <input type="url" name="repoUrl" value={formData.repoUrl} onChange={handleChange} style={inputStyle} placeholder="https://github.com/..." />
+            <input type="text" name="repoUrl" value={formData.repoUrl} onChange={handleChange} style={inputStyle} placeholder="https://github.com/... or relative path / hash" />
           </div>
           <div>
             <label style={labelStyle}>Notes URL</label>
-            <input type="url" name="notesUrl" value={formData.notesUrl} onChange={handleChange} style={inputStyle} placeholder="https://..." />
+            <input type="text" name="notesUrl" value={formData.notesUrl} onChange={handleChange} style={inputStyle} placeholder="https://... or relative path / hash" />
           </div>
         </div>
 

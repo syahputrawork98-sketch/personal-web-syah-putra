@@ -14,7 +14,28 @@ const Credentials = () => {
   const [selectedCredential, setSelectedCredential] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const rawCredentials = (Array.isArray(response) ? response : (response?.certifications || response?.data?.certifications)) || [];
+  const getGoogleDriveUrls = (driveUrl) => {
+    if (!driveUrl) return { previewUrl: '', viewUrl: '' };
+    const match = driveUrl.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    if (match && match[1]) {
+      const fileId = match[1];
+      return {
+        previewUrl: `https://drive.google.com/file/d/${fileId}/preview`,
+        viewUrl: `https://drive.google.com/file/d/${fileId}/view`
+      };
+    }
+    return { previewUrl: '', viewUrl: driveUrl };
+  };
+
+  const rawCredentials = ((Array.isArray(response) ? response : (response?.certifications || response?.data?.certifications)) || []).map(item => {
+    const driveUrls = getGoogleDriveUrls(item.driveUrl);
+    return {
+      ...item,
+      date: item.originalIssueDate || (item.issueDate ? new Date(item.issueDate).getFullYear().toString() : ''),
+      previewUrl: item.previewUrl || driveUrls.previewUrl,
+      viewUrl: item.viewUrl || driveUrls.viewUrl
+    };
+  });
 
   const filteredCredentials = (activeCategory === "Semua"
     ? rawCredentials

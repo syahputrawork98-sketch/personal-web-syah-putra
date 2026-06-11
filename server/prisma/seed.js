@@ -400,6 +400,99 @@ async function main() {
     // Fallback or skip
   }
 
+  // 7. Setup Learning Library Items
+  console.log('📚 Seeding Learning Library Items...');
+  try {
+    const defaultLearningItems = [
+      {
+        title: "JavaScript Fundamentals",
+        slug: "javascript-fundamentals",
+        category: "Programming Languages",
+        status: "IN_PROGRESS",
+        level: "Beginner to Intermediate",
+        topics: ["ES6", "DOM", "Array Methods", "Async JavaScript"],
+        repoUrl: "#",
+        description: "Deep dive into core JavaScript concepts to build a strong foundation for modern web development.",
+        orderIndex: 1,
+        isPublished: true,
+        featured: true
+      },
+      {
+        title: "TypeScript Fundamentals",
+        slug: "typescript-fundamentals",
+        category: "Programming Languages",
+        status: "LEARNING",
+        level: "Beginner",
+        topics: ["Types", "Interfaces", "Generics", "React TypeScript"],
+        repoUrl: "#",
+        description: "Introduction to statically typed JavaScript with TypeScript to improve code quality and developer experience.",
+        orderIndex: 2,
+        isPublished: true,
+        featured: false
+      },
+      {
+        title: "React Practice",
+        slug: "react-practice",
+        category: "Frontend",
+        status: "IN_PROGRESS",
+        level: "Beginner to Intermediate",
+        topics: ["Components", "Props", "State", "Hooks", "Routing"],
+        repoUrl: "#",
+        description: "Practical exercises and mini-projects to master React ecosystem and component-driven UI development.",
+        orderIndex: 3,
+        isPublished: true,
+        featured: true
+      },
+      {
+        title: "Node.js API Basics",
+        slug: "node-js-api-basics",
+        category: "Backend",
+        status: "PLANNED",
+        level: "Beginner",
+        topics: ["Express", "REST API", "Middleware", "Auth Basics"],
+        repoUrl: "#",
+        description: "Learning server-side JavaScript using Node.js and Express to build robust RESTful APIs.",
+        orderIndex: 4,
+        isPublished: true,
+        featured: false
+      },
+      {
+        title: "PostgreSQL & Prisma Notes",
+        slug: "postgresql-prisma-notes",
+        category: "Database & Data",
+        status: "PLANNED",
+        level: "Beginner",
+        topics: ["Schema", "Relations", "Migration", "Seed Data"],
+        repoUrl: "#",
+        description: "Relational database concepts and modern ORM practices using PostgreSQL and Prisma.",
+        orderIndex: 5,
+        isPublished: true,
+        featured: false
+      },
+      {
+        title: "Git & GitHub Workflow",
+        slug: "git-github-workflow",
+        category: "Tools & Workflow",
+        status: "IN_PROGRESS",
+        level: "Beginner to Intermediate",
+        topics: ["Git Commit", "Branching", "Pull Request", "Documentation"],
+        repoUrl: "#",
+        description: "Version control best practices, collaborative workflows, and repository management.",
+        orderIndex: 6,
+        isPublished: true,
+        featured: false
+      }
+    ];
+
+    await prisma.learningItem.deleteMany({});
+    for (const item of defaultLearningItems) {
+      await prisma.learningItem.create({ data: item });
+    }
+    console.log('✅ Default learning items seeded.');
+  } catch (err) {
+    console.error('⚠️ Warning: Failed to seed learning items:', err.message);
+  }
+
   console.log('🏁 Seeding finished successfully.');
 }
 

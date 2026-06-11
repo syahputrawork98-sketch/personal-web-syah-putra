@@ -116,10 +116,10 @@ const CertificationForm = ({ initialData, onSubmit, saving }) => {
           <label style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Credential URL</label>
           <input 
             name="credentialUrl"
-            type="url"
+            type="text"
             value={formData.credentialUrl}
             onChange={handleChange}
-            placeholder="https://..."
+            placeholder="https://... or relative path"
             style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
           />
         </div>
@@ -130,10 +130,10 @@ const CertificationForm = ({ initialData, onSubmit, saving }) => {
           <label style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Certificate URL</label>
           <input 
             name="certificateUrl"
-            type="url"
+            type="text"
             value={formData.certificateUrl}
             onChange={handleChange}
-            placeholder="https://..."
+            placeholder="https://... or relative path"
             style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
           />
         </div>
@@ -141,20 +141,24 @@ const CertificationForm = ({ initialData, onSubmit, saving }) => {
           <label style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Drive URL</label>
           <input 
             name="driveUrl"
-            type="url"
+            type="text"
             value={formData.driveUrl}
             onChange={handleChange}
             placeholder="https://drive.google.com/..."
             style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
           />
+          <span style={{ fontSize: '0.8rem', opacity: 0.7, marginTop: '4px', display: 'block', lineHeight: 1.3 }}>
+            Gunakan URL Google Drive untuk production. Untuk localhost, bisa menggunakan path lokal (e.g. <code>/cv/sertifikat.pdf</code>).
+          </span>
         </div>
         <div className="form-group">
           <label style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Image URL</label>
           <input 
             name="imageUrl"
+            type="text"
             value={formData.imageUrl}
             onChange={handleChange}
-            placeholder="https://... or path"
+            placeholder="https://... or relative path"
             style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
           />
         </div>

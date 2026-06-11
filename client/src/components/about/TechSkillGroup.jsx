@@ -1,5 +1,6 @@
 import React from 'react';
 import { categoryMap } from '../../data/aboutData';
+import { getSkillIcon } from '../../utils/skillIcons';
 
 const TechSkillGroup = ({ category, skills }) => {
   return (
@@ -7,10 +8,25 @@ const TechSkillGroup = ({ category, skills }) => {
       <h4 style={{ fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1.5px', opacity: 0.6, marginBottom: 'var(--space-4)', borderBottom: '2px solid var(--primary-color)', display: 'inline-block', paddingBottom: '4px' }}>
         {categoryMap[category.toLowerCase()] || category}
       </h4>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2)' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-3)' }}>
         {skills.map(skill => (
-          <span key={skill.id} className="tech-badge" style={{ fontSize: '0.8rem', padding: '6px 12px', fontWeight: 600 }}>
-            {skill.name}
+          <span 
+            key={skill.id} 
+            className="tech-badge" 
+            style={{ 
+              fontSize: '0.85rem', 
+              padding: '6px 14px', 
+              fontWeight: 600, 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '8px',
+              backgroundColor: 'var(--surface-color)',
+              border: '1px solid var(--border-color)',
+              borderRadius: 'var(--radius-full)'
+            }}
+          >
+            {getSkillIcon(skill.name)}
+            <span>{skill.name}</span>
           </span>
         ))}
       </div>
