@@ -162,24 +162,84 @@ const About = () => {
                     style={{ width: '100%', height: 'auto', display: 'block', maxHeight: '300px', objectFit: 'cover' }} 
                   />
                 </div>
-                {(currentProfile.birthPlace || currentProfile.birthDate) && (
-                  <div style={{ 
-                    paddingTop: 'var(--space-3)', 
-                    borderTop: '1px solid var(--border-color)', 
-                    display: 'flex', 
-                    flexDirection: 'column', 
-                    gap: 'var(--space-2)',
-                    fontSize: '0.88rem'
-                  }}>
+                
+                <div style={{ 
+                  paddingTop: 'var(--space-3)', 
+                  borderTop: '1px solid var(--border-color)', 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  gap: 'var(--space-2.5)',
+                  fontSize: '0.88rem'
+                }}>
+                  {currentProfile.birthPlace && (
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <span style={{ opacity: 0.6, fontWeight: 500 }}>Tempat Lahir</span>
                       <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{currentProfile.birthPlace}</span>
                     </div>
+                  )}
+                  {currentProfile.birthDate && (
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <span style={{ opacity: 0.6, fontWeight: 500 }}>Tanggal Lahir</span>
                       <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{currentProfile.birthDate}</span>
                     </div>
+                  )}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ opacity: 0.6, fontWeight: 500 }}>Kebangsaan</span>
+                    <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>Indonesia</span>
                   </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ opacity: 0.6, fontWeight: 500 }}>Status</span>
+                    <span style={{ fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-primary)' }}>
+                      <span className="pulse-dot"></span>
+                      Aktif / Freelance
+                    </span>
+                  </div>
+                </div>
+
+                {/* Social Quick Links */}
+                {(currentContact.github || currentContact.linkedin || currentContact.instagram) && (
+                  <div style={{ 
+                    display: 'flex', 
+                    justifyContent: 'center', 
+                    gap: '10px', 
+                    marginTop: 'var(--space-1)', 
+                    borderTop: '1px solid var(--border-color)', 
+                    paddingTop: 'var(--space-3)' 
+                  }}>
+                    {currentContact.github && (
+                      <a href={currentContact.github} target="_blank" rel="noopener noreferrer" className="about-social-icon" title="GitHub">
+                        🐙 GitHub
+                      </a>
+                    )}
+                    {currentContact.linkedin && (
+                      <a href={currentContact.linkedin} target="_blank" rel="noopener noreferrer" className="about-social-icon" title="LinkedIn">
+                        💼 LinkedIn
+                      </a>
+                    )}
+                  </div>
+                )}
+
+                {/* Download CV Action */}
+                {currentProfile.resumeUrl && (
+                  <a 
+                    href={currentProfile.resumeUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="btn btn-primary"
+                    style={{ 
+                      width: '100%', 
+                      fontSize: '0.88rem', 
+                      padding: '10px', 
+                      marginTop: 'var(--space-2)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px',
+                      boxSizing: 'border-box'
+                    }}
+                  >
+                    📄 Unduh CV / Resume
+                  </a>
                 )}
               </div>
             )}
