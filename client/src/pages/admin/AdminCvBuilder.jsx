@@ -375,8 +375,9 @@ const AdminCvBuilder = () => {
 
         {/* Right Panel: ATS Preview */}
         <div className="cv-preview-outer-wrapper">
-          <div className="cv-scale-wrapper">
-            <div id="cv-print-area" className="cv-preview-container">
+          <div className="cv-scale-container">
+            <div className="cv-scale-wrapper">
+              <div id="cv-print-area" className="cv-preview-container">
               
               {/* Page 1 */}
               <div className="cv-page" data-page="1">
@@ -584,6 +585,7 @@ const AdminCvBuilder = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

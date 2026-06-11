@@ -10,37 +10,54 @@
 
 .cv-builder-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 420px 1fr; /* Fixed-width control panel, flexible preview area */
   gap: var(--space-8);
   align-items: start;
 }
 
+@media (max-width: 1024px) {
+  .cv-builder-grid {
+    grid-template-columns: 1fr; /* Stack panels on smaller screens */
+  }
+}
+
 .cv-preview-outer-wrapper {
-  display: flex;
-  justify-content: center;
+  display: block;
   width: 100%;
-  overflow-x: auto;
+  height: 80vh; /* Stable viewport height on screen */
+  overflow-y: auto;
+  overflow-x: auto; /* Fallback scroll if screen is extremely narrow */
   padding-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: #f1f5f9; /* Slate gray background like a document editor */
+  box-sizing: border-box;
+}
+
+.cv-scale-container {
+  width: calc(210mm * 0.75);
+  height: calc((297mm * 2 + 25px) * 0.75);
+  margin: 20px auto;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .cv-scale-wrapper {
-  transform: scale(0.85);
-  transform-origin: top center;
-  margin-bottom: -510mm;
+  transform: scale(0.75);
+  transform-origin: top left;
   width: 210mm;
+  height: calc(297mm * 2 + 25px);
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .cv-preview-container {
-  background-color: #f1f5f9; /* Slate gray background like a document editor */
-  padding: 30px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 25px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  max-height: 85vh;
-  overflow-y: auto;
   width: 100%;
   box-sizing: border-box;
 }
@@ -73,18 +90,21 @@
 
 /* Print Overrides */
 @media print {
-  /* Force all parent containers of #cv-print-area to display as blocks and span full page width */
-  html, body, #root, #root > div, main, .cv-builder-container, .cv-builder-grid {
+  /* Flatten the entire React app page layout hierarchy recursively to prevent grids/flex columns from squishing print */
+  #root, #root div, #root main, #root header, #root aside, #root section {
     display: block !important;
     width: 100% !important;
     max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
     margin: 0 !important;
     padding: 0 !important;
     transform: none !important;
-    float: none !important;
     position: static !important;
     box-shadow: none !important;
     border: none !important;
+    overflow: visible !important;
+    float: none !important;
   }
 
   /* Hide all non-printable elements */
@@ -104,11 +124,21 @@
     overflow: visible !important;
   }
   
+  .cv-scale-container {
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: static !important;
+  }
+
   .cv-scale-wrapper {
     transform: none !important;
     margin: 0 !important;
     width: 100% !important;
     height: auto !important;
+    position: static !important;
   }
 
   .cv-preview-container {
@@ -126,16 +156,17 @@
     left: 0 !important;
     top: 0 !important;
     width: 210mm !important;
+    height: auto !important;
     margin: 0 !important;
     padding: 0 !important;
-    box-shadow: none !important;
-    border: none !important;
-    overflow: visible !important;
-    transform: none !important;
     background: transparent !important;
+    display: block !important;
+    overflow: visible !important;
   }
 
+  /* Specific A4 sheets layout */
   .cv-page {
+    display: block !important;
     width: 210mm !important;
     height: 297mm !important;
     padding: 15mm 15mm !important;
@@ -144,10 +175,10 @@
     break-after: page !important;
     background-color: #ffffff !important;
     margin: 0 !important;
-    box-shadow: none !important;
-    border: none !important;
     position: relative !important;
     overflow: hidden !important;
+    box-shadow: none !important;
+    border: none !important;
   }
 
   /* Hide the page indicator when printing */
@@ -169,7 +200,7 @@
   .cv-print-item {
     page-break-inside: avoid;
     break-inside: avoid;
-    margin-bottom: 3mm !important;
+    margin-bottom: 3.5mm !important;
   }
 
   a {
