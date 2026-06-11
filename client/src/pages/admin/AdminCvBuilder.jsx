@@ -375,115 +375,212 @@ const AdminCvBuilder = () => {
 
         {/* Right Panel: ATS Preview */}
         <div style={{ display: 'flex', justifyContent: 'center', width: '100%', overflowX: 'auto', paddingBottom: '20px' }}>
-          <div style={{ transform: 'scale(0.85)', transformOrigin: 'top center', marginBottom: '-40mm', width: '210mm' }}>
-            <div 
-              id="cv-print-area"
-              style={{ 
-              backgroundColor: '#fff', 
-              width: '100%', 
-              minHeight: '297mm',
-              padding: '12mm 15mm',
-              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-              color: '#000',
-              fontFamily: 'Arial, Helvetica, sans-serif',
-              boxSizing: 'border-box',
-              lineHeight: 1.3
-            }}>
-          {/* Header Section */}
-          <div style={{ textAlign: 'center', marginBottom: '4.5mm' }}>
-            <h1 style={{ margin: '0 0 1mm 0', fontSize: '18pt', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-              {cvConfig.displayName || data.profile?.name || 'YOUR NAME'}
-            </h1>
-            <div style={{ fontSize: '10pt', marginBottom: '1.5mm', fontWeight: 'bold', color: '#111' }}>
-              {cvConfig.professionalTitle || data.profile?.title || 'Professional Title'} 
-              {cvConfig.targetRole && ` | ${cvConfig.targetRole}`}
-            </div>
-            <div style={{ fontSize: '9pt', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px', color: '#222' }}>
-              {contactLinks.map((item, i, arr) => (
-                <React.Fragment key={i}>
-                  <span>{item.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</span>
-                  {i < arr.length - 1 && <span>•</span>}
-                </React.Fragment>
-              ))}
-            </div>
-          </div>
-
-          {cvConfig.summary && (
-            <div className="cv-print-section" style={{ marginBottom: '3.5mm' }}>
-              <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 1.5mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
-                Professional Summary
-              </h2>
-              <div style={{ fontSize: '9pt', textAlign: 'justify', whiteSpace: 'pre-line', color: '#111' }}>
-                {cvConfig.summary}
-              </div>
-            </div>
-          )}
-
-          {/* Dynamic Sections */}
-          {sortedSections.filter(s => s.enabled && s.id !== 'profile').map(section => {
-            const rawData = getDataForSection(section.id);
-            const displayData = (section.selectedIds && section.selectedIds.length > 0) 
-              ? rawData.filter(item => section.selectedIds.includes(item.id))
-              : rawData;
-
-            if (displayData.length === 0) return null;
-
-            return (
-              <div key={section.id} className="cv-print-section" style={{ marginBottom: '3.5mm' }}>
-                <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 1.5mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
-                  {formatSectionTitle(section.id)}
-                </h2>
-                
-                {section.id === 'experience' && displayData.map(exp => (
-                  <div key={exp.id} className="cv-print-item" style={{ marginBottom: '2.5mm' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', fontWeight: 'bold', fontSize: '10pt' }}>
-                      <span>{exp.role}</span>
-                      {exp.period && <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#222', whiteSpace: 'nowrap', marginLeft: '8px' }}>{exp.period}</span>}
-                    </div>
-                    <div style={{ fontSize: '9pt', fontStyle: 'italic', marginBottom: '0.5mm', color: '#333' }}>{exp.company}</div>
-                    {exp.description && <p style={{ fontSize: '9pt', margin: '0', whiteSpace: 'pre-line', color: '#111' }}>{exp.description}</p>}
+          <div style={{ transform: 'scale(0.85)', transformOrigin: 'top center', marginBottom: '-510mm', width: '210mm' }}>
+            <div id="cv-print-area" className="cv-preview-container">
+              
+              {/* Page 1 */}
+              <div className="cv-page" data-page="1">
+                {/* Header Section */}
+                <div style={{ textAlign: 'center', marginBottom: '5mm' }}>
+                  <h1 style={{ margin: '0 0 1mm 0', fontSize: '18pt', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    {cvConfig.displayName || data.profile?.name || 'YOUR NAME'}
+                  </h1>
+                  <div style={{ fontSize: '10pt', marginBottom: '1.5mm', fontWeight: 'bold', color: '#111' }}>
+                    {cvConfig.professionalTitle || data.profile?.title || 'Professional Title'} 
+                    {cvConfig.targetRole && ` | ${cvConfig.targetRole}`}
                   </div>
-                ))}
-
-                {section.id === 'education' && displayData.map(edu => (
-                  <div key={edu.id} className="cv-print-item" style={{ marginBottom: '2.5mm' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', fontWeight: 'bold', fontSize: '10pt' }}>
-                      <span>{edu.school}</span>
-                      {edu.period && <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#222', whiteSpace: 'nowrap', marginLeft: '8px' }}>{edu.period}</span>}
-                    </div>
-                    <div style={{ fontSize: '9pt', fontStyle: 'italic', marginBottom: '0.5mm', color: '#333' }}>{edu.degree}</div>
-                    {edu.description && <p style={{ fontSize: '9pt', margin: '0', whiteSpace: 'pre-line', color: '#111' }}>{edu.description}</p>}
+                  <div style={{ fontSize: '9pt', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px', color: '#222' }}>
+                    {contactLinks.map((item, i, arr) => (
+                      <React.Fragment key={i}>
+                        <span>{item.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</span>
+                        {i < arr.length - 1 && <span>•</span>}
+                      </React.Fragment>
+                    ))}
                   </div>
-                ))}
+                </div>
 
-                {section.id === 'skills' && (
-                  <div style={{ fontSize: '9pt', color: '#111', lineHeight: 1.4 }}>
-                    {displayData.map(s => s.name).join('  •  ')}
+                {cvConfig.summary && (
+                  <div className="cv-print-section" style={{ marginBottom: '4mm' }}>
+                    <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
+                      Professional Summary
+                    </h2>
+                    <div style={{ fontSize: '9pt', textAlign: 'justify', whiteSpace: 'pre-line', color: '#111' }}>
+                      {cvConfig.summary}
+                    </div>
                   </div>
                 )}
 
-                {section.id === 'projects' && displayData.map(proj => (
-                  <div key={proj.id} className="cv-print-item" style={{ marginBottom: '2.5mm' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', fontWeight: 'bold', fontSize: '10pt' }}>
-                      <span>{proj.title}</span>
-                      <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#222' }}>{proj.category}</span>
+                {/* Skills Section (Page 1) */}
+                {(() => {
+                  const skillsSection = sortedSections.find(s => s.id === 'skills');
+                  if (!skillsSection || !skillsSection.enabled) return null;
+                  const rawSkills = getDataForSection('skills');
+                  const displaySkills = (skillsSection.selectedIds && skillsSection.selectedIds.length > 0)
+                    ? rawSkills.filter(item => skillsSection.selectedIds.includes(item.id))
+                    : rawSkills;
+                  if (displaySkills.length === 0) return null;
+                  return (
+                    <div className="cv-print-section" style={{ marginBottom: '4mm' }}>
+                      <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
+                        Skills
+                      </h2>
+                      <div style={{ fontSize: '9pt', color: '#111', lineHeight: 1.4 }}>
+                        {displaySkills.map(s => s.name).join('  •  ')}
+                      </div>
                     </div>
-                    {proj.description && <p style={{ fontSize: '9pt', margin: '1px 0 0 0', whiteSpace: 'pre-line', color: '#111' }}>{proj.description}</p>}
-                  </div>
-                ))}
-                
-                {section.id === 'credentials' && displayData.map(cert => (
-                  <div key={cert.id} className="cv-print-item" style={{ marginBottom: '1.5mm' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '10pt' }}>
-                      <span>{cert.title}</span>
-                      <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#222' }}>{cert.issuedDate ? new Date(cert.issuedDate).getFullYear() : ''}</span>
+                  );
+                })()}
+
+                {/* Experience Section - Web Developer (Page 1) */}
+                {(() => {
+                  const expSection = sortedSections.find(s => s.id === 'experience');
+                  if (!expSection || !expSection.enabled) return null;
+                  const rawExp = getDataForSection('experience');
+                  const selectedExp = (expSection.selectedIds && expSection.selectedIds.length > 0)
+                    ? rawExp.filter(item => expSection.selectedIds.includes(item.id))
+                    : rawExp;
+                  const webDevExp = selectedExp.filter(exp => 
+                    exp.role.toLowerCase().includes('web') || 
+                    exp.role.toLowerCase().includes('developer')
+                  );
+                  if (webDevExp.length === 0) return null;
+                  return (
+                    <div className="cv-print-section" style={{ marginBottom: '4mm' }}>
+                      <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
+                        Work Experience
+                      </h2>
+                      {webDevExp.map(exp => (
+                        <div key={exp.id} className="cv-print-item" style={{ marginBottom: '3mm' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', fontWeight: 'bold', fontSize: '10pt' }}>
+                            <span>{exp.role}</span>
+                            {exp.period && <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#222', whiteSpace: 'nowrap', marginLeft: '8px' }}>{exp.period}</span>}
+                          </div>
+                          <div style={{ fontSize: '9pt', fontStyle: 'italic', marginBottom: '0.5mm', color: '#333' }}>{exp.company}</div>
+                          {exp.description && <p style={{ fontSize: '9pt', margin: '0', whiteSpace: 'pre-line', color: '#111' }}>{exp.description}</p>}
+                        </div>
+                      ))}
                     </div>
-                    <div style={{ fontSize: '9pt', color: '#333' }}>{cert.issuer}</div>
-                  </div>
-                ))}
+                  );
+                })()}
               </div>
-            );
-          })}
+
+              {/* Page 2 */}
+              <div className="cv-page" data-page="2">
+                {/* Additional Experience (Page 2) */}
+                {(() => {
+                  const expSection = sortedSections.find(s => s.id === 'experience');
+                  if (!expSection || !expSection.enabled) return null;
+                  const rawExp = getDataForSection('experience');
+                  const selectedExp = (expSection.selectedIds && expSection.selectedIds.length > 0)
+                    ? rawExp.filter(item => expSection.selectedIds.includes(item.id))
+                    : rawExp;
+                  const otherExp = selectedExp.filter(exp => 
+                    !exp.role.toLowerCase().includes('web') && 
+                    !exp.role.toLowerCase().includes('developer')
+                  );
+                  if (otherExp.length === 0) return null;
+                  return (
+                    <div className="cv-print-section" style={{ marginBottom: '4mm' }}>
+                      <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
+                        Additional Experience
+                      </h2>
+                      {otherExp.map(exp => (
+                        <div key={exp.id} className="cv-print-item" style={{ marginBottom: '3mm' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', fontWeight: 'bold', fontSize: '10pt' }}>
+                            <span>{exp.role}</span>
+                            {exp.period && <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#222', whiteSpace: 'nowrap', marginLeft: '8px' }}>{exp.period}</span>}
+                          </div>
+                          <div style={{ fontSize: '9pt', fontStyle: 'italic', marginBottom: '0.5mm', color: '#333' }}>{exp.company}</div>
+                          {exp.description && <p style={{ fontSize: '9pt', margin: '0', whiteSpace: 'pre-line', color: '#111' }}>{exp.description}</p>}
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
+
+                {/* Projects Section (Page 2) */}
+                {(() => {
+                  const projSection = sortedSections.find(s => s.id === 'projects');
+                  if (!projSection || !projSection.enabled) return null;
+                  const rawProjs = getDataForSection('projects');
+                  const displayProjs = (projSection.selectedIds && projSection.selectedIds.length > 0)
+                    ? rawProjs.filter(item => projSection.selectedIds.includes(item.id))
+                    : rawProjs;
+                  if (displayProjs.length === 0) return null;
+                  return (
+                    <div className="cv-print-section" style={{ marginBottom: '4mm' }}>
+                      <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
+                        Featured Projects
+                      </h2>
+                      {displayProjs.map(proj => (
+                        <div key={proj.id} className="cv-print-item" style={{ marginBottom: '2.5mm' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', fontWeight: 'bold', fontSize: '10pt' }}>
+                            <span>{proj.title}</span>
+                            <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#222' }}>{proj.category}</span>
+                          </div>
+                          {proj.description && <p style={{ fontSize: '9pt', margin: '1px 0 0 0', whiteSpace: 'pre-line', color: '#111' }}>{proj.description}</p>}
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
+
+                {/* Education Section (Page 2) */}
+                {(() => {
+                  const eduSection = sortedSections.find(s => s.id === 'education');
+                  if (!eduSection || !eduSection.enabled) return null;
+                  const rawEdu = getDataForSection('education');
+                  const displayEdu = (eduSection.selectedIds && eduSection.selectedIds.length > 0)
+                    ? rawEdu.filter(item => eduSection.selectedIds.includes(item.id))
+                    : rawEdu;
+                  if (displayEdu.length === 0) return null;
+                  return (
+                    <div className="cv-print-section" style={{ marginBottom: '4mm' }}>
+                      <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
+                        Education
+                      </h2>
+                      {displayEdu.map(edu => (
+                        <div key={edu.id} className="cv-print-item" style={{ marginBottom: '2.5mm' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', fontWeight: 'bold', fontSize: '10pt' }}>
+                            <span>{edu.school}</span>
+                            {edu.period && <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#222', whiteSpace: 'nowrap', marginLeft: '8px' }}>{edu.period}</span>}
+                          </div>
+                          <div style={{ fontSize: '9pt', fontStyle: 'italic', marginBottom: '0.5mm', color: '#333' }}>{edu.degree}</div>
+                          {edu.description && <p style={{ fontSize: '9pt', margin: '0', whiteSpace: 'pre-line', color: '#111' }}>{edu.description}</p>}
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
+
+                {/* Credentials Section (Page 2) */}
+                {(() => {
+                  const certSection = sortedSections.find(s => s.id === 'credentials');
+                  if (!certSection || !certSection.enabled) return null;
+                  const rawCerts = getDataForSection('credentials');
+                  const displayCerts = (certSection.selectedIds && certSection.selectedIds.length > 0)
+                    ? rawCerts.filter(item => certSection.selectedIds.includes(item.id))
+                    : rawCerts;
+                  if (displayCerts.length === 0) return null;
+                  return (
+                    <div className="cv-print-section" style={{ marginBottom: '3mm' }}>
+                      <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
+                        Credentials & Certifications
+                      </h2>
+                      {displayCerts.map(cert => (
+                        <div key={cert.id} className="cv-print-item" style={{ marginBottom: '1.5mm' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '10pt' }}>
+                            <span>{cert.title}</span>
+                            <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#222' }}>{cert.issuedDate ? new Date(cert.issuedDate).getFullYear() : ''}</span>
+                          </div>
+                          <div style={{ fontSize: '9pt', color: '#333' }}>{cert.issuer}</div>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
+              </div>
+
             </div>
           </div>
         </div>
