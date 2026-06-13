@@ -31,6 +31,14 @@ const AdminCvBuilder = () => {
   const [successMsg, setSuccessMsg] = useState('');
   
   const [searchQueries, setSearchQueries] = useState({});
+  const [activeTab, setActiveTab] = useState('identity');
+  const [isDirty, setIsDirty] = useState(false);
+  const [lastSaved, setLastSaved] = useState(null);
+
+  const updateCvConfig = (nextConfig) => {
+    setCvConfig(nextConfig);
+    setIsDirty(true);
+  };
 
   useEffect(() => {
     const fetchAllData = async () => {
@@ -74,6 +82,7 @@ const AdminCvBuilder = () => {
             return s;
           });
           setCvConfig({ ...configRes, sections: ensuredSections });
+          setIsDirty(false);
         }
 
       } catch (err) {
@@ -92,6 +101,8 @@ const AdminCvBuilder = () => {
       setSuccessMsg('');
       await updateCvBuilderConfig(cvConfig);
       setSuccessMsg('CV Configuration saved successfully!');
+      setIsDirty(false);
+      setLastSaved(new Date());
       setTimeout(() => setSuccessMsg(''), 3000);
     } catch (err) {
       setError(err.message || 'Failed to save config');
@@ -119,14 +130,14 @@ const AdminCvBuilder = () => {
       newSections[index] = newSections[index + 1];
       newSections[index + 1] = temp;
     }
-    setCvConfig({ ...cvConfig, sections: newSections });
+    updateCvConfig({ ...cvConfig, sections: newSections });
   };
 
   const toggleSection = (index) => {
     const newSections = [...cvConfig.sections];
     if (newSections[index].id === 'experience' || newSections[index].id === 'education') return;
     newSections[index].enabled = !newSections[index].enabled;
-    setCvConfig({ ...cvConfig, sections: newSections });
+    updateCvConfig({ ...cvConfig, sections: newSections });
   };
 
   const toggleItemSelection = (sectionIndex, itemId) => {
@@ -139,12 +150,17 @@ const AdminCvBuilder = () => {
     } else {
       section.selectedIds.push(itemId);
     }
-    setCvConfig({ ...cvConfig, sections: newSections });
+    updateCvConfig({ ...cvConfig, sections: newSections });
   };
 
   if (loading || !cvConfig) return <div style={{ padding: 'var(--space-8)', textAlign: 'center' }}>Loading CV Data...</div>;
 
   const sortedSections = [...cvConfig.sections].sort((a, b) => a.order - b.order);
+
+  const enabledSectionsCount = cvConfig.sections.filter(s => s.enabled && s.id !== 'profile').length;
+  const totalSelectedItems = cvConfig.sections
+    .filter(s => s.enabled && s.selectedIds)
+    .reduce((sum, s) => sum + s.selectedIds.length, 0);
 
   const getDataForSection = (id) => {
     if (id === 'experience') return data.experience;
@@ -169,17 +185,27 @@ const AdminCvBuilder = () => {
 
   return (
     <div className="cv-builder-container">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px' }}>
         <div>
           <h1 style={{ margin: '0 0 var(--space-2) 0' }}>CV Builder</h1>
           <p style={{ margin: 0, opacity: 0.7 }}>Atur dan sesuaikan isi CV Anda agar ATS-friendly sebelum dicetak.</p>
-          <div style={{ marginTop: '8px', padding: '8px 12px', backgroundColor: 'var(--bg-color)', borderLeft: '4px solid var(--primary-color)', fontSize: '0.85rem', borderRadius: '4px' }}>
-            <strong>💡 ATS Tip:</strong> Pilih item paling relevan agar CV tetap compact 1–2 halaman.
-          </div>
         </div>
-        <div style={{ display: 'flex', gap: 'var(--space-3)' }}>
+        <div style={{ display: 'flex', gap: 'var(--space-3)', alignItems: 'center' }}>
+          {isDirty && (
+            <span style={{ color: '#b45309', fontSize: '0.85rem', fontWeight: '500', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+              ⚠️ Unsaved Changes
+            </span>
+          )}
           <button 
-            onClick={() => window.print()} 
+            onClick={() => {
+              if (isDirty) {
+                if (window.confirm('Ada perubahan yang belum disimpan. Tetap cetak?')) {
+                  window.print();
+                }
+              } else {
+                window.print();
+              }
+            }} 
             className="btn btn-secondary"
           >
             Print / Save as PDF
@@ -200,177 +226,316 @@ const AdminCvBuilder = () => {
       <div className="cv-builder-grid">
         
         {/* Left Panel: Config */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)', minWidth: 0 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)', minWidth: 0 }}>
           
-          <div className="card" style={{ padding: 'var(--space-4)' }}>
-            <h3 style={{ margin: '0 0 var(--space-4) 0' }}>Manual CV Identity</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
-              <div>
-                <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>CV Display Name</label>
-                <input 
-                  type="text" 
-                  value={cvConfig.displayName || ''} 
-                  onChange={(e) => setCvConfig({...cvConfig, displayName: e.target.value})} 
-                  placeholder={data.profile?.name || 'Your Name'} 
-                  className="form-input" 
-                  style={{ width: '100%', boxSizing: 'border-box' }} 
-                />
+          {/* Summary Status Widget */}
+          <div className="card" style={{ padding: '12px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '6px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: 'bold' }}>Status:</span>
+                {isDirty ? (
+                  <span className="cv-builder-status-badge dirty">
+                    🔴 Unsaved
+                  </span>
+                ) : (
+                  <span className="cv-builder-status-badge clean">
+                    🟢 Saved
+                  </span>
+                )}
               </div>
-              <div>
-                <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>Professional Title</label>
-                <input 
-                  type="text" 
-                  value={cvConfig.professionalTitle || ''} 
-                  onChange={(e) => setCvConfig({...cvConfig, professionalTitle: e.target.value})} 
-                  placeholder={data.profile?.title || 'e.g. Full Stack Developer'} 
-                  className="form-input" 
-                  style={{ width: '100%', boxSizing: 'border-box' }} 
-                />
+              {lastSaved && (
+                <span style={{ fontSize: '0.75rem', opacity: 0.6 }}>
+                  Last saved: {lastSaved.toLocaleTimeString()}
+                </span>
+              )}
+            </div>
+            <div style={{ display: 'flex', gap: '16px' }}>
+              <div className="cv-builder-stat-card">
+                <div className="cv-builder-stat-num">{enabledSectionsCount}</div>
+                <div className="cv-builder-stat-label">Active Sections</div>
               </div>
-              <div>
-                <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>Target Role (Optional)</label>
-                <input 
-                  type="text" 
-                  value={cvConfig.targetRole || ''} 
-                  onChange={(e) => setCvConfig({...cvConfig, targetRole: e.target.value})} 
-                  placeholder="e.g. Senior Frontend Engineer" 
-                  className="form-input" 
-                  style={{ width: '100%', boxSizing: 'border-box' }} 
-                />
-              </div>
+              <div style={{ width: '1px', backgroundColor: 'var(--border-color)', height: '28px', alignSelf: 'center' }}></div>
+              <div className="cv-builder-stat-card">
+                <div className="cv-builder-stat-num">{totalSelectedItems}</div>
+                <div className="cv-builder-stat-label">Selected Items</div>
               </div>
             </div>
-
-          <div className="card" style={{ padding: 'var(--space-4)' }}>
-            <h3 style={{ margin: '0 0 var(--space-4) 0' }}>Manual Professional Summary</h3>
-            <textarea 
-              value={cvConfig.summary || ''}
-              onChange={(e) => setCvConfig({ ...cvConfig, summary: e.target.value })}
-              placeholder="Write a brief professional summary..."
-              style={{ width: '100%', minHeight: '100px', padding: 'var(--space-2)', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)', fontFamily: 'inherit', boxSizing: 'border-box' }}
-            />
           </div>
 
-          <div className="card" style={{ padding: 'var(--space-4)' }}>
-            <h3 style={{ margin: '0 0 var(--space-2) 0' }}>Database Sections & Ordering</h3>
-            <p style={{ margin: '0 0 var(--space-4) 0', fontSize: '0.85rem', opacity: 0.7 }}>
-              Experience dan Education selalu aktif secara default. Pilih item yang ingin ditampilkan, atau biarkan kosong untuk menampilkan semua data.
-            </p>
+          {/* Helper Tips Banner */}
+          <div style={{ padding: '10px 14px', backgroundColor: 'var(--bg-color)', borderLeft: '4px solid var(--primary-color)', fontSize: '0.85rem', borderRadius: '4px', lineHeight: '1.4' }}>
+            <strong>💡 ATS Tip:</strong> CV ideal berukuran <strong>1–2 halaman A4</strong>. Batasi jumlah item agar tidak melebihi area halaman pratinjau di kanan.
+          </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
-              {sortedSections.map((section, index) => {
-                const isProfile = section.id === 'profile';
-                if (isProfile) return null; // Handled by Manual Identity
+          {/* Workflow Tabs */}
+          <div className="cv-builder-tabs">
+            <button 
+              onClick={() => setActiveTab('identity')}
+              className={`cv-builder-tab-btn ${activeTab === 'identity' ? 'active' : ''}`}
+            >
+              Identity
+            </button>
+            <button 
+              onClick={() => setActiveTab('summary')}
+              className={`cv-builder-tab-btn ${activeTab === 'summary' ? 'active' : ''}`}
+            >
+              Summary
+            </button>
+            <button 
+              onClick={() => setActiveTab('sections')}
+              className={`cv-builder-tab-btn ${activeTab === 'sections' ? 'active' : ''}`}
+            >
+              Sections & Items
+            </button>
+            <button 
+              onClick={() => setActiveTab('preview')}
+              className={`cv-builder-tab-btn ${activeTab === 'preview' ? 'active' : ''}`}
+            >
+              Preview & Export
+            </button>
+          </div>
 
-                const sectionData = getDataForSection(section.id);
-                const actualIndexInConfig = cvConfig.sections.findIndex(s => s.id === section.id);
-                const isMandatory = section.id === 'experience' || section.id === 'education';
+          {/* Tab Contents */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+            
+            {activeTab === 'identity' && (
+              <div className="card" style={{ padding: 'var(--space-4)' }}>
+                <h3 style={{ margin: '0 0 var(--space-4) 0', fontSize: '1.1rem' }}>CV Identity Information</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>CV Display Name</label>
+                    <input 
+                      type="text" 
+                      value={cvConfig.displayName || ''} 
+                      onChange={(e) => updateCvConfig({...cvConfig, displayName: e.target.value})} 
+                      placeholder={data.profile?.name || 'Your Name'} 
+                      className="form-input" 
+                      style={{ width: '100%', boxSizing: 'border-box' }} 
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>Professional Title</label>
+                    <input 
+                      type="text" 
+                      value={cvConfig.professionalTitle || ''} 
+                      onChange={(e) => updateCvConfig({...cvConfig, professionalTitle: e.target.value})} 
+                      placeholder={data.profile?.title || 'e.g. Full Stack Developer'} 
+                      className="form-input" 
+                      style={{ width: '100%', boxSizing: 'border-box' }} 
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>Target Role (Optional)</label>
+                    <input 
+                      type="text" 
+                      value={cvConfig.targetRole || ''} 
+                      onChange={(e) => updateCvConfig({...cvConfig, targetRole: e.target.value})} 
+                      placeholder="e.g. Senior Frontend Engineer" 
+                      className="form-input" 
+                      style={{ width: '100%', boxSizing: 'border-box' }} 
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
 
-                return (
-                  <div key={section.id} style={{ border: '1px solid var(--border-color)', borderRadius: '6px', padding: 'var(--space-3)', opacity: section.enabled ? 1 : 0.6 }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
-                        <input 
-                          type="checkbox" 
-                          checked={section.enabled}
-                          onChange={() => {
-                            if (!isMandatory) toggleSection(actualIndexInConfig);
-                          }}
-                          disabled={isMandatory}
-                          style={{ cursor: isMandatory ? 'not-allowed' : 'pointer', width: '16px', height: '16px' }}
-                        />
-                        <h4 style={{ margin: 0, textTransform: 'capitalize' }}>
-                          {formatSectionTitle(section.id)} 
-                          {isMandatory && <span style={{ fontSize: '0.75rem', opacity: 0.6, marginLeft: '6px', fontWeight: 'normal' }}>(Required)</span>}
-                        </h4>
-                      </div>
-                      <div style={{ display: 'flex', gap: '4px' }}>
-                        <button 
-                          onClick={() => moveSection(actualIndexInConfig, 'up')}
-                          disabled={index === 0 || (index === 1 && sortedSections[0].id === 'profile')}
-                          className="btn btn-secondary"
-                          style={{ padding: '2px 6px', fontSize: '0.75rem', minWidth: 'auto' }}
-                        >
-                          ↑
-                        </button>
-                        <button 
-                          onClick={() => moveSection(actualIndexInConfig, 'down')}
-                          disabled={index === sortedSections.length - 1}
-                          className="btn btn-secondary"
-                          style={{ padding: '2px 6px', fontSize: '0.75rem', minWidth: 'auto' }}
-                        >
-                          ↓
-                        </button>
-                      </div>
-                    </div>
+            {activeTab === 'summary' && (
+              <div className="card" style={{ padding: 'var(--space-4)' }}>
+                <h3 style={{ margin: '0 0 var(--space-4) 0', fontSize: '1.1rem' }}>Professional Summary</h3>
+                <textarea 
+                  value={cvConfig.summary || ''}
+                  onChange={(e) => updateCvConfig({ ...cvConfig, summary: e.target.value })}
+                  placeholder="Write a brief professional summary..."
+                  style={{ width: '100%', minHeight: '180px', padding: 'var(--space-2)', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)', fontFamily: 'inherit', boxSizing: 'border-box', lineHeight: '1.5' }}
+                />
+              </div>
+            )}
 
-                    {/* Unified Selector Area */}
-                    {section.enabled && (
-                      <div style={{ marginTop: 'var(--space-3)', paddingTop: 'var(--space-3)', borderTop: '1px dashed var(--border-color)' }}>
-                        <input 
-                          type="text" 
-                          placeholder={`Search and select ${section.id}...`}
-                          value={searchQueries[section.id] || ''}
-                          onChange={(e) => setSearchQueries({...searchQueries, [section.id]: e.target.value})}
-                          className="form-input"
-                          style={{ width: '100%', marginBottom: '12px', boxSizing: 'border-box' }}
-                        />
-                        {searchQueries[section.id] && (
-                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '12px', padding: '8px', backgroundColor: 'var(--bg-color)', borderRadius: '4px' }}>
-                            {sectionData.filter(s => {
-                               const label = s.name || s.title || s.role || s.degree || '';
-                               return label.toLowerCase().includes((searchQueries[section.id] || '').toLowerCase()) && !section.selectedIds?.includes(s.id);
-                            }).slice(0, 10).map(item => {
-                              let itemLabel = item.name || item.title || item.role || item.degree || 'Item';
-                              if (item.company) itemLabel += ` at ${item.company}`;
-                              if (item.school) itemLabel += ` at ${item.school}`;
-                              return (
-                                <button
-                                  key={item.id}
-                                  onClick={() => {
-                                    toggleItemSelection(actualIndexInConfig, item.id);
-                                    setSearchQueries({...searchQueries, [section.id]: ''});
-                                  }}
-                                  style={{ padding: '4px 10px', fontSize: '0.8rem', borderRadius: '16px', border: '1px solid var(--primary-color)', background: 'transparent', color: 'var(--primary-color)', cursor: 'pointer', textAlign: 'left' }}
-                                >
-                                  + {itemLabel}
-                                </button>
-                              );
-                            })}
-                            {sectionData.filter(s => {
-                               const label = s.name || s.title || s.role || s.degree || '';
-                               return label.toLowerCase().includes((searchQueries[section.id] || '').toLowerCase()) && !section.selectedIds?.includes(s.id);
-                            }).length === 0 && (
-                              <span style={{ fontSize: '0.8rem', opacity: 0.6 }}>No items found.</span>
+            {activeTab === 'sections' && (
+              <div className="card" style={{ padding: 'var(--space-4)' }}>
+                <h3 style={{ margin: '0 0 var(--space-2) 0', fontSize: '1.1rem' }}>Database Sections & Ordering</h3>
+                <p style={{ margin: '0 0 var(--space-4) 0', fontSize: '0.85rem', opacity: 0.7 }}>
+                  Experience dan Education selalu aktif secara default. Pilih item yang ingin ditampilkan, atau biarkan kosong untuk menampilkan semua data.
+                </p>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+                  {sortedSections.map((section, index) => {
+                    const isProfile = section.id === 'profile';
+                    if (isProfile) return null; // Handled by Manual Identity
+
+                    const sectionData = getDataForSection(section.id);
+                    const actualIndexInConfig = cvConfig.sections.findIndex(s => s.id === section.id);
+                    const isMandatory = section.id === 'experience' || section.id === 'education';
+
+                    return (
+                      <div key={section.id} style={{ border: '1px solid var(--border-color)', borderRadius: '6px', padding: 'var(--space-3)', opacity: section.enabled ? 1 : 0.6 }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
+                            <input 
+                              type="checkbox" 
+                              checked={section.enabled}
+                              onChange={() => {
+                                if (!isMandatory) toggleSection(actualIndexInConfig);
+                              }}
+                              disabled={isMandatory}
+                              style={{ cursor: isMandatory ? 'not-allowed' : 'pointer', width: '16px', height: '16px' }}
+                            />
+                            <h4 style={{ margin: 0, textTransform: 'capitalize' }}>
+                              {formatSectionTitle(section.id)} 
+                              {isMandatory && <span style={{ fontSize: '0.75rem', opacity: 0.6, marginLeft: '6px', fontWeight: 'normal' }}>(Required)</span>}
+                            </h4>
+                          </div>
+                          <div style={{ display: 'flex', gap: '4px' }}>
+                            <button 
+                              onClick={() => moveSection(actualIndexInConfig, 'up')}
+                              disabled={index === 0 || (index === 1 && sortedSections[0].id === 'profile')}
+                              className="btn btn-secondary"
+                              style={{ padding: '2px 6px', fontSize: '0.75rem', minWidth: 'auto' }}
+                            >
+                              ↑
+                            </button>
+                            <button 
+                              onClick={() => moveSection(actualIndexInConfig, 'down')}
+                              disabled={index === sortedSections.length - 1}
+                              className="btn btn-secondary"
+                              style={{ padding: '2px 6px', fontSize: '0.75rem', minWidth: 'auto' }}
+                            >
+                              ↓
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Unified Selector Area */}
+                        {section.enabled && (
+                          <div style={{ marginTop: 'var(--space-3)', paddingTop: 'var(--space-3)', borderTop: '1px dashed var(--border-color)' }}>
+                            <input 
+                              type="text" 
+                              placeholder={`Search and select ${section.id}...`}
+                              value={searchQueries[section.id] || ''}
+                              onChange={(e) => setSearchQueries({...searchQueries, [section.id]: e.target.value})}
+                              className="form-input"
+                              style={{ width: '100%', marginBottom: '12px', boxSizing: 'border-box' }}
+                            />
+                            {searchQueries[section.id] && (
+                              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '12px', padding: '8px', backgroundColor: 'var(--bg-color)', borderRadius: '4px' }}>
+                                {sectionData.filter(s => {
+                                   const label = s.name || s.title || s.role || s.degree || '';
+                                   return label.toLowerCase().includes((searchQueries[section.id] || '').toLowerCase()) && !section.selectedIds?.includes(s.id);
+                                }).slice(0, 10).map(item => {
+                                  let itemLabel = item.name || item.title || item.role || item.degree || 'Item';
+                                  if (item.company) itemLabel += ` at ${item.company}`;
+                                  if (item.school) itemLabel += ` at ${item.school}`;
+                                  return (
+                                    <button
+                                      key={item.id}
+                                      onClick={() => {
+                                        toggleItemSelection(actualIndexInConfig, item.id);
+                                        setSearchQueries({...searchQueries, [section.id]: ''});
+                                      }}
+                                      style={{ padding: '4px 10px', fontSize: '0.8rem', borderRadius: '16px', border: '1px solid var(--primary-color)', background: 'transparent', color: 'var(--primary-color)', cursor: 'pointer', textAlign: 'left' }}
+                                    >
+                                      + {itemLabel}
+                                    </button>
+                                  );
+                                })}
+                                {sectionData.filter(s => {
+                                   const label = s.name || s.title || s.role || s.degree || '';
+                                   return label.toLowerCase().includes((searchQueries[section.id] || '').toLowerCase()) && !section.selectedIds?.includes(s.id);
+                                }).length === 0 && (
+                                  <span style={{ fontSize: '0.8rem', opacity: 0.6 }}>No items found.</span>
+                                )}
+                              </div>
                             )}
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                              {(section.selectedIds || []).map(id => {
+                                const item = sectionData.find(s => s.id === id);
+                                if (!item) return null;
+                                let itemLabel = item.name || item.title || item.role || item.degree || 'Item';
+                                
+                                return (
+                                  <div key={id} style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '4px 10px', fontSize: '0.8rem', borderRadius: '16px', backgroundColor: 'var(--primary-color)', color: 'white' }}>
+                                    <span>{itemLabel}</span>
+                                    <span style={{ cursor: 'pointer', fontWeight: 'bold' }} onClick={() => toggleItemSelection(actualIndexInConfig, id)}>×</span>
+                                  </div>
+                                );
+                              })}
+                              {(section.selectedIds?.length === 0) && (
+                                <span style={{ fontSize: '0.8rem', opacity: 0.6, fontStyle: 'italic' }}>
+                                  No specific items selected (all items will be shown by default).
+                                </span>
+                              )}
+                            </div>
                           </div>
                         )}
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                          {(section.selectedIds || []).map(id => {
-                            const item = sectionData.find(s => s.id === id);
-                            if (!item) return null;
-                            let itemLabel = item.name || item.title || item.role || item.degree || 'Item';
-                            
-                            return (
-                              <div key={id} style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '4px 10px', fontSize: '0.8rem', borderRadius: '16px', backgroundColor: 'var(--primary-color)', color: 'white' }}>
-                                <span>{itemLabel}</span>
-                                <span style={{ cursor: 'pointer', fontWeight: 'bold' }} onClick={() => toggleItemSelection(actualIndexInConfig, id)}>×</span>
-                              </div>
-                            );
-                          })}
-                          {(section.selectedIds?.length === 0) && (
-                            <span style={{ fontSize: '0.8rem', opacity: 0.6, fontStyle: 'italic' }}>
-                              No specific items selected (all items will be shown by default).
-                            </span>
-                          )}
-                        </div>
                       </div>
-                    )}
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'preview' && (
+              <div className="card" style={{ padding: 'var(--space-4)' }}>
+                <h3 style={{ margin: '0 0 var(--space-4) 0', fontSize: '1.1rem' }}>Preview & Export Instructions</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+                  
+                  <div style={{ padding: '12px', backgroundColor: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '6px', color: '#166534', fontSize: '0.85rem' }}>
+                    <strong>👉 Cara Cetak PDF Terbaik:</strong>
+                    <ol style={{ margin: '8px 0 0 0', paddingLeft: '20px', lineHeight: '1.5' }}>
+                      <li>Klik tombol <strong>Print / Save as PDF</strong> di bawah ini atau di pojok kanan atas.</li>
+                      <li>Di dialog cetak browser, ubah Destination menjadi <strong>Save as PDF</strong>.</li>
+                      <li>Set Layout menjadi <strong>Portrait</strong>.</li>
+                      <li>Di bagian More Settings, set Paper Size ke <strong>A4</strong>.</li>
+                      <li>Set Margins ke <strong>None</strong> (Sangat Penting agar layout pas).</li>
+                      <li>Centang <strong>Background graphics</strong>.</li>
+                    </ol>
                   </div>
-                );
-              })}
-            </div>
+
+                  <div style={{ padding: '12px', backgroundColor: '#fffbeb', border: '1px solid #fef3c7', borderRadius: '6px', color: '#92400e', fontSize: '0.85rem' }}>
+                    <strong>⚠️ Visual Page Overflow Guard:</strong>
+                    <p style={{ margin: '8px 0 0 0', lineHeight: '1.5' }}>
+                      CV didesain presisi untuk ideal <strong>1-2 halaman A4</strong>. 
+                      Jika Anda memilih terlalu banyak item (terutama work experience atau projects), konten mungkin akan melebihi batas bawah halaman pratinjau A4 di sebelah kanan dan akan terpotong pada cetakan fisik/PDF. Silakan kurangi item yang dipilih jika terjadi overflow visual.
+                    </p>
+                  </div>
+
+                  {isDirty && (
+                    <div style={{ padding: '12px', backgroundColor: '#fef2f2', border: '1px solid #fecaca', borderRadius: '6px', color: '#991b1b', fontSize: '0.85rem' }}>
+                      <strong>⚠️ Unsaved Changes:</strong> Anda memiliki perubahan konfigurasi yang belum disimpan. Tombol cetak di bawah ini akan menggunakan konfigurasi terakhir yang <strong>belum disimpan</strong> di database (hanya tampil di pratinjau saat ini). Sangat disarankan untuk klik <strong>Save Config</strong> sebelum mencetak.
+                    </div>
+                  )}
+
+                  <div style={{ display: 'flex', gap: '12px', marginTop: '8px' }}>
+                    <button 
+                      onClick={() => {
+                        if (isDirty) {
+                          if (window.confirm('Anda memiliki konfigurasi yang belum disimpan. Tetap cetak?')) {
+                            window.print();
+                          }
+                        } else {
+                          window.print();
+                        }
+                      }}
+                      className="btn btn-secondary"
+                      style={{ flex: 1, padding: '10px' }}
+                    >
+                      Print / Save as PDF
+                    </button>
+                    <button 
+                      onClick={handleSaveConfig} 
+                      disabled={saving}
+                      className="btn btn-primary"
+                      style={{ flex: 1, padding: '10px' }}
+                    >
+                      {saving ? 'Saving...' : 'Save Config'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
           </div>
+
         </div>
 
         {/* Right Panel: ATS Preview */}
@@ -572,7 +737,7 @@ const AdminCvBuilder = () => {
                         <div key={cert.id} className="cv-print-item" style={{ marginBottom: '1.5mm' }}>
                           <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '10pt' }}>
                             <span>{cert.title}</span>
-                            <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#222' }}>{cert.issuedDate ? new Date(cert.issuedDate).getFullYear() : ''}</span>
+                            <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#222' }}>{(cert.issuedDate || cert.issueDate) ? new Date(cert.issuedDate || cert.issueDate).getFullYear() : ''}</span>
                           </div>
                           <div style={{ fontSize: '9pt', color: '#333' }}>{cert.issuer}</div>
                         </div>
@@ -582,10 +747,10 @@ const AdminCvBuilder = () => {
                 })()}
               </div>
 
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
     </div>
   );
