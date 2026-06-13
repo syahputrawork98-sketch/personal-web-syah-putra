@@ -28,7 +28,7 @@
 | F12 | Learning Library System | frontend | Completed | Learning Library public page, admin CMS, backend API, and dynamic public integration completed. | Lanjutkan ke fitur berikutnya / deploy | [F12_LEARNING_LIBRARY_SYSTEM.md](features/F12_LEARNING_LIBRARY_SYSTEM.md) |
 | F13 | Mobile Responsive UI Improvement | frontend | Completed | Penyesuaian layout CSS murni untuk public mobile screen (navbar, hero, projects). | Final QA mobile view | [F13_MOBILE_RESPONSIVE_UI_IMPROVEMENT.md](features/F13_MOBILE_RESPONSIVE_UI_IMPROVEMENT.md) |
 | F14 | Repository Normalization and Documentation Sync | docs/status | Partial / Backend Audit Ready | Docs sync, repository inventory, frontend audit, and backend/API audit completed. | F14E — Database/Prisma Audit atau F14F — Cleanup Candidates Validation | [F14_REPOSITORY_NORMALIZATION_DOCUMENTATION_SYNC.md](features/F14_REPOSITORY_NORMALIZATION_DOCUMENTATION_SYNC.md) |
-| F15 | HRD Portfolio Score Improvement | docs/seo | Completed | SEO static snapshot and recruiter readability baseline completed. | F15B — Hero CTA and Recruiter Copy Polish | [F15_HRD_PORTFOLIO_SCORE_IMPROVEMENT.md](features/F15_HRD_PORTFOLIO_SCORE_IMPROVEMENT.md) |
+| F15 | HRD Portfolio Score Improvement | docs/seo | Completed | SEO static snapshot and recruiter readability baseline completed. | F15C — Project Case Study Polish | [F15_HRD_PORTFOLIO_SCORE_IMPROVEMENT.md](features/F15_HRD_PORTFOLIO_SCORE_IMPROVEMENT.md) |
 
 ## Deployment Status
 - **Status Deployment**: Aktif / Live

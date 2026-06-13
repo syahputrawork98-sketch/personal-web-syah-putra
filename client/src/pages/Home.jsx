@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
-import { getPublicSkills, getPublicHero } from '../lib/api';
+import { getPublicSkills, getPublicHero, getPublicContact } from '../lib/api';
 import EmptyState from '../components/EmptyState';
 import { services } from '../data/homeData';
 import ServiceCard from '../components/home/ServiceCard';
 import { getSkillIcon } from '../utils/skillIcons';
+import { contactFallback } from '../fallback/contactFallback';
 
 import '../styles/home.css';
 
@@ -14,6 +15,7 @@ import '../styles/home.css';
 const Home = () => {
   const [highlightSkills, setHighlightSkills] = useState([]);
   const [heroData, setHeroData] = useState(null);
+  const [contactData, setContactData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const [error, setError] = useState(false);
@@ -23,9 +25,13 @@ const Home = () => {
       setLoading(true);
       setError(false);
       try {
-        const [skillsData, heroResponse] = await Promise.all([
+        const [skillsData, heroResponse, contactResponse] = await Promise.all([
           getPublicSkills(),
-          getPublicHero()
+          getPublicHero(),
+          getPublicContact().catch(err => {
+            console.warn('Home: Failed to fetch contact, using fallback:', err.message);
+            return null;
+          })
         ]);
 
         if (skillsData && Array.isArray(skillsData.skills)) {
@@ -42,6 +48,10 @@ const Home = () => {
           setHeroData(heroResponse.data.hero);
         } else if (heroResponse && !heroResponse.success && heroResponse.title) {
           setHeroData(heroResponse); // Fallback for direct object
+        }
+
+        if (contactResponse) {
+          setContactData(contactResponse);
         }
       } catch (err) {
         console.error('Home: Failed to fetch data:', err.message);
@@ -81,18 +91,17 @@ const Home = () => {
   }
 
 
-  if (!heroData) {
-    return (
-      <section id="home" className="section-padding flex-center hero-section">
-        <div className="container">
-          <EmptyState message="Data beranda belum tersedia." />
-        </div>
-      </section>
-    );
-  }
+  const currentHero = {
+    name: heroData?.name || "Syah Putra Nugraha",
+    roles: heroData?.roles && heroData.roles.length > 0 ? heroData.roles : ["Full Stack Developer", "Software Engineer"],
+    title: heroData?.title || "Full Stack Web Developer specializing in PHP, Laravel, React, and MySQL.",
+    subtitle: heroData?.subtitle || "I build web applications with authentication, admin dashboards, CRUD systems, REST API, and database integration.",
+    primaryCtaLabel: heroData?.primaryCtaLabel || "Lihat Project",
+    secondaryCtaLabel: heroData?.secondaryCtaLabel || "Download CV",
+  };
 
-  // Use heroData from API. If API is down and loading is finished, heroData is null (handled above)
-  const currentHero = heroData || {};
+  const githubUrl = contactData?.github || contactFallback.github;
+  const linkedinUrl = contactData?.linkedin || contactFallback.linkedin;
 
   const typeSequence = currentHero.roles && currentHero.roles.length > 0 
     ? currentHero.roles.flatMap(role => [role, 2000]) 
@@ -158,6 +167,16 @@ const Home = () => {
             </a>
           )}
           <Link to="/contact" className="btn btn-secondary">Hubungi Saya</Link>
+          {githubUrl && (
+            <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-social">
+              GitHub
+            </a>
+          )}
+          {linkedinUrl && (
+            <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-social">
+              LinkedIn
+            </a>
+          )}
         </motion.div>
 
         {/* What I Can Do Section */}

@@ -12,6 +12,7 @@ Meningkatkan keterbacaan website portfolio oleh crawler sederhana, recruiter too
 ## Current State
 - SEO static snapshot untuk recruiter baseline (Batch F15A) selesai dibuat dan diintegrasikan secara aman ke client/index.html.
 - Penyempurnaan snapshot keamanan SEO (Batch F15A.1) selesai dilakukan dengan memindahkan static snapshot ke dalam tag `<noscript>` guna menghindari penggunaan tag hidden (`display: none`) yang rentan dianggap spam oleh search engine crawler, sekaligus memberikan visual fallback yang rapi saat JavaScript dinonaktifkan.
+- Polish Hero CTA dan Recruiter Copy (Batch F15B) selesai dikerjakan pada `Home.jsx` dengan menambahkan akses cepat ke LinkedIn dan GitHub yang bersumber dari API / fallback contact, serta memperkuat deskripsi role, title, dan subtitle default saat backend kosong/down agar web portofolio tetap informatif secara statis.
 - Snapshot berisi professional summary, core stack, featured work, dan recruiter links.
 - Tampilan visual React Home saat JS aktif tidak terpengaruh sedikit pun.
 
@@ -20,7 +21,7 @@ Meningkatkan keterbacaan website portfolio oleh crawler sederhana, recruiter too
 |---|---|---|---|---|
 | F15A | SEO Static Snapshot and Recruiter Readability Baseline | Completed | Menyisipkan static recruiter snapshot pada client/index.html agar mudah dibaca crawler sederhana. | - |
 | F15A.1 | SEO Snapshot Safety Refinement | Completed | Merapikan static snapshot agar fallback recruiter/readability memakai noscript dan tidak bergantung pada hidden SEO content. | F15A |
-| F15B | Hero CTA and Recruiter Copy Polish | Pending | Penyesuaian salinan copywriter/CTA di bagian Hero utama. | F15A.1 |
+| F15B | Hero CTA and Recruiter Copy Polish | Completed | Penyesuaian salinan copywriter/CTA di bagian Hero utama. | F15A.1 |
 | F15C | Project Case Study Polish | Pending | Peningkatan detail case study pada masing-masing module project. | F15B |
 | F15D | Experience Timeline Polish | Pending | Menyempurnakan deskripsi pencapaian pada modul pengalaman. | F15C |
 | F15E | Credentials Relevance Polish | Pending | Kurasi relevansi dan deskripsi kredensial/sertifikasi. | F15D |
