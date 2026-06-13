@@ -12,6 +12,104 @@ import {
 } from '../../lib/api';
 import '../../styles/cv-print.css';
 
+const normalizeCvConfig = (configRes, profileRes, contactRes) => {
+  const defaultVariantIds = ['web-developer', 'construction', 'manufacturing', 'general-ats'];
+  const defaultLabels = {
+    'web-developer': 'Web Developer',
+    'construction': 'Konstruksi',
+    'manufacturing': 'Manufaktur',
+    'general-ats': 'ATS Umum'
+  };
+
+  const baseSections = (configRes?.sections && configRes.sections.length > 0)
+    ? configRes.sections
+    : [
+        { id: 'skills', enabled: true, order: 1, selectedIds: [] },
+        { id: 'experience', enabled: true, order: 2, selectedIds: [] },
+        { id: 'projects', enabled: true, order: 3, selectedIds: [] },
+        { id: 'education', enabled: true, order: 4, selectedIds: [] },
+        { id: 'credentials', enabled: true, order: 5, selectedIds: [] }
+      ];
+
+  const ensuredBaseSections = baseSections.map(s => {
+    if (s.id === 'experience' || s.id === 'education') {
+      return { ...s, enabled: true };
+    }
+    return s;
+  });
+
+  const defaultContact = {
+    displayName: configRes?.displayName || profileRes?.profile?.name || '',
+    phone: configRes?.phone || '0851 6265 4466',
+    website: configRes?.website || 'https://syahputran.vercel.app/',
+    github: configRes?.github || 'https://bit.ly/4xrqAWN',
+    email: configRes?.email || contactRes?.contact?.email || '',
+    location: configRes?.location || contactRes?.contact?.location || ''
+  };
+
+  let activeVariantId = configRes?.activeVariantId || 'web-developer';
+  let variants = [];
+
+  if (configRes && configRes.variants && Array.isArray(configRes.variants) && configRes.variants.length > 0) {
+    variants = [...configRes.variants];
+  } else {
+    // Migrate existing root config into the web-developer variant
+    const mainVariant = {
+      id: 'web-developer',
+      name: 'Web Developer',
+      displayName: configRes?.displayName || defaultContact.displayName,
+      professionalTitle: configRes?.professionalTitle || profileRes?.profile?.title || 'Full Stack Developer',
+      targetRole: configRes?.targetRole || 'Full Stack Developer',
+      summary: configRes?.summary || '',
+      phone: configRes?.phone || defaultContact.phone,
+      website: configRes?.website || defaultContact.website,
+      github: configRes?.github || defaultContact.github,
+      email: configRes?.email || defaultContact.email,
+      location: configRes?.location || defaultContact.location,
+      sections: ensuredBaseSections
+    };
+    
+    variants.push(mainVariant);
+  }
+
+  // Ensure all 4 default variants are present
+  defaultVariantIds.forEach(id => {
+    const exists = variants.some(v => v.id === id);
+    if (!exists) {
+      let defaultTitle = '';
+      if (id === 'construction') defaultTitle = 'Construction Staff';
+      if (id === 'manufacturing') defaultTitle = 'Manufacturing Operator';
+      if (id === 'general-ats') defaultTitle = 'Professional';
+      if (id === 'web-developer') defaultTitle = 'Web Developer';
+
+      variants.push({
+        id,
+        name: defaultLabels[id],
+        displayName: defaultContact.displayName,
+        professionalTitle: defaultTitle,
+        targetRole: defaultTitle,
+        summary: '',
+        phone: defaultContact.phone,
+        website: defaultContact.website,
+        github: defaultContact.github,
+        email: defaultContact.email,
+        location: defaultContact.location,
+        sections: ensuredBaseSections.map(s => ({ ...s, selectedIds: [] }))
+      });
+    }
+  });
+
+  if (!defaultVariantIds.includes(activeVariantId)) {
+    activeVariantId = 'web-developer';
+  }
+
+  return {
+    ...configRes,
+    activeVariantId,
+    variants
+  };
+};
+
 const AdminCvBuilder = () => {
   const [data, setData] = useState({
     profile: null,
@@ -75,31 +173,8 @@ const AdminCvBuilder = () => {
         });
 
         if (configRes) {
-          const ensuredSections = configRes.sections.map(s => {
-            if (s.id === 'experience' || s.id === 'education') {
-              return { ...s, enabled: true };
-            }
-            return s;
-          });
-          
-          // Apply default contact values if they are missing or empty
-          const displayName = configRes.displayName || profileRes.profile?.name || '';
-          const phone = configRes.phone || '0851 6265 4466';
-          const website = configRes.website || 'https://syahputran.vercel.app/';
-          const github = configRes.github || 'https://bit.ly/4xrqAWN';
-          const email = configRes.email || contactRes.contact?.email || '';
-          const location = configRes.location || contactRes.contact?.location || '';
-
-          setCvConfig({
-            ...configRes,
-            displayName,
-            phone,
-            website,
-            github,
-            email,
-            location,
-            sections: ensuredSections
-          });
+          const normalizedConfig = normalizeCvConfig(configRes, profileRes, contactRes);
+          setCvConfig(normalizedConfig);
           setIsDirty(false);
         }
 
@@ -129,8 +204,30 @@ const AdminCvBuilder = () => {
     }
   };
 
+  const activeVariant = cvConfig ? (cvConfig.variants.find(v => v.id === cvConfig.activeVariantId) || cvConfig.variants[0]) : null;
+
+  const updateActiveVariant = (patch) => {
+    const nextConfig = { ...cvConfig };
+    const variantIndex = nextConfig.variants.findIndex(v => v.id === nextConfig.activeVariantId);
+    if (variantIndex !== -1) {
+      nextConfig.variants[variantIndex] = {
+        ...nextConfig.variants[variantIndex],
+        ...patch
+      };
+      updateCvConfig(nextConfig);
+    }
+  };
+
+  const handleSwitchVariant = (variantId) => {
+    updateCvConfig({
+      ...cvConfig,
+      activeVariantId: variantId
+    });
+  };
+
   const moveSection = (index, direction) => {
-    const newSections = [...cvConfig.sections];
+    if (!activeVariant) return;
+    const newSections = activeVariant.sections.map(s => ({ ...s }));
     if (direction === 'up' && index > 0) {
       const tempOrder = newSections[index].order;
       newSections[index].order = newSections[index - 1].order;
@@ -148,37 +245,51 @@ const AdminCvBuilder = () => {
       newSections[index] = newSections[index + 1];
       newSections[index + 1] = temp;
     }
-    updateCvConfig({ ...cvConfig, sections: newSections });
+    updateActiveVariant({ sections: newSections });
   };
 
   const toggleSection = (index) => {
-    const newSections = [...cvConfig.sections];
-    if (newSections[index].id === 'experience' || newSections[index].id === 'education') return;
-    newSections[index].enabled = !newSections[index].enabled;
-    updateCvConfig({ ...cvConfig, sections: newSections });
+    if (!activeVariant) return;
+    const newSections = activeVariant.sections.map((s, idx) => {
+      if (idx === index) {
+        if (s.id === 'experience' || s.id === 'education') return s;
+        return { ...s, enabled: !s.enabled };
+      }
+      return s;
+    });
+    updateActiveVariant({ sections: newSections });
   };
 
   const toggleItemSelection = (sectionIndex, itemId) => {
-    const newSections = [...cvConfig.sections];
-    const section = newSections[sectionIndex];
-    if (!section.selectedIds) section.selectedIds = [];
-    
-    if (section.selectedIds.includes(itemId)) {
-      section.selectedIds = section.selectedIds.filter(id => id !== itemId);
-    } else {
-      section.selectedIds.push(itemId);
-    }
-    updateCvConfig({ ...cvConfig, sections: newSections });
+    if (!activeVariant) return;
+    const newSections = activeVariant.sections.map((s, idx) => {
+      if (idx === sectionIndex) {
+        const selectedIds = s.selectedIds ? [...s.selectedIds] : [];
+        const nextSelectedIds = selectedIds.includes(itemId)
+          ? selectedIds.filter(id => id !== itemId)
+          : [...selectedIds, itemId];
+        return { ...s, selectedIds: nextSelectedIds };
+      }
+      return s;
+    });
+    updateActiveVariant({ sections: newSections });
   };
 
   if (loading || !cvConfig) return <div style={{ padding: 'var(--space-8)', textAlign: 'center' }}>Loading CV Data...</div>;
 
-  const sortedSections = [...cvConfig.sections].sort((a, b) => a.order - b.order);
+  const sortedSections = activeVariant
+    ? [...activeVariant.sections].sort((a, b) => a.order - b.order)
+    : [];
 
-  const enabledSectionsCount = cvConfig.sections.filter(s => s.enabled && s.id !== 'profile').length;
-  const totalSelectedItems = cvConfig.sections
-    .filter(s => s.enabled && s.selectedIds)
-    .reduce((sum, s) => sum + s.selectedIds.length, 0);
+  const enabledSectionsCount = activeVariant
+    ? activeVariant.sections.filter(s => s.enabled && s.id !== 'profile').length
+    : 0;
+
+  const totalSelectedItems = activeVariant
+    ? activeVariant.sections
+        .filter(s => s.enabled && s.selectedIds)
+        .reduce((sum, s) => sum + s.selectedIds.length, 0)
+    : 0;
 
   const getDataForSection = (id) => {
     if (id === 'experience') return data.experience;
@@ -190,22 +301,31 @@ const AdminCvBuilder = () => {
   };
 
   const getSectionConfig = (sectionId) => {
-    return cvConfig.sections.find(s => s.id === sectionId);
+    if (!activeVariant) return null;
+    return activeVariant.sections.find(s => s.id === sectionId);
   };
 
   const handleSelectAll = (sectionIndex) => {
-    const newSections = [...cvConfig.sections];
-    const section = newSections[sectionIndex];
-    const sectionData = getDataForSection(section.id);
-    section.selectedIds = sectionData.map(item => item.id);
-    updateCvConfig({ ...cvConfig, sections: newSections });
+    if (!activeVariant) return;
+    const newSections = activeVariant.sections.map((s, idx) => {
+      if (idx === sectionIndex) {
+        const sectionData = getDataForSection(s.id);
+        return { ...s, selectedIds: sectionData.map(item => item.id) };
+      }
+      return s;
+    });
+    updateActiveVariant({ sections: newSections });
   };
 
   const handleClearSelection = (sectionIndex) => {
-    const newSections = [...cvConfig.sections];
-    const section = newSections[sectionIndex];
-    section.selectedIds = [];
-    updateCvConfig({ ...cvConfig, sections: newSections });
+    if (!activeVariant) return;
+    const newSections = activeVariant.sections.map((s, idx) => {
+      if (idx === sectionIndex) {
+        return { ...s, selectedIds: [] };
+      }
+      return s;
+    });
+    updateActiveVariant({ sections: newSections });
   };
 
   const getItemLabel = (sectionId, item) => {
@@ -361,12 +481,12 @@ const AdminCvBuilder = () => {
     return id.charAt(0).toUpperCase() + id.slice(1);
   };
 
-  const previewEmail = cvConfig.email || data.contact?.email;
-  const previewPhone = cvConfig.phone || data.contact?.phone;
-  const previewLocation = cvConfig.location || data.contact?.location;
-  const previewWebsite = cvConfig.website || data.contact?.website;
-  const previewLinkedin = data.contact?.linkedin;
-  const previewGithub = cvConfig.github || data.contact?.github;
+  const previewEmail = activeVariant?.email || data.contact?.email || '';
+  const previewPhone = activeVariant?.phone || data.contact?.phone || '';
+  const previewLocation = activeVariant?.location || data.contact?.location || '';
+  const previewWebsite = activeVariant?.website || data.contact?.website || '';
+  const previewLinkedin = data.contact?.linkedin || '';
+  const previewGithub = activeVariant?.github || data.contact?.github || '';
 
   const contactLinks = [
     previewEmail,
@@ -422,6 +542,66 @@ const AdminCvBuilder = () => {
         {/* Left Panel: Config */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)', minWidth: 0 }}>
           
+          {/* CV Variant Selector Widget */}
+          <div className="card" style={{ padding: 'var(--space-4)', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <label style={{ fontSize: '0.85rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                Active CV Variant
+              </label>
+              <span style={{ fontSize: '0.75rem', color: 'var(--primary-color)', fontWeight: '600' }}>
+                {activeVariant ? activeVariant.name : ''}
+              </span>
+            </div>
+            
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <select
+                value={cvConfig.activeVariantId}
+                onChange={(e) => handleSwitchVariant(e.target.value)}
+                className="form-input"
+                style={{ flex: 1, padding: '6px var(--space-3)', fontSize: '0.9rem', cursor: 'pointer' }}
+              >
+                {cvConfig.variants.map(v => (
+                  <option key={v.id} value={v.id}>{v.name}</option>
+                ))}
+              </select>
+            </div>
+            <span style={{ fontSize: '0.75rem', opacity: 0.6, lineHeight: '1.3' }}>
+              Each variant keeps its own identity, summary, contact overrides, and selected database items.
+            </span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '4px', paddingTop: '8px', borderTop: '1px dashed var(--border-color)' }}>
+              <span style={{ fontSize: '0.75rem', opacity: 0.8 }}>Copy current to:</span>
+              <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
+                {cvConfig.variants.filter(v => v.id !== cvConfig.activeVariantId).map(target => (
+                  <button
+                    key={target.id}
+                    onClick={() => {
+                      if (window.confirm(`Copy all settings of "${activeVariant.name}" to "${target.name}"? This will overwrite the target variant.`)) {
+                        const newVariants = cvConfig.variants.map(v => {
+                          if (v.id === target.id) {
+                            return {
+                              ...activeVariant,
+                              id: target.id,
+                              name: target.name
+                            };
+                          }
+                          return v;
+                        });
+                        updateCvConfig({
+                          ...cvConfig,
+                          variants: newVariants
+                        });
+                      }
+                    }}
+                    className="btn btn-secondary"
+                    style={{ padding: '2px 6px', fontSize: '0.7rem', minWidth: 'auto' }}
+                  >
+                    {target.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
           {/* Summary Status Widget */}
           <div className="card" style={{ padding: '12px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '6px' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
@@ -500,8 +680,8 @@ const AdminCvBuilder = () => {
                     <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>CV Display Name</label>
                     <input 
                       type="text" 
-                      value={cvConfig.displayName || ''} 
-                      onChange={(e) => updateCvConfig({...cvConfig, displayName: e.target.value})} 
+                      value={activeVariant?.displayName || ''} 
+                      onChange={(e) => updateActiveVariant({ displayName: e.target.value })} 
                       placeholder={data.profile?.name || 'Your Name'} 
                       className="form-input" 
                       style={{ width: '100%', boxSizing: 'border-box' }} 
@@ -511,8 +691,8 @@ const AdminCvBuilder = () => {
                     <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>Professional Title</label>
                     <input 
                       type="text" 
-                      value={cvConfig.professionalTitle || ''} 
-                      onChange={(e) => updateCvConfig({...cvConfig, professionalTitle: e.target.value})} 
+                      value={activeVariant?.professionalTitle || ''} 
+                      onChange={(e) => updateActiveVariant({ professionalTitle: e.target.value })} 
                       placeholder={data.profile?.title || 'e.g. Full Stack Developer'} 
                       className="form-input" 
                       style={{ width: '100%', boxSizing: 'border-box' }} 
@@ -522,8 +702,8 @@ const AdminCvBuilder = () => {
                     <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>Target Role (Optional)</label>
                     <input 
                       type="text" 
-                      value={cvConfig.targetRole || ''} 
-                      onChange={(e) => updateCvConfig({...cvConfig, targetRole: e.target.value})} 
+                      value={activeVariant?.targetRole || ''} 
+                      onChange={(e) => updateActiveVariant({ targetRole: e.target.value })} 
                       placeholder="e.g. Senior Frontend Engineer" 
                       className="form-input" 
                       style={{ width: '100%', boxSizing: 'border-box' }} 
@@ -533,8 +713,8 @@ const AdminCvBuilder = () => {
                     <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>Phone Number Override</label>
                     <input 
                       type="text" 
-                      value={cvConfig.phone || ''} 
-                      onChange={(e) => updateCvConfig({...cvConfig, phone: e.target.value})} 
+                      value={activeVariant?.phone || ''} 
+                      onChange={(e) => updateActiveVariant({ phone: e.target.value })} 
                       placeholder="e.g. 0851 6265 4466" 
                       className="form-input" 
                       style={{ width: '100%', boxSizing: 'border-box' }} 
@@ -544,8 +724,8 @@ const AdminCvBuilder = () => {
                     <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>Website URL Override</label>
                     <input 
                       type="text" 
-                      value={cvConfig.website || ''} 
-                      onChange={(e) => updateCvConfig({...cvConfig, website: e.target.value})} 
+                      value={activeVariant?.website || ''} 
+                      onChange={(e) => updateActiveVariant({ website: e.target.value })} 
                       placeholder="e.g. https://syahputran.vercel.app/" 
                       className="form-input" 
                       style={{ width: '100%', boxSizing: 'border-box' }} 
@@ -555,8 +735,8 @@ const AdminCvBuilder = () => {
                     <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>GitHub Link Override</label>
                     <input 
                       type="text" 
-                      value={cvConfig.github || ''} 
-                      onChange={(e) => updateCvConfig({...cvConfig, github: e.target.value})} 
+                      value={activeVariant?.github || ''} 
+                      onChange={(e) => updateActiveVariant({ github: e.target.value })} 
                       placeholder="e.g. https://bit.ly/4xrqAWN" 
                       className="form-input" 
                       style={{ width: '100%', boxSizing: 'border-box' }} 
@@ -566,8 +746,8 @@ const AdminCvBuilder = () => {
                     <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>Email Override</label>
                     <input 
                       type="text" 
-                      value={cvConfig.email || ''} 
-                      onChange={(e) => updateCvConfig({...cvConfig, email: e.target.value})} 
+                      value={activeVariant?.email || ''} 
+                      onChange={(e) => updateActiveVariant({ email: e.target.value })} 
                       placeholder="e.g. email@example.com" 
                       className="form-input" 
                       style={{ width: '100%', boxSizing: 'border-box' }} 
@@ -577,8 +757,8 @@ const AdminCvBuilder = () => {
                     <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>Location Override</label>
                     <input 
                       type="text" 
-                      value={cvConfig.location || ''} 
-                      onChange={(e) => updateCvConfig({...cvConfig, location: e.target.value})} 
+                      value={activeVariant?.location || ''} 
+                      onChange={(e) => updateActiveVariant({ location: e.target.value })} 
                       placeholder="e.g. Jakarta, Indonesia" 
                       className="form-input" 
                       style={{ width: '100%', boxSizing: 'border-box' }} 
@@ -592,8 +772,8 @@ const AdminCvBuilder = () => {
               <div className="card" style={{ padding: 'var(--space-4)' }}>
                 <h3 style={{ margin: '0 0 var(--space-4) 0', fontSize: '1.1rem' }}>Professional Summary</h3>
                 <textarea 
-                  value={cvConfig.summary || ''}
-                  onChange={(e) => updateCvConfig({ ...cvConfig, summary: e.target.value })}
+                  value={activeVariant?.summary || ''}
+                  onChange={(e) => updateActiveVariant({ summary: e.target.value })}
                   placeholder="Write a brief professional summary..."
                   style={{ width: '100%', minHeight: '180px', padding: 'var(--space-2)', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)', fontFamily: 'inherit', boxSizing: 'border-box', lineHeight: '1.5' }}
                 />
@@ -613,7 +793,7 @@ const AdminCvBuilder = () => {
                     if (isProfile) return null; // Handled by Manual Identity
 
                     const sectionData = getDataForSection(section.id);
-                    const actualIndexInConfig = cvConfig.sections.findIndex(s => s.id === section.id);
+                    const actualIndexInConfig = activeVariant.sections.findIndex(s => s.id === section.id);
                     const isMandatory = section.id === 'experience' || section.id === 'education';
 
                     const totalCount = sectionData.length;
@@ -911,11 +1091,11 @@ const AdminCvBuilder = () => {
                 {/* Header Section */}
                 <div style={{ textAlign: 'center', marginBottom: '5mm' }}>
                   <h1 style={{ margin: '0 0 1mm 0', fontSize: '18pt', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                    {cvConfig.displayName || data.profile?.name || 'YOUR NAME'}
+                    {activeVariant?.displayName || data.profile?.name || 'YOUR NAME'}
                   </h1>
                   <div style={{ fontSize: '10pt', marginBottom: '1.5mm', fontWeight: 'bold', color: '#111' }}>
-                    {cvConfig.professionalTitle || data.profile?.title || 'Professional Title'} 
-                    {cvConfig.targetRole && ` | ${cvConfig.targetRole}`}
+                    {activeVariant?.professionalTitle || data.profile?.title || 'Professional Title'} 
+                    {activeVariant?.targetRole && ` | ${activeVariant?.targetRole}`}
                   </div>
                   <div style={{ fontSize: '9pt', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px', color: '#222' }}>
                     {contactLinks.map((item, i, arr) => (
@@ -927,13 +1107,13 @@ const AdminCvBuilder = () => {
                   </div>
                 </div>
 
-                {cvConfig.summary && (
+                {activeVariant?.summary && (
                   <div className="cv-print-section" style={{ marginBottom: '4mm' }}>
                     <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
                       Professional Summary
                     </h2>
                     <div style={{ fontSize: '9pt', textAlign: 'justify', whiteSpace: 'pre-line', color: '#111' }}>
-                      {cvConfig.summary}
+                      {activeVariant?.summary}
                     </div>
                   </div>
                 )}
