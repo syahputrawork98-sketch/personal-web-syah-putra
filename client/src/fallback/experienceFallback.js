@@ -4,12 +4,13 @@ export const experienceFallback = [
     role: "Freelance Full Stack Web Developer",
     company: "Mandiri",
     period: "Mei 2025 – Sekarang",
-    description: "Merancang dan mengembangkan aplikasi web modern serta website company profile untuk membantu UMKM dan bisnis lokal go digital. Mengelola siklus pengembangan dari desain arsitektur hingga deployment, berfokus pada performa, keamanan, dan pengalaman pengguna.",
+    description: "Merancang dan membangun aplikasi web Full Stack serta website profil bisnis responsif secara mandiri. Mengelola seluruh siklus hidup pengembangan sistem mulai dari pemodelan basis data, integrasi API, hingga deployment.",
     highlights: [
-      "Membangun dan mengintegrasikan RESTful API dengan arsitektur backend yang scalable",
-      "Mengimplementasikan sistem autentikasi aman berbasis JWT dan manajemen sesi",
-      "Merancang antarmuka pengguna interaktif dan responsif menggunakan React.js",
-      "Melakukan optimasi performa dan penerapan standar SEO dasar untuk visibilitas web"
+      "Merancang skema database (MySQL/PostgreSQL) dan membangun backend RESTful API menggunakan Node.js dan Express.js",
+      "Mengimplementasikan sistem autentikasi pengguna yang aman serta kontrol akses berbasis peran (Role-Based Access Control)",
+      "Membangun antarmuka dasbor admin interaktif menggunakan React.js untuk manajemen konten dan data operasional yang dinamis",
+      "Mengintegrasikan halaman frontend dengan API backend melalui alur kerja CRUD yang terstandarisasi",
+      "Mendukung persiapan deployment web production dan optimasi performa responsif lintas perangkat"
     ],
     techStack: ["React.js", "Node.js", "Express.js", "MongoDB", "PostgreSQL", "Tailwind CSS"],
     isActive: true
@@ -19,11 +20,11 @@ export const experienceFallback = [
     role: "Field General Staff — Project Digitalization",
     company: "PT. Sedayu Jaya Konstruksi",
     period: "Agu 2022 – Apr 2025",
-    description: "Memimpin inisiatif digitalisasi administrasi proyek dengan merancang alur pelaporan terintegrasi. Bertanggung jawab atas pengelolaan data operasional dan menjembatani komunikasi antara tim teknis lapangan dengan manajemen.",
+    description: "Menginisiasi program digitalisasi administrasi di lokasi proyek konstruksi. Berperan aktif menjembatani kebutuhan data operasional tim lapangan dengan manajemen pusat melalui pemanfaatan perangkat digital terintegrasi.",
     highlights: [
-      "Menggagas dan mengimplementasikan sistem pelaporan digital harian, mingguan, dan bulanan",
-      "Menyusun struktur data RAB, RAP, invoice, serta dokumentasi progres proyek secara efisien",
-      "Melakukan analisis dan penyelesaian masalah operasional secara terstruktur"
+      "Mengembangkan dan mengelola template pelaporan progres harian dan mingguan digital untuk meminimalisir kesalahan input data manual",
+      "Menyusun dan merapikan basis data estimasi biaya (RAB/RAP), penagihan invoice, serta kontrol alur logistik material secara sistematis",
+      "Menganalisis hambatan operasional proyek dan berkoordinasi dengan tim teknis lapangan untuk merumuskan solusi pemecahan masalah"
     ],
     techStack: ["Data Management", "Digitalization", "Project Administration", "Problem Solving"],
     isActive: true
@@ -33,11 +34,11 @@ export const experienceFallback = [
     role: "Personal Assistant & General Staff",
     company: "PT. Erusatria Grup",
     period: "Mar 2020 – Jul 2022",
-    description: "Berperan sebagai penggerak utama dalam manajemen logistik dan pengarsipan perusahaan. Berperan kunci dalam transisi sistem dokumen fisik ke format digital untuk mempercepat alur informasi operasional.",
+    description: "Mengelola administrasi umum, koordinasi logistik, dan operasional kantor. Membantu proses transisi arsip dokumen perusahaan ke dalam format digital guna meningkatkan efisiensi dan kecepatan pencarian data.",
     highlights: [
-      "Meningkatkan efisiensi pencarian dan pelacakan dokumen hingga 25% melalui pengarsipan digital",
-      "Merancang sistem laporan operasional terstandarisasi untuk kebutuhan harian tim logistik",
-      "Mengelola arus komunikasi dan koordinasi antar departemen secara efektif"
+      "Meningkatkan efisiensi pencarian dan pelacakan dokumen operasional logistik melalui sistem pengarsipan digital terstruktur",
+      "Menyusun standarisasi draf laporan operasional rutin untuk memudahkan pemantauan harian oleh manajemen",
+      "Memfasilitasi komunikasi dan koordinasi antar departemen guna kelancaran workflow administrasi kantor"
     ],
     techStack: ["System Documentation", "Operations", "Workflow Optimization", "Communication"],
     isActive: true

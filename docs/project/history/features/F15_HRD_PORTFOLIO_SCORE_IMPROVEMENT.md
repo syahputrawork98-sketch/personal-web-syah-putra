@@ -15,6 +15,7 @@ Meningkatkan keterbacaan website portfolio oleh crawler sederhana, recruiter too
 - Polish Hero CTA dan Recruiter Copy (Batch F15B) selesai dikerjakan pada `Home.jsx` dengan menambahkan akses cepat ke LinkedIn dan GitHub yang bersumber dari API / fallback contact, serta memperkuat deskripsi role, title, dan subtitle default saat backend kosong/down agar web portofolio tetap informatif secara statis.
 - Poles Case Study Project (Batch F15C) diselesaikan pada `projectsFallback.js` dengan menyusun ulang detail proyek (description, challenge, solution, role, features, tech stack, impact) pada 3 proyek utama (2 proyek web IT dan 1 proyek estimasi/RAB otomatis) menjadi deskripsi studi kasus teknis berstandar rekrutmen/HRD.
 - Penyempurnaan Keamanan Klaim Studi Kasus Proyek (Batch F15C.1) diselesaikan pada `projectsFallback.js` dengan melunakkan narasi impact proyek utama agar tetap profesional dan kuat secara teknis tanpa mencantumkan klaim data kuantitatif spesifik/absolut yang sulit dibuktikan.
+- Poles Pengalaman Kerja / Experience Timeline (Batch F15D) selesai dikerjakan pada `experienceFallback.js` dengan memformulasikan deskripsi pekerjaan, kontribusi teknis (REST API, CRUD, authentication, RBAC, admin dashboard), serta tech stack pada masing-masing timeline pengalaman agar lebih konkret, terukur, dan selaras dengan target kompetensi Full Stack Web Developer.
 - Snapshot berisi professional summary, core stack, featured work, dan recruiter links.
 - Tampilan visual React Home saat JS aktif tidak terpengaruh sedikit pun.
 
@@ -26,7 +27,7 @@ Meningkatkan keterbacaan website portfolio oleh crawler sederhana, recruiter too
 | F15B | Hero CTA and Recruiter Copy Polish | Completed | Penyesuaian salinan copywriter/CTA di bagian Hero utama. | F15A.1 |
 | F15C | Project Case Study Polish | Completed | Peningkatan detail case study pada masing-masing module project. | F15B |
 | F15C.1 | Project Case Study Claim Safety Polish | Completed | Melunakkan klaim impact project agar tetap profesional dan tidak terlalu kuantitatif tanpa bukti. | F15C |
-| F15D | Experience Timeline Polish | Pending | Menyempurnakan deskripsi pencapaian pada modul pengalaman. | F15C.1 |
+| F15D | Experience Timeline Polish | Completed | Menyempurnakan deskripsi pencapaian pada modul pengalaman. | F15C.1 |
 | F15E | Credentials Relevance Polish | Pending | Kurasi relevansi dan deskripsi kredensial/sertifikasi. | F15D |
 | F15F | Security and GitHub Recruiter Audit | Pending | Audit repositori dan profil GitHub untuk kebutuhan rekrutmen. | F15E |
 | F15G | Lighthouse and Final HRD Score QA | Pending | Pengukuran skor akhir dengan Lighthouse QA. | F15F |
@@ -35,7 +36,7 @@ Meningkatkan keterbacaan website portfolio oleh crawler sederhana, recruiter too
 - Seluruh pengerjaan pada batch ini dirancang tanpa mengubah arsitektur SPA React atau menambahkan prerendering framework / SSR dependency baru.
 
 ## Next Step
-- Melanjutkan ke Batch F15D — Experience Timeline Polish.
+- Melanjutkan ke Batch F15E — Credentials Relevance Polish.
 
 ## Validation Checklist
 - Menjalankan build frontend (`npm run build`) dan memastikan kompilasi berjalan sukses.
