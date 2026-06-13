@@ -4,8 +4,110 @@ import { getAdminCertifications, deleteCertification } from '../../lib/api';
 import { removeToken } from '../../lib/auth';
 import ConfirmModal from '../../components/admin/ConfirmModal';
 
+const getFilteredCertifications = (certs, tabId) => {
+  if (tabId === 'ALL') return certs;
+  if (tabId === 'FEATURED') return certs.filter(c => c.featured);
+  if (tabId === 'CERTIFICATE') return certs.filter(c => c.type === 'CERTIFICATE');
+  if (tabId === 'SUPPORTING_DOCUMENT') return certs.filter(c => c.type === 'SUPPORTING_DOCUMENT');
+
+  return certs.filter(c => {
+    const title = (c.title || '').toLowerCase();
+    const issuer = (c.issuer || '').toLowerCase();
+    const category = (c.category || '').toLowerCase();
+    const subCategory = (c.subCategory || '').toLowerCase();
+    const issuerType = (c.issuerType || '').toLowerCase();
+    const skills = (c.skills || []).map(s => s.toLowerCase());
+
+    if (tabId === 'BNSP') {
+      return category === 'bnsp' || 
+             issuer.includes('bnsp') || 
+             issuer.includes('badan nasional sertifikasi profesi') ||
+             title.includes('bnsp');
+    }
+
+    if (tabId === 'PROFESSIONAL') {
+      return category === 'bnsp' ||
+             title.includes('certified') ||
+             title.includes('certification') ||
+             title.includes('sertifikat kompetensi') ||
+             issuerType.includes('professional') ||
+             issuerType.includes('association') ||
+             issuer.includes('profesi') ||
+             c.id.includes('cbec');
+    }
+
+    if (tabId === 'TECHNICAL') {
+      return category === 'it & digital' ||
+             category === 'teknik & manufaktur' ||
+             category === 'konstruksi' ||
+             subCategory.includes('development') ||
+             subCategory.includes('cad') ||
+             subCategory.includes('drafting') ||
+             subCategory.includes('engineering') ||
+             subCategory.includes('programming') ||
+             skills.some(s => ['react', 'node', 'javascript', 'cad', '3d', 'engineering', 'cloud', 'azure', 'programming', 'software'].some(k => s.includes(k)));
+    }
+
+    if (tabId === 'ACADEMIC') {
+      return issuerType.includes('school') ||
+             issuerType.includes('university') ||
+             issuerType.includes('college') ||
+             issuerType.includes('academic') ||
+             issuer.includes('smk') ||
+             issuer.includes('institut') ||
+             issuer.includes('universitas') ||
+             subCategory.includes('academic') ||
+             title.includes('sekolah') ||
+             title.includes('kuliah');
+    }
+
+    if (tabId === 'TRAINING') {
+      return category === 'it & digital' ||
+             title.includes('pelatihan') ||
+             title.includes('training') ||
+             title.includes('course') ||
+             title.includes('bootcamp') ||
+             title.includes('lulus') ||
+             issuerType.includes('training') ||
+             issuerType.includes('vocational') ||
+             issuerType.includes('education') ||
+             issuer.includes('lpk') ||
+             issuer.includes('lkp') ||
+             issuer.includes('balai besar');
+    }
+
+    if (tabId === 'SOFT_SKILL') {
+      return category === 'pengembangan diri' ||
+             subCategory.includes('growth') ||
+             subCategory.includes('development') ||
+             subCategory.includes('leadership') ||
+             subCategory.includes('communication') ||
+             subCategory.includes('language') ||
+             skills.some(s => ['leadership', 'communication', 'teamwork', 'discipline', 'resilience', 'growth', 'personal', 'english', 'japanese', 'language'].some(k => s.includes(k)));
+    }
+
+    if (tabId === 'EVENT') {
+      return category === 'magang & partisipasi' ||
+             title.includes('partisipasi') ||
+             title.includes('kehadiran') ||
+             title.includes('bootcamp') ||
+             title.includes('event') ||
+             subCategory.includes('participation') ||
+             subCategory.includes('event') ||
+             skills.some(s => s.includes('participation') || s.includes('attendance') || s.includes('ojt') || s.includes('internship'));
+    }
+
+    if (tabId === 'OTHER') {
+      return category === 'other' || category === 'dokumen pendukung' ||
+             (!['bnsp', 'it & digital', 'teknik & manufaktur', 'konstruksi', 'pengembangan diri', 'magang & partisipasi'].includes(category));
+    }
+
+    return false;
+  });
+};
+
 const AdminCertifications = () => {
-  const [certifications, setCertifications] = useState([]);
+  const [allCertifications, setAllCertifications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
@@ -29,23 +131,12 @@ const AdminCertifications = () => {
     { id: 'OTHER', label: 'Other' },
   ];
 
-  const fetchCertifications = async (tabId) => {
+  const fetchCertifications = async () => {
     try {
       setLoading(true);
-      let filters = {};
-      
-      if (tabId === 'FEATURED') {
-        filters.featured = 'true';
-      } else if (tabId === 'CERTIFICATE' || tabId === 'SUPPORTING_DOCUMENT') {
-        filters.type = tabId;
-      } else if (tabId === 'BNSP') {
-        filters.issuer = 'BNSP';
-      } else if (tabId !== 'ALL') {
-        filters.category = tabId;
-      }
-
-      const data = await getAdminCertifications(filters);
-      setCertifications(data.certifications);
+      setError('');
+      const data = await getAdminCertifications();
+      setAllCertifications(data.certifications || []);
     } catch (err) {
       if (err.message.includes('401')) {
         removeToken();
@@ -59,8 +150,8 @@ const AdminCertifications = () => {
   };
 
   useEffect(() => {
-    fetchCertifications(activeTab);
-  }, [activeTab]);
+    fetchCertifications();
+  }, []);
 
   const handleDeleteClick = (id, title) => {
     setDeleteModal({ isOpen: true, id, title });
@@ -74,7 +165,7 @@ const AdminCertifications = () => {
       await deleteCertification(deleteModal.id);
       setSuccessMsg(`Certification "${deleteModal.title}" deleted successfully.`);
       setDeleteModal({ isOpen: false, id: null, title: '' });
-      fetchCertifications(activeTab);
+      fetchCertifications();
     } catch (err) {
       setError('Failed to delete: ' + err.message);
       setDeleteModal({ isOpen: false, id: null, title: '' });
@@ -85,6 +176,12 @@ const AdminCertifications = () => {
 
   const handleCancelDelete = () => {
     setDeleteModal({ isOpen: false, id: null, title: '' });
+  };
+
+  const filteredCertifications = getFilteredCertifications(allCertifications, activeTab);
+
+  const getTabCount = (tabId) => {
+    return getFilteredCertifications(allCertifications, tabId).length;
   };
 
   return (
@@ -109,10 +206,23 @@ const AdminCertifications = () => {
               fontWeight: activeTab === tab.id ? '600' : '400',
               cursor: 'pointer',
               transition: 'all 0.2s ease',
-              opacity: activeTab === tab.id ? 1 : 0.7
+              opacity: activeTab === tab.id ? 1 : 0.7,
+              display: 'flex',
+              alignItems: 'center'
             }}
           >
             {tab.label}
+            <span style={{
+              marginLeft: '6px',
+              fontSize: '0.75rem',
+              backgroundColor: activeTab === tab.id ? 'rgba(255, 255, 255, 0.2)' : 'var(--bg-muted, rgba(0, 0, 0, 0.05))',
+              color: activeTab === tab.id ? 'white' : 'var(--text-muted, #6b7280)',
+              padding: '2px 6px',
+              borderRadius: '10px',
+              fontWeight: '600'
+            }}>
+              {getTabCount(tab.id)}
+            </span>
           </button>
         ))}
       </div>
@@ -122,7 +232,7 @@ const AdminCertifications = () => {
 
       <div className="card" style={{ overflowX: 'auto' }}>
         {loading ? (
-          <div style={{ textAlign: 'center', padding: 'var(--space-12)', opacity: 0.6 }}>Loading {activeTab.toLowerCase()} certifications...</div>
+          <div style={{ textAlign: 'center', padding: 'var(--space-12)', opacity: 0.6 }}>Loading certifications...</div>
         ) : (
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
@@ -137,7 +247,7 @@ const AdminCertifications = () => {
               </tr>
             </thead>
             <tbody>
-              {certifications.map((cert) => (
+              {filteredCertifications.map((cert) => (
                 <tr key={cert.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
                   <td style={{ padding: '12px' }}>{cert.displayPriority}</td>
                   <td style={{ padding: '12px' }}>
@@ -188,7 +298,7 @@ const AdminCertifications = () => {
                   </td>
                 </tr>
               ))}
-              {certifications.length === 0 && (
+              {filteredCertifications.length === 0 && (
                 <tr>
                   <td colSpan="7" style={{ padding: 'var(--space-12)', textAlign: 'center', opacity: 0.5 }}>
                     No {activeTab === 'ALL' ? '' : activeTab.toLowerCase()} certifications found.
