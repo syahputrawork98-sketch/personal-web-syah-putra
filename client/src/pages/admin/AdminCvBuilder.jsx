@@ -175,6 +175,47 @@ const AdminCvBuilder = () => {
     return cvConfig.sections.find(s => s.id === sectionId);
   };
 
+  const handleSelectAll = (sectionIndex) => {
+    const newSections = [...cvConfig.sections];
+    const section = newSections[sectionIndex];
+    const sectionData = getDataForSection(section.id);
+    section.selectedIds = sectionData.map(item => item.id);
+    updateCvConfig({ ...cvConfig, sections: newSections });
+  };
+
+  const handleClearSelection = (sectionIndex) => {
+    const newSections = [...cvConfig.sections];
+    const section = newSections[sectionIndex];
+    section.selectedIds = [];
+    updateCvConfig({ ...cvConfig, sections: newSections });
+  };
+
+  const getItemLabel = (sectionId, item) => {
+    if (sectionId === 'experience') return item.role;
+    if (sectionId === 'projects') return item.title;
+    if (sectionId === 'education') return item.degree;
+    if (sectionId === 'credentials') return item.title;
+    if (sectionId === 'skills') return item.name;
+    return item.name || item.title || 'Item';
+  };
+
+  const getItemMeta = (sectionId, item) => {
+    if (sectionId === 'experience') {
+      return `${item.company || ''} ${item.period ? `(${item.period})` : ''}`.trim();
+    }
+    if (sectionId === 'projects') {
+      return item.category || '';
+    }
+    if (sectionId === 'education') {
+      return `${item.school || ''} ${item.period ? `(${item.period})` : ''}`.trim();
+    }
+    if (sectionId === 'credentials') {
+      const year = (item.issuedDate || item.issueDate) ? new Date(item.issuedDate || item.issueDate).getFullYear() : '';
+      return `${item.issuer || ''} ${year ? `(${year})` : ''}`.trim();
+    }
+    return '';
+  };
+
   const getDisplayItems = (sectionId) => {
     const section = getSectionConfig(sectionId);
     if (!section || !section.enabled) return [];
@@ -494,6 +535,10 @@ const AdminCvBuilder = () => {
                     const actualIndexInConfig = cvConfig.sections.findIndex(s => s.id === section.id);
                     const isMandatory = section.id === 'experience' || section.id === 'education';
 
+                    const totalCount = sectionData.length;
+                    const selectedCount = section.selectedIds?.length || 0;
+                    const isUsingAll = selectedCount === 0;
+
                     return (
                       <div key={section.id} style={{ border: '1px solid var(--border-color)', borderRadius: '6px', padding: 'var(--space-3)', opacity: section.enabled ? 1 : 0.6 }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -532,66 +577,172 @@ const AdminCvBuilder = () => {
                           </div>
                         </div>
 
-                        {/* Unified Selector Area */}
+                        {/* Section stats / mode info */}
                         {section.enabled && (
-                          <div style={{ marginTop: 'var(--space-3)', paddingTop: 'var(--space-3)', borderTop: '1px dashed var(--border-color)' }}>
-                            <input 
-                              type="text" 
-                              placeholder={`Search and select ${section.id}...`}
-                              value={searchQueries[section.id] || ''}
-                              onChange={(e) => setSearchQueries({...searchQueries, [section.id]: e.target.value})}
-                              className="form-input"
-                              style={{ width: '100%', marginBottom: '12px', boxSizing: 'border-box' }}
-                            />
-                            {searchQueries[section.id] && (
-                              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '12px', padding: '8px', backgroundColor: 'var(--bg-color)', borderRadius: '4px' }}>
-                                {sectionData.filter(s => {
-                                   const label = s.name || s.title || s.role || s.degree || '';
-                                   return label.toLowerCase().includes((searchQueries[section.id] || '').toLowerCase()) && !section.selectedIds?.includes(s.id);
-                                }).slice(0, 10).map(item => {
-                                  let itemLabel = item.name || item.title || item.role || item.degree || 'Item';
-                                  if (item.company) itemLabel += ` at ${item.company}`;
-                                  if (item.school) itemLabel += ` at ${item.school}`;
-                                  return (
-                                    <button
-                                      key={item.id}
-                                      onClick={() => {
-                                        toggleItemSelection(actualIndexInConfig, item.id);
-                                        setSearchQueries({...searchQueries, [section.id]: ''});
-                                      }}
-                                      style={{ padding: '4px 10px', fontSize: '0.8rem', borderRadius: '16px', border: '1px solid var(--primary-color)', background: 'transparent', color: 'var(--primary-color)', cursor: 'pointer', textAlign: 'left' }}
-                                    >
-                                      + {itemLabel}
-                                    </button>
-                                  );
-                                }).filter(Boolean)}
-                                {sectionData.filter(s => {
-                                   const label = s.name || s.title || s.role || s.degree || '';
-                                   return label.toLowerCase().includes((searchQueries[section.id] || '').toLowerCase()) && !section.selectedIds?.includes(s.id);
-                                }).length === 0 && (
-                                  <span style={{ fontSize: '0.8rem', opacity: 0.6 }}>No items found.</span>
-                                )}
-                              </div>
-                            )}
-                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                              {(section.selectedIds || []).map(id => {
-                                const item = sectionData.find(s => s.id === id);
-                                if (!item) return null;
-                                let itemLabel = item.name || item.title || item.role || item.degree || 'Item';
-                                
-                                return (
-                                  <div key={id} style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '4px 10px', fontSize: '0.8rem', borderRadius: '16px', backgroundColor: 'var(--primary-color)', color: 'white' }}>
-                                    <span>{itemLabel}</span>
-                                    <span style={{ cursor: 'pointer', fontWeight: 'bold' }} onClick={() => toggleItemSelection(actualIndexInConfig, id)}>×</span>
-                                  </div>
-                                );
-                              })}
-                              {(section.selectedIds?.length === 0) && (
-                                <span style={{ fontSize: '0.8rem', opacity: 0.6, fontStyle: 'italic' }}>
-                                  No specific items selected (all items will be shown by default).
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '8px 0 var(--space-2) 0', fontSize: '0.8rem' }}>
+                            <div style={{ opacity: 0.8 }}>
+                              <span>Total data: <strong>{totalCount}</strong></span>
+                              <span style={{ margin: '0 8px', opacity: 0.4 }}>|</span>
+                              <span>Selected: <strong>{selectedCount}</strong></span>
+                            </div>
+                            <div>
+                              {isUsingAll ? (
+                                <span style={{ color: '#166534', backgroundColor: '#dcfce7', padding: '2px 8px', borderRadius: '4px', fontWeight: '500', fontSize: '0.75rem' }}>
+                                  ℹ️ Using all items
+                                </span>
+                              ) : (
+                                <span style={{ color: '#1e3a8a', backgroundColor: '#dbeafe', padding: '2px 8px', borderRadius: '4px', fontWeight: '500', fontSize: '0.75rem' }}>
+                                  🎯 Using selected items
                                 </span>
                               )}
                             </div>
+                          </div>
+                        )}
+
+                        {/* Unified Selector Area */}
+                        {section.enabled && (
+                          <div style={{ marginTop: 'var(--space-2)', paddingTop: 'var(--space-2)', borderTop: '1px dashed var(--border-color)' }}>
+                            {totalCount === 0 ? (
+                              <div style={{ padding: '12px', border: '1px dashed var(--border-color)', borderRadius: '4px', textAlign: 'center', opacity: 0.6, fontSize: '0.85rem' }}>
+                                No data available in this section. Add items in the corresponding panel first.
+                              </div>
+                            ) : (
+                              <>
+                                {/* Selection Actions toolbar */}
+                                <div style={{ display: 'flex', gap: '8px', marginBottom: '10px' }}>
+                                  <button
+                                    onClick={() => handleSelectAll(actualIndexInConfig)}
+                                    className="btn btn-secondary"
+                                    style={{ padding: '4px 8px', fontSize: '0.75rem', minWidth: 'auto', flex: 1 }}
+                                  >
+                                    ☑️ Select All
+                                  </button>
+                                  <button
+                                    onClick={() => handleClearSelection(actualIndexInConfig)}
+                                    className="btn btn-secondary"
+                                    style={{ padding: '4px 8px', fontSize: '0.75rem', minWidth: 'auto', flex: 1 }}
+                                    title="Clear selection to show all items by default"
+                                  >
+                                    📭 Clear Selection (Uses All)
+                                  </button>
+                                </div>
+
+                                <input 
+                                  type="text" 
+                                  placeholder={`Search and select ${section.id}...`}
+                                  value={searchQueries[section.id] || ''}
+                                  onChange={(e) => setSearchQueries({...searchQueries, [section.id]: e.target.value})}
+                                  className="form-input"
+                                  style={{ width: '100%', marginBottom: '10px', boxSizing: 'border-box' }}
+                                />
+
+                                {searchQueries[section.id] && (
+                                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '12px', padding: '8px', backgroundColor: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '4px' }}>
+                                    {sectionData.filter(s => {
+                                       const label = s.name || s.title || s.role || s.degree || '';
+                                       return label.toLowerCase().includes((searchQueries[section.id] || '').toLowerCase()) && !section.selectedIds?.includes(s.id);
+                                    }).slice(0, 10).map(item => {
+                                      const label = getItemLabel(section.id, item);
+                                      const meta = getItemMeta(section.id, item);
+                                      return (
+                                        <button
+                                          key={item.id}
+                                          onClick={() => {
+                                            toggleItemSelection(actualIndexInConfig, item.id);
+                                            setSearchQueries({...searchQueries, [section.id]: ''});
+                                          }}
+                                          style={{ 
+                                            display: 'flex', 
+                                            justifyContent: 'space-between', 
+                                            alignItems: 'center', 
+                                            width: '100%', 
+                                            padding: '8px 12px', 
+                                            fontSize: '0.8rem', 
+                                            borderRadius: '6px', 
+                                            border: '1px dashed var(--primary-color)', 
+                                            background: 'rgba(59, 130, 246, 0.05)', 
+                                            color: 'var(--primary-color)', 
+                                            cursor: 'pointer', 
+                                            textAlign: 'left' 
+                                          }}
+                                        >
+                                          <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', minWidth: 0, flex: 1 }}>
+                                            <span style={{ fontWeight: '600', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>{label}</span>
+                                            {meta && <span style={{ fontSize: '0.7rem', opacity: 0.8, textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>{meta}</span>}
+                                          </div>
+                                          <span style={{ fontSize: '1rem', fontWeight: 'bold', marginLeft: '8px' }}>+</span>
+                                        </button>
+                                      );
+                                    })}
+                                    {sectionData.filter(s => {
+                                       const label = s.name || s.title || s.role || s.degree || '';
+                                       return label.toLowerCase().includes((searchQueries[section.id] || '').toLowerCase()) && !section.selectedIds?.includes(s.id);
+                                    }).length === 0 && (
+                                      <div style={{ padding: '6px', textAlign: 'center', opacity: 0.6, fontSize: '0.8rem' }}>
+                                        🔍 No items match "{searchQueries[section.id]}"
+                                      </div>
+                                    )}
+                                  </div>
+                                )}
+
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', width: '100%' }}>
+                                  {(section.selectedIds || []).map(id => {
+                                    const item = sectionData.find(s => s.id === id);
+                                    if (!item) return null;
+                                    const label = getItemLabel(section.id, item);
+                                    const meta = getItemMeta(section.id, item);
+                                    
+                                    return (
+                                      <div 
+                                        key={id} 
+                                        style={{ 
+                                          display: 'flex', 
+                                          justifyContent: 'space-between', 
+                                          alignItems: 'center', 
+                                          padding: '6px 12px', 
+                                          fontSize: '0.85rem', 
+                                          borderRadius: '6px', 
+                                          backgroundColor: 'var(--bg-color)', 
+                                          border: '1px solid var(--border-color)' 
+                                        }}
+                                      >
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', minWidth: 0, flex: 1 }}>
+                                          <span style={{ fontWeight: '600', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>
+                                            {label}
+                                          </span>
+                                          {meta && (
+                                            <span style={{ fontSize: '0.75rem', opacity: 0.7, textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>
+                                              {meta}
+                                            </span>
+                                          )}
+                                        </div>
+                                        <button 
+                                          onClick={() => toggleItemSelection(actualIndexInConfig, id)}
+                                          style={{ 
+                                            background: 'transparent', 
+                                            border: 'none', 
+                                            color: '#ef4444', 
+                                            fontWeight: 'bold', 
+                                            fontSize: '1rem', 
+                                            cursor: 'pointer', 
+                                            padding: '0 4px', 
+                                            marginLeft: '8px' 
+                                          }}
+                                          title="Remove item"
+                                        >
+                                          ×
+                                        </button>
+                                      </div>
+                                    );
+                                  })}
+                                  {selectedCount === 0 && (
+                                    <div style={{ padding: '8px 12px', border: '1px dashed var(--border-color)', borderRadius: '4px', fontSize: '0.8rem', opacity: 0.6, fontStyle: 'italic', textAlign: 'center' }}>
+                                      💡 No specific items selected. Preview is showing all items by default.
+                                    </div>
+                                  )}
+                                </div>
+                              </>
+                            )}
                           </div>
                         )}
                       </div>
