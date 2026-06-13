@@ -96,6 +96,14 @@ Untuk menopang transaksi arsitektural ini (tanpa perlu dieksekusi sekarang), ran
 | F11G | ATS Preview Typography and Compact Layout Polish | Completed | Merapikan tipografi dan kepadatan layout (compact ATS spacing) di area `cv-print-area`. | F11F.1 |
 | F11G.1 | Contact-Sourced CV Links and Compact Experience Date Polish | Completed | Mengambil link (Website, LinkedIn, GitHub, Instagram) otomatis dari setelan Contact, menambahkan field Website di AdminContact, dan merapikan layout penanggalan Experience/Education. | F11G |
 | F11G.2 | True-Scale Preview Margin and Final PDF Naming Polish | Completed | Menskalakan area preview CV di layar menjadi ukuran proporsional (0.85) agar terlihat seperti A4 sebenarnya tanpa memengaruhi hasil print (1.0). Mengubah margin aman (20mm) dan padding (14mm). Standardisasi nama URL PDF akhir ke `syahputra-n-ats-cv.pdf`. | F11G.1 |
+| F11H | CV Builder UX Workflow Polish | Completed | Mengubah panel kontrol CV Builder menjadi tab/step workflow, menambahkan dirty state Saved/Unsaved, summary status widget, helper preview/export, dan warning perubahan belum disimpan. | F11G.2 |
+| F11I | CV Builder Rendering Logic Fix | Completed | Menghapus pembagian experience berbasis keyword web/developer, menyatukan experience ke Work Experience, dan membuat helper rendering section yang lebih reusable. | F11H |
+| F11J | CV Builder Item Selection UX Polish | Completed | Menambahkan Select All, Clear Selection, item stats, selected item metadata, empty state, dan copywriting selector yang lebih jelas. | F11I |
+| F11K | CV Builder Manual Curated Preview Mode | Completed | Mengubah selectedIds kosong menjadi section tidak tampil, menambahkan contact override CV, serta menjadikan preview awal hanya berisi identity/contact/summary sampai admin memilih item manual. | F11J |
+| F11L | CV Builder Variant Preset Foundation | Completed | Menambahkan fondasi variant/preset CV: Web Developer, Konstruksi/Civil Engineering, Manufaktur, dan ATS Umum dengan identity, summary, contact, sections, dan selectedIds per variant. | F11K |
+| F11M | CV Builder Component Split, Contact Link Correction, and Flow Preview Layout | Completed | Memecah AdminCvBuilder menjadi komponen/utility, memperbaiki Bitly LinkedIn agar tidak masuk GitHub, dan mengubah preview menjadi flow-based sesuai urutan section. | F11L |
+| F11N | CV Builder Regression QA and UI Polish | Completed | Melakukan QA regresi setelah component split, merapikan variable/copywriting manual curated mode, dan memastikan tidak ada konsep Using All tersisa. | F11M |
+| F11-CP | CV Builder Checkpoint Documentation | Completed | Mencatat checkpoint dokumentasi F11H–F11N agar history F11 sinkron dengan source code terbaru. | F11N |
 
 ## HOLD / Blocked Notes
 - (Tidak ada hambatan. Modul ini dinyatakan *Completed*.)
@@ -113,3 +121,20 @@ Untuk menopang transaksi arsitektural ini (tanpa perlu dieksekusi sekarang), ran
 - [F11G] *Patch Polish*: Menyesuaikan ukuran font (18pt untuk Header, 10pt-9pt untuk konten) dan margin di container `cv-print-area` agar layout menjadi padat (*compact*), tidak tampak seperti UI web besar, namun menyerupai dokumen CV ATS sungguhan. Line height juga diperketat ke 1.35.
 - [F11G.1] Menambahkan field *Website* ke *Contact Settings*. Header CV Builder sekarang cerdas mengambil deretan link sosial dan portofolio (Email, Phone, LinkedIn, GitHub, Website, Instagram) langsung dari setelan kontak (`data.contact`) lalu menatanya ke dalam teks murni berpemisah (separator) secara ATS-friendly. Form link manual CV diubah posisinya sekadar menjadi *fallback*. Format tanggal *Experience/Education* juga dipertajam agar tidak merusak baris atau meninggalkan ruang kosong.
 - [F11G.2] Merestrukturisasi kontainer `#cv-print-area` dengan teknik wrapper skalasi (`transform: scale(0.85)`) agar pratinjau di dalam admin panel benar-benar mencerminkan proporsi A4 sesungguhnya (true scale) dan tidak membengkak layaknya elemen blok HTML reguler. Padding cetak dipertajam menjadi 14mm top/bottom dan 20mm left/right. Penamaan berkas fisik PDF juga dibakukan selamanya menjadi `/cv/syahputra-n-ats-cv.pdf` pada titik singgung pengunduhan (`Home.jsx`).
+- [F11H] Merapikan UX CV Builder menjadi tab workflow: Identity, Summary, Sections & Items, Preview & Export. Menambahkan dirty state Saved/Unsaved, summary status, dan warning perubahan belum disimpan.
+- [F11I] Memperbaiki rendering experience agar tidak lagi dibagi berdasarkan keyword web/developer. Semua experience yang dipilih tampil sebagai Work Experience dan rendering section dibuat lebih reusable.
+- [F11J] Memoles selector item database dengan Select All, Clear Selection, selected count, metadata item, search empty state, dan copywriting pemilihan manual.
+- [F11K] Mengubah CV Builder menjadi Manual Curated Mode. selectedIds kosong tidak lagi menampilkan semua data; section hanya tampil jika admin memilih item. Contact override CV ditambahkan untuk phone, website, LinkedIn/GitHub/email/location sesuai kebutuhan CV.
+- [F11L] Menambahkan fondasi CV Variant/Preset untuk Web Developer, Konstruksi/Civil Engineering, Manufaktur, dan ATS Umum. Setiap variant menyimpan identity, summary, contact override, selectedIds, enabled section, dan order section masing-masing.
+- [F11M] Memecah AdminCvBuilder.jsx menjadi komponen dan utility modular. Koreksi link Bitly sebagai LinkedIn, bukan GitHub. Preview CV diubah menjadi flow-based sehingga seksi yang dipilih mengalir sesuai urutan admin, tidak dipaksa masuk halaman tertentu.
+- [F11N] Melakukan QA regresi setelah refactor: membersihkan penamaan isUsingAll menjadi hasNoSelectedItems, memastikan copywriting manual curated mode tidak lagi menyebut Using All, dan build frontend berhasil.
+- [F11-CP] Checkpoint dokumentasi untuk menyinkronkan feature history F11 dengan rangkaian perubahan F11H–F11N. Tidak ada perubahan kode.
+
+## Checkpoint Notes — F11H to F11N
+
+- **Manual Curated Mode**: `selectedIds` kosong berarti seksi tidak tampil di pratinjau. Pembangun CV dirancang agar admin memilih secara eksplisit bagian/item yang ingin dimunculkan.
+- **Variant/Preset CV**: Mendukung penuh 4 preset default (Web Developer, Konstruksi, Manufaktur, dan ATS Umum).
+- **Contact Overrides**: Informasi kontak overrides dapat disesuaikan per varian. Tautan `https://bit.ly/4xrqAWN` diklasifikasikan dengan benar sebagai LinkedIn shortlink, bukan GitHub.
+- **Flow-based Layout Preview**: Preview CV didesain mengalir bebas sesuai urutan prioritas yang dikonfigurasi admin, tidak lagi dibagi secara kaku per jenis seksi pada halaman tertentu.
+- **Pencetakan**: Ekspor PDF tetap mengandalkan dialog browser print (`window.print()`). Otomatisasi generate PDF per varian dari sisi backend tidak termasuk dalam scope ini.
+
