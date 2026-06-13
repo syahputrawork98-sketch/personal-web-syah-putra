@@ -12,8 +12,13 @@ const SkillForm = ({ initialData, onSubmit, saving }) => {
     visible: initialData?.visible !== undefined ? initialData.visible : true
   });
 
+  const [previewError, setPreviewError] = useState(false);
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    if (name === 'icon') {
+      setPreviewError(false);
+    }
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : (type === 'number' ? parseInt(value) : value)
@@ -81,7 +86,7 @@ const SkillForm = ({ initialData, onSubmit, saving }) => {
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)' }}>
         <div className="form-group">
-          <label style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Icon Link / URL (Opsional)</label>
+          <label style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Icon URL / Logo Skill</label>
           <input 
             name="icon"
             value={formData.icon}
@@ -89,6 +94,26 @@ const SkillForm = ({ initialData, onSubmit, saving }) => {
             placeholder="e.g. https://.../logo.png"
             style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
           />
+          <small style={{ display: 'block', marginTop: 'var(--space-1)', color: 'var(--text-muted, #888)', fontSize: '0.8rem', lineHeight: '1.4' }}>
+            Tempel URL gambar logo/icon. Kosongkan jika ingin memakai icon bawaan berdasarkan nama skill.
+          </small>
+          {formData.icon && (
+            <div style={{ marginTop: 'var(--space-2)', display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+              <span style={{ fontSize: '0.85rem', fontWeight: 600 }}>Preview:</span>
+              {!previewError ? (
+                <img 
+                  src={formData.icon} 
+                  alt="Skill Preview" 
+                  onError={() => setPreviewError(true)} 
+                  style={{ width: '32px', height: '32px', objectFit: 'contain', border: '1px solid var(--border-color)', borderRadius: '4px', padding: '4px', backgroundColor: 'var(--bg-color)' }} 
+                />
+              ) : (
+                <span style={{ color: 'var(--error-color, #ef4444)', fontSize: '0.8rem' }}>
+                  Preview gagal dimuat. Cek kembali URL icon.
+                </span>
+              )}
+            </div>
+          )}
         </div>
         <div className="form-group">
           <label style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Display Order</label>

@@ -6,6 +6,7 @@ import { getPublicSkills, getPublicHero } from '../lib/api';
 import EmptyState from '../components/EmptyState';
 import { services } from '../data/homeData';
 import ServiceCard from '../components/home/ServiceCard';
+import { getSkillIcon } from '../utils/skillIcons';
 
 import '../styles/home.css';
 
@@ -28,10 +29,10 @@ const Home = () => {
         ]);
 
         if (skillsData && Array.isArray(skillsData.skills)) {
-          const topSkills = skillsData.skills.slice(0, 8).map(s => s.name);
+          const topSkills = skillsData.skills.slice(0, 8);
           setHighlightSkills(topSkills);
         } else if (Array.isArray(skillsData)) {
-          const topSkills = skillsData.slice(0, 8).map(s => s.name);
+          const topSkills = skillsData.slice(0, 8);
           setHighlightSkills(topSkills);
         }
 
@@ -128,11 +129,22 @@ const Home = () => {
         
         {highlightSkills.length > 0 && (
           <motion.div className="skill-pills" variants={itemVariants}>
-            {highlightSkills.map((skill, index) => (
-              <span key={index} className="skill-pill">
-                {skill}
-              </span>
-            ))}
+            {highlightSkills.map((skill, index) => {
+              const skillName = typeof skill === 'string' ? skill : skill.name;
+              const skillIcon = typeof skill === 'object' ? skill.icon : null;
+              const fallbackIcon = getSkillIcon(skillName);
+
+              return (
+                <span key={index} className="skill-pill">
+                  {skillIcon && skillIcon.startsWith('http') ? (
+                    <img src={skillIcon} alt={skillName} className="skill-pill-icon" />
+                  ) : (
+                    fallbackIcon && <span className="skill-pill-icon-wrapper">{fallbackIcon}</span>
+                  )}
+                  <span>{skillName}</span>
+                </span>
+              );
+            })}
           </motion.div>
         )}
 
