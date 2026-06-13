@@ -36,7 +36,7 @@ const CvSectionManager = ({
 
           const totalCount = sectionData.length;
           const selectedCount = section.selectedIds?.length || 0;
-          const isUsingAll = selectedCount === 0;
+          const hasNoSelectedItems = selectedCount === 0;
 
           return (
             <div key={section.id} style={{ border: '1px solid var(--border-color)', borderRadius: '6px', padding: 'var(--space-3)', opacity: section.enabled ? 1 : 0.6 }}>
@@ -85,7 +85,7 @@ const CvSectionManager = ({
                     <span>Selected: <strong>{selectedCount}</strong></span>
                   </div>
                   <div>
-                    {isUsingAll ? (
+                    {hasNoSelectedItems ? (
                       <span style={{ color: '#ef4444', backgroundColor: '#fef2f2', border: '1px solid #fecaca', padding: '2px 8px', borderRadius: '4px', fontWeight: '500', fontSize: '0.75rem' }}>
                         ⚠️ No items selected
                       </span>

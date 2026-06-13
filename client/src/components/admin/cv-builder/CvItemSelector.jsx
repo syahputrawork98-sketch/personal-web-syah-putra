@@ -15,7 +15,6 @@ const CvItemSelector = ({
   const totalCount = sectionData.length;
   const selectedIds = section.selectedIds || [];
   const selectedCount = selectedIds.length;
-  const isUsingAll = selectedCount === 0;
 
   return (
     <div style={{ marginTop: 'var(--space-2)', paddingTop: 'var(--space-2)', borderTop: '1px dashed var(--border-color)' }}>
