@@ -104,6 +104,12 @@ const Navbar = ({ theme, toggleTheme }) => {
                 animate="open"
                 exit="closed"
               >
+                <div className="mobile-menu-header">
+                  <div className="mobile-brand">Menu</div>
+                  <button className="mobile-menu-close" onClick={closeMenu} aria-label="Close menu">
+                    &times;
+                  </button>
+                </div>
                 <div className="nav-links-wrapper">
                   {navLinks.map((link) => (
                     <motion.div key={link.path} variants={linkVariants}>

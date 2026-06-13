@@ -21,6 +21,7 @@ Memperbaiki masalah pada tampilan mobile, seperti navbar yang kurang rapi, hero 
 |---|---|---|---|---|
 | F13A | Public Mobile Layout First Pass | Completed | Penyesuaian layout CSS murni untuk navbar, hero, projects, dan spacing global. | F10 (Deployment Live) |
 | F13A.1 | Homepage Hero Spacing Fine Tuning | Completed | Penyesuaian jarak hero title, penempatan CTA sebelum service cards, dan perbaikan margin/padding. Backend/database tidak disentuh. | F13A |
+| F13A.2 | Mobile Menu Overlay and CTA Spacing Fix | Completed | Memperbaiki overlay drawer mobile agar tampil solid, menambahkan header drawer dengan close button, dan melegakan jarak CTA button ke service cards di homepage. Backend/database tidak disentuh. | F13A.1 |
 
 ## HOLD / Blocked Notes
 - None.

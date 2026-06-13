@@ -57,7 +57,7 @@
   gap: var(--space-4);
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: var(--space-10);
+  margin-bottom: clamp(3rem, 5vw, 4.5rem);
 }
 
 .services-grid {
@@ -98,7 +98,7 @@
   .cta-group {
     flex-direction: column;
     width: 100%;
-    margin-bottom: var(--space-8);
+    margin-bottom: var(--space-10);
   }
 
   .cta-group .btn {
