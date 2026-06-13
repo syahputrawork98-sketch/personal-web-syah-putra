@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate, Outlet, useLocation } from 'react-router-dom';
 import { removeToken } from '../lib/auth';
 
 const AdminLayout = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [settingsOpen, setSettingsOpen] = useState(false);
 
   const handleLogout = () => {
     removeToken();
@@ -13,7 +12,6 @@ const AdminLayout = () => {
   };
 
   const isActive = (path) => location.pathname === path || location.pathname.startsWith(path + '/');
-  const isSettingsActive = location.pathname.startsWith('/admin/settings') || location.pathname.startsWith('/admin/account') || location.pathname.startsWith('/admin/contact');
 
   const linkStyle = (active) => ({
     display: 'block',
@@ -28,13 +26,6 @@ const AdminLayout = () => {
     opacity: active ? 1 : 0.8
   });
 
-  const subLinkStyle = (active) => ({
-    ...linkStyle(active),
-    paddingLeft: '32px',
-    fontSize: '0.9rem',
-    marginBottom: '2px'
-  });
-
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: 'var(--bg-color)' }}>
       {/* Sidebar */}
@@ -44,43 +35,36 @@ const AdminLayout = () => {
         </div>
         
         <nav style={{ padding: 'var(--space-4)', flex: 1, overflowY: 'auto' }}>
-          <div style={{ marginBottom: 'var(--space-2)', fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-color)', opacity: 0.5, fontWeight: 'bold', paddingLeft: '16px' }}>Main</div>
-          <Link to="/admin" style={linkStyle(isActive('/admin') && location.pathname === '/admin')}>Dashboard</Link>
-          <Link to="/admin/projects" style={linkStyle(isActive('/admin/projects'))}>Projects</Link>
-          <Link to="/admin/certifications" style={linkStyle(isActive('/admin/certifications'))}>Credentials</Link>
-          <Link to="/admin/skills" style={linkStyle(isActive('/admin/skills'))}>Skills</Link>
-          <Link to="/admin/experience" style={linkStyle(isActive('/admin/experience'))}>Experience</Link>
-          <Link to="/admin/education" style={linkStyle(isActive('/admin/education'))}>Education</Link>
-          <Link to="/admin/cv-builder" style={linkStyle(isActive('/admin/cv-builder'))}>CV Builder</Link>
-          <Link to="/admin/learning" style={linkStyle(isActive('/admin/learning'))}>Learning</Link>
-          
+          {/* System Section */}
+          <div>
+            <div style={{ marginBottom: 'var(--space-2)', fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-color)', opacity: 0.5, fontWeight: 'bold', paddingLeft: '16px' }}>System</div>
+            <Link to="/admin" style={linkStyle(isActive('/admin') && location.pathname === '/admin')}>Dashboard</Link>
+          </div>
+
+          {/* Content Management Section */}
           <div style={{ marginTop: 'var(--space-6)' }}>
-            <div style={{ marginBottom: 'var(--space-2)', fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-color)', opacity: 0.5, fontWeight: 'bold', paddingLeft: '16px' }}>Configuration</div>
-            <button 
-              onClick={() => setSettingsOpen(!settingsOpen)}
-              style={{
-                ...linkStyle(isSettingsActive),
-                width: '100%',
-                textAlign: 'left',
-                border: 'none',
-                cursor: 'pointer',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center'
-              }}
-            >
-              <span>Settings</span>
-              <span style={{ fontSize: '0.8rem', transform: settingsOpen || isSettingsActive ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>▼</span>
-            </button>
-            
-            {(settingsOpen || isSettingsActive) && (
-              <div style={{ marginTop: '4px' }}>
-                <Link to="/admin/settings/hero" style={subLinkStyle(isActive('/admin/settings/hero'))}>Hero</Link>
-                <Link to="/admin/settings/profile" style={subLinkStyle(isActive('/admin/settings/profile'))}>Profile</Link>
-                <Link to="/admin/contact" style={subLinkStyle(isActive('/admin/contact'))}>Contact</Link>
-                <Link to="/admin/account" style={subLinkStyle(isActive('/admin/account'))}>Account</Link>
-              </div>
-            )}
+            <div style={{ marginBottom: 'var(--space-2)', fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-color)', opacity: 0.5, fontWeight: 'bold', paddingLeft: '16px' }}>Content Management</div>
+            <Link to="/admin/projects" style={linkStyle(isActive('/admin/projects'))}>Projects</Link>
+            <Link to="/admin/experience" style={linkStyle(isActive('/admin/experience'))}>Experience</Link>
+            <Link to="/admin/education" style={linkStyle(isActive('/admin/education'))}>Education</Link>
+            <Link to="/admin/skills" style={linkStyle(isActive('/admin/skills'))}>Skills</Link>
+            <Link to="/admin/certifications" style={linkStyle(isActive('/admin/certifications'))}>Credentials</Link>
+            <Link to="/admin/learning" style={linkStyle(isActive('/admin/learning'))}>Learning</Link>
+          </div>
+
+          {/* CV Tools Section */}
+          <div style={{ marginTop: 'var(--space-6)' }}>
+            <div style={{ marginBottom: 'var(--space-2)', fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-color)', opacity: 0.5, fontWeight: 'bold', paddingLeft: '16px' }}>CV Tools</div>
+            <Link to="/admin/cv-builder" style={linkStyle(isActive('/admin/cv-builder'))}>CV Builder</Link>
+          </div>
+
+          {/* Profile & Website Settings Section */}
+          <div style={{ marginTop: 'var(--space-6)' }}>
+            <div style={{ marginBottom: 'var(--space-2)', fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-color)', opacity: 0.5, fontWeight: 'bold', paddingLeft: '16px' }}>Profile & Website Settings</div>
+            <Link to="/admin/settings/hero" style={linkStyle(isActive('/admin/settings/hero'))}>Hero</Link>
+            <Link to="/admin/settings/profile" style={linkStyle(isActive('/admin/settings/profile'))}>Profile</Link>
+            <Link to="/admin/contact" style={linkStyle(isActive('/admin/contact'))}>Contact</Link>
+            <Link to="/admin/account" style={linkStyle(isActive('/admin/account'))}>Account</Link>
           </div>
         </nav>
         
