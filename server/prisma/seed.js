@@ -265,6 +265,7 @@ async function main() {
       slug: 'personal-portfolio-cms',
       shortDescription: 'Aplikasi portfolio personal Full Stack dengan Dashboard CMS admin untuk manajemen data secara dinamis.',
       description: 'Aplikasi portfolio profesional yang dibangun secara end-to-end dengan panel CMS admin terproteksi JWT untuk pengelolaan konten secara dinamis.\n\n**Detail Proyek:**\n- **Role:** Full Stack Developer (Pemilik & Pengembang Utama)\n- **Tech Stack:** React, Vite, Node.js, Express, Prisma, PostgreSQL (Neon DB), JWT.\n- **Fitur Utama:** Render konten dinamis, dashboard admin terproteksi, preview sertifikat Google Drive, selektor variasi CV, dan pembatasan CORS.\n- **Kontribusi:** Mendesain arsitektur database relasional, membangun REST API Express, mengimplementasikan antarmuka responsif, serta mendeploy sistem secara penuh.\n- **Status:** Produksi / Aktif.',
+      imageUrl: 'https://res.cloudinary.com/dlgr9xicg/image/upload/v1781349587/Personal_Web_Syah_Putra_N_makvsf.png',
       techStack: ['React.js', 'Vite', 'Node.js', 'Express.js', 'Prisma', 'PostgreSQL', 'JWT'],
       status: 'PUBLISHED',
       featured: true,
@@ -282,6 +283,7 @@ async function main() {
       status: 'PUBLISHED',
       featured: true,
       order: 2,
+      liveUrl: 'https://tc-tien-s-catering.vercel.app',
       githubUrl: 'https://github.com/syahputrawork98-sketch/TC-Tien-s-Catering'
     },
     {
@@ -303,7 +305,8 @@ async function main() {
       techStack: ['TypeScript', 'React.js', 'Vite', 'TailwindCSS'],
       status: 'PUBLISHED',
       featured: true,
-      order: 4
+      order: 4,
+      liveUrl: 'https://kbt-kosuka-bali-trip.vercel.app/'
     },
     {
       title: 'Siap Aqiqah Digital Platform',
