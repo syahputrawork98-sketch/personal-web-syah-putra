@@ -4,7 +4,9 @@
 Folder ini berisi dokumentasi teknis untuk model data, skema database, dan rencana penyimpanan jangka panjang.
 
 ## Status Database Saat Ini
-Development database runtime verified; production managed database pending (Batch F07E/F07G). Database sudah menjadi sumber utama website publik secara fungsionalitas logic, namun perlu dijalankan di lokal menggunakan Docker untuk lingkungan development sebelum dipindah ke managed provider.
+- **Development Database**: PostgreSQL lokal via Docker Compose.
+- **Production Database**: Neon PostgreSQL managed database aktif pada branch `production`.
+- **Integrasi**: Database sudah terintegrasi penuh dan menjadi sumber data utama website publik di production dengan ORM Prisma.
 
 ## Kapan Update Dokumen Ini
 Dokumen ini harus diupdate jika terjadi perubahan pada data model, skema database, atau migrasi data saat backend mulai hidup.
@@ -30,13 +32,11 @@ Kami telah menyediakan opsi menggunakan Docker Compose agar lebih mudah.
    ```
    *Ini akan menjalankan container `pw_postgres` di port `5433` pada host, sesuai dengan konfigurasi `.env` default.*
 
-2. **Validasi dan Persiapan Prisma**:
-   Setelah database hidup, inisialisasi skema dan isi data awal:
-   ```bash
-   npm run prisma:generate
-   npm run prisma:migrate
-   npm run seed
-   ```
+2. **Validasi dan Persiapan Prisma (Development)**:
+   Setelah database lokal hidup, inisialisasi skema dan isi data awal:
+   - Generate client: `npm run prisma:generate`
+   - Development migration command: `npx prisma migrate dev` (atau script lokal `npm run prisma:migrate`)
+   - Development seed command: `npm run seed`
 
 ## Validasi Database Minimal
 - Perubahan schema harus selalu dicatat.
@@ -44,10 +44,11 @@ Kami telah menyediakan opsi menggunakan Docker Compose agar lebih mudah.
 - Tidak boleh menyimpan data sensitif.
 - Selalu pastikan database lokal hidup (`docker-compose ps`) sebelum menjalankan `npm run dev`.
 
-## Production Deployment Strategy
-1. **Managed Database:** Sangat direkomendasikan untuk menggunakan managed PostgreSQL service (misal Neon atau Supabase) di production untuk memastikan keamanan, backup otomatis, dan stabilitas server. Docker lokal hanya untuk environment development.
-2. **Migrasi:** Di production, gunakan `npx prisma migrate deploy` alih-alih `dev` untuk menerapkan skema tanpa menghapus data interaktif.
-3. **Peringatan Seed Production:** Script `npm run seed` menggunakan operasi `deleteMany` pada banyak tabel. **JANGAN** jalankan script seed ini di production setelah web hidup dan berisi data baru dari CMS, karena hal tersebut akan menghapus data production. Jika diperlukan, jalankan hanya sekali di awal deployment.
+## Production Deployment Strategy & Policies
+1. **Production Managed Database**: Neon PostgreSQL managed database aktif pada branch `production`. Docker lokal hanya digunakan untuk development.
+2. **Production Migration Command**: Gunakan perintah `npx prisma migrate deploy` di production untuk menerapkan skema database tanpa menghapus data interaktif.
+3. **Seed Policy**: Menjalankan seed (`npm run seed`) hanya diperuntukkan untuk environment lokal (development) atau inisialisasi awal (initial deployment) yang benar-benar disengaja.
+4. **Danger Zone (Peringatan Keras)**: **JANGAN** pernah jalankan script seed di production setelah website hidup dan terisi data riil dari CMS, karena operasi `deleteMany` di dalam seed script akan menghapus seluruh data production Anda!
 
 ## Catatan Penting
 - Database tidak boleh dikerjakan bersamaan dengan frontend UI besar tanpa scope yang jelas.

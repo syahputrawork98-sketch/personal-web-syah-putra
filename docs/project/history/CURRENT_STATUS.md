@@ -6,8 +6,8 @@
 - Source of Truth: GitHub
 - Workspace utama: Anti-Gravity IDE
 - Commit/push: dilakukan oleh user
-- Default model eksekutor: Gemini 3.1 Pro Low / High
-- Alternative acceleration model: hanya jika user meminta percepatan
+- Default model eksekutor: Gemini 3.5 Flash Low / Medium / High
+- Alternative acceleration model: N/A (Gemini 3.5 Flash adalah model standar project)
 
 ## Active Feature Tracker
 
@@ -27,6 +27,7 @@
 | F11 | CV Builder and PDF Export System | frontend/admin | Completed | Logika *State Management* dan Cetak PDF mandiri (Browser) selesai. PDF statis telah disinkronisasikan ke Public Download. | Lanjutkan ke fitur selanjutnya / deploy | [F11_CV_BUILDER_PDF_EXPORT_SYSTEM.md](features/F11_CV_BUILDER_PDF_EXPORT_SYSTEM.md) |
 | F12 | Learning Library System | frontend | Completed | Learning Library public page, admin CMS, backend API, and dynamic public integration completed. | Lanjutkan ke fitur berikutnya / deploy | [F12_LEARNING_LIBRARY_SYSTEM.md](features/F12_LEARNING_LIBRARY_SYSTEM.md) |
 | F13 | Mobile Responsive UI Improvement | frontend | Completed | Penyesuaian layout CSS murni untuk public mobile screen (navbar, hero, projects). | Final QA mobile view | [F13_MOBILE_RESPONSIVE_UI_IMPROVEMENT.md](features/F13_MOBILE_RESPONSIVE_UI_IMPROVEMENT.md) |
+| F14 | Repository Normalization and Documentation Sync | docs/status | Partial / Started | Normalisasi awal dan sinkronisasi status dokumentasi project. | Repository Inventory Map atau F14B setelah docs sync selesai | [F14_REPOSITORY_NORMALIZATION_DOCUMENTATION_SYNC.md](features/F14_REPOSITORY_NORMALIZATION_DOCUMENTATION_SYNC.md) |
 
 ## Deployment Status
 - **Status Deployment**: Aktif / Live

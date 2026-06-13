@@ -25,14 +25,14 @@ FITUR.md      # Rangkuman fitur berjalan dan status fungsionalitas
 - **Learning Library**: Arsip pembelajaran terstruktur untuk mencatat progres studi dan repositori latihan teknis. Didukung oleh integrasi API dinamis dan pengelola konten via Admin CMS.
 
 ## 🚩 Status Deployment & Batasan Produksi
-Daftar fitur, aset, dan lingkungan yang masih belum diekspos ke publik atau menunggu penyelesaian akhir.
+Daftar status integrasi lingkungan produksi dan batasan rilis publik saat ini.
 Selengkapnya dapat dilihat pada: **[docs/project/history/CURRENT_STATUS.md](docs/project/history/CURRENT_STATUS.md)**
 
-1. **CV Final (PDF)**: Belum tersedia.
-2. **Sistem Admin & Auth (CMS)**: Completed logic; production exposure pending F10 deployment readiness.
-3. **Database**: Development database runtime verified; production managed database pending.
-4. **Konfigurasi Domain & Deployment**: HOLD / Partial until domain, hosting, production env, and public release are finalized.
-5. **URL Final untuk Data Aset Proyek Eksternal**: Menunggu input.
+1. **CV Final (PDF)**: Sudah tersedia (public download sudah mengarah ke PDF ATS statis final).
+2. **Sistem Admin & Auth (CMS)**: Logic completed dan production readiness mengikuti status deployment aktif (akses dibatasi hanya untuk admin via konfigurasi environment secure).
+3. **Database**: Neon PostgreSQL managed production aktif pada branch production.
+4. **Konfigurasi Domain & Deployment**: Production live di Vercel/Railway/Neon; custom domain opsional / belum final.
+5. **URL Final untuk Data Aset Proyek Eksternal**: Menunggu input dari user (jika relevan).
 
 ## Riwayat Pengembangan (Feature Tracking)
 Sistem pencatatan riwayat lama berbasis *batch-by-batch* numerik (Batch 01 - 30) telah digantikan oleh sistem *Feature Batch Tracking*. 

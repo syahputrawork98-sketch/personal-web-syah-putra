@@ -4,7 +4,11 @@
 Folder ini berisi dokumentasi teknis khusus untuk backend, termasuk API, server logic, struktur server, dan koneksi frontend-backend.
 
 ## Status Backend Saat Ini
-Completed / Runtime Verified (Sesuai dengan **F07 Backend API System**). Saat ini web berjalan aman menggunakan fallback data lokal jika backend tidak dijalankan. Endpoint admin/auth memiliki status logic Completed, namun production exposure belum dibuka sampai deployment/security production siap.
+- **Backend Deployment**: Live on Railway
+- **Backend Runtime**: Verified
+- **Backend API Logic**: Completed
+- **Backend as Production Data Source**: Active with fallback-supported frontend (jika backend tidak aktif/merespons, frontend akan menggunakan data statis lokal secara aman)
+- **Admin/Auth API Exposure**: Available in production environment with security/env configuration required; access should remain restricted to admin (tidak terekspos secara publik untuk umum)
 
 ## Kapan Update Dokumen Ini
 Dokumen di dalam folder ini harus diupdate ketika backend mulai aktif, API endpoint baru dibuat, atau saat mengatur variabel lingkungan.
@@ -39,9 +43,9 @@ Sangat berkaitan dengan **F07 Backend API System** dan **F08 Admin Login and Aut
 - Pastikan tidak ada `secret` atau `.env` yang ter-commit.
 
 ## Catatan Penting
-- Auth tidak boleh dibuka sebelum F07 memiliki arah teknis yang jelas.
-- **[F07-CP]** Audit checkpoint awal backend telah selesai. Tahap berikutnya hanya boleh dilanjutkan jika pengguna secara eksplisit meminta implementasi backend public API.
-- Local dev credentials: Saat menjalankan aplikasi lokal, admin dapat masuk dengan email `admin@example.com` dan password `qwerty123`. Catatan: password di database Prisma Studio di-*hash* untuk keamanan.
+- Auth/Admin API telah disiapkan secara aman dalam lingkungan produksi dengan konfigurasi variabel lingkungan yang sesuai.
+- **[F07-CP]** Audit checkpoint awal backend telah selesai.
+- Local dev credentials (Hanya untuk Development Lokal): Saat menjalankan aplikasi lokal, admin dapat masuk dengan email `admin@example.com` dan password `qwerty123`. Catatan: password di database Prisma Studio di-*hash* untuk keamanan. Jangan gunakan kredensial ini di lingkungan production.
 
 ## Frontend Backend Connection Notes
 - Frontend membaca API base URL dari `VITE_API_URL`.
@@ -50,8 +54,8 @@ Sangat berkaitan dengan **F07 Backend API System** dan **F08 Admin Login and Aut
 - Client Vite local umumnya berjalan di `http://localhost:5173`.
 - CORS server sudah disiapkan untuk local client.
 - Jika backend mati, frontend tetap aman menggunakan fallback data untuk area yang sudah punya fallback.
-- Backend belum menjadi sumber data utama production.
-- Auth/Admin: production exposure belum dibuka sampai deployment/security production siap.
+- Backend as Production Data Source: Active with fallback-supported frontend.
+- Auth/Admin: Available in production environment with security/env configuration required; access should remain restricted to admin.
 
 ## Production Deployment Strategy
 1. **Hosting:** Direkomendasikan menggunakan PaaS seperti Render (Free Tier tapi dengan sleep mode) atau Railway (Murah tanpa sleep) karena Express.js bersifat stateful dan tidak cocok dideploy murni sebagai serverless function di Vercel. VPS juga bisa dipakai namun butuh manajemen server mandiri.
@@ -73,7 +77,7 @@ Sangat berkaitan dengan **F07 Backend API System** dan **F08 Admin Login and Aut
 | Public | `GET /api/skills` | Boleh Audit F07 | `server/src/routes/skills.routes.js` | Data keahlian. |
 | Public | `GET /api/experiences` | Boleh Audit F07 | `server/src/routes/experience.routes.js` | Pengalaman kerja. |
 | Public | `GET /api/certifications` | Boleh Audit F07 | `server/src/routes/certification.routes.js` | Data sertifikasi/credentials. |
-| Auth | `/api/auth/*` | Completed (Not Exposed) | `server/src/routes/auth.routes.js` | Endpoint autentikasi admin. |
-| Admin | `/api/admin/cv-builder/*` | F11 Config Contract | `server/src/routes/admin/cv-builder.routes.js` | Endpoint tata letak & JSON Config CV Builder. |
-| Admin | `/api/admin/*` | Completed (Not Exposed) | `server/src/routes/admin/*.routes.js` | Endpoint proteksi admin (CMS). |
+| Auth | `/api/auth/*` | Completed (Restricted to Admin) | `server/src/routes/auth.routes.js` | Endpoint autentikasi admin. |
+| Admin | `/api/admin/cv-builder/*` | Completed (Restricted to Admin) | `server/src/routes/admin/cv-builder.routes.js` | Endpoint tata letak & JSON Config CV Builder. |
+| Admin | `/api/admin/*` | Completed (Restricted to Admin) | `server/src/routes/admin/*.routes.js` | Endpoint proteksi admin (CMS). |
 | Public | `GET /api/cv/active` | F11 Config Contract | `server/src/routes/cv.routes.js` | Menyajikan URL berkas statis PDF CV final. |
