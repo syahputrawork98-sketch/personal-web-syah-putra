@@ -8,7 +8,7 @@ export const categoryMap = {
 };
 
 export const experienceReframing = [
-  { title: 'Digitalization', desc: 'Mengubah proses manual yang kompleks menjadi sistem digital yang efisien.' },
-  { title: 'System Reliability', desc: 'Memastikan aplikasi dibangun dengan ketahanan operasional tinggi.' },
-  { title: 'Practical Problem Solving', desc: 'Menemukan solusi teknis tercepat dan paling efektif untuk masalah bisnis.' }
+  { title: 'Full-Stack Implementation', desc: 'Mampu membangun aplikasi web secara end-to-end mulai dari perancangan database, pembuatan REST API, hingga antarmuka pengguna yang responsif.' },
+  { title: 'Operational System Thinking', desc: 'Memahami alur kerja nyata di lapangan sehingga dapat merancang sistem digital yang relevan dan mudah digunakan oleh admin serta user.' },
+  { title: 'Reliable Delivery', desc: 'Fokus pada penyelesaian proyek secara terstruktur, fungsionalitas fitur yang stabil, dan kemudahan pemeliharaan kode jangka panjang.' }
 ];

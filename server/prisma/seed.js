@@ -36,11 +36,11 @@ async function main() {
       value: {
         name: 'Syah Putra Nugraha',
         roles: ['Full Stack Web Developer', 'Digital Operations Specialist'],
-        title: 'Membangun aplikasi web yang rapi, fungsional, dan sesuai kebutuhan bisnis.',
-        subtitle: 'Saya mengembangkan website, dashboard, REST API, dan sistem digital untuk membantu proses kerja menjadi lebih efisien, terstruktur, dan mudah dipantau. Berpengalaman di web development serta memiliki latar belakang 8+ tahun di IT, administrasi proyek, konstruksi, manufaktur, dan digitalisasi operasional.',
+        title: 'Full Stack Web Developer yang membangun aplikasi web, dashboard, REST API, dan sistem digital berbasis kebutuhan operasional.',
+        subtitle: 'Fokus mengembangkan sistem web terintegrasi menggunakan React, Node.js, Express, dan PostgreSQL/MySQL. Memiliki latar belakang kuat di bidang IT support dan operasional proyek yang menjadi nilai tambah dalam merancang aplikasi bisnis yang andal dan solutif.',
         primaryCtaLabel: 'Lihat Proyek',
         secondaryCtaLabel: 'Download CV',
-        resumeUrl: '#'
+        resumeUrl: '/cv/cv-syah-putra-nugraha-web-developer.pdf'
       }
     },
     {
@@ -48,8 +48,8 @@ async function main() {
       value: {
         aboutTitle: 'About Me',
         summaryTitle: 'Professional Summary',
-        summary: 'Saya adalah Full Stack Web Developer dengan pengalaman membangun aplikasi web berbasis React.js, Node.js, Express.js, PHP, MySQL, MongoDB, dan PostgreSQL. Selain kemampuan teknis, saya memiliki latar belakang panjang di bidang IT support, administrasi proyek, general affair, logistik, manufaktur, konstruksi, dan digitalisasi proses kerja.<br/><br/>Pengalaman lintas bidang tersebut membuat saya terbiasa melihat masalah dari sisi teknis sekaligus operasional. Saya tidak hanya membangun aplikasi berdasarkan fitur, tetapi juga memahami bagaimana sistem digunakan oleh admin, tim lapangan, manajemen, klien, dan pengguna akhir dalam pekerjaan sehari-hari.<br/><br/>Saya terbiasa mengerjakan proses pengembangan secara end-to-end, mulai dari analisis kebutuhan, perancangan struktur data, pembuatan frontend dan backend, REST API, authentication, dashboard admin, deployment, hingga maintenance. Saat ini saya berfokus mengembangkan aplikasi web, sistem monitoring, dashboard operasional, dan solusi digital yang membantu bisnis bekerja lebih cepat, rapi, dan terukur.',
-        professionalSummary: 'Full Stack Web Developer dengan pengalaman membangun aplikasi web, dashboard admin, REST API, sistem autentikasi, aplikasi monitoring, company profile, dan sistem internal perusahaan. Memiliki latar belakang 8+ tahun di IT, administrasi proyek, manufaktur, konstruksi, general affair, logistik, dan digitalisasi operasional.<br/><br/>Terbiasa menggunakan React.js, Node.js, Express.js, PHP, MySQL, MongoDB, PostgreSQL, Git, GitHub, Vercel, Netlify, cPanel, Google Sheets, Apps Script, dan Excel VBA.',
+        summary: 'Saya adalah seorang Full Stack Web Developer yang berdedikasi dalam membangun aplikasi web yang handal, efisien, dan selaras dengan kebutuhan operasional pengguna.<br/><br/>Dengan keahlian di bidang frontend dan backend menggunakan React.js, Node.js, Express.js, PHP, MySQL, PostgreSQL, dan MongoDB, saya terbiasa mengembangkan sistem secara end-to-end mulai dari perancangan arsitektur database, pembuatan REST API, mekanisme otentikasi JWT, hingga antarmuka pengguna yang responsif.<br/><br/>Memiliki latar belakang pengalaman kerja di bidang IT support, administrasi proyek, general affair, dan digitalisasi proses bisnis operasional. Kombinasi kemampuan teknis dan pemahaman mendalam tentang alur kerja lapangan ini menjadi nilai tambah bagi saya untuk menjembatani kebutuhan bisnis ke dalam solusi perangkat lunak yang praktis.<br/><br/>Saat ini saya aktif mengembangkan aplikasi web serta terbuka untuk peluang kerja sebagai Junior / Entry-Level Full Stack Web Developer, di mana saya dapat berkontribusi dalam tim untuk membangun sistem digital yang andal.',
+        professionalSummary: 'Full Stack Web Developer yang berfokus membangun aplikasi web dinamis, REST API, dashboard admin, dan integrasi database. Memiliki bekal pemahaman teknis modern serta pengalaman lintas bidang di IT support dan koordinasi administrasi proyek operasional.<br/><br/>Menguasai React.js, Node.js, Express.js, PHP, MySQL, PostgreSQL, MongoDB, Git, GitHub, Vercel, Netlify, dan cPanel.',
         valuePropositionTitle: 'Value Proposition',
         valuePropositionIntro: 'Saya membantu bisnis mengubah proses manual menjadi sistem digital yang lebih rapi, cepat, dan mudah dipantau.',
         valuePropositions: [
@@ -71,7 +71,7 @@ async function main() {
           }
         ],
         avatarUrl: 'https://res.cloudinary.com/dlgr9xicg/image/upload/v1781203798/Pas_foto_1_ggq9nf.png',
-        resumeUrl: '#',
+        resumeUrl: '/cv/cv-syah-putra-nugraha-web-developer.pdf',
         birthPlace: 'Cimahi',
         birthDate: '29 Mei 1998'
       }
@@ -149,9 +149,7 @@ async function main() {
   for (const skill of defaultSkills) {
     await prisma.skill.create({ data: skill });
   }
-  console.log('✅ Default skills seeded.');
-
-  // 4. Setup Experience
+  console.log('✅ Default skills  // 4. Setup Experience
   const experiences = [
     {
       role: 'Freelance Full Stack Web Developer',
@@ -159,13 +157,13 @@ async function main() {
       startDate: new Date('2025-07-01'),
       isCurrent: true,
       type: 'Freelance',
-      description: 'Mengembangkan website dan aplikasi web end-to-end untuk UMKM, bisnis lokal, serta kebutuhan operasional secara mandiri. Berfokus pada arsitektur modern, optimasi performa, integrasi REST API, dan responsivitas antarmuka.',
+      description: 'Bekerja secara mandiri sebagai end-to-end developer untuk menganalisis kebutuhan, mendesain skema database, membangun REST API, mengimplementasikan antarmuka responsif, hingga mendeploy aplikasi web ke platform cloud. Berfokus pada pembuatan aplikasi fungsional seperti dashboard admin, sistem POS, platform e-commerce, dan portal monitoring operasional.',
       highlights: [
-        'Kosuka Bali Trip (Apr 2026 - Sekarang): Membangun web pariwisata e-commerce dengan katalog tur kustom dan integrasi WhatsApp (React, Vite, Tailwind).',
-        'Tien\'s Catering Showcase (Feb 2026 - Mar 2026): Mengembangkan aplikasi portofolio katering kuliner, kalkulator porsi makanan, dan reservasi online (Svelte, SvelteKit).',
-        'Manajemen Toko Bangunan / MTB (Jan 2026): Membuat sistem POS kasir, stock alert, dan struk transaksi (React, Node.js, PostgreSQL).',
-        'RumahKu Konstruksi Portal (Okt 2025 - Des 2025): Membuat platform pelacakan progres konstruksi & manajemen logistik material (React, Node.js, MongoDB).',
-        'Siap Aqiqah / Sikah (Jul 2025 - Sep 2025): Membangun e-commerce pemesanan hewan qurban digital dengan tracking pemotongan syariah (React, Express, MySQL).'
+        'Mengembangkan portal pelacakan progres konstruksi & manajemen logistik material menggunakan React, Node.js, Express, dan MongoDB.',
+        'Membangun dashboard POS kasir dengan fitur manajemen stok barang, alert batas minimum produk, dan pencetakan struk transaksi berbasis React, Node.js, dan PostgreSQL.',
+        'Membuat platform e-commerce pemesanan hewan kurban dan paket aqiqah digital terintegrasi REST API menggunakan React, Express, dan MySQL.',
+        'Mengembangkan website pariwisata e-commerce interaktif dengan fitur pemesanan tur kustom dan integrasi kontak WhatsApp menggunakan TypeScript, React, Vite, dan Tailwind CSS.',
+        'Mengembangkan showcase catering kuliner dengan kalkulator porsi makanan dinamis dan form reservasi online menggunakan Svelte dan SvelteKit.'
       ],
       order: 1,
       status: 'PUBLISHED'
@@ -177,8 +175,12 @@ async function main() {
       endDate: new Date('2025-06-30'),
       isCurrent: false,
       type: 'Freelance',
-      description: '',
-      highlights: [],
+      description: 'Melakukan analisis kuantitas material konstruksi, estimasi biaya proyek (RAB/RAP), dan penyusunan dokumen penawaran harga.',
+      highlights: [
+        'Menghitung volume kebutuhan material proyek konstruksi berdasarkan gambar teknis (AutoCAD/Revit).',
+        'Menyusun rencana anggaran biaya (RAB) serta rencana anggaran pelaksanaan (RAP) proyek.',
+        'Menganalisis efisiensi biaya material untuk kebutuhan negosiasi harga dengan vendor.'
+      ],
       order: 2,
       status: 'PUBLISHED'
     },
@@ -189,12 +191,11 @@ async function main() {
       endDate: new Date('2024-12-31'),
       isCurrent: false,
       type: 'Formal',
-      description: 'Mendukung administrasi dan koordinasi proyek lapangan pada proyek OK Building Dustira Hospital. Berperan dalam penyusunan laporan proyek, dokumentasi, RAB/RAP, invoice, laporan material, dan koordinasi dengan tim lapangan serta kontraktor utama.',
+      description: 'Mendukung kelancaran operasional proyek melalui administrasi digital dan koordinasi teknis di lapangan. Bertanggung jawab atas pengelolaan dokumen proyek (RAB/RAP, invoice, surat jalan) serta memastikan pencatatan logistik material tercatat dengan akurat.',
       highlights: [
-        'Mendigitalisasi laporan proyek harian, mingguan, dan bulanan.',
-        'Menyusun RAB, RAP, invoice, surat jalan, dan dokumentasi proyek.',
-        'Berkoordinasi dengan mandor, vendor, tim lapangan, dan main contractor.',
-        'Membantu proses kerja proyek menjadi lebih rapi dan mudah dipantau.'
+        'Mengotomatisasi pelaporan harian proyek menggunakan spreadsheet dinamis untuk mempercepat koordinasi tim lapangan.',
+        'Mengelola pencatatan keluar-masuk material proyek guna mengontrol efisiensi anggaran operasional.',
+        'Menjembatani komunikasi teknis antara mandor, vendor, dan kontraktor utama untuk penyelesaian kendala di lapangan.'
       ],
       order: 3,
       status: 'PUBLISHED'
@@ -206,12 +207,11 @@ async function main() {
       endDate: new Date('2022-07-31'),
       isCurrent: false,
       type: 'Formal',
-      description: 'Menangani administrasi proyek, logistik, stok material, jadwal, dokumen, notulen, dan pelaporan. Membantu merapikan sistem pengarsipan serta laporan logistik berbasis digital.',
+      description: 'Menangani kebutuhan administrasi umum, koordinasi logistik material, penjadwalan, serta digitalisasi arsip dokumen perusahaan untuk meningkatkan aksesibilitas informasi.',
       highlights: [
-        'Mengelola data stok material and laporan gudang.',
-        'Membuat pengajuan barang, RAP, dan dokumen pendukung proyek.',
-        'Mengembangkan sistem laporan digital sederhana berbasis spreadsheet.',
-        'Membantu meningkatkan efisiensi dokumentasi sekitar 25%.'
+        'Membangun sistem pengarsipan digital mandiri untuk merapikan dokumentasi logistik dan pengajuan anggaran.',
+        'Mengelola data stok inventaris gudang secara berkala untuk meminimalkan selisih stok fisik.',
+        'Membantu efisiensi waktu pencarian dokumen operasional melalui penataan arsip berbasis digital.'
       ],
       order: 4,
       status: 'PUBLISHED'
@@ -223,12 +223,11 @@ async function main() {
       endDate: new Date('2019-12-31'),
       isCurrent: false,
       type: 'Formal',
-      description: 'Mendukung administrasi umum, fasilitas, aset, dokumentasi, kebutuhan IT ringan, serta promosi digital melalui website company profile.',
+      description: 'Mengelola kebutuhan operasional umum kantor, inventaris aset, administrasi, serta memberikan dukungan teknis IT ringan untuk operasional harian.',
       highlights: [
-        'Membuat website company profile untuk promosi digital.',
-        'Mengelola administrasi umum dan pengarsipan.',
-        'Mendukung kebutuhan IT internal dan perangkat komputer.',
-        'Berkoordinasi dengan pihak internal, eksternal, dan vendor.'
+        'Memelihara website company profile sederhana sebagai sarana promosi digital layanan destinasi wisata.',
+        'Melakukan pemeliharaan rutin perangkat IT internal (komputer, printer, dan jaringan lokal).',
+        'Mengatur pengarsipan dokumen kerja sama dengan pihak eksternal dan vendor pariwisata.'
       ],
       order: 5,
       status: 'PUBLISHED'
@@ -240,12 +239,11 @@ async function main() {
       endDate: new Date('2017-12-31'),
       isCurrent: false,
       type: 'Formal',
-      description: 'Mengelola perangkat IT pabrik, server, jaringan, CCTV, data karyawan, serta membantu digitalisasi proses HR melalui aplikasi rekrutmen internal.',
+      description: 'Mengelola infrastruktur IT pabrik (jaringan LAN, server lokal, CCTV) dan mendukung kebutuhan perangkat keras/lunak karyawan untuk memastikan kelancaran aktivitas operasional manufaktur.',
       highlights: [
-        'Mengelola server, jaringan, CCTV, dan perangkat IT pabrik.',
-        'Melakukan troubleshooting hardware dan software.',
-        'Mengembangkan aplikasi rekrutmen internal berbasis PHP dan MySQL.',
-        'Membuat database karyawan dan dashboard admin sederhana.'
+        'Melakukan troubleshooting jaringan, sistem operasi, server database lokal, dan perangkat CCTV.',
+        'Membantu administrasi basis data karyawan serta pemeliharaan aplikasi rekrutmen internal berbasis PHP dan MySQL.',
+        'Memberikan respon cepat terhadap kendala teknis pengguna (user support) untuk menjaga produktivitas kerja harian.'
       ],
       order: 6,
       status: 'PUBLISHED'
