@@ -13,6 +13,7 @@ const ExperienceForm = ({ initialData, onSubmit, saving }) => {
     highlights: initialData?.highlights ? initialData.highlights.join('\n') : '',
     techStack: initialData?.techStack ? initialData.techStack.join(', ') : '',
     status: initialData?.status || 'PUBLISHED',
+    experienceKind: initialData?.experienceKind || 'FORMAL_WORK',
     order: initialData?.order || 0
   });
 
@@ -153,7 +154,36 @@ const ExperienceForm = ({ initialData, onSubmit, saving }) => {
         />
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 'var(--space-4)' }}>
+        <div className="form-group">
+          <label style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Experience Kind</label>
+          <select
+            name="experienceKind"
+            value={formData.experienceKind}
+            onChange={handleChange}
+            style={{
+              width: '100%',
+              padding: '10px',
+              borderRadius: '4px',
+              border: '1px solid var(--border-color)',
+              backgroundColor: 'var(--bg-color)',
+              color: 'var(--text-color)',
+              fontWeight: '600',
+              borderLeft: formData.experienceKind === 'IT_FREELANCE'
+                ? '4px solid #6366f1'
+                : formData.experienceKind === 'GENERAL_FREELANCE'
+                  ? '4px solid #f59e0b'
+                  : '4px solid #22c55e'
+            }}
+          >
+            <option value="FORMAL_WORK">Formal Work</option>
+            <option value="IT_FREELANCE">IT Freelance</option>
+            <option value="GENERAL_FREELANCE">General Freelance</option>
+          </select>
+          <small style={{ display: 'block', marginTop: '4px', opacity: 0.6, fontSize: '0.78rem' }}>
+            Segmentasi jenis pengalaman kerja untuk tampilan publik
+          </small>
+        </div>
         <div className="form-group">
           <label style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Status</label>
           <select 

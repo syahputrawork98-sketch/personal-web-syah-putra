@@ -110,21 +110,22 @@ model Skill {
 }
 
 model Experience {
-  id          String           @id @default(cuid())
-  role        String
-  company     String
-  location    String?
-  type        String?
-  startDate   DateTime?
-  endDate     DateTime?
-  isCurrent   Boolean          @default(false)
-  description String?
-  highlights  String[]
-  techStack   String[]
-  status      ExperienceStatus @default(DRAFT)
-  order       Int              @default(0)
-  createdAt   DateTime         @default(now())
-  updatedAt   DateTime         @updatedAt
+  id             String           @id @default(cuid())
+  role           String
+  company        String
+  location       String?
+  type           String?
+  startDate      DateTime?
+  endDate        DateTime?
+  isCurrent      Boolean          @default(false)
+  description    String?
+  highlights     String[]
+  techStack      String[]
+  status         ExperienceStatus @default(DRAFT)
+  experienceKind ExperienceKind   @default(FORMAL_WORK)
+  order          Int              @default(0)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
 }
 
 model Education {
@@ -180,6 +181,12 @@ enum SkillType {
 enum ExperienceStatus {
   DRAFT
   PUBLISHED
+}
+
+enum ExperienceKind {
+  FORMAL_WORK
+  IT_FREELANCE
+  GENERAL_FREELANCE
 }
 
 model LearningItem {

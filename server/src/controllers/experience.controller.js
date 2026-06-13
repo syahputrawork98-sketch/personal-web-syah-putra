@@ -55,7 +55,7 @@ const getExperienceById = async (req, res, next) => {
 };
 
 const createExperience = async (req, res, next) => {
-  const { role, company, location, type, startDate, endDate, isCurrent, description, highlights, techStack, status, order } = req.body;
+  const { role, company, location, type, startDate, endDate, isCurrent, description, highlights, techStack, status, order, experienceKind } = req.body;
 
   if (!role || !company) {
     return res.status(400).json({
@@ -63,6 +63,9 @@ const createExperience = async (req, res, next) => {
       message: 'Role and company are required',
     });
   }
+
+  const validKinds = ['FORMAL_WORK', 'IT_FREELANCE', 'GENERAL_FREELANCE'];
+  const resolvedKind = validKinds.includes(experienceKind) ? experienceKind : 'FORMAL_WORK';
 
   try {
     const experience = await prisma.experience.create({
@@ -78,6 +81,7 @@ const createExperience = async (req, res, next) => {
         highlights: highlights || [],
         techStack: techStack || [],
         status: status || 'DRAFT',
+        experienceKind: resolvedKind,
         order: parseInt(order) || 0,
       },
     });
@@ -90,7 +94,9 @@ const createExperience = async (req, res, next) => {
 
 const updateExperience = async (req, res, next) => {
   const { id } = req.params;
-  const { role, company, location, type, startDate, endDate, isCurrent, description, highlights, techStack, status, order } = req.body;
+  const { role, company, location, type, startDate, endDate, isCurrent, description, highlights, techStack, status, order, experienceKind } = req.body;
+
+  const validKinds = ['FORMAL_WORK', 'IT_FREELANCE', 'GENERAL_FREELANCE'];
 
   try {
     const existingExperience = await prisma.experience.findUnique({
@@ -103,6 +109,10 @@ const updateExperience = async (req, res, next) => {
         message: 'Experience not found',
       });
     }
+
+    const resolvedKind = experienceKind !== undefined
+      ? (validKinds.includes(experienceKind) ? experienceKind : 'FORMAL_WORK')
+      : existingExperience.experienceKind;
 
     const updatedExperience = await prisma.experience.update({
       where: { id },
@@ -118,6 +128,7 @@ const updateExperience = async (req, res, next) => {
         highlights: highlights !== undefined ? highlights : existingExperience.highlights,
         techStack: techStack !== undefined ? techStack : existingExperience.techStack,
         status: status !== undefined ? status : existingExperience.status,
+        experienceKind: resolvedKind,
         order: order !== undefined ? parseInt(order) : existingExperience.order,
       },
     });
