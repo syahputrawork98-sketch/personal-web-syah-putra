@@ -254,52 +254,55 @@ async function main() {
 
   await prisma.experience.deleteMany({});
   for (const exp of experiences) {
-    await prisma.experience.create({ data: exp });
+  await prisma.experience.create({ data: exp });
   }
   console.log('✅ Experiences seeded.');
 
 
-  // 5. Setup Projects
   const projects = [
     {
-      title: 'Construction Project Monitoring Application',
-      slug: 'construction-project-monitoring',
-      shortDescription: 'Aplikasi web untuk membantu monitoring progres pembangunan rumah, dokumentasi proyek, dan laporan harian.',
-      description: 'Aplikasi web untuk membantu monitoring progres pembangunan rumah, dokumentasi proyek, dan laporan harian. Sistem ini dirancang agar proses pelaporan dari lapangan lebih cepat, terstruktur, dan mudah dipantau oleh tim manajemen.\n\n**Fitur utama:**\n- Dashboard progres\n- Laporan harian digital\n- Upload dokumentasi foto\n- Monitoring pekerjaan\n- Manajemen logistik\n\n**Impact:**\nMembantu meningkatkan efisiensi pelaporan proyek hingga sekitar 35%.',
-      techStack: ['React.js', 'Node.js', 'Express.js', 'MongoDB'],
+      title: 'Personal Portfolio CMS — Syah Putra N',
+      slug: 'personal-portfolio-cms',
+      shortDescription: 'Aplikasi web portofolio personal interaktif yang dilengkapi dengan Dashboard Admin CMS terproteksi JWT untuk manajemen konten.',
+      description: 'Aplikasi portofolio profesional Full Stack beserta dashboard manajemen konten (CMS). Memungkinkan pengelolaan data profil, riwayat pengalaman, daftar keahlian, database sertifikasi, serta pustaka pembelajaran secara dinamis.\n\n**Detail Proyek:**\n- **Role:** Full Stack Web Developer (End-to-End Developer)\n- **Tech Stack:** React, Vite, Node.js, Express, Prisma, PostgreSQL (Neon DB), JWT, bcryptjs, Vanilla CSS.\n- **Fitur Utama:** Dynamic Content Rendering, JWT Secured CMS Dashboard, Credential/Certificate Google Drive Preview, CV Download Selector, Learning Library catalog, Global error handling, CORS allowed origins restriction.\n- **Kontribusi Pribadi:** Mendesain skema database relasional di Prisma, membangun REST API Express, mengimplementasikan dashboard administrasi, mengoptimalkan tata letak responsif mobile, dan mendeploy frontend ke Vercel serta backend ke Railway.\n- **Status:** Active / Production Ready.',
+      techStack: ['React.js', 'Vite', 'Node.js', 'Express.js', 'Prisma', 'PostgreSQL', 'JWT'],
       status: 'PUBLISHED',
       featured: true,
       order: 1,
+      liveUrl: 'https://syahputran.vercel.app/',
+      githubUrl: 'https://github.com/syahputrawork98-sketch/PWSP-Personal-Web-Syah-Putra'
     },
     {
-      title: 'Event Organizer Showcase Website',
-      slug: 'event-organizer-showcase',
-      shortDescription: 'Website promosi untuk layanan event organizer dan catering.',
-      description: 'Website promosi untuk layanan event organizer dan catering. Website ini menampilkan katalog layanan, portofolio acara, serta jalur inquiry/pemesanan agar calon klien lebih mudah memahami layanan yang ditawarkan.\n\n**Fitur utama:**\n- Portfolio gallery\n- Katalog layanan\n- Inquiry service\n- Responsive mobile design\n\n**Impact:**\nMeningkatkan kepercayaan calon klien dan memperluas jangkauan digital bisnis.',
-      techStack: ['React.js', 'Node.js', 'Express.js', 'MySQL'],
+      title: 'RumahKu Konstruksi — Construction Service Web Platform',
+      slug: 'rkk-rumahku-konstruksi',
+      shortDescription: 'Aplikasi web case study untuk pelacakan real-time progress pembangunan fisik konstruksi dan manajemen inventori material.',
+      description: 'Aplikasi monitoring proyek pembangunan rumah tinggal yang dirancang untuk merapikan alur pelaporan lapangan dari mandor ke pemilik proyek.\n\n**Detail Proyek:**\n- **Role:** Full Stack Developer (Case Study / Candidate Project)\n- **Tech Stack:** JavaScript, React.js, Node.js, Express.js, MongoDB.\n- **Fitur Utama:** Real-time progress timeline tracking, daily construction worklog checklist, daily photo documentation upload, inventory control (cement/bricks logistic stock).\n- **Kontribusi Pribadi:** Merancang logika State Management frontend, membangun skema database NoSQL (MongoDB), dan membuat API monitoring harian.\n- **Status:** Case Study / Prototype Candidate.',
+      imageUrl: 'https://res.cloudinary.com/dlgr9xicg/image/upload/v1781232956/RKK-RumahKu-Kontruksi_twimqd.png',
+      techStack: ['JavaScript', 'React.js', 'Node.js', 'Express.js', 'MongoDB'],
       status: 'PUBLISHED',
       featured: true,
-      order: 2,
+      order: 2
     },
     {
-      title: 'Internal Recruitment Application',
-      slug: 'internal-recruitment-application',
-      shortDescription: 'Sistem internal untuk membantu HR mengelola data pelamar, status seleksi, dan monitoring proses rekrutmen.',
-      description: 'Sistem internal untuk membantu HR mengelola data pelamar, status seleksi, dan monitoring proses rekrutmen. Aplikasi ini dibuat untuk menggantikan proses manual yang rawan kesalahan dan memakan waktu.\n\n**Fitur utama:**\n- Database pelamar\n- Filter status\n- Dashboard HR\n- Export data\n\n**Impact:**\nMempercepat proses rekrutmen dan mengurangi kesalahan administrasi data.',
-      techStack: ['PHP', 'MySQL', 'HTML', 'CSS'],
+      title: "Tien's Catering — Catering Business Web Platform",
+      slug: 'tc-tiens-catering',
+      shortDescription: 'Platform digital promosi showcase menu catering kuliner lokal dan integrasi reservasi pemesanan acara online.',
+      description: 'Aplikasi web bisnis kuliner katering and event organizer untuk menampilkan portofolio layanan hidangan secara dinamis.\n\n**Detail Proyek:**\n- **Role:** Frontend Developer (Case Study / Candidate Project)\n- **Tech Stack:** Svelte, SvelteKit, TailwindCSS, JavaScript.\n- **Fitur Utama:** Interactive menu catalog slider, catering portion food calculator, inline booking request reservation form, Google Maps integration.\n- **Kontribusi Pribadi:** Mengimplementasikan transisi antarmuka responsif menggunakan Svelte, mendesain interaktivitas porsi catering calculator, dan merancang layout navigasi katalog.\n- **Status:** Case Study / Prototype Candidate.',
+      imageUrl: 'https://res.cloudinary.com/dlgr9xicg/image/upload/v1781203315/Tien_s_Catering_bwawyt.png',
+      techStack: ['Svelte', 'SvelteKit', 'TailwindCSS', 'JavaScript'],
       status: 'PUBLISHED',
-      featured: false,
-      order: 3,
+      featured: true,
+      order: 3
     },
     {
-      title: 'Company Profile Website',
-      slug: 'company-profile-website',
-      shortDescription: 'Website company profile untuk menampilkan profil usaha, layanan, galeri destinasi, dan informasi kontak.',
-      description: 'Website company profile untuk menampilkan profil usaha, layanan, galeri destinasi, dan informasi kontak. Website ini membantu perusahaan memiliki pusat informasi digital yang lebih mudah diakses calon pelanggan.\n\n**Fitur utama:**\n- Informasi destinasi\n- Galeri foto\n- Google Maps integration\n- Kontak cepat\n\n**Impact:**\nMembantu memperkuat kehadiran digital perusahaan.',
-      techStack: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
+      title: 'Web API Learning Hub — REST API Practice Repository',
+      slug: 'web-api-learning-hub',
+      shortDescription: 'Repositori pembelajaran mandiri yang memuat kompilasi rancangan REST API, operasi CRUD, otentikasi JWT, dan penanganan respon HTTP.',
+      description: 'Kumpulan latihan dan implementasi backend fundamental untuk memperdalam pemahaman tentang alur kerja server-side, routing, dan optimasi query.\n\n**Detail Proyek:**\n- **Role:** Backend Developer (Learning Project)\n- **Tech Stack:** Node.js, Express.js, MySQL, JWT, Postman.\n- **Fitur Utama:** Secure registration/login APIs, JWT payload authorization routes, standard JSON response structure, validation middleware, basic CRUD operations.\n- **Kontribusi Pribadi:** Membangun middleware autentikasi kustom, menyusun routing endpoint Express, serta mendokumentasikan skema API request-response menggunakan Postman collections.\n- **Status:** Learning / Practice Repository.',
+      techStack: ['Node.js', 'Express.js', 'MySQL', 'JWT', 'Postman'],
       status: 'PUBLISHED',
-      featured: false,
-      order: 4,
+      featured: true,
+      order: 4
     },
     {
       title: 'Kosuka Bali Trip Website',
@@ -309,30 +312,8 @@ async function main() {
       imageUrl: 'https://res.cloudinary.com/dlgr9xicg/image/upload/v1781232955/kbt-kosuka-bali-trip.vercel.app__wn3zig.png',
       techStack: ['TypeScript', 'React.js', 'Vite', 'TailwindCSS'],
       status: 'PUBLISHED',
-      featured: true,
-      order: 5,
-    },
-    {
-      title: "Tien's Catering & Event Organizer Showcase",
-      slug: 'tc-tiens-catering',
-      shortDescription: 'Platform showcase layanan catering kuliner and event organizer digital.',
-      description: 'Aplikasi web portofolio catering kuliner yang menyajikan paket menu hidangan, manajemen event, kalkulator porsi makanan, dan form reservasi booking acara secara online.\n\n**Fitur utama:**\n- Menu catalog slider\n- Porsi food calculator\n- Inquiry booking reservation\n- Integrasi Google Maps lokasi kitchen',
-      imageUrl: 'https://res.cloudinary.com/dlgr9xicg/image/upload/v1781203315/Tien_s_Catering_bwawyt.png',
-      techStack: ['Svelte', 'SvelteKit', 'TailwindCSS', 'JavaScript'],
-      status: 'PUBLISHED',
-      featured: true,
-      order: 6,
-    },
-    {
-      title: 'RumahKu Konstruksi Portal',
-      slug: 'rkk-rumahku-konstruksi',
-      shortDescription: 'Platform monitoring progres pembangunan konstruksi perumahan.',
-      description: 'Platform web untuk tracking real-time status pembangunan rumah tinggal, mempermudah manajemen logistik proyek konstruksi, dokumentasi harian, dan kolaborasi antara mandor lapangan dengan klien pemilik proyek.\n\n**Fitur utama:**\n- Progress timeline monitoring\n- Manajemen stock logistik semen/bata\n- Harian worklog checklist\n- Upload foto harian proyek',
-      imageUrl: 'https://res.cloudinary.com/dlgr9xicg/image/upload/v1781232956/RKK-RumahKu-Kontruksi_twimqd.png',
-      techStack: ['JavaScript', 'React.js', 'Node.js', 'Express.js', 'MongoDB'],
-      status: 'PUBLISHED',
-      featured: true,
-      order: 7,
+      featured: false,
+      order: 5
     },
     {
       title: 'Siap Aqiqah Digital Platform',
@@ -343,7 +324,7 @@ async function main() {
       techStack: ['JavaScript', 'React.js', 'Node.js', 'Express.js', 'MySQL'],
       status: 'PUBLISHED',
       featured: false,
-      order: 8,
+      order: 6
     },
     {
       title: 'Manajemen Toko Bangunan (MTB) Dashboard',
@@ -353,7 +334,37 @@ async function main() {
       techStack: ['JavaScript', 'React.js', 'Node.js', 'Express.js', 'PostgreSQL'],
       status: 'PUBLISHED',
       featured: false,
-      order: 9,
+      order: 7
+    },
+    {
+      title: 'Construction Project Monitoring Application',
+      slug: 'construction-project-monitoring',
+      shortDescription: 'Aplikasi web untuk membantu monitoring progres pembangunan rumah, dokumentasi proyek, dan laporan harian.',
+      description: 'Aplikasi web untuk membantu monitoring progres pembangunan rumah, dokumentasi proyek, dan laporan harian. Sistem ini dirancang agar proses pelaporan dari lapangan lebih cepat, terstruktur, dan mudah dipantau oleh tim manajemen.\n\n**Fitur utama:**\n- Dashboard progres\n- Laporan harian digital\n- Upload dokumentasi foto\n- Monitoring pekerjaan\n- Manajemen logistik',
+      techStack: ['React.js', 'Node.js', 'Express.js', 'MongoDB'],
+      status: 'DRAFT',
+      featured: false,
+      order: 8
+    },
+    {
+      title: 'Event Organizer Showcase Website',
+      slug: 'event-organizer-showcase',
+      shortDescription: 'Website promosi untuk layanan event organizer dan catering.',
+      description: 'Website promosi untuk layanan event organizer dan catering. Website ini menampilkan katalog layanan, portofolio acara, serta jalur inquiry/pemesanan agar calon klien lebih mudah memahami layanan yang ditawarkan.\n\n**Fitur utama:**\n- Portfolio gallery\n- Katalog layanan\n- Inquiry service\n- Responsive mobile design',
+      techStack: ['React.js', 'Node.js', 'Express.js', 'MySQL'],
+      status: 'DRAFT',
+      featured: false,
+      order: 9
+    },
+    {
+      title: 'Company Profile Website',
+      slug: 'company-profile-website',
+      shortDescription: 'Website company profile untuk menampilkan profil usaha, layanan, galeri destinasi, dan informasi kontak.',
+      description: 'Website company profile untuk menampilkan profil usaha, layanan, galeri destinasi, dan informasi kontak. Website ini membantu perusahaan memiliki pusat informasi digital yang lebih mudah diakses calon pelanggan.\n\n**Fitur utama:**\n- Informasi destinasi\n- Galeri foto\n- Google Maps integration\n- Kontak cepat',
+      techStack: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
+      status: 'PUBLISHED',
+      featured: false,
+      order: 10
     },
     {
       title: 'Iwan Noval Portfolio Website',
@@ -363,7 +374,7 @@ async function main() {
       techStack: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
       status: 'DRAFT',
       featured: false,
-      order: 10,
+      order: 11
     }
   ];
 
