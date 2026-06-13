@@ -2,10 +2,11 @@
 
 ## Metadata
 - Feature Batch: Batch F14 — Repository Normalization and Documentation Sync
-- Execution Batch: Batch F14B — Repository Inventory Map
-- Status: Completed
+- Execution Batch: Batch F14B — Repository Inventory Map (Detailed Frontend Audit in Batch F14C)
+- Status: Completed (Repository Map built, Frontend Audited)
 - Scope: Inventory only, no cleanup
 - Last updated: 2026-06-13
+- Detailed Frontend Audit: [FRONTEND_PUBLIC_ADMIN_AUDIT.md](FRONTEND_PUBLIC_ADMIN_AUDIT.md)
 
 ## Inventory Legend
 - **Active**: Jelas dipakai oleh runtime/build/docs aktif.
@@ -138,29 +139,29 @@
 ### Fallbacks (Offline Redundancy)
 | Path | Type | Status | Evidence / Reason | Next Action |
 |---|---|---|---|---|
-| `client/src/fallback/certificationsFallback.js` | File | Delete candidate after validation | File data fallback lokal, tidak di-import di modul mana pun | Verifikasi integrasi offline mode |
-| `client/src/fallback/contactFallback.js` | File | Delete candidate after validation | File data fallback lokal, tidak di-import di modul mana pun | Verifikasi integrasi offline mode |
-| `client/src/fallback/educationFallback.js` | File | Delete candidate after validation | File data fallback lokal, tidak di-import di modul mana pun | Verifikasi integrasi offline mode |
-| `client/src/fallback/experienceFallback.js` | File | Delete candidate after validation | File data fallback lokal, tidak di-import di modul mana pun | Verifikasi integrasi offline mode |
-| `client/src/fallback/heroFallback.js` | File | Delete candidate after validation | File data fallback lokal, tidak di-import di modul mana pun | Verifikasi integrasi offline mode |
-| `client/src/fallback/profileFallback.js` | File | Delete candidate after validation | File data fallback lokal, tidak di-import di modul mana pun | Verifikasi integrasi offline mode |
-| `client/src/fallback/projectsFallback.js` | File | Delete candidate after validation | File data fallback lokal, tidak di-import di modul mana pun | Verifikasi integrasi offline mode |
-| `client/src/fallback/skillsFallback.js` | File | Delete candidate after validation | File data fallback lokal, tidak di-import di modul mana pun | Verifikasi integrasi offline mode |
+| `client/src/fallback/certificationsFallback.js` | File | Confirmed unused candidate | F14C Audit: Terkonfirmasi tidak di-import/digunakan di mana pun | Siap dihapus pada batch cleanup |
+| `client/src/fallback/contactFallback.js` | File | Confirmed unused candidate | F14C Audit: Terkonfirmasi tidak di-import/digunakan di mana pun | Siap dihapus pada batch cleanup |
+| `client/src/fallback/educationFallback.js` | File | Confirmed unused candidate | F14C Audit: Terkonfirmasi tidak di-import/digunakan di mana pun | Siap dihapus pada batch cleanup |
+| `client/src/fallback/experienceFallback.js` | File | Confirmed unused candidate | F14C Audit: Terkonfirmasi tidak di-import/digunakan di mana pun | Siap dihapus pada batch cleanup |
+| `client/src/fallback/heroFallback.js` | File | Confirmed unused candidate | F14C Audit: Terkonfirmasi tidak di-import/digunakan di mana pun | Siap dihapus pada batch cleanup |
+| `client/src/fallback/profileFallback.js` | File | Confirmed unused candidate | F14C Audit: Terkonfirmasi tidak di-import/digunakan di mana pun | Siap dihapus pada batch cleanup |
+| `client/src/fallback/projectsFallback.js` | File | Confirmed unused candidate | F14C Audit: Terkonfirmasi tidak di-import/digunakan di mana pun | Siap dihapus pada batch cleanup |
+| `client/src/fallback/skillsFallback.js` | File | Confirmed unused candidate | F14C Audit: Terkonfirmasi tidak di-import/digunakan di mana pun | Siap dihapus pada batch cleanup |
 
 ### Asset Files & Configs
 | Path | Type | Status | Evidence / Reason | Next Action |
 |---|---|---|---|---|
 | `client/.env.example` | File | Do not delete | Panduan penulisan variabel env client | Pertahankan |
 | `client/.gitignore` | File | Do not delete | File pengecualian git client | Pertahankan |
-| `client/build_log.txt` | File | Delete candidate after validation | Catatan log sisa build lokal terdahulu | Hapus setelah QA |
+| `client/build_log.txt` | File | Confirmed unused candidate | F14C Audit: Log sisa build lokal terdahulu, tidak digunakan | Siap dihapus pada batch cleanup |
 | `client/index.html` | File | Active | File HTML entry point React-Vite | Pertahankan |
 | `client/package-lock.json` | File | Do not delete | Kunci modul dependency client | Pertahankan |
 | `client/package.json` | File | Do not delete | Manifest package dependency client | Pertahankan |
 | `client/vercel.json` | File | Do not delete | Konfigurasi rewrite rule SPA Vercel | Pertahankan |
 | `client/vite.config.js` | File | Do not delete | Konfigurasi build Vite client | Pertahankan |
-| `client/src/assets/hero.png` | File | Needs verification | File gambar ilustrasi background | Verifikasi pemakaian di Home |
-| `client/src/assets/javascript.svg` | File | Needs verification | Ikon logo JavaScript | Verifikasi pemakaian |
-| `client/src/assets/vite.svg` | File | Needs verification | Ikon bawaan template Vite | Verifikasi pemakaian |
+| `client/src/assets/hero.png` | File | Confirmed unused candidate | F14C Audit: File gambar ilustrasi background, tidak di-import | Siap dihapus pada batch cleanup |
+| `client/src/assets/javascript.svg` | File | Confirmed unused candidate | F14C Audit: Ikon JavaScript sisa, tidak di-import | Siap dihapus pada batch cleanup |
+| `client/src/assets/vite.svg` | File | Confirmed unused candidate | F14C Audit: Logo Vite default template, tidak di-import | Siap dihapus pada batch cleanup |
 
 
 ## Server Inventory
@@ -304,18 +305,21 @@
 
 | Path | Candidate Type | Reason | Required Validation Before Cleanup |
 |---|---|---|---|
-| `client/build_log.txt` | File | Log file sisa build lokal, tidak diperlukan untuk production/deployment | Verifikasi tidak ada tool otomatis yang mengandalkan file ini secara kritis |
-| `client/src/fallback/certificationsFallback.js` | File | Tidak di-import di modul mana pun. Data offline fallback mungkin sudah dikonsolidasikan ke data statis atau tidak dibutuhkan. | Uji apakah aplikasi lokal tetap stabil tanpa file ini saat koneksi backend terputus |
-| `client/src/fallback/contactFallback.js` | File | Tidak di-import di modul mana pun | Uji kestabilan offline fallback homepage/contact |
-| `client/src/fallback/educationFallback.js` | File | Tidak di-import di modul mana pun | Uji kestabilan offline fallback About page |
-| `client/src/fallback/experienceFallback.js` | File | Tidak di-import di modul mana pun | Uji kestabilan offline fallback Experience page |
-| `client/src/fallback/heroFallback.js` | File | Tidak di-import di modul mana pun | Uji kestabilan offline fallback Home page |
-| `client/src/fallback/profileFallback.js` | File | Tidak di-import di modul mana pun | Uji kestabilan offline fallback Profile page |
-| `client/src/fallback/projectsFallback.js` | File | Tidak di-import di modul mana pun | Uji kestabilan offline fallback Projects page |
-| `client/src/fallback/skillsFallback.js` | File | Tidak di-import di modul mana pun | Uji kestabilan offline fallback Skills list |
-| `server/scratch/check_db.js` | File | Script uji koneksi manual, tidak dipanggil oleh runtime utama server | Pastikan tidak diperlukan untuk troubleshooting mendatang oleh user |
-| `server/scratch/parse_logs.js` | File | Script parser log manual | Pastikan tidak diperlukan |
-| `server/scratch/patch_seed.js` | File | Script helper patching seed | Pastikan data inisiasi seed sudah stabil |
+| `client/build_log.txt` | Confirmed unused candidate | Log sisa build lokal terdahulu, tidak diperlukan | Hapus setelah QA selesai |
+| `client/src/fallback/certificationsFallback.js` | Confirmed unused candidate | F14C Audit: Terkonfirmasi tidak di-import di mana pun | Hapus pada batch cleanup |
+| `client/src/fallback/contactFallback.js` | Confirmed unused candidate | F14C Audit: Terkonfirmasi tidak di-import di mana pun | Hapus pada batch cleanup |
+| `client/src/fallback/educationFallback.js` | Confirmed unused candidate | F14C Audit: Terkonfirmasi tidak di-import di mana pun | Hapus pada batch cleanup |
+| `client/src/fallback/experienceFallback.js` | Confirmed unused candidate | F14C Audit: Terkonfirmasi tidak di-import di mana pun | Hapus pada batch cleanup |
+| `client/src/fallback/heroFallback.js` | Confirmed unused candidate | F14C Audit: Terkonfirmasi tidak di-import di mana pun | Hapus pada batch cleanup |
+| `client/src/fallback/profileFallback.js` | Confirmed unused candidate | F14C Audit: Terkonfirmasi tidak di-import di mana pun | Hapus pada batch cleanup |
+| `client/src/fallback/projectsFallback.js` | Confirmed unused candidate | F14C Audit: Terkonfirmasi tidak di-import di mana pun | Hapus pada batch cleanup |
+| `client/src/fallback/skillsFallback.js` | Confirmed unused candidate | F14C Audit: Terkonfirmasi tidak di-import di mana pun | Hapus pada batch cleanup |
+| `client/src/assets/hero.png` | Confirmed unused candidate | F14C Audit: Tidak di-import/direferensikan di mana pun | Hapus pada batch cleanup |
+| `client/src/assets/javascript.svg` | Confirmed unused candidate | F14C Audit: Tidak di-import/direferensikan di mana pun | Hapus pada batch cleanup |
+| `client/src/assets/vite.svg` | Confirmed unused candidate | F14C Audit: Tidak di-import/direferensikan di mana pun | Hapus pada batch cleanup |
+| `server/scratch/check_db.js` | Needs verification | Script uji DB lokal manual | Pastikan tidak diperlukan untuk troubleshooting |
+| `server/scratch/parse_logs.js` | Needs verification | Script parser log manual | Pastikan tidak diperlukan |
+| `server/scratch/patch_seed.js` | Needs verification | Script helper seeding manual | Pastikan tidak diperlukan |
 
 
 ## Do Not Delete List

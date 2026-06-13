@@ -14,19 +14,21 @@ Ditemukan bahwa dokumentasi status pada repository mengalami desinkronisasi. Beb
 - Standar model eksekutor diperbarui menjadi Gemini 3.5 Flash Low / Medium / High.
 - File-file status dokumentasi dibersihkan dari informasi usang (obsolete).
 - Pemetaan inventori repositori (Batch F14B) selesai dibuat tanpa melakukan penghapusan file ([REPOSITORY_INVENTORY_MAP.md](../inventory/REPOSITORY_INVENTORY_MAP.md)).
+- Audit detail frontend public/admin (Batch F14C) selesai dibuat tanpa perubahan kode program ([FRONTEND_PUBLIC_ADMIN_AUDIT.md](../inventory/FRONTEND_PUBLIC_ADMIN_AUDIT.md)).
 
 ## Sub-Batch Roadmap
 | Sub-Batch | Name | Status | Purpose | Dependency |
 |---|---|---|---|---|
 | F14A | Docs Status Sync Audit | Completed | Audit awal dan sinkronisasi status dokumentasi project agar konsisten. | - |
 | F14B | Repository Inventory Map / Next Steps | Completed | Pemetaan inventori repository dan identifikasi kandidat cleanup tanpa melakukan penghapusan file. | F14A |
+| F14C | Frontend Public/Admin Audit | Completed | Audit detail halaman, rute, komponen, context, hook, style, dan asset frontend. | F14B |
 
 ## HOLD / Blocked Notes
 - Sinkronisasi ini bersifat docs-only. Tidak ada kode client, server, skema database, atau migration yang disentuh.
 - Custom domain untuk frontend bersifat opsional / belum final, namun infrastruktur Vercel, Railway, dan Neon PostgreSQL sudah sepenuhnya aktif dan live.
 
 ## Next Step
-- Melanjutkan ke Batch F14C — Frontend Public/Admin Audit atau Batch F14D — Backend/API Audit.
+- Melanjutkan ke Batch F14D — Backend/API Audit atau Batch F14E — Database/Prisma Audit.
 - Monitoring performa web production secara reguler.
 
 ## Validation Checklist
