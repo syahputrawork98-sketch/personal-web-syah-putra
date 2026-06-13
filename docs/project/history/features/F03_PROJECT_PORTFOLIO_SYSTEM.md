@@ -22,14 +22,17 @@ Mencakup sistem portfolio, kategori proyek, project card, modal detail, dan link
 | F03B | Project Detail Modal Review | Stable | Review desain modal detail. | - |
 | F03C | Project Data Polish | Completed | Memperbarui teks dan informasi project. | - |
 | F03D | HRD Project Portfolio Curation | Completed | Melakukan kurasi data proyek portofolio berorientasi HRD Full Stack berdasarkan audit kesiapan repository publik. | F03C |
-| F03E | Public README Normalization Starter | Completed | Normalisasi README untuk 3 repositori publik kandidat agar tidak duplicate/template dari personal web. | F03D |
+| F03E | Public README Normalization Starter | Partial | Normalisasi README untuk 3 repositori publik kandidat agar tidak duplicate/template dari personal web. | F03D |
 
 ## HOLD / Blocked Notes
 - Asset finalization masuk ke lingkup F06. Sebagian project data belum komplit sepenuhnya.
 - Repository Web-API-Learning-Hub tidak ditemukan di workspace lokal saat ini (diberi status Partial untuk repo tersebut).
+- Sinkronisasi remote GitHub: Berkas README.md untuk RumahKuKontruksi-Dev dan TC-Tien-s-Catering baru diperbarui di workspace lokal, dan belum di-commit/push ke remote oleh user.
 
 ## Next Step
 - F06A — External Asset URL Inventory.
+- User sinkronisasi commit/push perubahan README.md lokal pada RumahKuKontruksi-Dev dan TC-Tien-s-Catering ke remote GitHub.
+- Clone dan normalisasi README.md untuk Web-API-Learning-Hub setelah repo tersebut tersedia secara lokal.
 
 ## Validation Checklist
 - Cek interaksi modal dan filter kategori.
@@ -37,4 +40,8 @@ Mencakup sistem portfolio, kategori proyek, project card, modal detail, dan link
 ## Notes
 - [F03C] Project fallback content (narasi, impact, challenge, solution) telah dipoles untuk menonjolkan identitas Web Developer sambil tetap menghargai nilai lintas disiplin. Aset dan link eksternal final tetap ditangani di F06.
 - [F03D] Menyusun ulang prioritas proyek agar menampilkan 4 proyek utama (Personal Portfolio CMS, RumahKu Konstruksi, Tien's Catering, Web API Learning Hub) di prioritas teratas dengan format narasi terstruktur (role, tech stack, fitur, kontribusi, status). Menghindari publikasi link GitHub untuk repositori yang README-nya masih template/duplicate. Normalisasi README repositori tersebut akan ditangani pada batch terpisah. Proyek lainnya diturunkan prioritasnya (featured set ke false).
-- [F03E] Normalisasi README.md untuk `RumahKuKontruksi-Dev` dan `TC-Tien-s-Catering` agar menyajikan informasi yang jujur sebagai case study/candidate project, serta merapikan minor formatting loop indentation pada `server/prisma/seed.js`. Repositori `Web-API-Learning-Hub` belum disentuh karena tidak ditemukan di local workspace (Partial).
+- [F03E] Normalisasi README.md lokal untuk `RumahKuKontruksi-Dev` dan `TC-Tien-s-Catering` berhasil dilakukan untuk menyajikan informasi yang jujur sebagai case study/candidate project. Namun, status sub-batch adalah **Partial** karena:
+  1. Repositori `Web-API-Learning-Hub` tidak tersedia di local workspace.
+  2. Perubahan README di `RumahKuKontruksi-Dev` dan `TC-Tien-s-Catering` baru tersimpan secara lokal dan membutuhkan commit/push manual oleh user ke remote GitHub.
+  3. **Penting**: Tautan GitHub untuk ketiga repositori kandidat ini belum boleh diaktifkan pada data portofolio publik/seed utama sebelum berkas README di remote GitHub bersih dari template personal web utama.
+
