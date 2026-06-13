@@ -30,9 +30,9 @@ export const credentialsData = [
     featured: true,
     status: "active",
     sourceFolder: "02 - Sertifikat IT & Digital",
-    summary: "Sertifikat kelulusan program pelatihan intensif pengembangan aplikasi web menggunakan stack Node.js dan React di BBPVP Bandung.",
+    summary: "Pelatihan intensif pengembangan aplikasi web menggunakan stack Node.js dan React, mencakup REST API, integrasi database, arsitektur frontend/backend, dan penerapan modular coding.",
     ...createUrls("1ZcWx5tA4-lSITUUfFS4ntV7ybSpVoPk-"),
-    skills: ["Node.js", "React.js", "JavaScript", "Fullstack Development"]
+    skills: ["Node.js", "React.js", "JavaScript", "REST API", "Full Stack Development", "Database Integration"]
   },
   {
     id: "revou-coding-camp-2025",
@@ -43,9 +43,9 @@ export const credentialsData = [
     featured: true,
     status: "active",
     sourceFolder: "02 - Sertifikat IT & Digital",
-    summary: "Sertifikat partisipasi program Coding Camp yang memberikan fondasi kuat dalam Software Engineering dan pengembangan web modern.",
+    summary: "Program intensif pengantar software engineering yang memperkuat fondasi logika pemrograman, workflow git/collaborative development, penyelesaian masalah, serta siklus hidup pengembangan perangkat lunak.",
     ...createUrls("1iSaJpNmqK_3TGZV2MJ4WsPb7iCteSF07"),
-    skills: ["Software Engineering", "Frontend Development", "Web Fundamentals"]
+    skills: ["Software Engineering", "Web Development", "Git", "Problem Solving", "Frontend Development"]
   },
   {
     id: "blue-data-intelligence",
@@ -56,9 +56,9 @@ export const credentialsData = [
     featured: false,
     status: "active",
     sourceFolder: "02 - Sertifikat IT & Digital",
-    summary: "Sertifikasi spesialisasi dalam bidang data intelligence dan analisis data.",
+    summary: "Sertifikasi keahlian dalam analisis data, pengolahan database relasional, serta pemodelan intelijen bisnis (BI) untuk pengambilan keputusan berbasis data.",
     ...createUrls("1JTo_bFidFsvo_cZLCq2N_9Qo8BWUaQBJ"),
-    skills: ["Data Intelligence", "Data Analysis"]
+    skills: ["Data Analysis", "Database", "Business Intelligence", "SQL Fundamentals"]
   },
   {
     id: "it-foundation",
@@ -69,9 +69,9 @@ export const credentialsData = [
     featured: false,
     status: "supporting",
     sourceFolder: "02 - Sertifikat IT & Digital",
-    summary: "Sertifikat dasar yang mencakup konsep fundamental teknologi informasi.",
+    summary: "Sertifikat dasar kompetensi IT, memvalidasi pemahaman fundamental tentang infrastruktur sistem informasi, jaringan komputer dasar, dan pengoperasian perangkat lunak.",
     ...createUrls("1Bx4xf0BFIjJFoxL0kZFelh0n01csN_Gz"),
-    skills: ["IT Fundamentals", "Computer Literacy"]
+    skills: ["IT Fundamentals", "Computer Networks", "Information Systems"]
   },
   {
     id: "azure-bootcamp-2017",
@@ -94,7 +94,7 @@ export const credentialsData = [
     issuer: "BBPVP Bandung",
     date: "2025",
     category: "Teknik & Manufaktur",
-    featured: true,
+    featured: false,
     status: "active",
     sourceFolder: "03 - Sertifikat Teknik & Manufaktur",
     summary: "Sertifikat keahlian dalam perancangan mekanik menggunakan perangkat lunak CAD di BBPVP Bandung.",
@@ -151,9 +151,9 @@ export const credentialsData = [
     featured: true,
     status: "active",
     sourceFolder: "04 - Sertifikat BNSP & Profesi",
-    summary: "Sertifikasi Kompetensi Nasional (BNSP) untuk profesi Junior Web Developer dengan fokus teknologi JavaScript modern.",
+    summary: "Sertifikasi Kompetensi Nasional (BNSP) di bidang Junior Web Developer, memvalidasi kemampuan teknis perancangan web, logika pemrograman JavaScript, serta pengembangan aplikasi menggunakan React dan Node.js.",
     ...createUrls("1FjjCWj0a9b7HUD7vy8RJXt21_ESsp8pk"),
-    skills: ["BNSP Certified", "Node.js", "React.js"]
+    skills: ["React.js", "Node.js", "JavaScript", "Web Development", "BNSP Certified"]
   },
   {
     id: "bnsp-manufaktur-2025",
@@ -161,7 +161,7 @@ export const credentialsData = [
     issuer: "BNSP",
     date: "2025",
     category: "BNSP",
-    featured: true,
+    featured: false,
     status: "active",
     sourceFolder: "04 - Sertifikat BNSP & Profesi",
     summary: "Sertifikasi Kompetensi Nasional dalam bidang manufaktur dan mekanik.",
@@ -174,7 +174,7 @@ export const credentialsData = [
     issuer: "BNSP",
     date: "2024",
     category: "BNSP",
-    featured: true,
+    featured: false,
     status: "active",
     sourceFolder: "04 - Sertifikat BNSP & Profesi",
     summary: "Sertifikasi Kompetensi Nasional untuk tenaga kerja ahli di bidang jasa konstruksi.",
