@@ -39,18 +39,19 @@ Repository ini telah melalui iterasi pengembangan (*Batch*) untuk memastikan sta
 
 ## 🌐 Production Deployment Architecture
 
-Arsitektur deployment final (Batch F10E) merekomendasikan:
-- **Frontend (Vercel)**: Root directory `client/`, build command `npm run build`, output `dist`.
-- **Backend (Render / Railway)**: Menggunakan instance *Web Service* Node.js.
-- **Database (Neon / Supabase)**: Menggunakan managed PostgreSQL.
-- Catatan detail *environment variables* dan setup ada di Tracker F10 pada `docs/project/history/features/F10_DEPLOYMENT_DOMAIN_SYSTEM.md`.
+Arsitektur deployment aktif saat ini:
+- **Frontend (Vercel)**: Menggunakan root directory `client/`. Live pada URL: [https://syahputran.vercel.app/](https://syahputran.vercel.app/)
+- **Backend (Railway)**: Live pada URL Railway: `selfless-victory-production-350f.up.railway.app`
+- **Database (Neon PostgreSQL)**: Managed database PostgreSQL aktif pada branch `production`.
+- **Custom Domain**: Opsional / belum final.
+- Catatan detail *environment variables* dan setup terdokumentasi di Tracker F10 pada [F10_DEPLOYMENT_DOMAIN_SYSTEM.md](file:///i:/Workspace/Workspace-Syahputrawork/PWSP-Personal-Web-Syah-Putra/docs/project/history/features/F10_DEPLOYMENT_DOMAIN_SYSTEM.md).
 
 ## 🛠️ Status Pengembangan & Batasan Khusus
 
 - **PDF CV Final**: Public download sudah mengarah ke file PDF ATS statis final; perubahan berikutnya dikelola melalui F11/CV Builder jika dibutuhkan.
-- **Login & Auth**: Completed logic; production exposure pending F10 security/deployment readiness.
+- **Login & Auth**: Completed logic; production exposure siap digunakan di environment production.
 - **Project Assets**: Link eksternal (Figma/Drive/RAB) hanya muncul jika URL asli telah tersedia di data model.
-- **Deployment**: HOLD / Partial until domain, hosting, production env, and public release are finalized.
+- **Deployment**: Production deployment aktif dan online. Custom domain saat ini opsional / belum final.
 
 ---
 &copy; 2026 Syah Putra N. Dibangun dengan Presisi.

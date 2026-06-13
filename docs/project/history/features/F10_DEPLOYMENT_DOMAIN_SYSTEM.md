@@ -4,7 +4,7 @@
 Deployment Vercel, domain final, production environment, route refresh, dan public release checklist.
 
 ## Status
-In Progress (F10B Completed)
+Completed
 
 ## Story
 Mencakup penyelesaian pipeline live deployment agar web bisa dikunjungi publik dengan stabil dan menggunakan domain name aslinya.
@@ -14,27 +14,28 @@ Mencakup penyelesaian pipeline live deployment agar web bisa dikunjungi publik d
 - Audit kesiapan deployment (F10A) telah diselesaikan.
 - Blocker kritis hardcoded URL di `AdminAuthContext.jsx` sudah diperbaiki (F10B).
 - Build frontend telah diverifikasi sukses secara lokal.
-- Database target: Neon PostgreSQL.
-- Server target: Railway.
-- Client target: Vercel.
+- Database live di Neon PostgreSQL (branch `production`).
+- Server backend live di Railway (`selfless-victory-production-350f.up.railway.app`).
+- Client frontend live di Vercel ([https://syahputran.vercel.app/](https://syahputran.vercel.app/)).
+- Public URL frontend aktif.
 
 ## Sub-Batch Roadmap
 | Sub-Batch | Name | Status | Purpose | Dependency |
 |---|---|---|---|---|
 | F10A | Deployment Readiness Audit & Configuration Preparation | Completed | Audit kesiapan environment, database, server, client, dan penyusunan deployment checklist. | - |
 | F10B | Production Environment Fix & Deployment Preparation | Completed | Perbaiki hardcoded URL di AdminAuthContext.jsx, bersihkan referensi localhost, audit API helper, dan validasi build frontend. | F10A |
-| F10C | Backend & Database Setup | Not Started | Setup Neon Database, deploy backend ke Railway, dan jalankan Prisma migration. | F10B |
-| F10D | Frontend Deployment & Integration | Not Started | Deploy frontend ke Vercel dan hubungkan dengan backend production. | F10C |
-| F10E | Custom Domain & Public Release QA | Not Started | Integrasi custom domain dan QA rilis publik secara end-to-end. | F10D |
+| F10C | Backend & Database Setup | Completed | Setup Neon Database, deploy backend ke Railway, dan jalankan Prisma migration. | F10B |
+| F10D | Frontend Deployment & Integration | Completed | Deploy frontend ke Vercel dan hubungkan dengan backend production. | F10C |
+| F10E | Custom Domain & Public Release QA | Partial | Integrasi custom domain dan QA rilis publik secara end-to-end. Custom domain bersifat opsional / belum final. | F10D |
+| F10F | Production Deployment Documentation Alignment | Completed | Penyelarasan dokumentasi deployment dengan kondisi aktual yang sudah online. | F10E |
 
 ## HOLD / Blocked Notes
 - Domain final belum diputuskan secara resmi oleh user, namun infrastruktur hosting sudah disepakati (Vercel + Railway + Neon).
 - Blocker hardcoded localhost pada frontend telah dibersihkan sepenuhnya, sehingga sistem siap untuk dideploy.
 
 ## Next Step
-- Setup managed database di Neon PostgreSQL dan ambil `DATABASE_URL`.
-- Deploy backend ke Railway, konfigurasikan env variables, dan jalankan migrasi Prisma (`npx prisma migrate deploy`).
-- Deploy frontend ke Vercel dan konfigurasi env variable `VITE_API_URL`.
+- Monitoring performa web production (Vercel, Railway, Neon).
+- Setup custom domain jika diperlukan di masa mendatang (saat ini opsional).
 
 ## Validation Checklist
 - Buka dan refresh custom URL domain pada semua variasi routing, pastikan tak terjadi 404 server error.
@@ -96,3 +97,4 @@ Berdasarkan struktur monorepo (`client/` React-Vite dan `server/` Express-Prisma
 - [F10C] Project Status Terminology Alignment selesai. Mengganti semua kata 'HOLD' untuk backend, database, admin, dan auth menjadi 'Completed / Runtime Verified' dan memastikan 'HOLD' murni hanya ditujukan untuk urusan production deployment dan domain.
 - [F10D] Production Environment Variables Checklist selesai. Panduan env backend dan frontend sudah didokumentasikan, dan peringatan mitigasi seed production ditekankan untuk mencegah hilangnya data di masa depan.
 - [F10E] Production Hosting Platform Decision selesai. Rekomendasi final adalah Vercel (Frontend), Render/Railway (Backend), dan Neon/Supabase (Database PostgreSQL). Keputusan ini menyeimbangkan antara performa, kemudahan, dan biaya untuk konteks personal web.
+- [F10F] Production Deployment Documentation Alignment selesai. Penyelarasan dokumen-dokumen internal repository (`README.md`, `CURRENT_STATUS.md`, `F10_DEPLOYMENT_DOMAIN_SYSTEM.md`, dan `FEATURE_HISTORY.md`) agar sesuai dengan status live production aktual: Frontend di Vercel (`https://syahputran.vercel.app/`), Backend di Railway (`selfless-victory-production-350f.up.railway.app`), dan Database di Neon PostgreSQL (branch `production`). Custom domain saat ini opsional / belum final.

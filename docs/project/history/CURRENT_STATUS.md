@@ -23,17 +23,17 @@
 | F07 | Backend API System | server | Completed | Seluruh siklus F07 telah divalidasi (F07A-F07H). Docker, Prisma, Backend, dan koneksi Frontend terverifikasi secara runtime. | Lanjutkan ke fitur selanjutnya / deploy | [F07_BACKEND_API_SYSTEM.md](features/F07_BACKEND_API_SYSTEM.md) |
 | F08 | Admin Login and Auth System | backend/auth | Completed | Rangkaian skeleton *backend/frontend* auth sudah diverifikasi penuh melalui Basic Security QA dan dinyatakan aman (*logic siap*). | (Selesai, lanjutkan ke F09) | [F08_ADMIN_LOGIN_AUTH_SYSTEM.md](features/F08_ADMIN_LOGIN_AUTH_SYSTEM.md) |
 | F09 | Admin Content Management System | frontend/backend | Completed | Modul CMS telah diselesaikan audit fungsionalitas dan perlindungan autentikasinya untuk Project, Credential, Asset Link, dan Settings Module. | (Selesai, lanjutkan ke F10) | [F09_ADMIN_CONTENT_MANAGEMENT_SYSTEM.md](features/F09_ADMIN_CONTENT_MANAGEMENT_SYSTEM.md) |
-| F10 | Deployment and Domain System | deployment | In Progress | F10B selesai (Blocker hardcoded localhost dibersihkan, build diverifikasi). Siap untuk setup backend & database. | F10C — Backend & Database Setup | [F10_DEPLOYMENT_DOMAIN_SYSTEM.md](features/F10_DEPLOYMENT_DOMAIN_SYSTEM.md) |
+| F10 | Deployment and Domain System | deployment | Completed / Production Live | Production deployment aktif di Vercel, Railway, dan Neon PostgreSQL. | Monitoring dan setup custom domain opsional | [F10_DEPLOYMENT_DOMAIN_SYSTEM.md](features/F10_DEPLOYMENT_DOMAIN_SYSTEM.md) |
 | F11 | CV Builder and PDF Export System | frontend/admin | Completed | Logika *State Management* dan Cetak PDF mandiri (Browser) selesai. PDF statis telah disinkronisasikan ke Public Download. | Lanjutkan ke fitur selanjutnya / deploy | [F11_CV_BUILDER_PDF_EXPORT_SYSTEM.md](features/F11_CV_BUILDER_PDF_EXPORT_SYSTEM.md) |
 | F12 | Learning Library System | frontend | Completed | Learning Library public page, admin CMS, backend API, and dynamic public integration completed. | Lanjutkan ke fitur berikutnya / deploy | [F12_LEARNING_LIBRARY_SYSTEM.md](features/F12_LEARNING_LIBRARY_SYSTEM.md) |
 
 ## Deployment Status
-- Target: Vercel (Frontend), Railway (Backend), Neon PostgreSQL (Database)
-- Status Kesiapan: F10A & F10B selesai. Blocker localhost pada frontend berhasil dibersihkan, build sukses secara lokal. Siap untuk deployment backend & database.
-- Frontend Root Directory: client (Build Command: `npm run build`, Output: `dist`)
-- Backend Root Directory: server (Start Command: `node src/server.js`)
-- Database: Neon Managed PostgreSQL (ORM: Prisma)
-- API Endpoint Integration: Membaca API URL dinamis dari environment variable `VITE_API_URL` pada Vercel.
+- **Status Deployment**: Aktif / Live
+- **Frontend (Vercel)**: Live pada URL [https://syahputran.vercel.app/](https://syahputran.vercel.app/) (Root: `client`)
+- **Backend (Railway)**: Live pada URL `selfless-victory-production-350f.up.railway.app` (Root: `server`)
+- **Database (Neon PostgreSQL)**: Managed PostgreSQL aktif pada branch `production` (ORM: Prisma)
+- **API Endpoint Integration**: Menggunakan environment variable `VITE_API_URL` pada Vercel yang mengarah ke backend Railway.
+- **Custom Domain**: Opsional / belum final.
 
 
 
