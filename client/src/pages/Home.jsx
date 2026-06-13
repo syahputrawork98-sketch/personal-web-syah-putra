@@ -136,16 +136,6 @@ const Home = () => {
           </motion.div>
         )}
 
-        {/* What I Can Do Section */}
-        <motion.div 
-          variants={itemVariants} 
-          className="services-grid"
-        >
-          {services.map((item, idx) => (
-            <ServiceCard key={idx} {...item} />
-          ))}
-        </motion.div>
-
         <motion.div className="cta-group" variants={itemVariants}>
           {currentHero.primaryCtaLabel && (
             <Link to="/projects" className="btn btn-primary">{currentHero.primaryCtaLabel}</Link>
@@ -156,6 +146,16 @@ const Home = () => {
             </a>
           )}
           <Link to="/contact" className="btn btn-secondary">Hubungi Saya</Link>
+        </motion.div>
+
+        {/* What I Can Do Section */}
+        <motion.div 
+          variants={itemVariants} 
+          className="services-grid"
+        >
+          {services.map((item, idx) => (
+            <ServiceCard key={idx} {...item} />
+          ))}
         </motion.div>
       </motion.div>
     </section>

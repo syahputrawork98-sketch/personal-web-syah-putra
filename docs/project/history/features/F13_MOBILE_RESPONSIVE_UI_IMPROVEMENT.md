@@ -11,7 +11,7 @@ Memperbaiki masalah pada tampilan mobile, seperti navbar yang kurang rapi, hero 
 
 ## Current State
 - Navbar publik mobile memiliki tinggi 64px dan menu lebar proporsional (`min(85vw, 320px)`).
-- Hero section menggunakan `min-height: calc(100svh - 64px)` dengan font dan CTA yang diadaptasi untuk mobile.
+- Hero section menggunakan `min-height: auto` dengan padding terkontrol, serta font dan CTA yang diadaptasi untuk mobile.
 - Grid proyek public dikonfigurasi menjadi 1 kolom murni di layar mobile tanpa memaksakan grid sizing statis.
 - Global spacing `.main-content` disesuaikan untuk transisi navbar baru.
 - Tidak ada modifikasi kode backend, api route, maupun prisma schema.
@@ -20,6 +20,7 @@ Memperbaiki masalah pada tampilan mobile, seperti navbar yang kurang rapi, hero 
 | Sub-Batch | Name | Status | Purpose | Dependency |
 |---|---|---|---|---|
 | F13A | Public Mobile Layout First Pass | Completed | Penyesuaian layout CSS murni untuk navbar, hero, projects, dan spacing global. | F10 (Deployment Live) |
+| F13A.1 | Homepage Hero Spacing Fine Tuning | Completed | Penyesuaian jarak hero title, penempatan CTA sebelum service cards, dan perbaikan margin/padding. Backend/database tidak disentuh. | F13A |
 
 ## HOLD / Blocked Notes
 - None.
