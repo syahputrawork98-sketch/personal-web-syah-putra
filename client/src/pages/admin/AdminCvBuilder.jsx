@@ -171,6 +171,133 @@ const AdminCvBuilder = () => {
     return [];
   };
 
+  const getSectionConfig = (sectionId) => {
+    return cvConfig.sections.find(s => s.id === sectionId);
+  };
+
+  const getDisplayItems = (sectionId) => {
+    const section = getSectionConfig(sectionId);
+    if (!section || !section.enabled) return [];
+    
+    const rawItems = getDataForSection(sectionId);
+    const selectedIds = section.selectedIds || [];
+    
+    if (selectedIds.length > 0) {
+      // Map based on selectedIds to maintain the specific ordering defined by the user
+      return selectedIds
+        .map(id => rawItems.find(item => item.id === id))
+        .filter(Boolean);
+    }
+    
+    return rawItems;
+  };
+
+  const renderSkillsSection = (items) => {
+    if (!items || items.length === 0) return null;
+    return (
+      <div className="cv-print-section" style={{ marginBottom: '4mm' }}>
+        <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
+          Skills
+        </h2>
+        <div style={{ fontSize: '9pt', color: '#111', lineHeight: 1.4 }}>
+          {items.map(s => s.name).join('  •  ')}
+        </div>
+      </div>
+    );
+  };
+
+  const renderExperienceSection = (items) => {
+    if (!items || items.length === 0) return null;
+    return (
+      <div className="cv-print-section" style={{ marginBottom: '4mm' }}>
+        <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
+          Work Experience
+        </h2>
+        {items.map(exp => (
+          <div key={exp.id} className="cv-print-item" style={{ marginBottom: '3mm' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', fontWeight: 'bold', fontSize: '10pt' }}>
+              <span>{exp.role}</span>
+              {exp.period && <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#222', whiteSpace: 'nowrap', marginLeft: '8px' }}>{exp.period}</span>}
+            </div>
+            <div style={{ fontSize: '9pt', fontStyle: 'italic', marginBottom: '0.5mm', color: '#333' }}>{exp.company}</div>
+            {exp.description && <p style={{ fontSize: '9pt', margin: '0', whiteSpace: 'pre-line', color: '#111' }}>{exp.description}</p>}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  const renderProjectsSection = (items) => {
+    if (!items || items.length === 0) return null;
+    return (
+      <div className="cv-print-section" style={{ marginBottom: '4mm' }}>
+        <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
+          Featured Projects
+        </h2>
+        {items.map(proj => (
+          <div key={proj.id} className="cv-print-item" style={{ marginBottom: '2.5mm' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', fontWeight: 'bold', fontSize: '10pt' }}>
+              <span>{proj.title}</span>
+              <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#222' }}>{proj.category}</span>
+            </div>
+            {proj.description && <p style={{ fontSize: '9pt', margin: '1px 0 0 0', whiteSpace: 'pre-line', color: '#111' }}>{proj.description}</p>}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  const renderEducationSection = (items) => {
+    if (!items || items.length === 0) return null;
+    return (
+      <div className="cv-print-section" style={{ marginBottom: '4mm' }}>
+        <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
+          Education
+        </h2>
+        {items.map(edu => (
+          <div key={edu.id} className="cv-print-item" style={{ marginBottom: '2.5mm' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', fontWeight: 'bold', fontSize: '10pt' }}>
+              <span>{edu.school}</span>
+              {edu.period && <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#222', whiteSpace: 'nowrap', marginLeft: '8px' }}>{edu.period}</span>}
+            </div>
+            <div style={{ fontSize: '9pt', fontStyle: 'italic', marginBottom: '0.5mm', color: '#333' }}>{edu.degree}</div>
+            {edu.description && <p style={{ fontSize: '9pt', margin: '0', whiteSpace: 'pre-line', color: '#111' }}>{edu.description}</p>}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  const renderCredentialsSection = (items) => {
+    if (!items || items.length === 0) return null;
+    return (
+      <div className="cv-print-section" style={{ marginBottom: '3mm' }}>
+        <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
+          Credentials & Certifications
+        </h2>
+        {items.map(cert => (
+          <div key={cert.id} className="cv-print-item" style={{ marginBottom: '1.5mm' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '10pt' }}>
+              <span>{cert.title}</span>
+              <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#222' }}>{(cert.issuedDate || cert.issueDate) ? new Date(cert.issuedDate || cert.issueDate).getFullYear() : ''}</span>
+            </div>
+            <div style={{ fontSize: '9pt', color: '#333' }}>{cert.issuer}</div>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  const renderSectionById = (sectionId) => {
+    const displayItems = getDisplayItems(sectionId);
+    if (sectionId === 'skills') return renderSkillsSection(displayItems);
+    if (sectionId === 'experience') return renderExperienceSection(displayItems);
+    if (sectionId === 'projects') return renderProjectsSection(displayItems);
+    if (sectionId === 'education') return renderEducationSection(displayItems);
+    if (sectionId === 'credentials') return renderCredentialsSection(displayItems);
+    return null;
+  };
+
   const formatSectionTitle = (id) => {
     return id.charAt(0).toUpperCase() + id.slice(1);
   };
@@ -437,7 +564,7 @@ const AdminCvBuilder = () => {
                                       + {itemLabel}
                                     </button>
                                   );
-                                })}
+                                }).filter(Boolean)}
                                 {sectionData.filter(s => {
                                    const label = s.name || s.title || s.role || s.degree || '';
                                    return label.toLowerCase().includes((searchQueries[section.id] || '').toLowerCase()) && !section.selectedIds?.includes(s.id);
@@ -576,175 +703,18 @@ const AdminCvBuilder = () => {
                   </div>
                 )}
 
-                {/* Skills Section (Page 1) */}
-                {(() => {
-                  const skillsSection = sortedSections.find(s => s.id === 'skills');
-                  if (!skillsSection || !skillsSection.enabled) return null;
-                  const rawSkills = getDataForSection('skills');
-                  const displaySkills = (skillsSection.selectedIds && skillsSection.selectedIds.length > 0)
-                    ? rawSkills.filter(item => skillsSection.selectedIds.includes(item.id))
-                    : rawSkills;
-                  if (displaySkills.length === 0) return null;
-                  return (
-                    <div className="cv-print-section" style={{ marginBottom: '4mm' }}>
-                      <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
-                        Skills
-                      </h2>
-                      <div style={{ fontSize: '9pt', color: '#111', lineHeight: 1.4 }}>
-                        {displaySkills.map(s => s.name).join('  •  ')}
-                      </div>
-                    </div>
-                  );
-                })()}
-
-                {/* Experience Section - Web Developer (Page 1) */}
-                {(() => {
-                  const expSection = sortedSections.find(s => s.id === 'experience');
-                  if (!expSection || !expSection.enabled) return null;
-                  const rawExp = getDataForSection('experience');
-                  const selectedExp = (expSection.selectedIds && expSection.selectedIds.length > 0)
-                    ? rawExp.filter(item => expSection.selectedIds.includes(item.id))
-                    : rawExp;
-                  const webDevExp = selectedExp.filter(exp => 
-                    exp.role.toLowerCase().includes('web') || 
-                    exp.role.toLowerCase().includes('developer')
-                  );
-                  if (webDevExp.length === 0) return null;
-                  return (
-                    <div className="cv-print-section" style={{ marginBottom: '4mm' }}>
-                      <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
-                        Work Experience
-                      </h2>
-                      {webDevExp.map(exp => (
-                        <div key={exp.id} className="cv-print-item" style={{ marginBottom: '3mm' }}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', fontWeight: 'bold', fontSize: '10pt' }}>
-                            <span>{exp.role}</span>
-                            {exp.period && <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#222', whiteSpace: 'nowrap', marginLeft: '8px' }}>{exp.period}</span>}
-                          </div>
-                          <div style={{ fontSize: '9pt', fontStyle: 'italic', marginBottom: '0.5mm', color: '#333' }}>{exp.company}</div>
-                          {exp.description && <p style={{ fontSize: '9pt', margin: '0', whiteSpace: 'pre-line', color: '#111' }}>{exp.description}</p>}
-                        </div>
-                      ))}
-                    </div>
-                  );
-                })()}
+                {/* Page 1 Dynamic Sections ordered by configuration */}
+                {sortedSections
+                  .filter(s => ['skills', 'experience'].includes(s.id))
+                  .map(s => renderSectionById(s.id))}
               </div>
 
               {/* Page 2 */}
               <div className="cv-page" data-page="2">
-                {/* Additional Experience (Page 2) */}
-                {(() => {
-                  const expSection = sortedSections.find(s => s.id === 'experience');
-                  if (!expSection || !expSection.enabled) return null;
-                  const rawExp = getDataForSection('experience');
-                  const selectedExp = (expSection.selectedIds && expSection.selectedIds.length > 0)
-                    ? rawExp.filter(item => expSection.selectedIds.includes(item.id))
-                    : rawExp;
-                  const otherExp = selectedExp.filter(exp => 
-                    !exp.role.toLowerCase().includes('web') && 
-                    !exp.role.toLowerCase().includes('developer')
-                  );
-                  if (otherExp.length === 0) return null;
-                  return (
-                    <div className="cv-print-section" style={{ marginBottom: '4mm' }}>
-                      <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
-                        Additional Experience
-                      </h2>
-                      {otherExp.map(exp => (
-                        <div key={exp.id} className="cv-print-item" style={{ marginBottom: '3mm' }}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', fontWeight: 'bold', fontSize: '10pt' }}>
-                            <span>{exp.role}</span>
-                            {exp.period && <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#222', whiteSpace: 'nowrap', marginLeft: '8px' }}>{exp.period}</span>}
-                          </div>
-                          <div style={{ fontSize: '9pt', fontStyle: 'italic', marginBottom: '0.5mm', color: '#333' }}>{exp.company}</div>
-                          {exp.description && <p style={{ fontSize: '9pt', margin: '0', whiteSpace: 'pre-line', color: '#111' }}>{exp.description}</p>}
-                        </div>
-                      ))}
-                    </div>
-                  );
-                })()}
-
-                {/* Projects Section (Page 2) */}
-                {(() => {
-                  const projSection = sortedSections.find(s => s.id === 'projects');
-                  if (!projSection || !projSection.enabled) return null;
-                  const rawProjs = getDataForSection('projects');
-                  const displayProjs = (projSection.selectedIds && projSection.selectedIds.length > 0)
-                    ? rawProjs.filter(item => projSection.selectedIds.includes(item.id))
-                    : rawProjs;
-                  if (displayProjs.length === 0) return null;
-                  return (
-                    <div className="cv-print-section" style={{ marginBottom: '4mm' }}>
-                      <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
-                        Featured Projects
-                      </h2>
-                      {displayProjs.map(proj => (
-                        <div key={proj.id} className="cv-print-item" style={{ marginBottom: '2.5mm' }}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', fontWeight: 'bold', fontSize: '10pt' }}>
-                            <span>{proj.title}</span>
-                            <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#222' }}>{proj.category}</span>
-                          </div>
-                          {proj.description && <p style={{ fontSize: '9pt', margin: '1px 0 0 0', whiteSpace: 'pre-line', color: '#111' }}>{proj.description}</p>}
-                        </div>
-                      ))}
-                    </div>
-                  );
-                })()}
-
-                {/* Education Section (Page 2) */}
-                {(() => {
-                  const eduSection = sortedSections.find(s => s.id === 'education');
-                  if (!eduSection || !eduSection.enabled) return null;
-                  const rawEdu = getDataForSection('education');
-                  const displayEdu = (eduSection.selectedIds && eduSection.selectedIds.length > 0)
-                    ? rawEdu.filter(item => eduSection.selectedIds.includes(item.id))
-                    : rawEdu;
-                  if (displayEdu.length === 0) return null;
-                  return (
-                    <div className="cv-print-section" style={{ marginBottom: '4mm' }}>
-                      <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
-                        Education
-                      </h2>
-                      {displayEdu.map(edu => (
-                        <div key={edu.id} className="cv-print-item" style={{ marginBottom: '2.5mm' }}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', fontWeight: 'bold', fontSize: '10pt' }}>
-                            <span>{edu.school}</span>
-                            {edu.period && <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#222', whiteSpace: 'nowrap', marginLeft: '8px' }}>{edu.period}</span>}
-                          </div>
-                          <div style={{ fontSize: '9pt', fontStyle: 'italic', marginBottom: '0.5mm', color: '#333' }}>{edu.degree}</div>
-                          {edu.description && <p style={{ fontSize: '9pt', margin: '0', whiteSpace: 'pre-line', color: '#111' }}>{edu.description}</p>}
-                        </div>
-                      ))}
-                    </div>
-                  );
-                })()}
-
-                {/* Credentials Section (Page 2) */}
-                {(() => {
-                  const certSection = sortedSections.find(s => s.id === 'credentials');
-                  if (!certSection || !certSection.enabled) return null;
-                  const rawCerts = getDataForSection('credentials');
-                  const displayCerts = (certSection.selectedIds && certSection.selectedIds.length > 0)
-                    ? rawCerts.filter(item => certSection.selectedIds.includes(item.id))
-                    : rawCerts;
-                  if (displayCerts.length === 0) return null;
-                  return (
-                    <div className="cv-print-section" style={{ marginBottom: '3mm' }}>
-                      <h2 style={{ fontSize: '11pt', fontWeight: 'bold', textTransform: 'uppercase', borderBottom: '1px solid #111', margin: '0 0 2mm 0', paddingBottom: '0.5mm', letterSpacing: '0.5px' }}>
-                        Credentials & Certifications
-                      </h2>
-                      {displayCerts.map(cert => (
-                        <div key={cert.id} className="cv-print-item" style={{ marginBottom: '1.5mm' }}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '10pt' }}>
-                            <span>{cert.title}</span>
-                            <span style={{ fontWeight: 'normal', fontSize: '9pt', color: '#222' }}>{(cert.issuedDate || cert.issueDate) ? new Date(cert.issuedDate || cert.issueDate).getFullYear() : ''}</span>
-                          </div>
-                          <div style={{ fontSize: '9pt', color: '#333' }}>{cert.issuer}</div>
-                        </div>
-                      ))}
-                    </div>
-                  );
-                })()}
+                {/* Page 2 Dynamic Sections ordered by configuration */}
+                {sortedSections
+                  .filter(s => ['projects', 'education', 'credentials'].includes(s.id))
+                  .map(s => renderSectionById(s.id))}
               </div>
 
               </div>
