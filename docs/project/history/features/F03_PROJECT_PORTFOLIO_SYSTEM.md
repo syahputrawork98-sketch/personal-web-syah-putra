@@ -23,6 +23,7 @@ Mencakup sistem portfolio, kategori proyek, project card, modal detail, dan link
 | F03C | Project Data Polish | Completed | Memperbarui teks dan informasi project. | - |
 | F03D | HRD Project Portfolio Curation | Completed | Melakukan kurasi data proyek portofolio berorientasi HRD Full Stack berdasarkan audit kesiapan repository publik. | F03C |
 | F03E | Public README Normalization Starter | Partial | Normalisasi README untuk 3 repositori publik kandidat agar tidak duplicate/template dari personal web. | F03D |
+| F03F | Public Project Content Cleanup | Completed | Merapikan data/keterangan proyek publik yang tampil di portofolio utama agar lebih rapi untuk HRD, menyesuaikan prioritas featured, dan menurunkan prioritas RumahKu Konstruksi. | F03E |
 
 ## HOLD / Blocked Notes
 - Asset finalization masuk ke lingkup F06. Sebagian project data belum komplit sepenuhnya.
@@ -44,4 +45,5 @@ Mencakup sistem portfolio, kategori proyek, project card, modal detail, dan link
   1. Repositori `Web-API-Learning-Hub` tidak tersedia di local workspace.
   2. Perubahan README di `RumahKuKontruksi-Dev` dan `TC-Tien-s-Catering` baru tersimpan secara lokal dan membutuhkan commit/push manual oleh user ke remote GitHub.
   3. **Penting**: Tautan GitHub untuk ketiga repositori kandidat ini belum boleh diaktifkan pada data portofolio publik/seed utama sebelum berkas README di remote GitHub bersih dari template personal web utama.
+- [F03F] Melakukan penyelarasan narasi proyek publik di `seed.js`. Proyek utama dirapikan wording-nya agar HRD-friendly (Portfolio CMS, Tien's Catering, Web API Learning Hub, Kosuka Bali Trip). RumahKu Konstruksi dinonaktifkan dari featured list (featured set ke false, order diturunkan ke 7) sesuai instruksi pengguna. Proyek tambahan lainnya tetap dipertahankan dengan prioritas rendah tanpa menghapus data. Normalisasi README repositori luar tidak dilanjutkan.
 

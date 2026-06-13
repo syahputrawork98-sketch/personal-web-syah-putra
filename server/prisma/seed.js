@@ -263,8 +263,8 @@ async function main() {
     {
       title: 'Personal Portfolio CMS — Syah Putra N',
       slug: 'personal-portfolio-cms',
-      shortDescription: 'Aplikasi web portofolio personal interaktif yang dilengkapi dengan Dashboard Admin CMS terproteksi JWT untuk manajemen konten.',
-      description: 'Aplikasi portofolio profesional Full Stack beserta dashboard manajemen konten (CMS). Memungkinkan pengelolaan data profil, riwayat pengalaman, daftar keahlian, database sertifikasi, serta pustaka pembelajaran secara dinamis.\n\n**Detail Proyek:**\n- **Role:** Full Stack Web Developer (End-to-End Developer)\n- **Tech Stack:** React, Vite, Node.js, Express, Prisma, PostgreSQL (Neon DB), JWT, bcryptjs, Vanilla CSS.\n- **Fitur Utama:** Dynamic Content Rendering, JWT Secured CMS Dashboard, Credential/Certificate Google Drive Preview, CV Download Selector, Learning Library catalog, Global error handling, CORS allowed origins restriction.\n- **Kontribusi Pribadi:** Mendesain skema database relasional di Prisma, membangun REST API Express, mengimplementasikan dashboard administrasi, mengoptimalkan tata letak responsif mobile, dan mendeploy frontend ke Vercel serta backend ke Railway.\n- **Status:** Active / Production Ready.',
+      shortDescription: 'Aplikasi portfolio personal Full Stack dengan Dashboard CMS admin untuk manajemen data secara dinamis.',
+      description: 'Aplikasi portfolio profesional yang dibangun secara end-to-end dengan panel CMS admin terproteksi JWT untuk pengelolaan konten secara dinamis.\n\n**Detail Proyek:**\n- **Role:** Full Stack Developer (Pemilik & Pengembang Utama)\n- **Tech Stack:** React, Vite, Node.js, Express, Prisma, PostgreSQL (Neon DB), JWT.\n- **Fitur Utama:** Render konten dinamis, dashboard admin terproteksi, preview sertifikat Google Drive, selektor variasi CV, dan pembatasan CORS.\n- **Kontribusi:** Mendesain arsitektur database relasional, membangun REST API Express, mengimplementasikan antarmuka responsif, serta mendeploy sistem secara penuh.\n- **Status:** Produksi / Aktif.',
       techStack: ['React.js', 'Vite', 'Node.js', 'Express.js', 'Prisma', 'PostgreSQL', 'JWT'],
       status: 'PUBLISHED',
       featured: true,
@@ -273,47 +273,37 @@ async function main() {
       githubUrl: 'https://github.com/syahputrawork98-sketch/PWSP-Personal-Web-Syah-Putra'
     },
     {
-      title: 'RumahKu Konstruksi — Construction Service Web Platform',
-      slug: 'rkk-rumahku-konstruksi',
-      shortDescription: 'Aplikasi web case study untuk pelacakan real-time progress pembangunan fisik konstruksi dan manajemen inventori material.',
-      description: 'Aplikasi monitoring proyek pembangunan rumah tinggal yang dirancang untuk merapikan alur pelaporan lapangan dari mandor ke pemilik proyek.\n\n**Detail Proyek:**\n- **Role:** Full Stack Developer (Case Study / Candidate Project)\n- **Tech Stack:** JavaScript, React.js, Node.js, Express.js, MongoDB.\n- **Fitur Utama:** Real-time progress timeline tracking, daily construction worklog checklist, daily photo documentation upload, inventory control (cement/bricks logistic stock).\n- **Kontribusi Pribadi:** Merancang logika State Management frontend, membangun skema database NoSQL (MongoDB), dan membuat API monitoring harian.\n- **Status:** Case Study / Prototype Candidate.',
-      imageUrl: 'https://res.cloudinary.com/dlgr9xicg/image/upload/v1781232956/RKK-RumahKu-Kontruksi_twimqd.png',
-      techStack: ['JavaScript', 'React.js', 'Node.js', 'Express.js', 'MongoDB'],
-      status: 'PUBLISHED',
-      featured: true,
-      order: 2
-    },
-    {
       title: "Tien's Catering — Catering Business Web Platform",
       slug: 'tc-tiens-catering',
-      shortDescription: 'Platform digital promosi showcase menu catering kuliner lokal dan integrasi reservasi pemesanan acara online.',
-      description: 'Aplikasi web bisnis kuliner katering and event organizer untuk menampilkan portofolio layanan hidangan secara dinamis.\n\n**Detail Proyek:**\n- **Role:** Frontend Developer (Case Study / Candidate Project)\n- **Tech Stack:** Svelte, SvelteKit, TailwindCSS, JavaScript.\n- **Fitur Utama:** Interactive menu catalog slider, catering portion food calculator, inline booking request reservation form, Google Maps integration.\n- **Kontribusi Pribadi:** Mengimplementasikan transisi antarmuka responsif menggunakan Svelte, mendesain interaktivitas porsi catering calculator, dan merancang layout navigasi katalog.\n- **Status:** Case Study / Prototype Candidate.',
+      shortDescription: 'Website profil bisnis katering kuliner lokal dengan katalog menu dan form kalkulator porsi serta reservasi online.',
+      description: 'Website promosi dan showcase portofolio katering kuliner untuk menampilkan menu hidangan serta menyederhanakan pemesanan acara.\n\n**Detail Proyek:**\n- **Role:** Frontend Developer (Studi Kasus / Proyek Mandiri)\n- **Tech Stack:** Svelte, SvelteKit, TailwindCSS, JavaScript, SQLite.\n- **Fitur Utama:** Slider katalog menu interaktif, kalkulator porsi makanan dinamis, formulir reservasi acara, dan simulator akun/persona (switcher).\n- **Kontribusi:** Mendesain interaktivitas kalkulator porsi, mengimplementasikan antarmuka responsif menggunakan SvelteKit, serta menata rute API lokal untuk data mock.\n- **Status:** Studi Kasus / Prototipe.',
       imageUrl: 'https://res.cloudinary.com/dlgr9xicg/image/upload/v1781203315/Tien_s_Catering_bwawyt.png',
       techStack: ['Svelte', 'SvelteKit', 'TailwindCSS', 'JavaScript'],
+      status: 'PUBLISHED',
+      featured: true,
+      order: 2,
+      githubUrl: 'https://github.com/syahputrawork98-sketch/TC-Tien-s-Catering'
+    },
+    {
+      title: 'Web API Learning Hub — REST API Practice Repository',
+      slug: 'web-api-learning-hub',
+      shortDescription: 'Repositori pembelajaran backend untuk latihan perancangan REST API, operasi CRUD, otentikasi JWT, dan validasi request.',
+      description: 'Kumpulan proyek latihan backend untuk memperdalam pemahaman tentang alur kerja server-side, routing Express, dan optimasi query database.\n\n**Detail Proyek:**\n- **Role:** Backend Developer (Proyek Belajar)\n- **Tech Stack:** Node.js, Express.js, MySQL, JWT, Postman.\n- **Fitur Utama:** API registrasi dan login aman, middleware otentikasi JWT, validasi input request, dan standardisasi respon JSON.\n- **Kontribusi:** Membangun middleware otentikasi kustom, merancang struktur routing, serta mendokumentasikan API menggunakan Postman collections.\n- **Status:** Proyek Pembelajaran / Aktif.',
+      techStack: ['Node.js', 'Express.js', 'MySQL', 'JWT', 'Postman'],
       status: 'PUBLISHED',
       featured: true,
       order: 3
     },
     {
-      title: 'Web API Learning Hub — REST API Practice Repository',
-      slug: 'web-api-learning-hub',
-      shortDescription: 'Repositori pembelajaran mandiri yang memuat kompilasi rancangan REST API, operasi CRUD, otentikasi JWT, dan penanganan respon HTTP.',
-      description: 'Kumpulan latihan dan implementasi backend fundamental untuk memperdalam pemahaman tentang alur kerja server-side, routing, dan optimasi query.\n\n**Detail Proyek:**\n- **Role:** Backend Developer (Learning Project)\n- **Tech Stack:** Node.js, Express.js, MySQL, JWT, Postman.\n- **Fitur Utama:** Secure registration/login APIs, JWT payload authorization routes, standard JSON response structure, validation middleware, basic CRUD operations.\n- **Kontribusi Pribadi:** Membangun middleware autentikasi kustom, menyusun routing endpoint Express, serta mendokumentasikan skema API request-response menggunakan Postman collections.\n- **Status:** Learning / Practice Repository.',
-      techStack: ['Node.js', 'Express.js', 'MySQL', 'JWT', 'Postman'],
-      status: 'PUBLISHED',
-      featured: true,
-      order: 4
-    },
-    {
       title: 'Kosuka Bali Trip Website',
       slug: 'kbt-kosuka-bali-trip',
-      shortDescription: 'Website promosi layanan tour & travel Bali untuk pemesanan paket wisata secara kustom.',
-      description: 'Website e-commerce pariwisata yang menawarkan katalog tur kustom, pemesanan online, dan integrasi dengan media sosial untuk memudahkan pelancong merencanakan liburan mereka di Bali.\n\n**Fitur utama:**\n- Katalog destinasi wisata Bali\n- Sistem pemesanan tur kustom\n- Galeri destinasi interaktif\n- Fitur kontak WhatsApp cepat',
+      shortDescription: 'Website e-commerce pariwisata Bali dengan fitur pemesanan tur kustom dan integrasi kontak WhatsApp cepat.',
+      description: 'Platform showcase pariwisata interaktif yang membantu wisatawan merencanakan perjalanan kustom di Bali secara digital.\n\n**Detail Proyek:**\n- **Role:** Frontend Developer (Studi Kasus / Proyek Mandiri)\n- **Tech Stack:** TypeScript, React.js, Vite, TailwindCSS.\n- **Fitur Utama:** Katalog destinasi wisata, pembuat rencana perjalanan kustom, galeri interaktif, dan tombol hubung cepat WhatsApp.\n- **Kontribusi:** Mengembangkan sistem pemilihan destinasi kustom, menata visualisasi grid responsif, dan memastikan optimalisasi build client.\n- **Status:** Studi Kasus / Prototipe.',
       imageUrl: 'https://res.cloudinary.com/dlgr9xicg/image/upload/v1781232955/kbt-kosuka-bali-trip.vercel.app__wn3zig.png',
       techStack: ['TypeScript', 'React.js', 'Vite', 'TailwindCSS'],
       status: 'PUBLISHED',
-      featured: false,
-      order: 5
+      featured: true,
+      order: 4
     },
     {
       title: 'Siap Aqiqah Digital Platform',
@@ -324,7 +314,7 @@ async function main() {
       techStack: ['JavaScript', 'React.js', 'Node.js', 'Express.js', 'MySQL'],
       status: 'PUBLISHED',
       featured: false,
-      order: 6
+      order: 5
     },
     {
       title: 'Manajemen Toko Bangunan (MTB) Dashboard',
@@ -332,6 +322,17 @@ async function main() {
       shortDescription: 'Aplikasi point of sale (POS) & inventori toko bangunan terintegrasi.',
       description: 'Dashboard admin internal untuk manajemen toko bahan bangunan skala menengah. Mengelola master data produk, status stok, transaksi kasir POS, dan pelaporan keuangan bulanan.\n\n**Fitur utama:**\n- POS kasir penjualan barang\n- Stock alert batas minimum material\n- Laporan laba rugi otomatis\n- Print struk transaksi belanja',
       techStack: ['JavaScript', 'React.js', 'Node.js', 'Express.js', 'PostgreSQL'],
+      status: 'PUBLISHED',
+      featured: false,
+      order: 6
+    },
+    {
+      title: 'RumahKu Konstruksi — Construction Service Web Platform',
+      slug: 'rkk-rumahku-konstruksi',
+      shortDescription: 'Aplikasi web case study untuk pelacakan real-time progress pembangunan fisik konstruksi dan manajemen inventori material.',
+      description: 'Aplikasi monitoring proyek pembangunan rumah tinggal yang dirancang untuk merapikan alur pelaporan lapangan dari mandor ke pemilik proyek.\n\n**Detail Proyek:**\n- **Role:** Full Stack Developer (Case Study / Candidate Project)\n- **Tech Stack:** JavaScript, React.js, Node.js, Express.js, MongoDB.\n- **Fitur Utama:** Real-time progress timeline tracking, daily construction worklog checklist, daily photo documentation upload, inventory control (cement/bricks logistic stock).\n- **Kontribusi Pribadi:** Merancang logika State Management frontend, membangun skema database NoSQL (MongoDB), dan membuat API monitoring harian.\n- **Status:** Case Study / Prototype Candidate.',
+      imageUrl: 'https://res.cloudinary.com/dlgr9xicg/image/upload/v1781232956/RKK-RumahKu-Kontruksi_twimqd.png',
+      techStack: ['JavaScript', 'React.js', 'Node.js', 'Express.js', 'MongoDB'],
       status: 'PUBLISHED',
       featured: false,
       order: 7
