@@ -264,5 +264,36 @@ input:focus, textarea:focus {
   color: var(--primary-color);
 }
 
+.main-content {
+  padding-top: 80px;
+}
+
+/* =========================================
+   MOBILE RESPONSIVE POLISH (Batch F13A)
+   ========================================= */
+@media (max-width: 768px) {
+  .main-content {
+    padding-top: 64px; /* Matches new mobile navbar height */
+  }
+
+  .section-padding {
+    padding: var(--space-6) 0;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .btn {
+    padding: 0.7rem 1.4rem;
+    font-size: 0.9rem;
+  }
+}
+
 /* End of Styles */
 

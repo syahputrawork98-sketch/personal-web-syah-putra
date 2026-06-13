@@ -26,6 +26,7 @@
 | F10 | Deployment and Domain System | deployment | Completed / Production Live | Production deployment aktif di Vercel, Railway, dan Neon PostgreSQL. | Monitoring dan setup custom domain opsional | [F10_DEPLOYMENT_DOMAIN_SYSTEM.md](features/F10_DEPLOYMENT_DOMAIN_SYSTEM.md) |
 | F11 | CV Builder and PDF Export System | frontend/admin | Completed | Logika *State Management* dan Cetak PDF mandiri (Browser) selesai. PDF statis telah disinkronisasikan ke Public Download. | Lanjutkan ke fitur selanjutnya / deploy | [F11_CV_BUILDER_PDF_EXPORT_SYSTEM.md](features/F11_CV_BUILDER_PDF_EXPORT_SYSTEM.md) |
 | F12 | Learning Library System | frontend | Completed | Learning Library public page, admin CMS, backend API, and dynamic public integration completed. | Lanjutkan ke fitur berikutnya / deploy | [F12_LEARNING_LIBRARY_SYSTEM.md](features/F12_LEARNING_LIBRARY_SYSTEM.md) |
+| F13 | Mobile Responsive UI Improvement | frontend | Completed | Penyesuaian layout CSS murni untuk public mobile screen (navbar, hero, projects). | Final QA mobile view | [F13_MOBILE_RESPONSIVE_UI_IMPROVEMENT.md](features/F13_MOBILE_RESPONSIVE_UI_IMPROVEMENT.md) |
 
 ## Deployment Status
 - **Status Deployment**: Aktif / Live

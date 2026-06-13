@@ -378,3 +378,23 @@
     height: 180px;
   }
 }
+
+/* Added in Batch F13A */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-8);
+}
+
+.projects-grid-other {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+}
+
+@media (max-width: 640px) {
+  .projects-grid,
+  .projects-grid-other {
+    grid-template-columns: 1fr;
+  }
+}

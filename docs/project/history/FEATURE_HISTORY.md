@@ -19,3 +19,4 @@ Dokumen ini adalah index history aktif berbasis fitur. Detail setiap fitur disim
 | F10 | Deployment and Domain System | Completed | features/F10_DEPLOYMENT_DOMAIN_SYSTEM.md |
 | F11 | CV Builder and PDF Export System | Completed | features/F11_CV_BUILDER_PDF_EXPORT_SYSTEM.md |
 | F12 | Learning Library System | Completed | features/F12_LEARNING_LIBRARY_SYSTEM.md |
+| F13 | Mobile Responsive UI Improvement | Completed | features/F13_MOBILE_RESPONSIVE_UI_IMPROVEMENT.md |

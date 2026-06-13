@@ -26,7 +26,7 @@ const MainLayout = ({ children }) => {
   return (
     <>
       <Navbar theme={theme} toggleTheme={toggleTheme} />
-      <main style={{ paddingTop: '80px' }}>
+      <main className="main-content">
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}

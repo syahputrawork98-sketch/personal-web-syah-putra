@@ -65,3 +65,37 @@
   max-width: 1000px;
   margin-inline: auto;
 }
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: calc(100svh - 64px);
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 10vw, 3rem);
+    margin-bottom: var(--space-2);
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .skill-pills {
+    margin-bottom: var(--space-5);
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    margin-top: var(--space-6);
+  }
+
+  .cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cta-group .btn {
+    width: 100%;
+  }
+}

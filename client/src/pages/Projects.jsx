@@ -115,10 +115,8 @@ const Projects = () => {
             {/* Featured Projects Grid */}
             {featuredProjects.length > 0 && (
               <motion.div 
+                className="projects-grid"
                 style={{ 
-                  display: 'grid', 
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
-                  gap: 'var(--space-8)',
                   marginBottom: otherProjects.length > 0 ? 'var(--space-12)' : 0
                 }}
                 variants={containerVariants}
@@ -153,11 +151,7 @@ const Projects = () => {
             {/* Other Projects Grid */}
             {otherProjects.length > 0 && (
               <motion.div 
-                style={{ 
-                  display: 'grid', 
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-                  gap: 'var(--space-6)' 
-                }}
+                className="projects-grid-other"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"

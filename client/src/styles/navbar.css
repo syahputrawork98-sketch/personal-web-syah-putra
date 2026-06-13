@@ -129,7 +129,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: 300px;
+  width: min(85vw, 320px);
   height: 100vh;
   background: var(--card-bg);
   backdrop-filter: var(--glass-blur);
@@ -164,5 +164,11 @@
   backdrop-filter: blur(2px);
   z-index: 999;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    height: 64px;
+  }
 }
 
