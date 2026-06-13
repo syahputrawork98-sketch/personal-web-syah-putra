@@ -254,7 +254,7 @@ async function main() {
 
   await prisma.experience.deleteMany({});
   for (const exp of experiences) {
-  await prisma.experience.create({ data: exp });
+    await prisma.experience.create({ data: exp });
   }
   console.log('✅ Experiences seeded.');
 
