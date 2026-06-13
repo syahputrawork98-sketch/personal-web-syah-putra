@@ -12,12 +12,20 @@ const AdminLearning = () => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
   const [success, setSuccess] = useState('');
+  const [activeTab, setActiveTab] = useState('ALL');
 
   const fetchItems = async () => {
     try {
       setLoading(true);
       const data = await getAdminLearningItems();
-      setItems(data.learningItems || []);
+      const loadedItems = data.learningItems || [];
+      setItems(loadedItems);
+      
+      // Reset activeTab to 'ALL' if the current category is no longer present
+      const currentCats = Array.from(new Set(loadedItems.map(item => item.category || 'Other')));
+      if (activeTab !== 'ALL' && !currentCats.includes(activeTab)) {
+        setActiveTab('ALL');
+      }
       setError('');
     } catch (err) {
       if (err.message === 'Failed to fetch' || err.message.includes('401')) {
@@ -47,7 +55,7 @@ const AdminLearning = () => {
       setSuccess('Item deleted successfully');
       setDeleteModalOpen(false);
       setItemToDelete(null);
-      fetchItems();
+      await fetchItems();
       setTimeout(() => setSuccess(''), 3000);
     } catch (err) {
       setError(err.message || 'Failed to delete item');
@@ -55,7 +63,13 @@ const AdminLearning = () => {
     }
   };
 
-  if (loading) return <div>Loading...</div>;
+  // Derive categories dynamically
+  const categories = Array.from(new Set(items.map(item => item.category || 'Other')))
+    .sort((a, b) => a.localeCompare(b));
+
+  const filteredItems = activeTab === 'ALL'
+    ? items
+    : items.filter(item => (item.category || 'Other') === activeTab);
 
   return (
     <div>
@@ -67,8 +81,78 @@ const AdminLearning = () => {
       {error && <div style={{ color: 'red', marginBottom: '1rem', padding: '1rem', backgroundColor: '#fee2e2', borderRadius: '4px' }}>{error}</div>}
       {success && <div style={{ color: 'green', marginBottom: '1rem', padding: '1rem', backgroundColor: '#dcfce7', borderRadius: '4px' }}>{success}</div>}
 
+      {/* Tabs Filter */}
+      <div style={{ display: 'flex', gap: 'var(--space-2)', marginBottom: 'var(--space-6)', borderBottom: '1px solid var(--border-color)', paddingBottom: 'var(--space-2)', overflowX: 'auto', whiteSpace: 'nowrap' }}>
+        <button
+          onClick={() => setActiveTab('ALL')}
+          style={{
+            padding: '8px 16px',
+            borderRadius: '4px',
+            border: 'none',
+            backgroundColor: activeTab === 'ALL' ? 'var(--primary-color)' : 'transparent',
+            color: activeTab === 'ALL' ? 'white' : 'var(--text-color)',
+            fontWeight: activeTab === 'ALL' ? '600' : '400',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease',
+            opacity: activeTab === 'ALL' ? 1 : 0.7,
+            display: 'flex',
+            alignItems: 'center'
+          }}
+        >
+          All
+          <span style={{
+            marginLeft: '6px',
+            fontSize: '0.75rem',
+            backgroundColor: activeTab === 'ALL' ? 'rgba(255, 255, 255, 0.2)' : 'var(--bg-muted, rgba(0, 0, 0, 0.05))',
+            color: activeTab === 'ALL' ? 'white' : 'var(--text-muted, #6b7280)',
+            padding: '2px 6px',
+            borderRadius: '10px',
+            fontWeight: '600'
+          }}>
+            {items.length}
+          </span>
+        </button>
+
+        {categories.map(cat => (
+          <button
+            key={cat}
+            onClick={() => setActiveTab(cat)}
+            style={{
+              padding: '8px 16px',
+              borderRadius: '4px',
+              border: 'none',
+              backgroundColor: activeTab === cat ? 'var(--primary-color)' : 'transparent',
+              color: activeTab === cat ? 'white' : 'var(--text-color)',
+              fontWeight: activeTab === cat ? '600' : '400',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              opacity: activeTab === cat ? 1 : 0.7,
+              display: 'flex',
+              alignItems: 'center'
+            }}
+          >
+            {cat}
+            <span style={{
+              marginLeft: '6px',
+              fontSize: '0.75rem',
+              backgroundColor: activeTab === cat ? 'rgba(255, 255, 255, 0.2)' : 'var(--bg-muted, rgba(0, 0, 0, 0.05))',
+              color: activeTab === cat ? 'white' : 'var(--text-muted, #6b7280)',
+              padding: '2px 6px',
+              borderRadius: '10px',
+              fontWeight: '600'
+            }}>
+              {items.filter(item => (item.category || 'Other') === cat).length}
+            </span>
+          </button>
+        ))}
+      </div>
+
       <div style={{ backgroundColor: 'var(--card-bg)', borderRadius: '8px', border: '1px solid var(--border-color)', overflow: 'hidden' }}>
-        {items.length === 0 ? (
+        {loading ? (
+          <div style={{ textAlign: 'center', padding: 'var(--space-12)', opacity: 0.6 }}>
+            Loading learning items...
+          </div>
+        ) : filteredItems.length === 0 ? (
           <div style={{ padding: 'var(--space-8)', textAlign: 'center', opacity: 0.7 }}>
             No learning items found. Click "Add New Learning Item" to create one.
           </div>
@@ -88,11 +172,11 @@ const AdminLearning = () => {
                 </tr>
               </thead>
               <tbody>
-                {items.map(item => (
+                {filteredItems.map(item => (
                   <tr key={item.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
                     <td style={{ padding: '12px 16px' }}>{item.orderIndex}</td>
                     <td style={{ padding: '12px 16px', fontWeight: '500' }}>{item.title}</td>
-                    <td style={{ padding: '12px 16px' }}>{item.category}</td>
+                    <td style={{ padding: '12px 16px' }}>{item.category || '-'}</td>
                     <td style={{ padding: '12px 16px' }}>
                       <span style={{ fontSize: '0.8rem', padding: '2px 6px', borderRadius: '4px', backgroundColor: 'var(--border-color)' }}>
                         {item.status}
