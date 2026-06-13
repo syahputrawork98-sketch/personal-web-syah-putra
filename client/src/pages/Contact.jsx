@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FiMail, FiMapPin, FiPhone } from 'react-icons/fi';
+import { FiMail, FiMapPin, FiPhone, FiGlobe } from 'react-icons/fi';
 import { FaLinkedin, FaGithub, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { getPublicContact } from '../lib/api';
 import EmptyState from '../components/EmptyState';
@@ -60,6 +60,13 @@ const Contact = () => {
       label: 'Lokasi',
       value: currentContact.location,
       url: null
+    },
+    {
+      id: 'website',
+      icon: <FiGlobe />,
+      label: 'Website',
+      value: currentContact.website ? 'Website Portfolio' : null,
+      url: currentContact.website
     },
     {
       id: 'linkedin',
