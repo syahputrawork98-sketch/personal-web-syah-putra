@@ -2,11 +2,12 @@
 
 ## Metadata
 - Feature Batch: Batch F14 — Repository Normalization and Documentation Sync
-- Execution Batch: Batch F14B — Repository Inventory Map (Detailed Frontend Audit in Batch F14C)
-- Status: Completed (Repository Map built, Frontend Audited)
+- Execution Batch: Batch F14B — Repository Inventory Map (Frontend/Backend Audited in F14C/D)
+- Status: Completed (Repository Map built, Frontend & Backend Audited)
 - Scope: Inventory only, no cleanup
 - Last updated: 2026-06-13
 - Detailed Frontend Audit: [FRONTEND_PUBLIC_ADMIN_AUDIT.md](FRONTEND_PUBLIC_ADMIN_AUDIT.md)
+- Detailed Backend Audit: [BACKEND_API_AUDIT.md](BACKEND_API_AUDIT.md)
 
 ## Inventory Legend
 - **Active**: Jelas dipakai oleh runtime/build/docs aktif.
@@ -228,9 +229,9 @@
 ### Scratch Scripts
 | Path | Type | Status | Evidence / Reason | Next Action |
 |---|---|---|---|---|
-| `server/scratch/check_db.js` | File | Delete candidate after validation | Script uji koneksi DB lokal manual | Pertahankan/Hapus setelah validasi |
-| `server/scratch/parse_logs.js` | File | Delete candidate after validation | Script utilitas parser log manual | Pertahankan/Hapus setelah validasi |
-| `server/scratch/patch_seed.js` | File | Delete candidate after validation | Script utilitas helper seeding manual | Pertahankan/Hapus setelah validasi |
+| `server/scratch/check_db.js` | File | Confirmed unused candidate | F14D Audit: Script uji koneksi DB lokal manual, tidak dipanggil node/express/prisma | Siap dihapus pada batch cleanup |
+| `server/scratch/parse_logs.js` | File | Confirmed unused candidate | F14D Audit: Script parser log manual, tidak dipanggil | Siap dihapus pada batch cleanup |
+| `server/scratch/patch_seed.js` | File | Confirmed unused candidate | F14D Audit: Helper seeding manual, tidak dipanggil | Siap dihapus pada batch cleanup |
 
 
 ## Documentation Inventory
@@ -317,9 +318,9 @@
 | `client/src/assets/hero.png` | Confirmed unused candidate | F14C Audit: Tidak di-import/direferensikan di mana pun | Hapus pada batch cleanup |
 | `client/src/assets/javascript.svg` | Confirmed unused candidate | F14C Audit: Tidak di-import/direferensikan di mana pun | Hapus pada batch cleanup |
 | `client/src/assets/vite.svg` | Confirmed unused candidate | F14C Audit: Tidak di-import/direferensikan di mana pun | Hapus pada batch cleanup |
-| `server/scratch/check_db.js` | Needs verification | Script uji DB lokal manual | Pastikan tidak diperlukan untuk troubleshooting |
-| `server/scratch/parse_logs.js` | Needs verification | Script parser log manual | Pastikan tidak diperlukan |
-| `server/scratch/patch_seed.js` | Needs verification | Script helper seeding manual | Pastikan tidak diperlukan |
+| `server/scratch/check_db.js` | Confirmed unused candidate | F14D Audit: Script uji DB lokal manual, tidak dipanggil Express/Prisma | Hapus pada batch cleanup |
+| `server/scratch/parse_logs.js` | Confirmed unused candidate | F14D Audit: Script parser log manual, tidak dipanggil | Hapus pada batch cleanup |
+| `server/scratch/patch_seed.js` | Confirmed unused candidate | F14D Audit: Helper seeding manual, tidak dipanggil | Hapus pada batch cleanup |
 
 
 ## Do Not Delete List
@@ -341,7 +342,6 @@ Daftar file krusial yang bersifat sensitif, historis, konfigurasi utama, atau be
 
 ## Recommended Next Batch
 Rekomendasi batch lanjutan pasca audit inventori ini:
-- **Batch F14C — Frontend Public/Admin Audit**: Fokus memvalidasi data fallback, integrasi aset eksternal, dan kesiapan mobile view di area admin secara fungsional.
-- **Batch F14D — Backend/API Audit**: Fokus pada audit performa query Prisma dan pembersihan controller/middleware yang tidak efisien.
-- **Batch F14E — Database/Prisma Audit**: Audit komparatif model data di Prisma Studio untuk memastikan tidak ada redundancy field.
-- **Batch F14F — Cleanup Candidates Validation**: Eksekusi pembersihan file-file sisa (seperti file fallback yang tidak di-import dan logs) setelah divalidasi aman.
+- **Batch F14E — Database/Prisma Audit**: Audit komparatif model data di Prisma Studio, database seed payload safety, dan database model indexes.
+- **Batch F14F — Cleanup Candidates Validation**: Eksekusi pembersihan file-file tak terpakai (build logs, offline fallbacks, dan scratch scripts) yang telah divalidasi aman.
+- **Batch F14G — Safe Cleanup Patch 1**: Pembuatan batch patch final untuk mengonsolidasikan perubahan dokumentasi dan cleanup awal di Anti-Gravity IDE.
