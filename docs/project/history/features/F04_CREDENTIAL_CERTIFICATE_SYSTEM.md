@@ -22,12 +22,12 @@ Mencakup pengelolaan dan tampilan data sertifikasi/credential. Menunjukkan kuali
 | F04C | Public Credential Safety Review | Completed | Review kemanan data publik. | - |
 | F04D | Public Credential Content Cleanup | Completed | Merapikan prioritas dan wording kredensial agar selaras dengan posisi Full Stack Developer dan memposisikan sertifikat non-IT sebagai pendukung. | F04C |
 | F04E | Credential Homepage Display and Next Step Cleanup | Completed | Verifikasi penayangan kartu beranda dan pembersihan alur rencana langkah berikutnya. | F04D |
+| F04F | Credential Manual Verification Follow-up | Completed | Menindaklanjuti verifikasi detail sertifikat BNSP secara manual dari preview. | F04E |
 
 ## HOLD / Blocked Notes
-- Sebagian credential masih perlu verifikasi manual oleh user (misalnya memastikan link drive sudah public dan bisa diembed).
+- *Tidak ada*
 
 ## Next Step
-- F04F — Credential Manual Verification Follow-up (untuk melengkapi peninjauan nomor/detail sertifikat BNSP).
 - F05 / F06 — Media Assets and Link integration.
 
 ## Validation Checklist
@@ -39,3 +39,4 @@ Mencakup pengelolaan dan tampilan data sertifikasi/credential. Menunjukkan kuali
 - [F04C] Public metadata safety review telah dilakukan. Data sensitif dan kode verifikasi detail pada summary telah dinetralisir agar aman untuk publik.
 - [F04D] Melakukan penataan ulang kredensial di `credentials.json` agar berorientasi rekrutmen Full Stack. Sertifikat web/full stack utama (BBPVP, BNSP, RevoU) disetel ke prioritas tertinggi (`displayPriority` 1/2, `featured` dan `showOnHomepage` true). Sertifikat non-IT (CAD, Konstruksi, Kepemimpinan, dll.) diturunkan prioritasnya dan diframing sebagai supporting/lintas bidang (`showOnHomepage` false, `displayPriority` 4/5) tanpa menghapus data atau mengubah tautan Drive.
 - [F04E] Homepage credential display dijaga tetap ringkas. Hanya tiga sertifikat utama web development (BBPVP, BNSP, RevoU) yang disetel true untuk showOnHomepage. Next Step F04 diperbarui agar tidak mengarah ke batch lama yang tidak relevan. Tidak ada perubahan sistem, UI, preview, atau link Drive.
+- [F04F] Melakukan verifikasi manual terhadap sertifikat BNSP (id: bnsp-web-node-react-2025) menggunakan visual preview dari link Google Drive. Berhasil melengkapi nomor sertifikat (78412 3514 0 0000712 2025), tanggal terbit (2025-10-06), status kompetensi ("Kompeten"), serta mengubah status verifikasi menjadi "verified". Tidak ada link Drive, sistem preview, atau UI yang diubah.
