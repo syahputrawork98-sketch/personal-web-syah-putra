@@ -21,6 +21,7 @@ Mencakup halaman profil, pengalaman, edukasi, skill, dan narasi personal brandin
 | F02B | Experience Content Polish | Completed | Memperbarui pengalaman kerja. | - |
 | F02C | Skill and Education Review | Completed | Memperbarui list skill dan edukasi. | - |
 | F02D | HRD Recruitment Content Alignment | Completed | Menyelaraskan konten profil, hero, experience, dan framing skill untuk kebutuhan rekrutmen Full Stack Web Developer. | F02C |
+| F02D.1 | Fix Seed Syntax Regression | Completed | Memperbaiki syntax error di seed.js pasca Batch F02D. | F02D |
 
 ## HOLD / Blocked Notes
 - Tidak ada blocker aktif.
@@ -37,3 +38,4 @@ Mencakup halaman profil, pengalaman, edukasi, skill, dan narasi personal brandin
 - [F02B] Experience fallback telah dipoles untuk memperkuat narasi Web Developer, menambahkan techStack dan highlights, serta merepresentasikan pengalaman lama sebagai keunggulan digitalisasi lintas bidang.
 - [F02C] Skill fallback diubah ke struktur array dengan penambahan skill teknis dan soft skill lengkap; education fallback dipoles narasi akademisnya.
 - [F02D] Narasi profil, hero, dan detail pengalaman freelance diperkuat secara teknis (React/Node/Express/Postgres/MySQL) dengan framing profesional (Full-Stack Implementation, Operational System Thinking, Reliable Delivery) dan pemisahan yang jelas antara pengalaman web dev aktif dengan latar belakang operasional lintas bidang.
+- [F02D.1] Memperbaiki syntax error/regression pada `server/prisma/seed.js` akibat baris pemanggilan `console.log` yang terputus saat integrasi sub-batch F02D.

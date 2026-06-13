@@ -149,7 +149,9 @@ async function main() {
   for (const skill of defaultSkills) {
     await prisma.skill.create({ data: skill });
   }
-  console.log('✅ Default skills  // 4. Setup Experience
+  console.log('✅ Default skills seeded.');
+
+  // 4. Setup Experience
   const experiences = [
     {
       role: 'Freelance Full Stack Web Developer',
