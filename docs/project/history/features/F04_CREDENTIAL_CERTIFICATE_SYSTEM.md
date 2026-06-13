@@ -24,12 +24,14 @@ Mencakup pengelolaan dan tampilan data sertifikasi/credential. Menunjukkan kuali
 | F04E | Credential Homepage Display and Next Step Cleanup | Completed | Verifikasi penayangan kartu beranda dan pembersihan alur rencana langkah berikutnya. | F04D |
 | F04F | Credential Manual Verification Follow-up | Completed | Menindaklanjuti verifikasi detail sertifikat BNSP secara manual dari preview. | F04E |
 | F04G | Safe Neon Credential Sync Preparation | Completed | Menyiapkan targeted script untuk sinkronisasi kredensial BNSP ke Neon tanpa mengganggu live data. | F04F |
+| F04I | Safe Full Public Content Sync Preparation | Completed | Menyiapkan script sync aman untuk seluruh data publik (Settings, Skills, Experiences, Projects, Credentials) ke Neon. | F04G |
 
 ## HOLD / Blocked Notes
 - *Tidak ada*
 
 ## Next Step
 - F04H — Manual Execution of Targeted Sync to Neon (untuk eksekusi apply manual jika env dan backup sudah siap).
+- F04J — Manual Execution of Full Public Content Sync to Neon (untuk eksekusi sinkronisasi penuh data publik ke Neon).
 - F05 / F06 — Media Assets and Link integration.
 
 ## Validation Checklist
@@ -43,3 +45,4 @@ Mencakup pengelolaan dan tampilan data sertifikasi/credential. Menunjukkan kuali
 - [F04E] Homepage credential display dijaga tetap ringkas. Hanya tiga sertifikat utama web development (BBPVP, BNSP, RevoU) yang disetel true untuk showOnHomepage. Next Step F04 diperbarui agar tidak mengarah ke batch lama yang tidak relevan. Tidak ada perubahan sistem, UI, preview, atau link Drive.
 - [F04F] Melakukan verifikasi manual terhadap sertifikat BNSP (id: bnsp-web-node-react-2025) menggunakan visual preview dari link Google Drive. Berhasil melengkapi nomor sertifikat (78412 3514 0 0000712 2025), tanggal terbit (2025-10-06), status kompetensi ("Kompeten"), serta mengubah status verifikasi menjadi "verified". Tidak ada link Drive, sistem preview, atau UI yang diubah.
 - [F04G] Menyusun script targeted sync khusus (`server/scripts/sync-credential-bnsp.js`) untuk melakukan upsert data BNSP yang terverifikasi ke Neon DB. Script menggunakan mode dry-run secara default untuk keamanan dan mencegah penggunaan query destruktif (tanpa deleteMany/data overwrite lainnya). Menambahkan command `npm run sync:credential:bnsp` pada `package.json` server.
+- [F04I] Menyusun script sinkronisasi penuh data publik (`server/scripts/sync-public-content.js`) untuk melakukan upsert data Settings, Skills, Experiences, Projects, Credentials, dan Featured Credentials ke database. Menggunakan mode dry-run secara default untuk keamanan serta mencegah penggunaan query destruktif `deleteMany` pada table penting. Menambahkan command `npm run sync:public-content` pada `package.json` server.

@@ -10,7 +10,8 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
     "seed": "node prisma/seed.js",
-    "sync:credential:bnsp": "node scripts/sync-credential-bnsp.js"
+    "sync:credential:bnsp": "node scripts/sync-credential-bnsp.js",
+    "sync:public-content": "node scripts/sync-public-content.js"
   },
   "keywords": [],
   "author": "",
