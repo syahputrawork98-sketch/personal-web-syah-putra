@@ -285,3 +285,18 @@
   }
 }
 
+.cv-empty-preview-note {
+  margin: 8mm 0;
+  padding: 16px;
+  border: 1px dashed #ef4444;
+  background-color: #fef2f2;
+  border-radius: 6px;
+  text-align: center;
+}
+
+@media print {
+  .cv-empty-preview-note {
+    display: none !important;
+  }
+}
+

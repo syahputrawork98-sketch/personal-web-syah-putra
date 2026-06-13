@@ -81,7 +81,25 @@ const AdminCvBuilder = () => {
             }
             return s;
           });
-          setCvConfig({ ...configRes, sections: ensuredSections });
+          
+          // Apply default contact values if they are missing or empty
+          const displayName = configRes.displayName || profileRes.profile?.name || '';
+          const phone = configRes.phone || '0851 6265 4466';
+          const website = configRes.website || 'https://syahputran.vercel.app/';
+          const github = configRes.github || 'https://bit.ly/4xrqAWN';
+          const email = configRes.email || contactRes.contact?.email || '';
+          const location = configRes.location || contactRes.contact?.location || '';
+
+          setCvConfig({
+            ...configRes,
+            displayName,
+            phone,
+            website,
+            github,
+            email,
+            location,
+            sections: ensuredSections
+          });
           setIsDirty(false);
         }
 
@@ -230,7 +248,7 @@ const AdminCvBuilder = () => {
         .filter(Boolean);
     }
     
-    return rawItems;
+    return []; // Return empty array if selectedIds is empty (Manual Curated Mode)
   };
 
   const renderSkillsSection = (items) => {
@@ -343,12 +361,20 @@ const AdminCvBuilder = () => {
     return id.charAt(0).toUpperCase() + id.slice(1);
   };
 
+  const previewEmail = cvConfig.email || data.contact?.email;
+  const previewPhone = cvConfig.phone || data.contact?.phone;
+  const previewLocation = cvConfig.location || data.contact?.location;
+  const previewWebsite = cvConfig.website || data.contact?.website;
+  const previewLinkedin = data.contact?.linkedin;
+  const previewGithub = cvConfig.github || data.contact?.github;
+
   const contactLinks = [
-    data.contact?.email,
-    data.contact?.phone,
-    data.contact?.location,
-    data.contact?.linkedin,
-    data.contact?.github
+    previewEmail,
+    previewPhone,
+    previewLocation,
+    previewWebsite,
+    previewLinkedin,
+    previewGithub
   ].filter(Boolean);
 
   return (
@@ -503,6 +529,61 @@ const AdminCvBuilder = () => {
                       style={{ width: '100%', boxSizing: 'border-box' }} 
                     />
                   </div>
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>Phone Number Override</label>
+                    <input 
+                      type="text" 
+                      value={cvConfig.phone || ''} 
+                      onChange={(e) => updateCvConfig({...cvConfig, phone: e.target.value})} 
+                      placeholder="e.g. 0851 6265 4466" 
+                      className="form-input" 
+                      style={{ width: '100%', boxSizing: 'border-box' }} 
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>Website URL Override</label>
+                    <input 
+                      type="text" 
+                      value={cvConfig.website || ''} 
+                      onChange={(e) => updateCvConfig({...cvConfig, website: e.target.value})} 
+                      placeholder="e.g. https://syahputran.vercel.app/" 
+                      className="form-input" 
+                      style={{ width: '100%', boxSizing: 'border-box' }} 
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>GitHub Link Override</label>
+                    <input 
+                      type="text" 
+                      value={cvConfig.github || ''} 
+                      onChange={(e) => updateCvConfig({...cvConfig, github: e.target.value})} 
+                      placeholder="e.g. https://bit.ly/4xrqAWN" 
+                      className="form-input" 
+                      style={{ width: '100%', boxSizing: 'border-box' }} 
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>Email Override</label>
+                    <input 
+                      type="text" 
+                      value={cvConfig.email || ''} 
+                      onChange={(e) => updateCvConfig({...cvConfig, email: e.target.value})} 
+                      placeholder="e.g. email@example.com" 
+                      className="form-input" 
+                      style={{ width: '100%', boxSizing: 'border-box' }} 
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>Location Override</label>
+                    <input 
+                      type="text" 
+                      value={cvConfig.location || ''} 
+                      onChange={(e) => updateCvConfig({...cvConfig, location: e.target.value})} 
+                      placeholder="e.g. Jakarta, Indonesia" 
+                      className="form-input" 
+                      style={{ width: '100%', boxSizing: 'border-box' }} 
+                    />
+                  </div>
                 </div>
               </div>
             )}
@@ -587,8 +668,8 @@ const AdminCvBuilder = () => {
                             </div>
                             <div>
                               {isUsingAll ? (
-                                <span style={{ color: '#166534', backgroundColor: '#dcfce7', padding: '2px 8px', borderRadius: '4px', fontWeight: '500', fontSize: '0.75rem' }}>
-                                  ℹ️ Using all items
+                                <span style={{ color: '#ef4444', backgroundColor: '#fef2f2', border: '1px solid #fecaca', padding: '2px 8px', borderRadius: '4px', fontWeight: '500', fontSize: '0.75rem' }}>
+                                  ⚠️ No items selected
                                 </span>
                               ) : (
                                 <span style={{ color: '#1e3a8a', backgroundColor: '#dbeafe', padding: '2px 8px', borderRadius: '4px', fontWeight: '500', fontSize: '0.75rem' }}>
@@ -621,10 +702,13 @@ const AdminCvBuilder = () => {
                                     onClick={() => handleClearSelection(actualIndexInConfig)}
                                     className="btn btn-secondary"
                                     style={{ padding: '4px 8px', fontSize: '0.75rem', minWidth: 'auto', flex: 1 }}
-                                    title="Clear selection to show all items by default"
+                                    title="Clear selection to exclude this section from preview"
                                   >
-                                    📭 Clear Selection (Uses All)
+                                    📭 Clear Selection
                                   </button>
+                                </div>
+                                <div style={{ fontSize: '0.75rem', opacity: 0.6, marginBottom: '10px', lineHeight: '1.3' }}>
+                                  💡 Select items manually to include them in this CV. Empty selection means this section will not appear in the preview. Use Select All only if you really want to include all items.
                                 </div>
 
                                 <input 
@@ -737,7 +821,7 @@ const AdminCvBuilder = () => {
                                   })}
                                   {selectedCount === 0 && (
                                     <div style={{ padding: '8px 12px', border: '1px dashed var(--border-color)', borderRadius: '4px', fontSize: '0.8rem', opacity: 0.6, fontStyle: 'italic', textAlign: 'center' }}>
-                                      💡 No specific items selected. Preview is showing all items by default.
+                                      💡 Empty selection. This section will not appear in the preview.
                                     </div>
                                   )}
                                 </div>
@@ -851,6 +935,17 @@ const AdminCvBuilder = () => {
                     <div style={{ fontSize: '9pt', textAlign: 'justify', whiteSpace: 'pre-line', color: '#111' }}>
                       {cvConfig.summary}
                     </div>
+                  </div>
+                )}
+
+                {totalSelectedItems === 0 && (
+                  <div className="cv-empty-preview-note">
+                    <p style={{ margin: 0, fontSize: '10pt', color: '#ef4444', fontWeight: 'bold' }}>
+                      No database items selected yet.
+                    </p>
+                    <p style={{ margin: '4px 0 0 0', fontSize: '9pt', color: '#7f1d1d' }}>
+                      Choose Experience, Skills, Projects, Education, or Credentials from the "Sections & Items" tab to build a tailored CV.
+                    </p>
                   </div>
                 )}
 
