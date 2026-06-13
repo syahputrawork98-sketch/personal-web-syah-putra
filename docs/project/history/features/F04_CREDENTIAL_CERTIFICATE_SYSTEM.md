@@ -25,6 +25,7 @@ Mencakup pengelolaan dan tampilan data sertifikasi/credential. Menunjukkan kuali
 | F04F | Credential Manual Verification Follow-up | Completed | Menindaklanjuti verifikasi detail sertifikat BNSP secara manual dari preview. | F04E |
 | F04G | Safe Neon Credential Sync Preparation | Completed | Menyiapkan targeted script untuk sinkronisasi kredensial BNSP ke Neon tanpa mengganggu live data. | F04F |
 | F04I | Safe Full Public Content Sync Preparation | Completed | Menyiapkan script sync aman untuk seluruh data publik (Settings, Skills, Experiences, Projects, Credentials) ke Neon. | F04G |
+| F04J.1 | Credential Data Realignment | Completed | Merapikan dan menyinkronkan data sertifikat/kredensial terbaru dengan daftar inventori 23 sertifikat non-formal serta kategori tab frontend. | F04I |
 
 ## HOLD / Blocked Notes
 - *Tidak ada*
@@ -46,3 +47,5 @@ Mencakup pengelolaan dan tampilan data sertifikasi/credential. Menunjukkan kuali
 - [F04F] Melakukan verifikasi manual terhadap sertifikat BNSP (id: bnsp-web-node-react-2025) menggunakan visual preview dari link Google Drive. Berhasil melengkapi nomor sertifikat (78412 3514 0 0000712 2025), tanggal terbit (2025-10-06), status kompetensi ("Kompeten"), serta mengubah status verifikasi menjadi "verified". Tidak ada link Drive, sistem preview, atau UI yang diubah.
 - [F04G] Menyusun script targeted sync khusus (`server/scripts/sync-credential-bnsp.js`) untuk melakukan upsert data BNSP yang terverifikasi ke Neon DB. Script menggunakan mode dry-run secara default untuk keamanan dan mencegah penggunaan query destruktif (tanpa deleteMany/data overwrite lainnya). Menambahkan command `npm run sync:credential:bnsp` pada `package.json` server.
 - [F04I] Menyusun script sinkronisasi penuh data publik (`server/scripts/sync-public-content.js`) untuk melakukan upsert data Settings, Skills, Experiences, Projects, Credentials, dan Featured Credentials ke database. Menggunakan mode dry-run secara default untuk keamanan serta mencegah penggunaan query destruktif `deleteMany` pada table penting. Menambahkan command `npm run sync:public-content` pada `package.json` server.
+- [F04J.1] Melakukan realignment data kredensial/sertifikat dengan menyelaraskan total 23 item non-formal terbaru ke dalam database (seeding/syncing) dan frontend fallback data. Menyesuaikan penamaan kategori agar tepat dengan tab navigasi frontend, memastikan link Google Drive tersemat dengan benar, dan membersihkan data lama/obsolit serta mengecualikan dokumen pendidikan formal (Ijazah SMK & Transkrip Nilai) dari daftar Credentials.
+
