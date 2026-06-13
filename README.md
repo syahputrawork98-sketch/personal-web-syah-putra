@@ -44,7 +44,7 @@ Arsitektur deployment aktif saat ini:
 - **Backend (Railway)**: Live pada URL Railway: `selfless-victory-production-350f.up.railway.app`
 - **Database (Neon PostgreSQL)**: Managed database PostgreSQL aktif pada branch `production`.
 - **Custom Domain**: Opsional / belum final.
-- Catatan detail *environment variables* dan setup terdokumentasi di Tracker F10 pada [F10_DEPLOYMENT_DOMAIN_SYSTEM.md](file:///i:/Workspace/Workspace-Syahputrawork/PWSP-Personal-Web-Syah-Putra/docs/project/history/features/F10_DEPLOYMENT_DOMAIN_SYSTEM.md).
+- Catatan detail *environment variables* dan setup terdokumentasi di Tracker F10 pada [F10_DEPLOYMENT_DOMAIN_SYSTEM.md](docs/project/history/features/F10_DEPLOYMENT_DOMAIN_SYSTEM.md).
 
 ## 🛠️ Status Pengembangan & Batasan Khusus
 
